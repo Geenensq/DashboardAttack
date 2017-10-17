@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gérer vos news
+    </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Bienvenue </h1>
+        <p>Accèder aux nouveautés interne de la société ! Ecrivez , modifiez et supprimer des news 
+        </p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="#exampleInputEmail1" role="button">Ecrire une news
+          </a>
+        </p>
+      </div>
+    </div>
+    <
+    <div class="col-md-6 col-md-offset-3">
+    <h2>Ajout d'une news</h2>
+    <form action="" method="POST" >
+      <div class="form-group">
+        <label for="exampleInputEmail1">Auteur de la news
+        </label>
+        <input name="autor" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Auteur de la news">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Titre la news
+        </label>
+        <input name="title" type="text" class="form-control" id="exampleInputPassword1" placeholder="Titre de la news">
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea">Contenu de la news
+        </label>
+        <textarea name="content" class="form-control" id="exampleTextarea" rows="3">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+    </div>
+  
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Suppression d'une news </h2>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label for="id">ID de la news à supprimer
+        </label>
+        <input type="text" class="form-control" id="id" name="id"  placeholder="ID de la news à supprimer">
+        <?php echo form_error('id'); ?>
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+  </div>
+ 
+  </body>
+</html>
