@@ -1,36 +1,25 @@
 <?php
-/**
- * Controller add news
- * Il me permet d'ajouter une news en utilisantmon model news model
- */
-class News extends CI_Controller
+
+class News_controller extends CI_Controller
 {  
-    private $autor;
-    private $title;
-    private $content;
-    private $id;
 
     function __construct()
     {
         parent::__construct();
-        $this->autor = $this->input->post('autor');
-        $this->title = $this->input->post('title');
-        $this->content = $this->input->post('content');
-        $this->id = $this->input->post('id');
         $this->load->model('news_model' , 'newsManager');
+        // $this->input->post('autor');
+        // $this->input->post('title');
+        // $this->input->post('content');
+        // $this->input->post('id');   
     }
 
-    /**
-     * [index description]
-     * Validation du formulaire via la librairie form valisation
-     * Ajout de la news en base via notre modele
-     * @return [view] [Retourne une vue html]
-     */
+
     public function index()
     {
         //--------------------------------Call base view---------------------------//
         //--Here code for sessions------------------------------------------------//
         
+        $this->newsManager->getonebyid(12);
         //----Load view----------------------------------------------------------//
         $this->load->view('/news/news.html');
         //----------------------------------------------------------------------//
@@ -47,7 +36,7 @@ class News extends CI_Controller
             if ($this->form_validation->run())
             {
                 $addnews = $this->newsManager->ajouter_news($this->autor , $this->title , $this->content);
-                 $this->load->view('/news/news.html');
+                $this->load->view('/news/news.html');
             }
         //--------------------------------------------------------------------------------------------------------------------------------------//   
     }
@@ -55,7 +44,7 @@ class News extends CI_Controller
     public function deletenews()
     {
         //--------------------------------------Delete news instructions------------------------------------------------------------------------//
-               $delnews = $this->newsManager->supprimer_news($this->id);
+                $delnews = $this->newsManager->supprimer_news($this->id);
                 $this->load->view('/news/news.html');
         //--------------------------------------------------------------------------------------------------------------------------------------//     
     }
