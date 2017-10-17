@@ -4,15 +4,7 @@ See as Text
 <?php
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-/**
- *  News_model
- *
- *      ajouter_news($auteur, $titre, $contenu)
- *      editer_news($id, $titre = null, $contenu = null)
- *      supprimer_news($id)
- *      count($where = array())
- *      liste_news($nb = 10, $debut = 0)
- */
+
 class News_model extends CI_Model
 
     {
@@ -24,14 +16,8 @@ class News_model extends CI_Model
     // Variable for change my entity
 
     protected $table = 'news';
-    /**
-     *  Ajoute une news.
-     *
-     *  @param string $auteur   L'auteur de la news
-     *  @param string $titre    Le titre de la news
-     *  @param string $contenu  Le contenu de la news
-     *  @return bool        Le résultat de la requête
-     */
+
+
     public function __construct()
         {
 

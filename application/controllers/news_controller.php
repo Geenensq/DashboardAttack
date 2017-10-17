@@ -28,6 +28,13 @@ class News_controller extends CI_Controller
 
     public function addnews()
     {
+
+        //$this->input->post('autor');
+        //$this->input->post('title');
+        //$this->input->post('content');
+        //$this->input->post('id');   
+      
+
        // --------------------------------------- Add news instructions -----------------------------------------------------------------------//
         $this->form_validation->set_rules('autor', '"Nom de l\'auteur"', 'trim|required|min_length[1]|max_length[10]|alpha_dash|encode_php_tags');
         $this->form_validation->set_rules('title', '"titre de la news"', 'trim|required|min_length[1]|max_length[30]|alpha_dash|encode_php_tags');
@@ -44,7 +51,7 @@ class News_controller extends CI_Controller
     public function deletenews()
     {
         //--------------------------------------Delete news instructions------------------------------------------------------------------------//
-                $delnews = $this->newsManager->supprimer_news($this->id);
+                $delnews = $this->newsManager->supprimer_news($this->input->post('id'));
                 $this->load->view('/news/news.html');
         //--------------------------------------------------------------------------------------------------------------------------------------//     
     }
