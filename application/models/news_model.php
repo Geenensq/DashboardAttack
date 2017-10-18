@@ -1,132 +1,119 @@
-
-See as Text     
-
 <?php
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_model extends CI_Model
-
+    Class News_model extends CI_Model
     {
-    private $autor;
-    private $title;
-    private $content;
-    private $id;
+        private $autor;
+        private $title;
+        private $content;
+        private $id;
 
-    // Variable for change my entity
+        // Variable for change my entity
+        protected $table = 'news';
 
-    protected $table = 'news';
-
-
-    public function __construct()
+        public function __construct()
         {
 
         }
 
+        // Getters methods
 
-    // Getters methods
-
-    public function getAutor()
+        public function getAutor()
         {
-        return $this->autor;
+            return $this->autor;
         }
 
-    public function getTitle()
+        public function getTitle()
         {
-        return $this->title;
+            return $this->title;
         }
 
-    public function getContent()
+        public function getContent()
         {
-        return $this->content;
+            return $this->content;
         }
 
-    public function getId()
+        public function getId()
         {
-        return $this->id;
+            return $this->id;
         }
 
-    // Setters methods
+        // Setters methods
 
-    public function setAutor($autor)
+        public function setAutor($autor)
         {
-        return $this->autor = $autor;
+            return $this->autor = $autor;
         }
 
-    public function setTitle($title)
+        public function setTitle($title)
         {
-        return $this->title = $title;
+            return $this->title = $title;
         }
 
-    public function setContent($content)
+        public function setContent($content)
         {
-        return $this->content = $content;
-        }
-
-
-
-    public function ajouter_news($auteur, $titre, $contenu)
-        {
-        return $this->db->set('auteur', $auteur)->set('titre', $titre)->set('contenu', $contenu)->set('date_ajout', 'NOW()', false)->set('date_modif', 'NOW()', false)->insert($this->table);
+            return $this->content = $content;
         }
 
 
-    public function editer_news($id, $titre = null, $contenu = null)
+
+        public function ajouter_news($auteur, $titre, $contenu)
         {
+            return $this->db->set('auteur', $auteur)->set('titre', $titre)->set('contenu', $contenu)->set('date_ajout', 'NOW()', false)->set('date_modif', 'NOW()', false)->insert($this->table);
+        }
 
-        //  Il n'y a rien à éditer
 
-        if ($titre == null AND $contenu == null)
+        public function editer_news($id, $titre = null, $contenu = null)
+        {
+            //  Il n'y a rien à éditer
+            if ($titre == null AND $contenu == null)
             {
-            return false;
+                return false;
+            }
+            //  Ces données seront échappées
+            if ($titre != null)
+            {
+                $this->db->set('titre', $titre);
             }
 
-        //  Ces données seront échappées
-
-        if ($titre != null)
+            if ($contenu != null)
             {
-            $this->db->set('titre', $titre);
+                $this->db->set('contenu', $contenu);
+            }
+            return $this->db->set('date_modif', 'NOW()', false)->where('id', (int)$id)->update($this->table);
             }
 
-        if ($contenu != null)
-            {
-            $this->db->set('contenu', $contenu);
-            }
-
-        return $this->db->set('date_modif', 'NOW()', false)->where('id', (int)$id)->update($this->table);
+      
+        public function supprimer_news($id)
+        {
+            return $this->db->where('id', (int)$id)->delete($this->table);
         }
 
-  
-    public function supprimer_news($id)
+      
+        public function count($where = array())
         {
-        return $this->db->where('id', (int)$id)->delete($this->table);
+            return (int)$this->db->where($where)->count_all_results($this->table);
         }
 
-  
-    public function count($where = array())
+        
+        public function liste_news($nb = 10, $debut = 0)
         {
-        return (int)$this->db->where($where)->count_all_results($this->table);
+            return $this->db->select('*')->from($this->table)->limit($nb, $debut)->order_by('id', 'desc')->get()->result();
+                
         }
 
-    
-    public function liste_news($nb = 10, $debut = 0)
+        public function getonebyid($id)
         {
-        // return $this->db->select('*')->from($this->table)->limit($nb, $debut)->order_by('id', 'desc')->get()->result();
-            return 'toto';
+                $query = $this->db->query('SELECT * FROM news WHERE `id` = ' . $id);
+                foreach ($query->result_array() as $row)
+                {
+                    echo $row['id'];
+                    echo $row['auteur'];
+                    echo $row['contenu'];
+                }
+            } 
         }
-
-    public function getonebyid($id)
-        {
-            $query = $this->db->query('SELECT * FROM news WHERE `id` = ' . $id);
-            
-            foreach ($query->result_array() as $row)
-            {
-                echo $row['id'];
-                echo $row['auteur'];
-                echo $row['contenu'];
-            }
-        } 
-    }
 
 
 
