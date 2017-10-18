@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $content;
         private $id;
 
-        // Variable for change my entity
+        // attribute for change my entity
         protected $table = 'news';
 
         public function __construct()
@@ -61,10 +61,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         //-----------------------------------------------------------------------------------------------//
 
         //-----------------------------PERSISTENCE METHOD FOR ADD MY NEWS-------------------------------//
-        public function ajouter_news($model)
+        public function ajouter_News($model)
         {
-            $auteur = $model->getAutor();
-            $titre = $model->getTitle();
+            $auteur  = $model->getAutor();
+            $titre   = $model->getTitle();
             $contenu = $model->getContent();
 
             return $this->db->set('autor', $auteur)
@@ -85,6 +85,39 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             ->delete($this->table);
         }
         //-----------------------------------------------------------------------------------------------//
+
+       
+        //----------------------------SELECT ALL MY NEWS FROM MY TABLE NEWS------------------------------//
+        public function liste_news()
+        {
+            $arrayNews = array();
+
+            $query = $this->db->query("SELECT * from news");
+                
+               foreach ($query->result_object() as $ligne)
+                {   
+                      $News = new News_model();                      
+                      $News->setId($ligne->id);
+                      $News->setAutor($ligne->autor);
+                      $News->setTitle($ligne->title);
+                      $News->setContent($ligne->content);
+                      $arrayNews[] = $News;
+ 
+                } 
+              
+                return $arrayNews;
+                
+        }
+        //-----------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
 
 
         // TODO
@@ -119,11 +152,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // }
 
         
-        // public function liste_news($nb = 10, $debut = 0)
-        // {
-        //     return $this->db->select('*')->from($this->table)->limit($nb, $debut)->order_by('id', 'desc')->get()->result();
-                
-        // }
+       
 
         // public function getonebyid($id)
         // {

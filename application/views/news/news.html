@@ -51,6 +51,37 @@
       <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </div>
+
+<?php
+//var_dump($listeNews['0']);
+?>
+
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Liste des dernieres news</h2>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Auteur</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+        foreach ($listeNews as $key => $news)
+        {
+          echo '<tr>';
+            echo  '<td>'. $news->getAutor() . '</td>';
+            echo  '<td>'. $news->getTitle() . '</td>';
+            echo  '<td>'. $news->getContent() . '</td>';     
+          echo '</tr>';
+        }
+    ?>
+    </tbody>
+  </table>
+
+
+  </div>
  
   </body>
 </html>

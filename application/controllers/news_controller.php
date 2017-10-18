@@ -1,6 +1,5 @@
 <?php
-
-class News_controller extends CI_Controller
+Class News_controller extends CI_Controller
 { 
     //------------------------------------CONSTRUCTOR CONTROLLER--------------------------// 
         function __construct()
@@ -14,14 +13,23 @@ class News_controller extends CI_Controller
     //------------------------------------DEFAULT LOAD METHOD----------------------------//     
         public function index()
         {
-           ///Loading my default view
-            $this->load->view('/news/news.html');
+            
+            //-------Loading all news for my table-------------//
+            $listeNews = $this->modelNews->liste_news();
+            //------------------------------------------------//
+
+
+             //--------Loading my default view-----//
+             $this->load->view('/news/news.html',array('listeNews' =>$listeNews), false);
+            //------------------------------------// 
+            
+
+            
         }
     //------------------------------------------------------------------------------------//  
   
-
     //----------------------------------METHOD FOR ADD AN NEWS WITH MY MODEL---------------//
-        public function addnews() 
+        public function addNews() 
         { 
                 // Get _POST for my model
                 $this->modelNews->setAutor($this->input->post('autor'));
@@ -30,7 +38,7 @@ class News_controller extends CI_Controller
          
                 ///Launch method model for add an news 
                 $newsModel = $this->modelNews;
-                $addnews = $this->modelNews->ajouter_news($newsModel); 
+                $addNews = $this->modelNews->ajouter_News($newsModel); 
 
                 //Redirection to my default method
                 redirect(array('news_controller', 'index')); 
@@ -39,7 +47,7 @@ class News_controller extends CI_Controller
     
 
     //--------------------------METHOD FOR DELETE AN NEWS WITH MY MODEL------------------//   
-        public function deletenews()
+        public function deleteNews()
         {
                     // Get _POST for my model
                     $this->modelNews->setId($this->input->post('id'));
@@ -51,6 +59,8 @@ class News_controller extends CI_Controller
                     //Redirection to my default method
                      redirect(array('news_controller', 'index'));  
         }
-    //------------------------------------------------------------------------------------//     
+    //------------------------------------------------------------------------------------//  
+    
+
     
 }
