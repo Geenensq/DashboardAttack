@@ -22,7 +22,7 @@ if ( ! function_exists('img_url'))
 {
     function img_url($nom)
     {
-        return base_url() . 'assets/images/' . $nom;
+        echo base_url() . 'assets/img/' . $nom;
     }
 }
 

@@ -14,9 +14,10 @@ Class News_controller extends CI_Controller
         //------------------------------------index method---------------------------------------//     
         public function index()
         {
-            // $test = debug();
+            
             $listeNews = $this->modelNews->liste_news();
             $this->load->view('/news/news.html', array('listeNews' =>$listeNews), false);
+            
         }
         //------------------------------------------------------------------------------------//  
   
@@ -53,7 +54,7 @@ Class News_controller extends CI_Controller
         //--------------------------method to delete a news based on its id with my model------------------//   
         public function deleteNews()
         {   
-                if (isset($_POST['id'])){
+                if ($this->input->post('id')){
 
                     // Get _POST for my model
                     $this->modelNews->setId($this->input->post('id'));

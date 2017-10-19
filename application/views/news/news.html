@@ -75,6 +75,9 @@
     </tbody>
   </table>
   </div>
+
+
+ 
   
   <div class="col-md-6 col-md-offset-3">
     <h2>Suppression d'une news </h2>
@@ -94,17 +97,16 @@
   </body>
 </html>
 
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#add_news").hide();
-
         $("#event_add_news").click(function() {
-
             $("#add_news").show("slow", function() {});
             $("#event_add_news").css("background-color" , "#d9534f");
             $('#event_add_news').text('Edition en cours...');
-
+            $('#event_add_news').text('Edition en cours...');
+            $("#event_add_news").attr("id", "btn_opened");
         });
-
     });
 </script>
