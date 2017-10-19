@@ -4,6 +4,7 @@
     <title>Gérer vos news
     </title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="jumbotron">
@@ -11,34 +12,69 @@
         <h1 class="display-3">Bienvenue </h1>
         <p>Accèder aux nouveautés interne de la société ! Ecrivez , modifiez et supprimer des news </p>
         <p>
-          <a class="btn btn-primary btn-lg" href="" role="button">Ecrire une news</a>
+          <a class="btn btn-primary btn-lg" id="event_add_news" role="button">Ecrire une news</a>
         </p>
       </div>
     </div>
     
-    <div class="col-md-6 col-md-offset-3">
+    <div id="add_news" class="col-md-6 col-md-offset-3">
     <h2>Ajout d'une news</h2>
     <form action="addnews" method="POST" >
       <div class="form-group">
         <label for="autornews">Auteur de la news
         </label>
         <input name="autor" type="text" class="form-control" id="autornews"  placeholder="Auteur de la news">
+        
       </div>
       <div class="form-group">
         <label for="titlenews">Titre de la news
         </label>
         <input name="title" type="text" class="form-control" id="titlenews" placeholder="Titre de la news">
+        
       </div>
 
       <div class="form-group">
         <label for="contentnews">Contenu de la news
         </label>
-        <input name="content" type="text" class="form-control" id="contentnews" placeholder="Contenu de la news">
-      </div>
-  
+        <textarea rows="4" cols="50" name="content" class="form-control" id="contentnews" placeholder="Contenu de la news"></textarea>
+
+    </div>
+
       <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
     </div>
+
+      <div class="col-md-6 col-md-offset-3">
+    <h2>Liste des dernieres news</h2>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Auteur</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Edition</th>
+        <th>Suppression</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+    <?php
+        foreach ($listeNews as $key => $news)
+        {
+          echo '<tr>';
+            echo  '<td>'. $news->getId() . '</td>';
+            echo  '<td>'. $news->getAutor() . '</td>';
+            echo  '<td>'. $news->getTitle() . '</td>';
+            echo  '<td>'. $news->getContent() . '</td>';   
+            echo  '<td> <a href=""> Editer de la news </a> </td>';  
+            echo  '<td> <a href=""> Supprimer la news </a> </td>';
+          echo '</tr>';
+        }
+    ?>
+    </tbody>
+  </table>
+  </div>
   
   <div class="col-md-6 col-md-offset-3">
     <h2>Suppression d'une news </h2>
@@ -52,36 +88,23 @@
     </form>
   </div>
 
-<?php
-//var_dump($listeNews['0']);
-?>
-
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Liste des dernieres news</h2>
-      <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Auteur</th>
-        <th>Titre</th>
-        <th>Contenu</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-        foreach ($listeNews as $key => $news)
-        {
-          echo '<tr>';
-            echo  '<td>'. $news->getAutor() . '</td>';
-            echo  '<td>'. $news->getTitle() . '</td>';
-            echo  '<td>'. $news->getContent() . '</td>';     
-          echo '</tr>';
-        }
-    ?>
-    </tbody>
-  </table>
 
 
-  </div>
- 
+
   </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#add_news").hide();
+
+        $("#event_add_news").click(function() {
+
+            $("#add_news").show("slow", function() {});
+            $("#event_add_news").css("background-color" , "#d9534f");
+            $('#event_add_news').text('Edition en cours...');
+
+        });
+
+    });
+</script>
