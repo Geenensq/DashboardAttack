@@ -9,11 +9,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  */
 function debug($data, $die=true) {
     echo'<pre>';
-    var_dump($data);
+    	var_dump($data);
     echo '</pre>';
-    if ($die){
+    
+    if ($die)
+    {
         die();
     }
+
 }
 
  ?>

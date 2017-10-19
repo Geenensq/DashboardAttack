@@ -1,6 +1,7 @@
 <?php
 Class News_controller extends CI_Controller
 { 
+
         //------------------------------------CONSTRUCTOR CONTROLLER--------------------------// 
         function __construct()
         {
@@ -14,10 +15,8 @@ Class News_controller extends CI_Controller
         //------------------------------------index method---------------------------------------//     
         public function index()
         {
-            
             $listeNews = $this->modelNews->liste_news();
-            $this->load->view('/news/news.html', array('listeNews' =>$listeNews), false);
-            
+            $this->load->view('/news/news.html', array('listeNews' =>$listeNews), false);  
         }
         //------------------------------------------------------------------------------------//  
   
@@ -76,8 +75,19 @@ Class News_controller extends CI_Controller
 
                     //Redirection to my default method
                      redirect(array('news_controller', 'index'));  
-                }
-                          
+                }           
         }
-        //------------------------------------------------------------------------------------//     
+        //------------------------------------------------------------------------------------//  
+
+        public function testJson()
+        {
+
+        $news = $this->modelNews->getonebyid($this->input->get('id'));
+        echo json_encode(array( 'id' => $news->getId(), 'Autor'  => $news->getAutor(), 'Content'  => $news->getContent(), 'Title'  => $news->getTitle()   ));
+
+             //TO DO WORK
+            // return $this->output
+           //      ->set_content_type('application/json')
+          //      ->set_output(json_encode(array('key' => 'value')));
+        }       
 }

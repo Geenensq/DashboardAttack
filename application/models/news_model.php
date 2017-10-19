@@ -14,6 +14,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         public function __construct()
         {
+
         }
 
         // ---------------------------------------- Getters methods----------------------------------//
@@ -104,17 +105,28 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                       $arrayNews[] = $News;
  
                 } 
-              
-                return $arrayNews;
                 
+                return $arrayNews;         
         }
+        
         //-----------------------------------------------------------------------------------------------//
 
+        //----------------------------SELECT AN NEWS WITH AN ID-----------------------------------------//
+        public function getonebyid($id)
+        {
+                 $query = $this->db->query('SELECT * FROM news WHERE `id` = ' . $id);
+                 foreach ($query->result_object() as $ligne)
+                 {
+                      $myNews = new News_model();                      
+                      $myNews->setId($ligne->id);
+                      $myNews->setAutor($ligne->autor);
+                      $myNews->setTitle($ligne->title);
+                      $myNews->setContent($ligne->content);
+                 }
 
-
-
-
-
+                 return $myNews;
+         } 
+       //-----------------------------------------------------------------------------------------------//  
 
 
 
@@ -154,16 +166,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         
        
 
-        // public function getonebyid($id)
-        // {
-        //         $query = $this->db->query('SELECT * FROM news WHERE `id` = ' . $id);
-        //         foreach ($query->result_array() as $row)
-        //         {
-        //             echo $row['id'];
-        //             echo $row['auteur'];
-        //             echo $row['contenu'];
-        //         }
-        // } 
+      
 
     }
 
