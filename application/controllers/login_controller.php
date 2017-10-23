@@ -21,7 +21,7 @@ Class Login_controller extends CI_Controller
          //-----------load view-----------//
         $this->load->view('login/index.html');
         //------------------------------//
-   }
+    }
     //----------------------------------------------//
     
     public function checkLogin()
@@ -44,10 +44,10 @@ Class Login_controller extends CI_Controller
             
             if ($nb_resultat >= 1 ) {
                 //  Le formulaire est valide
-                   echo('ok');
+                    $this->loginValid($nb_resultat['id_membre']);
             } else {
                 //  Le formulaire est invalide
-                    echo('non');
+                   redirect(array('login_controller', 'loginInvalid'));
             }    
         //-----------------------------------------------------------------------------------------------------------------------------------------//
        
@@ -56,6 +56,7 @@ Class Login_controller extends CI_Controller
         //-----------------------------------------If the forme is'nt valid load the base view and display error----------------------------------// 
             {
              $this->load->view('login/index.html');
+
             }
         //-----------------------------------------------------------------------------------------------------------------------------------------//    
     
@@ -64,12 +65,13 @@ Class Login_controller extends CI_Controller
 
     public function loginValid()
     {
+        $this->session->set_userdata('username', $this->pseudo);
 
     }
 
     public function loginInvalid()
     {
-
+        $this->load->view('login/index.html');
     }
 
 }
