@@ -2,9 +2,9 @@
 <html>
   <head>
     <title>Gérer vos news</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="<?php echo css_url('bootstrap.min'); ?>" rel="stylesheet">
+    <script src="<?php echo js_url('jquery.min'); ?>"></script>
+    <script src="<?php echo js_url('bootstrap.min'); ?>"></script>
   </head>
   <body>
     
@@ -13,6 +13,7 @@
       <div class="container">
         <h1 class="display-3">Bienvenue </h1>
         <p>Accèder aux nouveautés interne de la société ! Ecrivez , modifiez et supprimer des news </p>
+
         <p>
           <a class="btn btn-primary btn-lg" id="event_add_news" role="button">Ecrire une news</a>
         </p>
@@ -32,12 +33,22 @@
         <h4 class="modal-title">Editer la news</h4>
       </div>
       <div class="modal-body">
-       
-       <input type="text" id="autorNews" name="autorNews">
-       <input type="text" id="titleNews" name="titleNews">
-       <input type="text" id="contentNews" name="contentNews">
-      
-      </div>
+
+           <div class="form-group">
+            <label for="autorNews" class="col-form-label">Auteur:</label>
+            <input type="text" class="form-control" id="autorNews">
+          </div>
+
+           <div class="form-group">
+            <label for="titleNews" class="col-form-label">Titre:</label>
+            <input type="text" class="form-control" id="titleNews">
+          </div>
+
+           <div class="form-group">
+            <label for="contentNews" class="col-form-label">Contenu:</label>
+            <input type="text" class="form-control" id="contentNews">
+          </div>
+   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -118,57 +129,6 @@
   </body>
 </html>
 
+<script src="<?php echo js_url('main'); ?>"></script>;
+<script src="<?php echo js_url('ajaxRequest'); ?>"></script>;
 
-<script type="text/javascript">
-  
-    function ajaxEdit($idNews){
-        var url = "testJson?id=" + $idNews ;
-        var news = getJson(url);
-        completeModal(news);
-
-    }
-
-
-
-    function completeModal($news){
-        $('#autorNews').val($news.Autor);
-        $('#titleNews').val($news.Title);
-        $('#contentNews').val($news.Content);
-        $('#myModal').modal('show');
-      
-    }
-
-
-
-    function getJson(url){
-      $.get({
-        url:url,
-        async: false
-        })
-        .done(function(retourData, status)
-            {
-            resultat = retourData;
-            })
-        .fail(function(err)
-            {
-            resultat = err.status;
-            });
-      return JSON.parse(resultat);
-}
-
-
-</script>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#add_news").hide();
-        $("#event_add_news").click(function() {
-            $("#add_news").show("slow", function() {});
-            $("#event_add_news").css("background-color" , "#d9534f");
-            $('#event_add_news').text('Edition en cours...');
-            $('#event_add_news').text('Edition en cours...');
-            $("#event_add_news").attr("id", "btn_opened");
-        });
-    });
-</script>

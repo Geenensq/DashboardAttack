@@ -4,18 +4,22 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class News_model extends CI_Model
     {
+        //------------Attributes------------//
         private $autor;
         private $title;
         private $content;
         private $id;
-
-        // attribute for change my entity
         protected $table = 'news';
+        //--------------------------------//
+        
+        
 
+        //-------- Constructor--------//
         public function __construct()
         {
 
         }
+        //---------------------------//
 
         // ---------------------------------------- Getters methods----------------------------------//
         public function getAutor()

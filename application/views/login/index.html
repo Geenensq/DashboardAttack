@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title> Bienvenue sur la page de login </title>
     <meta name="descritption" content="Veuillez vous identifier pour accèder à la partie gestion de vos commandes">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo css_url('bootstrap.min'); ?>" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"> </head>
 
 <body>
@@ -17,15 +17,18 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-2">
-                <form action="index" method="post">
+                <form action="checkLogin" method="post">
                     <legend>Se connecter</legend>
                     <div class="form-group"> pseudo  :
-                        <input id="pseudo" name="pseudo" value="<?php echo set_value('pseudo'); ?>" type="text" class="form-control"> </div>
-                        <?php echo form_error('pseudo'); ?> 
+                        <input id="pseudo" name="pseudo" value="<?php echo set_value('pseudo'); ?>" type="text" class="form-control"> 
+                         <?php echo form_error('pseudo'); ?> 
+                    </div>
+                        
                         
                     <div class="form-group"> Mot de passe :
-                        <input id="password" name="mdp" type="password" class="form-control"> </div>
-                         <?php echo form_error('mdp'); ?>
+                        <input id="mdp" name="mdp" type="password" class="form-control"> 
+                         <?php echo form_error('mdp'); ?> 
+                    </div>
                     
                     <button type="submit" class="btn btn-default">Se connecter</button>
                 </form>

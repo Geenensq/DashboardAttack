@@ -14,7 +14,7 @@ if ( ! function_exists('js_url'))
 {
     function js_url($nom)
     {
-        return base_url() . 'assets/javacript/' . $nom . '.js';
+        return base_url() . 'assets/js/' . $nom . '.js';
     }
 }
 

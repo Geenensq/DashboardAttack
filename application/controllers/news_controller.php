@@ -3,7 +3,7 @@ Class News_controller extends CI_Controller
 { 
 
         //------------------------------------CONSTRUCTOR CONTROLLER--------------------------// 
-        function __construct()
+        public function __construct()
         {
             parent::__construct();
             
@@ -15,6 +15,7 @@ Class News_controller extends CI_Controller
         //------------------------------------index method---------------------------------------//     
         public function index()
         {
+            // $this->output->enable_profiler(true);
             $listeNews = $this->modelNews->liste_news();
             $this->load->view('/news/news.html', array('listeNews' =>$listeNews), false);  
         }
@@ -81,10 +82,8 @@ Class News_controller extends CI_Controller
 
         public function testJson()
         {
-
         $news = $this->modelNews->getonebyid($this->input->get('id'));
         echo json_encode(array( 'id' => $news->getId(), 'Autor'  => $news->getAutor(), 'Content'  => $news->getContent(), 'Title'  => $news->getTitle()   ));
-
              //TO DO WORK
             // return $this->output
            //      ->set_content_type('application/json')
