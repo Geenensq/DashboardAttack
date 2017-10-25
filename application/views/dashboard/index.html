@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard de vos commandes</title>
+    <!-- Bootstrap , jquery & other LIB-->
+    <script src="<?php echo js_url('jquery.min'); ?>"></script>
+    <script src="<?php echo js_url('jquery-ui'); ?>"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo css_url('iao-alert'); ?>" rel="stylesheet">
+    <link href="<?php echo css_url('jquery-confirm.min'); ?>" rel="stylesheet">
+    
+    <script src="<?php echo js_url('jquery-confirm.min'); ?>"></script>
+    <script src="<?php echo js_url('iao-alert.jquery'); ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <!-- End of lib -->
+    <!-- My Css & JS -->
+    <link rel="stylesheet" href="<?php echo css_url('style'); ?>">
+    <script src="<?php echo js_url('dashboard'); ?>"></script>
+
+</head>
+
+<body>
+    <div class="container all_page">
+
+        <!-- Logo header -->
+        <div class="container">
+
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                <a href="#" id="textAlert" class="alert-link">Attention ! Vous avez 5 commandes en cours de préparation</a>
+
+            </div>
+
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                <a href="#" id="textAlert" class="alert-link">Pour le bien du système, de statistiques, <strong>veuillez si possible remplir tous les champs de la commande correctement !! </strong></a>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 col-md-offset-10">
+                    <strong>Bienvenue</strong>
+                    <button type="button" class="btn btn-danger">Se deconnecter</button>
+                </div>
+
+                <div class="col-md-6 col-md-offset-4 logo">
+                    <a href="index.php"> <img class="img-responsive" src="img/logo.jpg" alt="logo"> </a>
+                </div>
+            </div>
+        </div>
+        <!-- ////////////////  FIN DU HEADER ET MENU    //////////////////////////////////////////////////////////////////// -->
+
+        <div class="container">
+
+            <legend>Ajout d'une nouvelle commande :</legend>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="commande_form" class="form" action="order_add.php" method="post">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group"> Nom:
+                                    <input class="form-control" type="text" id="order-name" name="order-name" value=""> </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group"> Prénom:
+                                    <input class="form-control" type="text" id="order-fname" name="order-fname" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Mode de livraison:
+                                    <input list="shipment" class="form-control" type="text" id="order-shipment" name="order-shipment" value="">
+                                    <datalist id="shipment">
+                                    <option value="DPD"> </option>
+                                    <option value="Colissimo"> </option>
+                                    <option value="Lettre suivie"> </option>
+                                    <option value="Lettre sans suivie"> </option>
+                                    <option value="Retrait en boutique"> </option>
+                                </datalist>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Date:
+                                    <input class="form-control" type="date" id="order-date" name="order-date" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Adresse:
+                                    <input class="form-control" id="order-adress" name="order-adress" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Prix TTC:
+                                    <input class="form-control" type="text" id="order-price" name="order-price" value=""> </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group"> Mode de paiement:
+                                    <input list="order" class="form-control" type="text" id="order-mode" name="order-mode" value="">
+                                    <datalist id="order">
+                                             <option value="Espèces"> </option>
+                                             <option value="C.B"> </option>
+                                             <option value="Chèques"> </option>
+                                             <option value="Paypal"> </option>
+                                             <option value="Payplug"> </option>
+                                             <option value="SAV"> </option>
+                                             <option value="Virement"> </option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group"> Status:
+                                    <input list="statut" class="form-control" type="text" id="order-status" name="order-status" value=""> </div>
+                                <datalist id="statut">
+                                <option value="Livré"> </option>
+                                <option value="Prêt"> </option>
+                                <option value="Réglé"> </option>
+                                <option value="En cours de production"> </option>
+                                <option value="En attente de paiement"> </option>
+                                <option value="Acompte versé"> </option>
+                                <option value="Expédié"> </option>
+                            </datalist>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> E-mail:
+                                    <input class="form-control" type="email" id="order-mail" name="order-mail" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Téléphone:
+                                    <input class="form-control" type="tel" id="order-phone" name="order-phone" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> CP + Ville:
+                                    <input class="form-control" type="text" id="order-cp" name="order-cp" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Commentaire:
+                                    <input class="form-control" type="text" id="order-comment" name="order-comment" value=""> </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+
+                        <legend>Ajout des produits de la nouvelle commande :</legend>
+
+                        <div class="row">
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Quantité:
+                                    <input class="form-control" placeholder="1x" type="text" id="order-content-qte" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Référence:
+                                    <input class="form-control" placeholder="sc001" type="text" id="order-content" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Couleur:
+                                    <input class="form-control" type="text" placeholder="rouge" id="order-content-color" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Taille:
+                                    <input class="form-control" type="text" placeholder="4 cm" id="order-content-taille" value=""> </div>
+                            </div>
+
+                            <div class="col-lg-2" id="div_articles">
+                                <div class="form-group"> Articles:
+                                    <input type="button" id="add_article" class="btn btn-primary" name="add_article" value="Ajouter l'article">
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-2">
+                                <div class="form-group"> Ajout de la commande:
+                                    <input type="button" id="" class="btn btn-success" value="Je valide la commande" onclick="add_order()">
+                                </div>
+                            </div>
+
+                            <input type="text" id="nb_articles" name="nb_articles" value="">
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="productdata" class="table table-responsive table-condensed table-hover table-striped table-bordered table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr style="background-color: #d9edf7;">
+                                <td> Quantité </td>
+                                <td> Référence </td>
+                                <td> Couleur </td>
+                                <td> Taille </td>
+                                <td> Edition </td>
+                                <td> Suppression </td>
+
+                            </tr>
+                        </thead>
+
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- FIN DE L'AJOUT DES COMMANDES -->
+        <br>
+        <br>
+        <br>
+        <!-- TABLEAUX DES COMMANDES EN COURS -->
+        <div class="container">
+            <legend>Mes commandes en cours :</legend>
+            <div class="col-md-12">
+                <table id="orderdata" class="table table-responsive table-condensed table-hover table-striped table-bordered table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr class="info">
+                            <td>ID</td>
+                            <td>Nom prénom</td>
+                            <td>Adresse</td>
+                            <td class="status_order">Statut de la commande</td>
+                            <td>Contenu de la commande</td>
+                            <td>Date de la commande</td>
+                            <td>Telephone</td>
+                            <td>Prix TOTAL TTC</td>
+                            <td>Mode de réglement</td>
+                            <td>Adresse e-mail</td>
+                            <td>Suppression</td>
+                            <td>Commentaires</td>
+                            <td>Mode de livraison</td>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <legend>Mes statistiques
+                <?php echo "au " . strftime('%d %B'); ?>:</legend>
+            <div class="row">
+                <div class="col-lg-4">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+
+                <div class="col-lg-4">
+                    <canvas id="pie-chart2"></canvas>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <canvas id="pie-chart3"></canvas>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <br>
+        <footer style="background-color:LightGray; margin-top:10%;" class="container-fluid text-center bg-lightgray">
+
+            <div class="copyrights" style="margin-top:25px;">
+                <p>Stick Attack © 2017, All Rights Reserved
+                    <br>
+                    <span> Web Design By: Geenens Quentin</span></p>
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <a href="https://fr.linkedin.com/in/quentin-geenens-640855123" target="_blank">Linkedin </a></p>
+                <p><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> <a href="mailto:info@stick-attack.fr" target="_blank">Signaler un problème  </a></p>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="<?php echo js_url('product_add'); ?>"></script>
+</body>
+
+</html>
+<script>
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'doughnut',
+        data: {
+            labels: ["Livré", "Pret", "Réglé", "En cours de production", "En attente de paiement", "Expédié", "Acompte versé"],
+            datasets: [{
+
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#5cb85c", '#e95325'],
+                data: ["<?= $livre ?>", "<?= $pret ?>", "<?= $regle ?>", "<?= $inprogress ?>", "<?= $attente ?>", "<?= $expedie ?>", "<?= $acompte ?>"]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Statitiques des statuts des commandes'
+            }
+        }
+    });
+</script>
+<script>
+    new Chart(document.getElementById("pie-chart2"), {
+        type: 'doughnut',
+        data: {
+            labels: ["<?= $mois_prev ?>", "<?= $mois_courant ?>"],
+            datasets: [{
+                label: "Mes stats",
+                backgroundColor: ["<?= $color_prev ?>", "<?= $color_courant ?>"],
+                data: ['<?php echo $chiffreMensuelLast; ?>', '<?php echo $chiffreTotalMensuel; ?>']
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Chiffre mensuel TTC'
+            }
+        }
+    });
+</script>
+
+<script>
+    new Chart(document.getElementById("pie-chart3"), {
+        type: 'doughnut',
+        data: {
+            labels: ["Euros"],
+            datasets: [{
+                label: "Panier moyen",
+                backgroundColor: ["#3e95cd"],
+                data: ["<?= $moyenne ?>"]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Panier Moyen'
+            }
+        }
+    });
+</script>
+
+
+
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    $('#productdata').DataTable();
+});
+</script> -->
+
+
+<script type="text/javascript">
+    //la déclaration datatable
+    $(document).ready(function() {
+
+        $('#orderdata').DataTable({
+            paging: true,
+            ordering: true,
+            info: true,
+            searching: true,
+            responsive: true,
+            columnDefs: [{
+                responsivePriority: 1,
+                targets: 0
+            }, {
+                responsivePriority: 2,
+                targets: 3
+            }],
+            language: {
+                "decimal": "",
+                "emptyTable": "No data available in table",
+                "info": "Affichage _START_ de _END_ sur _TOTAL_ entrées",
+                "infoEmpty": "Affichage de 0 a 0 a 0 entrées",
+                "infoFiltered": "(filtrée de _MAX_ entrées totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Afficher par  _MENU_",
+                "loadingRecords": "Chargement...",
+                "processing": "Traitement en cours...",
+                "search": "Recherche:",
+                "zeroRecords": "No matching records found",
+                "paginate": {
+                    "first": "Premier",
+                    "last": "Dernier",
+                    "next": "Suivant",
+                    "previous": "Précédent"
+                },
+                "aria": {
+                    "sortAscending": ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            },
+        });
+
+    });
+</script>
