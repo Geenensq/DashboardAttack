@@ -42,9 +42,12 @@ Class Signup_controller extends CI_Controller
                 $this->modelMembers->setPassword($this->password);
                 $this->modelMembers->setActif($this->actif);
                 $this->modelMembers->SetIdGroupMember($this->id_group_member);
-            //-----------------------------------------//
+                //-----------------------------------------//
+                
+
                 $membersModel = $this->modelMembers;
-                $checkMember =  $this->modelMembers->insertMember($membersModel);
+                $this->modelMembers->insertMember($membersModel);
+                redirect(array('login_controller', 'index')); 
 
             } else {
 
@@ -53,15 +56,7 @@ Class Signup_controller extends CI_Controller
                 //----------------------------------------------------------------------------------------------------------------------//    
             }
 
-
-
-
-
-
-
-
         }
-
 }
 
  ?>

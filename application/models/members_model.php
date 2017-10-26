@@ -14,7 +14,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         //-------- Constructor--------//
         public function __construct()
         {
-
+            
         }
         //---------------------------//
 
@@ -155,19 +155,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------------INSERT AN MEMBERS----------------------------------------//
         public function insertMember($model)
         {
+            //----------------------------------------------//
             $login  = $model->getLogin();
             $password = $model->getPassword();
             $actif = $model->getActif();
             $email = $model->getEmail();
             $id_group_member = $model->GetIdGroupMember();
-
-
-            return $this->db->set('login', $login)
+            //----------------------------------------------//
+            
+            //-----------Check if a user already has this username or email address ------------//
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $this->db->where('login', $login );
+            $this->db->or_where('email', $email);
+            $query = $this->db->get();
+            //----------------------------------------------------------------------------------//
+   
+            if ($query->result_array() == 0){
+                   return $this->db->set('login', $login)
                             ->set('password', $password)
                             ->set('actif', $actif)
                             ->set('email', $email)
                             ->set('id_group_member', $id_group_member)
                             ->insert($this->table);
+            }   
         }
         // -------------------------------------------------------------------------------------------//
         
