@@ -80,10 +80,42 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         // -------------------------------------------------------------------------------------------//
 
+        // ----------------------------------------CHECK INFO USERS----------------------------------//
+        public function CheckInfoUser($model){
+
+            $data = array (
+                    'login' => $model->getLogin(),
+                    'password' => $model->getPassword(),
+            );
+
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $this->db->where($data);
+            $query = $this->db->get();
+
+            if($query)
+            {
+                foreach ($query->result_object() as $ligne)
+                {
+                    $myMembers = new Members_model();
+                    $myMembers->setId($ligne->id_member);
+                    $myMembers->setLogin($ligne->login);
+                    $myMembers->setPassword($ligne->password);
+                    $arrayMyMembers[] = $myMembers;
+                    return $arrayMyMembers;
+                }
+
+            } else 
+
+                return false;  
+        }
+        // -------------------------------------------------------------------------------------------//
+
+        // ------------------------------SELECT ONE USER BY ID---------------------------------------//
         public function getOne($id)
         {
             $this->db->select('*');
-            $this->db->from('members');
+            $this->db->from($this->table);
             $this->db->where('id_member', $id );
             $query = $this->db->get();
             foreach ($query->result_object() as $ligne)
@@ -97,13 +129,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $myMembers->SetIdGroupMember($ligne->id_group_member);
                 $arrayMyMembers[] = $myMembers;
             }
-                return $myMembers;
+                return $arrayMyMembers;
         }
-
+        // -------------------------------------------------------------------------------------------//
        
+        // ------------------------------SELECT ALL USERS--------------------------------------------//
         public function getAll()
         {
-            $query = $this->db->get('members');
+            $query = $this->db->get($this->table);
             foreach ($query->result_object() as $ligne)
             {
                     $members = new Members_model();
@@ -117,7 +150,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                     return $arrayMembers;
         }
-
+        // -------------------------------------------------------------------------------------------//
+        
+        // ---------------------------------INSERT AN MEMBERS----------------------------------------//
         public function insertMember($model)
         {
             $login  = $model->getLogin();
@@ -134,21 +169,34 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             ->set('id_group_member', $id_group_member)
                             ->insert($this->table);
         }
+        // -------------------------------------------------------------------------------------------//
+        
+        // ---------------------------------UPDATE AN MEMBERS----------------------------------------//
+        public function updateMember($model)
+        {
+            $data = array (
+                    'login' => $model->getLogin(),
+                    'password' => $model->getPassword(),
+                    'actif' => $model->getActif(),
+                    'email' => $model->getEmail(),
+                    'id_group_member' =>$model->GetIdGroupMember()
+            );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    $this->db->where('id_member' ,$model->getId());
+                    $this->db->update($this->table , $data);
+        }
+        // -------------------------------------------------------------------------------------------//
+        
+        // ---------------------------------DISABLE AN MEMBERS----------------------------------------//
+        public function DisableMember($model)
+        {
+                $data = array (
+                    'actif' => 0  
+                );
+                    $this->db->where('id_member' ,$model->getId());
+                    $this->db->update($this->table , $data);   
+        }
+        // -------------------------------------------------------------------------------------------//
 
     }
 

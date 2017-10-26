@@ -11,9 +11,9 @@ Class Login_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('members_model' , 'modelMembers');
         $this->pseudo = $this->input->post('pseudo');
         $this->mdp = $this->input->post('mdp');
-
     }
     //-----------------------------------------------//
 
@@ -21,7 +21,6 @@ Class Login_controller extends CI_Controller
     public function index()
     {
         $this->load->view('login/index.html');
-
     }
     //----------------------------------------------//
     
@@ -36,30 +35,26 @@ Class Login_controller extends CI_Controller
         //---------------------------------------------If the form is valid-----------------------------------------------------//
         if ($this->form_validation->run())
         {
-            $sql = 'SELECT * FROM members WHERE `login` = ? AND `password` = ? ';
-            $data = array($this->pseudo,$this->mdp);
-            $query = $this->db->query($sql, $data);
+            //-------------Create my objet--------------//
+            $this->modelMembers->setLogin($this->pseudo);
+            $this->modelMembers->setPassword($this->mdp);
+            //-----------------------------------------//
             
-            // Get id of my member and stock in my attribute id of my object//
-            $this->id = $this->db->query($sql, $data)->row()->id_member;     
-            //////////////////////////////////////////////////////////////////
-            $nb_resultat = $query->num_rows();
+            $membersModel = $this->modelMembers;
+            $checkMember =  $this->modelMembers->CheckInfoUser($membersModel); 
 
-            if ($nb_resultat >= 1 ) {
-                
-                //  Le formulaire est valide
-                    $this->loginValid();
-                   
-            } else {
-                
-                //  Le formulaire est invalide
+                if (count($checkMember) >= 1 ) {
+
+                    $this->loginValid();   
+                } else {    
+                    
                    $this->loginInvalid();
-            }    
+                }    
         //-----------------------------------------------------------------------------------------------------------------------//
        
         } else 
 
-        //----------------------------If the forme is'nt valid load the base view and display error------------------------------// 
+        //----------------------------If the form is'nt valid load the base view and display error------------------------------// 
             {
              $this->load->view('login/index.html');
             }
@@ -67,18 +62,18 @@ Class Login_controller extends CI_Controller
     
     }
 
-
+    //----------------------------------------------------------------------------------------------------------------------//     
     private function loginValid()
     {
         $this->session->set_userdata('id_member',  $this->id);
         $this->session->set_userdata('login',  $this->pseudo);
         redirect(array('dashboard_controller', 'index'));  
     }
-
+    //----------------------------------------------------------------------------------------------------------------------//
     private function loginInvalid()
     {
         $this->load->view('login/index.html');
     }
-
+    //----------------------------------------------------------------------------------------------------------------------//
 
 }

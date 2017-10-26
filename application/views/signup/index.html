@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Bienvenue sur la page d'inscription</title>
+    <meta name="descritption" content="Créer votre compte afin de vous connecter au dashboard de STICK ATTACK">
+    <script src="<?php echo js_url('jquery.min'); ?>"></script>
+    <link href="<?php echo css_url('bootstrap.min'); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> </head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <logo class="col-md-6 col-md-offset-3 logo">
+                <a href="index.php"> <img class="img-responsive" src="<?php  img_url("inscription.png"); ?>"> </a>
+            </logo>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+                <form action="signup_controller/signup" method="post">
+                    <legend>Inscription</legend>
+                    <div class="form-group"> Utilisateur :
+                        <input id="login" name="login"  placeholder="Mon pseudo" type="text" class="form-control"> </div>
+                        <?php echo form_error('login'); ?> 
+                    <div class="form-group"> Adresse e-mail :
+                        <input id="email" name="email" placeholder="Mon adresse email" type="" class="form-control"> </div>
+                        <?php echo form_error('email'); ?> 
+                    <div class="form-group"> Mot de passe :
+                        <input id="password" name="password" placeholder="Mon mot de passe" type="password" class="form-control"> </div>
+                        <?php echo form_error('password'); ?> 
+                    <div class="form-group"> Mot de passe :
+                        <input id="password2" name="password2"  placeholder="Vérification du mot de passe" type="password" class="form-control"> </div>
+                        <?php echo form_error('password2'); ?> 
+                    <button type="submit" class="btn btn-primary">Valider l'inscription</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
