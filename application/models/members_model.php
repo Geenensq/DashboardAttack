@@ -170,8 +170,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->or_where('email', $email);
             $query = $this->db->get();
             //----------------------------------------------------------------------------------//
-   
-            if ($query->result_array() == 0){
+            if (empty($query->result_array())){
                    return $this->db->set('login', $login)
                             ->set('password', $password)
                             ->set('actif', $actif)
