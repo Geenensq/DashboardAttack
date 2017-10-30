@@ -5,6 +5,8 @@ Class Login_controller extends CI_Controller
     private $pseudo;
     private $mdp;
     private $id;
+    private $email;
+     
     //-----------------------------------------------------//
 
     //-------------------Constructor-----------------//
@@ -41,7 +43,12 @@ Class Login_controller extends CI_Controller
             //-----------------------------------------//
             
             $membersModel = $this->modelMembers;
-            $checkMember =  $this->modelMembers->CheckInfoUser($membersModel); 
+            $checkMember =  $this->modelMembers->CheckInfoUser($membersModel);
+        
+            //--DO IT : MAKE AN FUNCTION AND TRASH THIS NOOB METHOD--//
+            // $this->email = $checkMember['0']->getEmail();
+            // $this->id = $checkMember['0']->getId();
+            //-------------------------------------------------------//
 
                 if (count($checkMember) >= 1 ) {
 
@@ -67,6 +74,8 @@ Class Login_controller extends CI_Controller
     {
         $this->session->set_userdata('id_member',  $this->id);
         $this->session->set_userdata('login',  $this->pseudo);
+        $this->session->set_userdata('password',  $this->mdp);
+        $this->session->set_userdata('email',  $this->email);
         redirect(array('dashboard_controller', 'index'));  
     }
     //----------------------------------------------------------------------------------------------------------------------//

@@ -10,14 +10,9 @@ Class Tester_controller extends CI_Controller
 
         public function index()
         {
-            $this->modelMembers->setId("2");
-            $this->modelMembers->setLogin("kevin");
-            $this->modelMembers->setPassword("1234567");
-            $this->modelMembers->setActif("1");
-            $this->modelMembers->setEmail("kevin@gg.fr");
-            $this->modelMembers->SetIdGroupMember(1);
+            $this->modelMembers->setId("3");
             $membersModel = $this->modelMembers;
-            $addmembers =  $this->modelMembers->DisableMember($membersModel); 
+            $addmembers =  $this->modelMembers->selectGroupMember($membersModel); 
         }
 
 }

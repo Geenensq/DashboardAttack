@@ -101,6 +101,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $myMembers->setId($ligne->id_member);
                     $myMembers->setLogin($ligne->login);
                     $myMembers->setPassword($ligne->password);
+                    $myMembers->setEmail($ligne->email);
+                    
+
                     $arrayMyMembers[] = $myMembers;
                     return $arrayMyMembers;
                 }
@@ -198,7 +201,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // -------------------------------------------------------------------------------------------//
         
         // ---------------------------------DISABLE AN MEMBERS----------------------------------------//
-        public function DisableMember($model)
+        public function disableMember($model)
         {
                 $data = array (
                     'actif' => 0  
@@ -208,6 +211,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         // -------------------------------------------------------------------------------------------//
 
+         public function selectGroupMember($model)
+         {
+            $id = $model->getId();
+
+            $this->db->select('name');
+            $this->db->from('groups_members');
+            $this->db->where('id_group_member', $id );
+            $query = $this->db->get();
+
+         }
     }
 
 ?>
