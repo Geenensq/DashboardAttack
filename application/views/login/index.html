@@ -17,17 +17,17 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-2">
-                <form action="login_controller/checkLogin" method="post">
+                <form action="checkLogin" method="post">
                     <legend>Se connecter</legend>
                     <div class="form-group"> pseudo  :
-                        <input id="pseudo" name="pseudo" value="<?php echo set_value('pseudo'); ?>" type="text" class="form-control"> 
-                         <?php echo form_error('pseudo'); ?> 
+                        <input id="login" name="login" value="<?php echo set_value('login'); ?>" type="text" class="form-control"> 
+                         <?php echo form_error('login'); ?> 
                     </div>
                         
                         
                     <div class="form-group"> Mot de passe :
-                        <input id="mdp" name="mdp" type="password" class="form-control"> 
-                         <?php echo form_error('mdp'); ?> 
+                        <input id="password" name="password" type="password" class="form-control"> 
+                         <?php echo form_error('password'); ?> 
                     </div>
                     
                     <button type="submit" class="btn btn-default">Se connecter</button>

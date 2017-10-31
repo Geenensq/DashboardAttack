@@ -88,29 +88,28 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     'password' => $model->getPassword(),
             );
 
+
             $this->db->select('*');
             $this->db->from($this->table);
             $this->db->where($data);
             $query = $this->db->get();
 
-            if($query)
-            {
-                foreach ($query->result_object() as $ligne)
+                if(count($query->result_array())  >= 1)
                 {
+                    $result = $query->result_object()[0];
                     $myMembers = new Members_model();
-                    $myMembers->setId($ligne->id_member);
-                    $myMembers->setLogin($ligne->login);
-                    $myMembers->setPassword($ligne->password);
-                    $myMembers->setEmail($ligne->email);
+                    $myMembers->setId($result->id_member);
+                    $myMembers->setLogin($result->login);
+                    $myMembers->setPassword($result->password);
+                    $myMembers->setEmail($result->email);
+                    $myMembers->setActif($result->actif);
+                    return $myMembers;
+                
+                } else {
                     
-
-                    $arrayMyMembers[] = $myMembers;
-                    return $arrayMyMembers;
+                    return false;
                 }
-
-            } else 
-
-                return false;  
+                       
         }
         // -------------------------------------------------------------------------------------------//
 
@@ -187,13 +186,37 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------------UPDATE AN MEMBERS----------------------------------------//
         public function updateMember($model)
         {
-            $data = array (
-                    'login' => $model->getLogin(),
-                    'password' => $model->getPassword(),
-                    'actif' => $model->getActif(),
-                    'email' => $model->getEmail(),
-                    'id_group_member' =>$model->GetIdGroupMember()
-            );
+            $data = [];
+
+            if($model->getLogin() != NULL){
+              
+                $data('login' => $model->getLogin());
+
+            } else if($model->getPassword() != NULL){
+
+                $data('password' => $model->getPassword());
+            
+            } else if ($model->getActif() != NULL){
+
+                $data('actif' => $model->getActif());
+            
+            } else if ($model->getEmail() != NULL){
+
+                 $data('email' => $model->getEmail());
+            
+            } else if ($model->GetIdGroupMember() != NULL){
+                
+                $data('id_group_member' => $model->GetIdGroupMember());
+            }
+
+            // $data = array (
+            //         'login' => $model->getLogin(),
+            //         'password' => $model->getPassword(),
+            //         'actif' => $model->getActif(),
+            //         'email' => $model->getEmail(),
+            //         'id_group_member' =>$model->GetIdGroupMember()
+                    
+            // );
 
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);

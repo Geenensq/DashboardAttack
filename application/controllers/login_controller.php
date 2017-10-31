@@ -2,11 +2,12 @@
 Class Login_controller extends CI_Controller
 {
     //--------------Declarations of attributes-------------//
-    private $pseudo;
-    private $mdp;
-    private $id;
+    private $login;
+    private $password;
+    private $id_member;
+    private $actif;
     private $email;
-     
+    private $id_group_member;
     //-----------------------------------------------------//
 
     //-------------------Constructor-----------------//
@@ -14,8 +15,8 @@ Class Login_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('members_model' , 'modelMembers');
-        $this->pseudo = $this->input->post('pseudo');
-        $this->mdp = $this->input->post('mdp');
+        $this->login = $this->input->post('login');
+        $this->password = $this->input->post('password');
     }
     //-----------------------------------------------//
 
@@ -29,8 +30,8 @@ Class Login_controller extends CI_Controller
     public function checkLogin()
     {
         //---------------------------------------------------Form Validation-----------------------------------------------------//
-        $this->form_validation->set_rules('pseudo', '"Nom d\'utilisateur"', 'required|min_length[2]');
-        $this->form_validation->set_rules('mdp', '"Mot de passe"', 'required|min_length[2]');
+        $this->form_validation->set_rules('login', '"Nom d\'utilisateur"', 'required|min_length[2]');
+        $this->form_validation->set_rules('password', '"Mot de passe"', 'required|min_length[2]');
         //-----------------------------------------------------------------------------------------------------------------------//
         
         
@@ -38,33 +39,32 @@ Class Login_controller extends CI_Controller
         if ($this->form_validation->run())
         {
             //-------------Create my objet--------------//
-            $this->modelMembers->setLogin($this->pseudo);
-            $this->modelMembers->setPassword($this->mdp);
+            $this->modelMembers->setLogin($this->login);
+            $this->modelMembers->setPassword($this->password);
             //-----------------------------------------//
             
             $membersModel = $this->modelMembers;
             $checkMember =  $this->modelMembers->CheckInfoUser($membersModel);
-        
-            //--DO IT : MAKE AN FUNCTION AND TRASH THIS NOOB METHOD--//
-            // $this->email = $checkMember['0']->getEmail();
-            // $this->id = $checkMember['0']->getId();
-            //-------------------------------------------------------//
 
-                if (count($checkMember) >= 1 ) {
-
+                if ($checkMember != false && $checkMember->getActif() == 1 ) 
+                {
+                    $this->id_member = $checkMember->getId();
+                    $this->actif = $checkMember->getActif();
+                    $this->email = $checkMember->getEmail();
+                    $this->id_group_member = $checkMember->GetIdGroupMember();
                     $this->loginValid();   
+                
                 } else {    
                     
                    $this->loginInvalid();
                 }    
         //-----------------------------------------------------------------------------------------------------------------------//
        
-        } else 
+        } else {
 
         //----------------------------If the form is'nt valid load the base view and display error------------------------------// 
-            {
-             $this->load->view('login/index.html');
-            }
+                $this->load->view('login/index.html');
+                }
         //----------------------------------------------------------------------------------------------------------------------//    
     
     }
@@ -72,13 +72,19 @@ Class Login_controller extends CI_Controller
     //----------------------------------------------------------------------------------------------------------------------//     
     private function loginValid()
     {
-        $this->session->set_userdata('id_member',  $this->id);
-        $this->session->set_userdata('login',  $this->pseudo);
-        $this->session->set_userdata('password',  $this->mdp);
-        $this->session->set_userdata('email',  $this->email);
+         //------------------Iinialize session-------------------//
+         $this->session->set_userdata('id_member',  $this->id_member);
+         $this->session->set_userdata('login',  $this->login);
+         $this->session->set_userdata('password',  $this->password);
+         $this->session->set_userdata('actif',  $this->actif);
+         $this->session->set_userdata('email',  $this->email);
+         $this->session->set_userdata('id_group_member',  $this->id_group_member);
+        //------------------------------------------------------//
+
         redirect(array('dashboard_controller', 'index'));  
     }
     //----------------------------------------------------------------------------------------------------------------------//
+    
     private function loginInvalid()
     {
         $this->load->view('login/index.html');
