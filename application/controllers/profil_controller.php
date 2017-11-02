@@ -14,8 +14,6 @@ Class Profil_controller extends CI_Controller
         $this->id_member = $this->input->post('id_member');
         $this->email = $this->input->post('email');
         $this->password = $this->input->post('password');
-
-
     }
 
     public function index()
@@ -43,7 +41,12 @@ Class Profil_controller extends CI_Controller
             $membersModel = $this->modelMembers;
             $this->modelMembers->updateProfilMember($membersModel);
             
-   		}
+            //-----Finish reload index-----//
+            $this->index();
+            //-----------------------------//
+   		} 
+
+
 
 }
 
