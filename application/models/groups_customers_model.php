@@ -44,7 +44,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         //------------------------------------------------------------------------------------------//
 
-        public function getAll()
+        public function selectAll()
         {
             $query = $this->db->get($this->table);
             
