@@ -11,7 +11,7 @@ Class Customers_controller extends CI_Controller
         	$this->name = $this->input->post('name_group_customers');
         	
             //-------------------Loading model-----------------------//
-            $this->load->model('customers_model' , 'modelcustomers');
+            $this->load->model('Groups_customers_model' , 'modelcustomers');
             //-------------------------------------------------------//
         }
 
@@ -19,6 +19,8 @@ Class Customers_controller extends CI_Controller
         public function index()
         {
               $this->load->view('dashboard/customers.html');
+
+              
         }
 
 

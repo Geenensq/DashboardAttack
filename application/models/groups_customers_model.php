@@ -1,11 +1,12 @@
 <?php 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Customers_model extends CI_Model
+    Class Groups_customers_model extends CI_Model
     {
     	//----Attribute of group customer----//
     	private $id_group_cutomer;
     	private $name;
+    	protected $table = "groups_customers";
     	//----------------------------------//
     	
     	// ---------------------------------------- Getters methods----------------------------------//
@@ -33,13 +34,29 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         //-------------------------------------------------------------------------------------------//
        	
-
+        
+        // ----------------------------------INSERT GROUP CUSTOMERS----------------------------------//
        	public function insertGroupCustomer($model)
         {
             $name_group_customer = $model->getNameGroupCustomer();
             $this->db->set('name', $name_group_customer)
-                     ->insert('groups_customers');       
+                     ->insert($this->table);       
         }
+        //------------------------------------------------------------------------------------------//
 
+        public function getAll()
+        {
+            $query = $this->db->get($this->table);
+            
+            foreach ($query->result_object() as $ligne)
+            {
+                    $groupsCustomers = new Groups_customers_model();
+                    $groupsCustomers->setIdGroupCustomer($ligne->id_group_customer);
+                    $groupsCustomers->setNameGroupCustomer($ligne->name);
+          
+                    $arrayGroupsCustomers[] = $groupsCustomers;
+            }
+                    return $arrayGroupsCustomers;
+        }
 
     }
