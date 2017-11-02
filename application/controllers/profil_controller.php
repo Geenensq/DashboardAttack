@@ -41,11 +41,9 @@ Class Profil_controller extends CI_Controller
             //-----------------------------------------//
             
             $membersModel = $this->modelMembers;
-            $this->modelMembers->updateMember($membersModel);
+            $this->modelMembers->updateProfilMember($membersModel);
             
    		}
-
-
 
 }
 

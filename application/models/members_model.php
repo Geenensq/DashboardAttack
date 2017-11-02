@@ -186,37 +186,32 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------------UPDATE AN MEMBERS----------------------------------------//
         public function updateMember($model)
         {
-            $data = [];
 
-            if($model->getLogin() != NULL){
-              
-                $data('login' => $model->getLogin());
 
-            } else if($model->getPassword() != NULL){
-
-                $data('password' => $model->getPassword());
-            
-            } else if ($model->getActif() != NULL){
-
-                $data('actif' => $model->getActif());
-            
-            } else if ($model->getEmail() != NULL){
-
-                 $data('email' => $model->getEmail());
-            
-            } else if ($model->GetIdGroupMember() != NULL){
-                
-                $data('id_group_member' => $model->GetIdGroupMember());
-            }
-
-            // $data = array (
-            //         'login' => $model->getLogin(),
-            //         'password' => $model->getPassword(),
-            //         'actif' => $model->getActif(),
-            //         'email' => $model->getEmail(),
-            //         'id_group_member' =>$model->GetIdGroupMember()
+           $data = array (
+                    'login' => $model->getLogin(),
+                    'password' => $model->getPassword(),
+                    'actif' => $model->getActif(),
+                    'email' => $model->getEmail(),
+                    'id_group_member' =>$model->GetIdGroupMember()
                     
-            // );
+          );
+
+                    $this->db->where('id_member' ,$model->getId());
+                    $this->db->update($this->table , $data);
+        }
+        // -------------------------------------------------------------------------------------------//
+        
+        // ---------------------------UPDATE MEMBERS ON PROFIL PAGE----------------------------------//
+        public function updateProfilMember($model)
+        {
+
+
+           $data = array (
+                    'password' => $model->getPassword(),
+                    'email' => $model->getEmail(),
+                    
+          );
 
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);

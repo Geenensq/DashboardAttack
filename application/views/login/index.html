@@ -12,12 +12,12 @@
     <div class="container">
         <div class="row">
             <logo class="col-md-6 col-md-offset-3 logo">
-                <a href="index.php"> <img class="img-responsive" src="<?php  img_url("logo.jpg"); ?> "> </a>
+                <a href="#"> <img class="img-responsive" src="<?php  img_url("logo.jpg"); ?> "> </a>
             </logo>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-2">
-                <form action="checkLogin" method="post">
+                <form action="checkLogin.html" method="post">
                     <legend>Se connecter</legend>
                     <div class="form-group"> pseudo  :
                         <input id="login" name="login" value="<?php echo set_value('login'); ?>" type="text" class="form-control"> 
@@ -31,7 +31,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-default">Se connecter</button>
-                    <a href="\local\signup_controller" type="button" class="btn btn-primary">Créer un compte</a>
+                    <a href="\local\signup_controller\index.html" type="button" class="btn btn-primary">Créer un compte</a>
                 </form>
             </div>
         </div>
