@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     Class Groups_customers_model extends CI_Model
     {
     	//----Attribute of group customer----//
-    	private $id_group_cutomer;
+    	private $id_group_customer;
     	private $name;
     	protected $table = "groups_customers";
     	//----------------------------------//
@@ -12,7 +12,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     	// ---------------------------------------- Getters methods----------------------------------//
         public function getIdGroupCustomer()
         {
-            return $this->id_group_cutomer;
+            return $this->id_group_customer;
         }
 
          public function getNameGroupCustomer()
@@ -25,7 +25,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------------------- Setters methods----------------------------------//
          public function setIdGroupCustomer($id)
         {
-            return $this->id = $id;
+            return $this->id_group_customer = $id;
         }
 
          public function setNameGroupCustomer($name)
@@ -46,6 +46,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         public function selectAll()
         {
+        	$arrayGroupsCustomers = [];
             $query = $this->db->get($this->table);
             
             foreach ($query->result_object() as $ligne)
