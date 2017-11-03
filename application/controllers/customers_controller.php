@@ -18,11 +18,9 @@ Class Customers_controller extends CI_Controller
         
         public function index()
         {
-              $this->modelcustomers->selectAll();
-              
-              $this->load->view('dashboard/customers.html' , $arrayGroupsCustomers);
+              $listGroupCustomers = $this->modelcustomers->selectAll();
 
-
+              $this->load->view('dashboard/customers.html', array('listGroupCustomers' => $listGroupCustomers) , false);
         }
 
 

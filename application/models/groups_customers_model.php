@@ -53,7 +53,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $groupsCustomers = new Groups_customers_model();
                     $groupsCustomers->setIdGroupCustomer($ligne->id_group_customer);
                     $groupsCustomers->setNameGroupCustomer($ligne->name);
-          
                     $arrayGroupsCustomers[] = $groupsCustomers;
             }
                     return $arrayGroupsCustomers;

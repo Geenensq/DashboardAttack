@@ -215,11 +215,7 @@
                 </div>
 
                 
-                <?php
 
-                var_dump($arrayGroupsCustomers);
-
-                ?>
                 <div class="col-md-12">
                         <div class="card">
                             <div class="header">
@@ -236,12 +232,16 @@
                                     </thead>
                                     <tbody>
                                     
-                                    <tr>
-                                            <td>1</td>
-                                            <td>Clients particuliers</td>
-                                            <td><button class="btn btn-info btn-simple"><i class="fa fa-edit"></i></button></td>
-                                    </tr>        
- 
+                                <?php
+                                    foreach ($listGroupCustomers as $key => $group)
+                                    {
+                                        echo '<tr>';
+                                        echo  '<td>'. $group->getIdGroupCustomer() . '</td>';
+                                        echo  '<td>'. $group->getNameGroupCustomer() . '</td>';
+                                        echo  '<td><button class="btn btn-info"><i class="fa fa-edit"></i></button></td>';
+                                        echo '</tr>';
+                                        }
+                                    ?>       
                                     </tbody>
                                 </table>
 
