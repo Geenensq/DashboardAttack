@@ -9,12 +9,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $email;
         private $actif;
         private $id_group_member;
+        private $group_member; 
         protected $table = "members";
 
         //-------- Constructor--------//
         public function __construct()
         {
-            
+            $this->load->model('Groups_members_model' , 'GroupsMembersModel');
+            $this->group_member = new groups_members_model(); 
         }
         //---------------------------//
 
@@ -45,6 +47,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         public function GetIdGroupMember()
         {
             return $this->id_group_member;
+        }
+
+        public function getGroupMember()
+        {
+            return $this->group_member;
         }
         // -------------------------------------------------------------------------------------------//
 
@@ -77,6 +84,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         public function SetIdGroupMember($id_group_member)
         {
             return $this->id_group_member = $id_group_member;
+        }
+
+        public function SetGroupMember($group_member)
+        {
+            return $this->group_member = $group_member;
         }
         // -------------------------------------------------------------------------------------------//
 
@@ -124,7 +136,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $myMembers->setPassword($ligne->password);
                 $myMembers->setActif($ligne->actif);
                 $myMembers->setEmail($ligne->email);
-                $myMembers->SetIdGroupMember($ligne->id_group_member);
+                //$myMembers->SetIdGroupMember($ligne->id_group_member);
+                $myMembers->group_member = $myMembers->group_member->getOneGroupMember($ligne->id_group_member);
                 $arrayMyMembers[] = $myMembers;
             }
                 return $arrayMyMembers;

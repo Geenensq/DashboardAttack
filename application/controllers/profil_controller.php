@@ -11,7 +11,6 @@ Class Profil_controller extends CI_Controller
         parent::__construct();
         $this->load->model('members_model' , 'modelMembers');
         $this->load->model('Groups_members_model' , 'GroupsMembersModel');
-       
         //------------------------Stock in my atribute the id of my members with sessions-------------------//
         $this->id_member = $this->session->userdata('id_member');  
         //--------------------------------------------------------------------------------------------------//

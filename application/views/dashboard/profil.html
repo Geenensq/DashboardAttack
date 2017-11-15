@@ -191,7 +191,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Edition du Profil</h4>
-
+                                
                             </div>
                             <div class="content">
                                 <form method="POST" action="editProfil.html">
@@ -222,7 +222,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Votre statut</label>
-                                                <input type="text" disabled class="form-control" placeholder="Last Name" value="<?php echo $this->session->userdata('id_group_member'); ?>">
+                                                <input type="text" disabled class="form-control" placeholder="Last Name" value="<?php echo($infosUser->getGroupMember()->getName()); ?>">
                                             </div>
                                         </div>
                                     </div>
