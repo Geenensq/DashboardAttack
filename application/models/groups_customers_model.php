@@ -39,6 +39,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
        	public function insertGroupCustomer($model)
         {
             $name_group_customer = $model->getNameGroupCustomer();
+ 
             $this->db->set('name', $name_group_customer)
                      ->insert($this->table);       
         }

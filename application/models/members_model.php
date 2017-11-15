@@ -212,7 +212,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------UPDATE MEMBERS ON PROFIL PAGE----------------------------------//
         public function updateProfilMember($model)
         {
-           $data = array ('password' => $model->getPassword(), 'email' => $model->getEmail());
+           $data = array ('email' => $model->getEmail());
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
