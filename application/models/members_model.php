@@ -12,13 +12,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $group_member; 
         protected $table = "members";
 
-        //-------- Constructor--------//
+        //-------- Constructor--------------------------------------------------------------------------//
         public function __construct()
         {
             $this->load->model('Groups_members_model' , 'GroupsMembersModel');
             $this->group_member = new groups_members_model(); 
         }
-        //---------------------------//
+        //--------------------------------------------------------------------------------------------//
 
         // ---------------------------------------- Getters methods----------------------------------//
         public function getId()
@@ -226,6 +226,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $this->db->update($this->table , $data);   
         }
         // -------------------------------------------------------------------------------------------//
+
 
          public function selectGroupMember($model)
          {

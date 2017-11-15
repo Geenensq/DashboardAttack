@@ -20,6 +20,10 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<?php echo css_url('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
 
+    <!--  My global CSS    -->
+    <link href="<?php echo css_url('global'); ?>" rel="stylesheet"/>
+
+
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <!--<link href="assets/css/demo.css" rel="stylesheet" /> --
@@ -191,8 +195,8 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Edition du Profil</h4>
-                                
                             </div>
+
                             <div class="content">
                                 <form method="POST" action="editEmailProfil.html">
                                     <div class="row">
@@ -220,7 +224,6 @@
                                             </div>
                                         </div>
 
-
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Votre statut</label>
@@ -228,18 +231,61 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour l'adresse e-mail</button>
+                                    <span id="flip" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Changer le mot de passe</span>
+                                    
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
+
+                <div id="panel" class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Changement du mot de passe</h4>
+                            </div>
+                            <div class="content">
+                                <form method="POST" action="">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Mot de passe actuel</label>
+                                                <input type="text" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Nouveau mot de passe</label>
+                                                <input id="email" name="email" type="email" value="" class="form-control">
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Nouveau mot de passe (confirmation)</label>
+                                                <input id="email" name="email" type="email" value="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <button class="btn btn-info btn-fill pull-right">Mettre à jour le mot de passe</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
 
         <footer class="footer">
             <div class="container-fluid">
@@ -276,7 +322,6 @@
     </div>
 </div>
 
-
 </body>
 
         <!--   Core JS Files   -->
@@ -300,5 +345,16 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="<?php echo js_url('demo');?>"></script>
+
+    <script type="text/javascript">
+        
+    $(document).ready(function(){
+    $("#flip").click(function(){
+
+        $("#panel").slideDown("slow");
+    });
+    });
+
+    </script>
 
 </html>
