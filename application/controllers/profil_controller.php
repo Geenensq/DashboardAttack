@@ -10,16 +10,23 @@ Class Profil_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('members_model' , 'modelMembers');
-        
-        $this->id_member = $this->input->post('id_member');
-        $this->email = $this->input->post('email');
-        $this->password = $this->input->post('password');
+        $this->load->model('Groups_members_model' , 'GroupsMembersModel');
+       
+        //------------------------Stock in my atribute the id of my members with sessions-------------------//
+        $this->id_member = $this->session->userdata('id_member');  
+        //--------------------------------------------------------------------------------------------------//
     }
 
     public function index()
     {
-        $this->load->view('dashboard/profil.html');
-
+        //-----Mysql request for display the informations of user on input-----//
+        $infosUser = $this->modelMembers->getOne($this->id_member);
+        //---------------------------------------------------------------------//
+        
+        //--------------------------Loading of my base view template------------------------------------//
+        $this->load->view('dashboard/profil.html' , array('infosUser' => $infosUser[0]) , false);
+        //----------------------------------------------------------------------------------------------//
+       
     }
 
     public function editProfil()
@@ -40,6 +47,7 @@ Class Profil_controller extends CI_Controller
             
             $membersModel = $this->modelMembers;
             $this->modelMembers->updateProfilMember($membersModel);
+
             
             //-----Finish reload index-----//
             $this->index();

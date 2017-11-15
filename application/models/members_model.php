@@ -82,12 +82,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         // ----------------------------------------CHECK INFO USERS----------------------------------//
         public function CheckInfoUser($model){
-
-            $data = array (
-                    'login' => $model->getLogin(),
-                    'password' => $model->getPassword(),
-            );
-
+            $data = array ('login' => $model->getLogin(),'password' => $model->getPassword());
 
             $this->db->select('*');
             $this->db->from($this->table);
@@ -103,8 +98,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $myMembers->setPassword($result->password);
                     $myMembers->setEmail($result->email);
                     $myMembers->setActif($result->actif);
+                    $myMembers->SetIdGroupMember($result->id_group_member);
                     return $myMembers;
-                
+            
                 } else {
                     
                     return false;
@@ -187,14 +183,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         public function updateMember($model)
         {
 
-
            $data = array (
                     'login' => $model->getLogin(),
                     'password' => $model->getPassword(),
                     'actif' => $model->getActif(),
                     'email' => $model->getEmail(),
-                    'id_group_member' =>$model->GetIdGroupMember()
-                    
+                    'id_group_member' =>$model->GetIdGroupMember()    
           );
 
                     $this->db->where('id_member' ,$model->getId());
@@ -205,14 +199,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------UPDATE MEMBERS ON PROFIL PAGE----------------------------------//
         public function updateProfilMember($model)
         {
-
-
-           $data = array (
-                    'password' => $model->getPassword(),
-                    'email' => $model->getEmail(),
-                    
-          );
-
+           $data = array ('password' => $model->getPassword(), 'email' => $model->getEmail());
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
@@ -221,18 +208,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // ---------------------------------DISABLE AN MEMBERS----------------------------------------//
         public function disableMember($model)
         {
-                $data = array (
-                    'actif' => 0  
-                );
-                    $this->db->where('id_member' ,$model->getId());
-                    $this->db->update($this->table , $data);   
+                $data = array ('actif' => 0 );
+                $this->db->where('id_member' ,$model->getId());
+                $this->db->update($this->table , $data);   
         }
         // -------------------------------------------------------------------------------------------//
 
          public function selectGroupMember($model)
          {
             $id = $model->getId();
-
             $this->db->select('name');
             $this->db->from('groups_members');
             $this->db->where('id_group_member', $id );

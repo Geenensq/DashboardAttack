@@ -29,12 +29,12 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="<?php echo css_url('pe-icon-7-stroke'); ?>" rel="stylesheet" />
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue" data-image="<?php  img_url("sidebar-5.jpg"); ?> ">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
@@ -191,6 +191,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Edition du Profil</h4>
+
                             </div>
                             <div class="content">
                                 <form method="POST" action="editProfil.html">
@@ -198,13 +199,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nom d'utilisateur</label>
-                                                <input  disabled type="text" class="form-control" placeholder="Username" value="<?php echo $this->session->userdata('login'); ?>">
+                                                <input  disabled type="text" class="form-control" placeholder="Username" value="<?php echo $infosUser->getLogin(); ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Adresse e-mail</label>
-                                                <input id="email" name="email" type="email" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" placeholder="Email">
+                                                <input id="email" name="email" type="email" value="<?php echo $infosUser->getEmail(); ?>" class="form-control" placeholder="Email">
                                                 <?php echo form_error('email'); ?> 
                                             </div>
                                         </div>
@@ -214,14 +215,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Votre mot de passe</label>
-                                                <input id="password" name="password" type="password" class="form-control" placeholder="" value="<?php echo $this->session->userdata('password'); ?>">
+                                                <input id="password" name="password" type="password" class="form-control" placeholder="" value="******">
                                                 <?php echo form_error('password'); ?> 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Votre statut</label>
-                                                <input type="text" disabled class="form-control" placeholder="Last Name" value="Administrateur">
+                                                <input type="text" disabled class="form-control" placeholder="Last Name" value="<?php echo $this->session->userdata('id_group_member'); ?>">
                                             </div>
                                         </div>
                                     </div>

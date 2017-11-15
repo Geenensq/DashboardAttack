@@ -17,17 +17,13 @@ Class Customers_controller extends CI_Controller
 
         
         public function index()
-        {
-              
-              $listGroupCustomers = $this->modelcustomers->selectAll();
-            
+        {     
+              $listGroupCustomers = $this->modelcustomers->selectAll();   
               $this->load->view('dashboard/customers.html', array('listGroupCustomers' => $listGroupCustomers) , false);
         }
 
-
         public function addGroupCustomers()
         {
-
         //---------------------------------------FORM VALIDATION------------------------------------------------------//
    		$this->form_validation->set_rules('name_group_customers', '"name_group_customers"', 'required|min_length[3]');
     	//-----------------------------------------------------------------------------------------------------------//
@@ -37,7 +33,7 @@ Class Customers_controller extends CI_Controller
             //-------------Create my objet--------------//
         	$this->modelcustomers->setNameGroupCustomer($this->name);
             //-----------------------------------------//
-        
+            
             $modelcustomers = $this->modelcustomers;
             $this->modelcustomers->insertGroupCustomer($modelcustomers);
             $this->index();
