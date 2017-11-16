@@ -52,7 +52,7 @@ Class Signup_controller extends CI_Controller
             } else {
 
                 //----------------------------If the form is'nt valid load the base view and display error------------------------------// 
-                 $this->load->view('signup/index.html');
+                 $this->index();
                 //----------------------------------------------------------------------------------------------------------------------//    
             }
 

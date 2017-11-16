@@ -120,6 +120,27 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                        
         }
         // -------------------------------------------------------------------------------------------//
+        
+        public function checkPasswordById($model){
+            
+            $data = array ('id_member' => $model->getId(),'password' => $model->getPassword());
+            
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $this->db->where($data);
+            $query = $this->db->get();
+
+                if(count($query->result_array())  >= 1)
+                {
+                    return true;
+                
+                } else {
+                    
+                      return false;
+                }
+
+        }
+
 
         // ------------------------------SELECT ONE USER BY ID---------------------------------------//
         public function getOne($id)
@@ -216,6 +237,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
+
+
+        public function updateProfilMemberPassword($model)
+        {
+           $data = array ('password' => $model->getPassword());
+                    $this->db->where('id_member' ,$model->getId());
+                    $this->db->update($this->table , $data);
+        }
+
         // -------------------------------------------------------------------------------------------//
         
         // ---------------------------------DISABLE AN MEMBERS----------------------------------------//

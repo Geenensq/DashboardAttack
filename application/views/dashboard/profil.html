@@ -249,19 +249,19 @@
                                 <h4 class="title">Changement du mot de passe</h4>
                             </div>
                             <div class="content">
-                                <form method="POST" action="">
+                                <form id="testjson" method="POST" action="editPasswordProfil.html">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Mot de passe actuel</label>
-                                                <input type="text" class="form-control" value="">
+                                                <input id="currentPassword" name="currentPassword" type="password" class="form-control" value="">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Nouveau mot de passe</label>
-                                                <input id="email" name="email" type="email" value="" class="form-control">
+                                                <input id="newPassword" name="newPassword" type="password" value="" class="form-control">
                                                
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Nouveau mot de passe (confirmation)</label>
-                                                <input id="email" name="email" type="email" value="" class="form-control">
+                                                <input id="newPasswordConfirmation" name="newPasswordConfirmation" type="password" value="" class="form-control">
                                             </div>
                                         </div>
 
@@ -352,8 +352,30 @@
     $("#flip").click(function(){
 
         $("#panel").slideDown("slow");
+
     });
     });
+    </script>
+
+
+    <script type="text/javascript">
+            
+
+    $(document).ready(function(){
+        $("#testjson").submit(function(){
+            currentPassword = $(this).find("input[name=currentPassword]").val();
+            newPassword = $(this).find("input[name=newPassword]").val();
+            newPasswordConfirmation = $(this).find("input[name=newPasswordConfirmation]").val();
+            url = $(this).attr("action");
+            $.post(url , {currentPassword:currentPassword , newPassword:newPassword , newPasswordConfirmation:newPasswordConfirmation} , function(data){
+                
+            }, "json");
+
+            return false;
+        });
+    });
+
+
 
     </script>
 

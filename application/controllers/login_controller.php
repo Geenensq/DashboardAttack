@@ -56,7 +56,7 @@ Class Login_controller extends CI_Controller
                 
                 } else {    
                     
-                   $this->loginInvalid();
+                   $this->index();
                 }    
         //-----------------------------------------------------------------------------------------------------------------------//
        
@@ -74,21 +74,12 @@ Class Login_controller extends CI_Controller
     {
          //------------------Iinialize session-------------------//
          $this->session->set_userdata('id_member',  $this->id_member);
-        /* $this->session->set_userdata('login',  $this->login);
-         $this->session->set_userdata('password',  $this->password);
-         $this->session->set_userdata('actif',  $this->actif);
-         $this->session->set_userdata('email',  $this->email);*/
          $this->session->set_userdata('id_group_member',  $this->id_group_member);
         //------------------------------------------------------//
-       
+        
         redirect(array('dashboard_controller', 'index'));  
     }
     //----------------------------------------------------------------------------------------------------------------------//
     
-    private function loginInvalid()
-    {
-        $this->load->view('login/index.html');
-    }
-    //----------------------------------------------------------------------------------------------------------------------//
 
 }
