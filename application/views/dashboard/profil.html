@@ -276,6 +276,7 @@
                                     </div>
 
                                     <button class="btn btn-info btn-fill pull-right">Mettre à jour le mot de passe</button>
+                                    <span id="cancelChange" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Annulation</span>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -343,40 +344,13 @@
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="<?php echo js_url('light-bootstrap-dashboard');?>"></script>
 
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="<?php echo js_url('demo');?>"></script>
+    <!-- Global Javascript for profil page -->
+    <script src="<?php echo js_url('profil');?>"></script>
+    
+    <!-- Request AJax for page profil -->
+    <script src="<?php echo js_url('ajaxRequestProfil');?>"></script>
 
-    <script type="text/javascript">
-        
-    $(document).ready(function(){
-    $("#flip").click(function(){
-
-        $("#panel").slideDown("slow");
-
-    });
-    });
-    </script>
-
-
-    <script type="text/javascript">
-            
-
-    $(document).ready(function(){
-        $("#testjson").submit(function(){
-            currentPassword = $(this).find("input[name=currentPassword]").val();
-            newPassword = $(this).find("input[name=newPassword]").val();
-            newPasswordConfirmation = $(this).find("input[name=newPasswordConfirmation]").val();
-            url = $(this).attr("action");
-            $.post(url , {currentPassword:currentPassword , newPassword:newPassword , newPasswordConfirmation:newPasswordConfirmation} , function(data){
-                
-            }, "json");
-
-            return false;
-        });
-    });
-
-
-
-    </script>
+    <!-- Notify page profil -->
+    <script src="<?php echo js_url('notificationsProfil');?>"></script>
 
 </html>

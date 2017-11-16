@@ -81,6 +81,8 @@ Class Profil_controller extends CI_Controller
             //-------------------------------------------------------------------------------------//
 
             //-----------------------------If the users have the same password of the post so update---------------//
+            $callBack = array();
+
             if ($resultRequest){
 
                 if ($this->newPasswordConfirm == $this->newPassword ){
@@ -89,15 +91,21 @@ Class Profil_controller extends CI_Controller
                     $this->modelMembers->setPassword($this->newPassword);
                     $membersModel = $this->modelMembers;
                     $this->modelMembers->updateProfilMemberPassword($membersModel);
+                    $callBack["confirm"] = "success";
 
                 } else {
 
-                    echo ("nop");
+                    $callBack["errorPasswordConfirm"] = "error";
+                
                 }
               
+            } else {
+
+               $callBack["errorPasswordActuel"] = "error";
             } 
             //----------------------------------------------------------------------------------------------------//
             
+            echo json_encode($callBack);
     }     
 
 
