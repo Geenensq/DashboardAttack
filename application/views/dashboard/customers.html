@@ -45,21 +45,21 @@
 
                 <ul class="nav">
                     <li>
-                        <a href="../dashboard_controller/index.html">
+                        <a href="<?php echo base_url();?>dashboard_controller/index.html">
                             <i class="pe-7s-graph"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
 
                     <li>
-                        <a href="../profil_controller/index.html">
+                        <a href="<?php echo base_url();?>profil_controller/index.html">
                             <i class="pe-7s-user"></i>
                             <p>Votre profil</p>
                         </a>
                     </li>
 
                     <li class="active">
-                        <a href="#">
+                        <a href="<?php echo base_url();?>customers_controller/index.html">
                             <i class="pe-7s-user"></i>
                             <p>Clients</p>
                         </a>
@@ -152,7 +152,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="">
+                                <a href="<?php echo base_url();?>profil_controller/index.html">
                                     <p>Mon compte</p>
                                 </a>
                             </li>
@@ -181,7 +181,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="../session_controller/index.html">
+                                <a href="<?php echo base_url();?>session_controller/index.html">
                                     <p>Se deconnecter</p>
                                 </a>
                             </li>
@@ -237,7 +237,6 @@
 
                                         </thead>
                                         <tbody>
-
                                             <?php foreach ($listGroupCustomers as $key=> $group) { echo '
                                             <tr>'; echo '
                                                 <td>'. $group->getIdGroupCustomer() . '</td>'; echo '

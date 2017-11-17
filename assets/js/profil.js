@@ -2,9 +2,9 @@
     $(document).ready(function(){
     $("#flip").click(function(){
 
-        
         $("#panel").slideDown("slow");
         $(this).attr("disabled", true);
+        $("#updateEmail").attr("disabled", true);
 
     });
     
@@ -12,9 +12,7 @@
 
     	$("#panel").fadeOut();
     	$('#flip').removeAttr("disabled");
+        $("#updateEmail").removeAttr("disabled");
     });
-
-
-
-
+    
     });

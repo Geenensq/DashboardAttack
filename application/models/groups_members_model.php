@@ -32,6 +32,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->id_group_member = $id_group_member;
         }
+        
         public function setName($name)
         {
             return $this->name = $name;
@@ -53,8 +54,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                 return $myMembers;
         }
- 
-        
+  
     }
 
 ?>
