@@ -30,21 +30,28 @@ Class Customers_controller extends CI_Controller
 
    		if ($this->form_validation->run())
         {
+
+            $callBack = array();
             //-------------Create my objet--------------//
         	$this->modelcustomers->setNameGroupCustomer($this->name);
             //-----------------------------------------//
             
             $modelcustomers = $this->modelcustomers;
             $this->modelcustomers->insertGroupCustomer($modelcustomers);
-            $this->index();
+            $callBack["confirm"] = "success";
             
    		} else {
 
-            $this->index();
+            $callBack["confirm"] = "error";
         }
 
+            //----------------------------------------------------------------------------------------------------//
+            echo json_encode($callBack);
+            //---------------------------------------------------------------------------------------------------//
+    }
 
-        }
+
+        
 
 }
 

@@ -200,18 +200,17 @@
                                     <h4 class="title">Ajout de groupes de clients</h4>
                                 </div>
                                 <div class="content">
-                                    <form method="POST" action="addGroupCustomers">
+                                    <form id="formAddGroupCustomers" method="POST" action="addGroupCustomers.html">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Nom du groupe client</label>
                                                     <input id="name_group_customers" name="name_group_customers" type="text" class="form-control" placeholder="Exemple : particuliers">
                                                     <?php echo form_error( 'name_group_customers'); ?>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
+                                        <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -339,7 +338,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
+                                        <button id="addGroupCustomers" type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -413,7 +412,11 @@
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url('light-bootstrap-dashboard');?>"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="<?php echo js_url('demo');?>"></script>
+<!-- Request AJax for page customers -->
+<script src="<?php echo js_url('ajaxRequestCustomers');?>"></script>
+<!-- Notify page profil -->
+<script src="<?php echo js_url('notificationsCustomers');?>"></script>
+<!-- Global Javascript for profil page -->
+<script src="<?php echo js_url('customers');?>"></script>
 
 </html>

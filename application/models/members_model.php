@@ -162,7 +162,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $myMembers->group_member = $myMembers->group_member->getOneGroupMember($ligne->id_group_member);
                 $arrayMyMembers[] = $myMembers;
             }
-                return $myMembers;
+                return $arrayMyMembers;
         }
         // -------------------------------------------------------------------------------------------//
        
