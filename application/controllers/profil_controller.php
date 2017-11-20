@@ -14,6 +14,7 @@ Class Profil_controller extends CI_Controller
         parent::__construct();
         $this->load->model('members_model' , 'modelMembers');
         $this->load->model('Groups_members_model' , 'GroupsMembersModel');
+        
         //------------------------Stock in my atribute the id of my members with sessions-------------------//
         $this->id_member = $this->session->userdata('id_member');  
         //--------------------------------------------------------------------------------------------------//
@@ -53,60 +54,60 @@ Class Profil_controller extends CI_Controller
             //-----Finish reload index-----//
             $this->index();
             //-----------------------------//
-   		} else {
-
+   		
+        } else {
              $this->index();
-
         }
     }
 
     public function editPasswordProfil()
     {
-            //------------------------Get informations of the Ajax POST----------------------//
-            $this->password = $this->input->post('currentPassword');
-            $this->newPassword = $this->input->post('newPassword');
-            $this->newPasswordConfirm = $this->input->post('newPasswordConfirmation');
-            //------------------------------------------------------------------------------//
-           
-           //---------------------------------Check current password before the update----------------------------// 
-           
-            //-------------Create my objet for test password and id--------------//
-            $this->modelMembers->setId($this->id_member);
-            $this->modelMembers->setPassword($this->password);
-            //-----------------------------------------------------------------//
-            
-            //----------------Launch méthod for check the password and the id-----------------------//
-            $membersModel = $this->modelMembers;
-            $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
-            //-------------------------------------------------------------------------------------//
-
-            //-----------------------------If the users have the same password of the post so update---------------//
-            $callBack = array();
-
-            if ($resultRequest){
-
-                if ($this->newPasswordConfirm == $this->newPassword ){
-                    
-                    $this->modelMembers->setId($this->id_member);
-                    $this->modelMembers->setPassword($this->newPassword);
-                    $membersModel = $this->modelMembers;
-                    $this->modelMembers->updateProfilMemberPassword($membersModel);
-                    $callBack["confirm"] = "success";
-
-                } else {
-
-                    $callBack["errorPasswordConfirm"] = "error";
+    //------------------------Get informations of the Ajax POST----------------------//
+    $this->password = $this->input->post('currentPassword');
+    $this->newPassword = $this->input->post('newPassword');
+    $this->newPasswordConfirm = $this->input->post('newPasswordConfirmation');
+    //------------------------------------------------------------------------------//
+               
+    //---------------------------------Check current password before the update----------------------------// 
+               
+    //-------------Create my objet for test password and id--------------//
+    $this->modelMembers->setId($this->id_member);
+    $this->modelMembers->setPassword($this->password);
+    //-----------------------------------------------------------------//
                 
-                }
-              
-            } else {
+    //----------------Launch méthod for check the password and the id-----------------------//
+    $membersModel = $this->modelMembers;
+    $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
+    //-------------------------------------------------------------------------------------//
 
-               $callBack["errorPasswordActuel"] = "error";
+    //-----------------------------If the users have the same password of the post so update---------------//
+    $callBack = array();
+        if ($resultRequest){
+            if ($this->newPasswordConfirm == $this->newPassword )
+            {        
+                $this->modelMembers->setId($this->id_member);
+                $this->modelMembers->setPassword($this->newPassword);
+                $membersModel = $this->modelMembers;
+                $this->modelMembers->updateProfilMemberPassword($membersModel);
+                $callBack["confirm"] = "success";
+
+            } else {
+                
+                $callBack["errorPasswordConfirm"] = "error";
+            }
+                  
+            } else {
+                
+                $callBack["errorPasswordActuel"] = "error";
             } 
-            //----------------------------------------------------------------------------------------------------//
             
+            //----------------------------------------------------------------------------------------------------//
             echo json_encode($callBack);
-    }     
+            //---------------------------------------------------------------------------------------------------//
+    }
+
+
+
 
 
 

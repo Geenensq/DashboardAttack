@@ -93,7 +93,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         // -------------------------------------------------------------------------------------------//
 
         // ----------------------------------------CHECK INFO USERS----------------------------------//
-        public function CheckInfoUser($model){
+        public function CheckInfoUser($model)
+        {
             $data = array ('login' => $model->getLogin(),'password' => $model->getPassword());
 
             $this->db->select('*');
@@ -121,7 +122,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         // -------------------------------------------------------------------------------------------//
         
-        public function checkPasswordById($model){
+        public function checkPasswordById($model)
+        {
             
             $data = array ('id_member' => $model->getId(),'password' => $model->getPassword());
             
@@ -136,7 +138,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 
                 } else {
                     
-                      return false;
+                    return false;
                 }
 
         }
@@ -157,7 +159,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $myMembers->setPassword($ligne->password);
                 $myMembers->setActif($ligne->actif);
                 $myMembers->setEmail($ligne->email);
-                //$myMembers->SetIdGroupMember($ligne->id_group_member);
                 $myMembers->group_member = $myMembers->group_member->getOneGroupMember($ligne->id_group_member);
                 $arrayMyMembers[] = $myMembers;
             }

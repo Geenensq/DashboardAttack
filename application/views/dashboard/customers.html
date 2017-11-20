@@ -26,6 +26,8 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css" />
+ 
     <link href="<?php echo css_url('pe-icon-7-stroke'); ?>" rel="stylesheet" />
 </head>
 
@@ -45,21 +47,21 @@
 
                 <ul class="nav">
                     <li>
-                        <a href="../dashboard_controller/index.html">
+                        <a href="<?php echo base_url();?>dashboard_controller/index.html">
                             <i class="pe-7s-graph"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
 
                     <li>
-                        <a href="../profil_controller/index.html">
+                        <a href="<?php echo base_url();?>profil_controller/index.html">
                             <i class="pe-7s-user"></i>
                             <p>Votre profil</p>
                         </a>
                     </li>
 
                     <li class="active">
-                        <a href="#">
+                        <a href="<?php echo base_url();?>customers_controller/index.html">
                             <i class="pe-7s-user"></i>
                             <p>Clients</p>
                         </a>
@@ -152,7 +154,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="">
+                                <a href="<?php echo base_url();?>profil_controller/index.html">
                                     <p>Mon compte</p>
                                 </a>
                             </li>
@@ -181,7 +183,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="../session_controller/index.html">
+                                <a href="<?php echo base_url();?>session_controller/index.html">
                                     <p>Se deconnecter</p>
                                 </a>
                             </li>
@@ -200,18 +202,17 @@
                                     <h4 class="title">Ajout de groupes de clients</h4>
                                 </div>
                                 <div class="content">
-                                    <form method="POST" action="addGroupCustomers">
+                                    <form id="formAddGroupCustomers" method="POST" action="addGroupCustomers.html">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Nom du groupe client</label>
                                                     <input id="name_group_customers" name="name_group_customers" type="text" class="form-control" placeholder="Exemple : particuliers">
                                                     <?php echo form_error( 'name_group_customers'); ?>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
+                                        <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -228,8 +229,9 @@
                                     <h4 class="title">Gestion des groupes de clients</h4>
                                     <p class="category">Liste des groupes de clients</p>
                                 </div>
+
                                 <div class="content table-responsive table-full-width">
-                                    <table class="table table-hover table-striped">
+                                    <table id="testLoad" class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
                                             <th>Nom</th>
@@ -237,7 +239,6 @@
 
                                         </thead>
                                         <tbody>
-
                                             <?php foreach ($listGroupCustomers as $key=> $group) { echo '
                                             <tr>'; echo '
                                                 <td>'. $group->getIdGroupCustomer() . '</td>'; echo '
@@ -250,6 +251,7 @@
                                     </table>
 
                                 </div>
+
                             </div>
                         </div>
 
@@ -340,7 +342,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
+                                        <button id="addGroupCustomers" type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -407,6 +409,7 @@
 
 <!--  Notifications Plugin    -->
 <script src="<?php echo js_url('bootstrap-notify');?>"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
 
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -414,7 +417,11 @@
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url('light-bootstrap-dashboard');?>"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="<?php echo js_url('demo');?>"></script>
+<!-- Request AJax for page customers -->
+<script src="<?php echo js_url('ajaxRequestCustomers');?>"></script>
+<!-- Notify page profil -->
+<script src="<?php echo js_url('notificationsCustomers');?>"></script>
+<!-- Global Javascript for profil page -->
+<script src="<?php echo js_url('customers');?>"></script>
 
 </html>
