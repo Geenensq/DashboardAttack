@@ -1,15 +1,15 @@
 <?php 
 Class Customers_controller extends CI_Controller
 {
-	//--------------Declarations of attributes-------------//
+    //--------------Declarations of attributes-------------//
     private $name;
     //-----------------------------------------------------//
 
         public function __construct()
         {
-        	parent::__construct();
-        	$this->name = $this->input->post('name_group_customers');
-        	
+            parent::__construct();
+            $this->name = $this->input->post('name_group_customers');
+            
             //-------------------Loading model-----------------------//
             $this->load->model('Groups_customers_model' , 'modelcustomers');
             //-------------------------------------------------------//
@@ -27,22 +27,22 @@ Class Customers_controller extends CI_Controller
         public function addGroupCustomers()
         {
         //---------------------------------------FORM VALIDATION------------------------------------------------------//
-   		$this->form_validation->set_rules('name_group_customers', '"name_group_customers"', 'required|min_length[3]');
-    	//-----------------------------------------------------------------------------------------------------------//
+        $this->form_validation->set_rules('name_group_customers', '"name_group_customers"', 'required|min_length[3]');
+        //-----------------------------------------------------------------------------------------------------------//
 
-   		if ($this->form_validation->run())
+        if ($this->form_validation->run())
         {
 
             $callBack = array();
             //-------------Create my objet--------------//
-        	$this->modelcustomers->setNameGroupCustomer($this->name);
+            $this->modelcustomers->setNameGroupCustomer($this->name);
             //-----------------------------------------//
             
             $modelcustomers = $this->modelcustomers;
             $this->modelcustomers->insertGroupCustomer($modelcustomers);
             $callBack["confirm"] = "success";
             
-   		} else {
+        } else {
 
             $callBack["confirm"] = "error";
         }
@@ -79,6 +79,3 @@ Class Customers_controller extends CI_Controller
 }
 
  ?>
-
-
-
