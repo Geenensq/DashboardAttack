@@ -13,6 +13,8 @@ Class Customers_controller extends CI_Controller
             //-------------------Loading model-----------------------//
             $this->load->model('Groups_customers_model' , 'modelcustomers');
             //-------------------------------------------------------//
+            $this->load->library('SspDatatable');
+
         }
 
         
@@ -48,6 +50,30 @@ Class Customers_controller extends CI_Controller
             //----------------------------------------------------------------------------------------------------//
             echo json_encode($callBack);
             //---------------------------------------------------------------------------------------------------//
+    }
+
+
+    public function testAjax(){
+        // DB table to use
+        $table = 'groups_customers';
+
+        // Table's primary key
+        $primaryKey = 'id_group_customer';
+
+        // indexes
+        // on map les champs de la base de donnÃ©s (index db) correspondant aux col de la datatable ( index dt)
+        $columns = array(
+            array( 'db' => 'id_group_customer',             'dt' => 0 ),
+            array( 'db' => 'name',        'dt' => 1 ),
+        );
+
+        $this->sspDatatable->simple($_GET, array('DB_HOST' => '127.0.0.1', 'DB_LOGIN' => 'root', 'DB_PSW' => '', 'DB_NAME' => 'testdb', 'DB_PORT' => '3306'), $table, $primaryKey, $columns);
+
+        return $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($this->sspDatatable->simple($_GET, array('DB_HOST' => '127.0.0.1', 'DB_LOGIN' => 'root', 'DB_PSW' => '', 'DB_NAME' => 'testdb', 'DB_PORT' => '3306'), $table, $primaryKey, $columns)));
+
+
     }
 
 
