@@ -151,18 +151,29 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->from($this->table);
             $this->db->where('id_member', $id );
             $query = $this->db->get();
-            foreach ($query->result_object() as $ligne)
-            {
-                $myMembers = new Members_model();
-                $myMembers->setId($ligne->id_member);
-                $myMembers->setLogin($ligne->login);
-                $myMembers->setPassword($ligne->password);
-                $myMembers->setActif($ligne->actif);
-                $myMembers->setEmail($ligne->email);
-                $myMembers->group_member = $myMembers->group_member->getOneGroupMember($ligne->id_group_member);
-                $arrayMyMembers[] = $myMembers;
-            }
-                return $arrayMyMembers;
+
+            $result = $query->result_object()[0];
+
+            $myMembers = new Members_model();
+            $myMembers->setId($result->id_member);
+            $myMembers->setLogin($result->login);
+            $myMembers->setPassword($result->password);
+            $myMembers->setActif($result->actif);
+            $myMembers->setEmail($result->email);
+            $myMembers->group_member = $myMembers->group_member->getOneGroupMember($result->id_group_member);
+
+            return $myMembers;
+            
+            /*          $query = $this->db->select('*')->from($this->table)->where('id_member', $id )->get();
+            $myMembers = new Members_model();
+            $myMembers->setId($query->result_object()[0]->id_member);
+            $myMembers->setLogin($query->result_object()[0]->login);
+            $myMembers->setPassword($query->result_object()[0]->password);
+            $myMembers->setActif($query->result_object()[0]->actif);
+            $myMembers->setEmail($query->result_object()[0]->email);
+            $myMembers->group_member = $myMembers->group_member->getOneGroupMember($query->result_object()[0]->id_group_member);
+            return $myMembers;
+*/
         }
         // -------------------------------------------------------------------------------------------//
        
@@ -172,16 +183,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $query = $this->db->get($this->table);
             foreach ($query->result_object() as $ligne)
             {
-                    $members = new Members_model();
-                    $members->setId($ligne->id_member);
-                    $members->setLogin($ligne->login);
-                    $members->setPassword($ligne->password);
-                    $members->setActif($ligne->actif);
-                    $members->setEmail($ligne->email);
-                    $members->SetIdGroupMember($ligne->id_group_member);
-                    $arrayMembers[] = $members;
+                $members = new Members_model();
+                $members->setId($ligne->id_member);
+                $members->setLogin($ligne->login);
+                $members->setPassword($ligne->password);
+                $members->setActif($ligne->actif);
+                $members->setEmail($ligne->email);
+                $members->SetIdGroupMember($ligne->id_group_member);
+                $arrayMembers[] = $members;
             }
-                    return $arrayMembers;
+                return $arrayMembers;
         }
         // -------------------------------------------------------------------------------------------//
         

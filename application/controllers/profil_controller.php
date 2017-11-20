@@ -27,7 +27,7 @@ Class Profil_controller extends CI_Controller
         //---------------------------------------------------------------------//
 
         //--------------------------Loading of my base view template------------------------------------//
-        $this->load->view('dashboard/profil.html' , array('infosUser' => $infosUser[0]) , false);
+        $this->load->view('dashboard/profil.html' , array('infosUser' => $infosUser) , false);
         //----------------------------------------------------------------------------------------------//
     }
 
