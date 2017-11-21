@@ -1,14 +1,14 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-        	demo.initChartist();
+    demo.initChartist();
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Bienvenue sur votre <b> Dashboard</b> ."
+    $.notify({
+        icon: 'pe-7s-gift',
+        message: "Bienvenue sur votre <b> Dashboard</b> ."
 
-            },{
-                type: 'info',
-                timer: 4000
-            });
+    }, {
+        type: 'info',
+        timer: 4000
+    });
 
-    	});
+});

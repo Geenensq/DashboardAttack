@@ -77,16 +77,14 @@ Class Profil_controller extends CI_Controller
     $this->modelMembers->setPassword($this->password);
     //-----------------------------------------------------------------//
                 
-    //----------------method to verify that the id matches the password-----------------------//
+    //----------------Call my method to verify that the id matches the password-----------------------//
     $membersModel = $this->modelMembers;
     $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
-    //-------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------//
 
     ///---creating a array to manage ajax returns---//
     $callBack = array();
     //---------------------------------------------//
-
-
         //--If the method returns true--//
         if ($resultRequest){
             
