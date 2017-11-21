@@ -45,8 +45,7 @@ Class Customers_controller extends CI_Controller
             //-----------------------------------------//
             
             //---Call the method of my model to add the group in the database---//
-            $modelGroupCustomers = $this->modelGroupCustomers;
-            $this->modelGroupCustomers->insertGroupCustomer($modelGroupCustomers);
+            $this->modelGroupCustomers->insertGroupCustomer($this->modelGroupCustomers);
             //-----------------------------------------------------------------//
 
 
@@ -88,11 +87,9 @@ Class Customers_controller extends CI_Controller
             //-------Stock in my attribute the result of the ajax post--------//
             $this->id_group_customer = $this->input->post('id');
             //----------------------------------------------------------------//
-            $this->modelGroupCustomers->setIdGroupCustomer($this->id_group_customer);
 
             //---Call the method of my model to delete the group in the database---//
-            $modelGroupCustomers = $this->modelGroupCustomers;
-            $this->modelGroupCustomers->deleteOneGroupMember($this->id_group_customer);
+            $this->modelGroupCustomers->disableOneGroupMember($this->id_group_customer);
             //-----------------------------------------------------------------//
 
         } 

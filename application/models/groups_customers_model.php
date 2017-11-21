@@ -70,11 +70,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         //------------------------------------------------------------------------------------------//
 
-        public function deleteOneGroupMember($id_group_member)
+        public function disableOneGroupMember($id)
         {
-
+            $data = array ('actif' => 0 );
+            $this->db->where('id_group_customer' , $id);
+            $this->db->update($this->table , $data);   
             
         }
+        //------------------------------------------------------------------------------------------//
 
 
     }
