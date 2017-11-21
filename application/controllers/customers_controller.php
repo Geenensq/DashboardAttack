@@ -26,7 +26,7 @@ Class Customers_controller extends CI_Controller
               $listGroupCustomers = $this->modelcustomers->selectAll();   
               $this->load->view('dashboard/customers.html');
 
-              
+
         }
         //---------------------------------------------------------------------//
 
@@ -93,6 +93,41 @@ Class Customers_controller extends CI_Controller
         ssp::simple($_GET, $sql_details, $table, $primaryKey, $columns ));
     }
 
+
+
+
+   public function get_json() {
+        $this->load->model('Groups_customers_model');
+        $results = $this->Groups_customers_model->load_grid();
+
+
+        $data = array();
+
+        foreach ($results  as $result) {
+            array_push($data, array(
+                $result['id_group_customer'],
+                $result['name'],
+                
+                /*anchor('test/view/' . $result['id_group_customer'], 'View'),
+                anchor('test/edit/' . $result['id_group_customer'], 'Edit')*/
+            
+            ));
+        }
+ 
+        echo json_encode(array('data' => $data));
+    }
+
+
+
+
+
 }
+
+
+
+ 
+
+
+
 
  ?>

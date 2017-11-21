@@ -60,4 +60,23 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     return $arrayGroupsCustomers;
         }
 
+        public function load_grid() 
+        {
+       
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+        
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }

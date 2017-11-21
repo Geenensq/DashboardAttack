@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#testLoad').DataTable({
-        ajax: "testAjax.html",
+        ajax: "get_json.html",
         order: [[ 0, "asc" ]],
         "columns": [
 
