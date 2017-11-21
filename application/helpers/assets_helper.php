@@ -18,6 +18,14 @@ if ( ! function_exists('js_url'))
     }
 }
 
+if ( ! function_exists('js_url_lib'))
+{
+    function js_url_lib($nom)
+    {
+        return base_url() . 'assets/js/lib/' . $nom . '.js';
+    }
+}
+
 if ( ! function_exists('img_url'))
 {
     function img_url($nom)

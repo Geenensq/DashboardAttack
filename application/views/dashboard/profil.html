@@ -228,7 +228,7 @@
                                 <h4 class="title">Changement du mot de passe</h4>
                             </div>
                             <div class="content">
-                                <form id="testjson" method="POST" action="editPasswordProfil.html">
+                                <form id="formEditPassword" method="POST" action="editPasswordProfil.html">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -305,31 +305,22 @@
 </body>
 
         <!--   Core JS Files   -->
-    <script src="<?php echo js_url('jquery-1.10.2'); ?>" type="text/javascript"></script>
-    <script src="<?php echo js_url('bootstrap.min'); ?>" type="text/javascript"></script>
-
-    <!--  Checkbox, Radio & Switch Plugins -->
-    <script src="<?php echo js_url('bootstrap-checkbox-radio-switch');?>"></script>
-
-    <!--  Charts Plugin -->
-    <script src="<?php echo js_url('chartist.min');?>"></script>
+    <script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
+    <script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="<?php echo js_url('bootstrap-notify');?>"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="<?php echo js_url('light-bootstrap-dashboard');?>"></script>
+    <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
 
     <!-- Global Javascript for profil page -->
-    <script src="<?php echo js_url('profil');?>"></script>
+    <script src="<?php echo js_url('MainProfil');?>"></script>
     
     <!-- Request AJax for page profil -->
     <script src="<?php echo js_url('ajaxRequestProfil');?>"></script>
 
-    <!-- Notify page profil -->
+    <!-- Notifications for profil -->
     <script src="<?php echo js_url('notificationsProfil');?>"></script>
 
 </html>

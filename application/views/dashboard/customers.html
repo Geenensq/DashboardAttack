@@ -388,30 +388,27 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="<?php echo js_url('jquery-1.10.2'); ?>" type="text/javascript"></script>
-<script src="<?php echo js_url('bootstrap.min'); ?>" type="text/javascript"></script>
+<script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
+<script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo js_url('bootstrap-checkbox-radio-switch');?>"></script>
-
-<!--  Charts Plugin -->
-<script src="<?php echo js_url('chartist.min');?>"></script>
+<script src="<?php echo js_url_lib('bootstrap-checkbox-radio-switch');?>"></script>
 
 <!--  Notifications Plugin    -->
-<script src="<?php echo js_url('bootstrap-notify');?>"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+<script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo js_url('light-bootstrap-dashboard');?>"></script>
+<script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
 
 <!-- Request AJax for page customers -->
 <script src="<?php echo js_url('ajaxRequestCustomers');?>"></script>
-<!-- Notify page profil -->
+
+<!-- Notifications for customers -->
 <script src="<?php echo js_url('notificationsCustomers');?>"></script>
+
 <!-- Global Javascript for profil page -->
-<script src="<?php echo js_url('customers');?>"></script>
+<script src="<?php echo js_url('Maincustomers');?>"></script>
 
 </html>
