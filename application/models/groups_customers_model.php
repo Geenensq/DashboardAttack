@@ -59,24 +59,22 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                     return $arrayGroupsCustomers;
         }
+        //------------------------------------------------------------------------------------------//
 
-        public function load_grid() 
+        public function loadGrid() 
         {
        
         $query = $this->db->get($this->table);
         return $query->result_array();
         
         }
+        //------------------------------------------------------------------------------------------//
 
+        public function deleteOneGroupMember($id_group_member)
+        {
 
-
-
-
-
-
-
-
-
+            
+        }
 
 
     }

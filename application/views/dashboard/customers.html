@@ -219,6 +219,7 @@
                                             <th>ID</th>
                                             <th>Nom</th>
                                             <th>Edition</th>
+                                            <th>Suppression</th>
                                         </thead>
                                         <tbody>
                                     
@@ -231,7 +232,6 @@
                         </div>
 
                     </div>
-
 
                     <div class="row">
                         <div class="col-md-12">
@@ -388,5 +388,19 @@
 <script src="<?php echo js_url('notificationsCustomers');?>"></script>
 <!-- Global Javascript for profil page -->
 <script src="<?php echo js_url('Maincustomers');?>"></script>
+
+
+<script type="text/javascript">
+    
+    function test($id){
+        $url = "deleteGroupCustomer.html";
+
+    $.post($url, {id:$id}, function(data) {
+
+
+        }, "json");
+        alert("cest la jungle" + $id);
+    }
+</script>
 
 </html>

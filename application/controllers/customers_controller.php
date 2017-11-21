@@ -3,6 +3,7 @@ Class Customers_controller extends CI_Controller
 {
     //--------------Declarations of attributes-------------//
     private $name;
+    private $id_group_customer;
     //-----------------------------------------------------//
 
         public function __construct()
@@ -11,22 +12,15 @@ Class Customers_controller extends CI_Controller
             $this->name = $this->input->post('name_group_customers');
             
             //-------------------Loading model-----------------------//
-            $this->load->model('Groups_customers_model' , 'modelcustomers');
-            //-------------------------------------------------------//
-            
-            //-------Loadid library for datatables--------//
-            $this->load->library('ssp');
-            //-------------------------------------------//
+            $this->load->model('Groups_customers_model' , 'modelGroupCustomers');
+            //-------------------------------------------------------// 
         }
 
         
         //-------------Default called method for load my base view--------------//
         public function index()
-        {     
-              $listGroupCustomers = $this->modelcustomers->selectAll();   
+        {       
               $this->load->view('dashboard/customers.html');
-
-
         }
         //---------------------------------------------------------------------//
 
@@ -47,12 +41,12 @@ Class Customers_controller extends CI_Controller
             //---------------------------------------------//
             
             //-------------Create my objet--------------//
-            $this->modelcustomers->setNameGroupCustomer($this->name);
+            $this->modelGroupCustomers->setNameGroupCustomer($this->name);
             //-----------------------------------------//
             
             //---Call the method of my model to add the group in the database---//
-            $modelcustomers = $this->modelcustomers;
-            $this->modelcustomers->insertGroupCustomer($modelcustomers);
+            $modelGroupCustomers = $this->modelGroupCustomers;
+            $this->modelGroupCustomers->insertGroupCustomer($modelGroupCustomers);
             //-----------------------------------------------------------------//
 
 
@@ -74,60 +68,36 @@ Class Customers_controller extends CI_Controller
 
     //----------------------------------------------------------------------------------------------------------------//
 
+   
+    //---------------------------------method to send the result in json to datatable --------------------------------//
+       public function encodeGrid() {
+            $results = $this->modelGroupCustomers->loadGrid();
+            $data = array();
 
-    public function testAjax()
-    {
-        // DB table to use
-        $table = 'groups_customers';
-        // Table's primary key
-        $primaryKey = 'id_group_customer';
-
-        //---on map les champs de la base de donnée (index db) correspondant aux col de la datatable ( index dt)---//
-        $columns = array(array( 'db' => 'id_group_customer','dt' => 0 ),array( 'db' => 'name','dt' => 1 ),);
-        //---------------------------------------------------------------------------------------------------------//
-
-        $sql_details = array('user' => 'root','pass' => '','db'   => 'testdb','host' => '127.0.0.1');
-
-        header('Content-Type: application/json');
-        echo json_encode(
-        ssp::simple($_GET, $sql_details, $table, $primaryKey, $columns ));
-    }
-
-
-
-
-   public function get_json() {
-        $this->load->model('Groups_customers_model');
-        $results = $this->Groups_customers_model->load_grid();
-
-
-        $data = array();
-
-        foreach ($results  as $result) {
-            array_push($data, array(
-                $result['id_group_customer'],
-                $result['name'],
-                
-                /*anchor('test/view/' . $result['id_group_customer'], 'View'),
-                anchor('test/edit/' . $result['id_group_customer'], 'Edit')*/
-            
-            ));
+            foreach ($results  as $result) {
+                $data[] = array($result['id_group_customer'],$result['name']);
+            }
+     
+            echo json_encode(array('data' => $data));
         }
- 
-        echo json_encode(array('data' => $data));
-    }
+    //----------------------------------------------------------------------------------------------------------------//
 
 
+        public function deleteGroupCustomer(){
+            
+            //-------Stock in my attribute the result of the ajax post--------//
+            $this->id_group_customer = $this->input->post('id');
+            //----------------------------------------------------------------//
+            $this->modelGroupCustomers->setIdGroupCustomer($this->id_group_customer);
 
+            //---Call the method of my model to delete the group in the database---//
+            $modelGroupCustomers = $this->modelGroupCustomers;
+            $this->modelGroupCustomers->deleteOneGroupMember($this->id_group_customer);
+            //-----------------------------------------------------------------//
 
+        } 
 
 }
-
-
-
- 
-
-
 
 
  ?>
