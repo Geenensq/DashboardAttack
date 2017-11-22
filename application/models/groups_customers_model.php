@@ -70,12 +70,25 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         //------------------------------------------------------------------------------------------//
 
-        public function disableOneGroupMember($id)
+        public function disableEnableOneGroupCustomer($id)
         {
-            $data = array ('actif' => 0 );
-            $this->db->where('id_group_customer' , $id);
-            $this->db->update($this->table , $data);   
-            
+            $this->db->select('actif');
+            $this->db->from($this->table);
+            $this->db->where('id_group_customer', $id );
+            $query = $this->db->get();
+            $result = $query->result_array();
+
+            if($result[0]['actif'] == 0){
+                
+                $data = array ('actif' => 1 );
+                $this->db->where('id_group_customer' , $id);
+                $this->db->update($this->table , $data);
+            } else {
+                
+                $data = array ('actif' => 0 );
+                $this->db->where('id_group_customer' , $id);
+                $this->db->update($this->table , $data);
+            } 
         }
         //------------------------------------------------------------------------------------------//
 

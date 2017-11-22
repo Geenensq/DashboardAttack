@@ -205,6 +205,38 @@
                         </div>
                     </div>
 
+          <!--           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button> -->
+                    <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
+                    <div class="modal fade" data-backdrop="false" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edition du groupe client</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                              <form>
+                                <div  class="form-group">
+                                    <input type="text" class="form-control" id="idGroupCustomer">
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="nameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
+                                    <input type="text" class="form-control" id="nameGroupCustomer">
+                                  </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -218,8 +250,9 @@
                                         <thead>
                                             <th>ID</th>
                                             <th>Nom</th>
-                                            <th>Edition</th>
-                                            <th>Suppression</th>
+                                            <th>Edition du nom</th>
+                                            <th>Désactivation / Activation</th>
+                                            <th>Status</th>
                                         </thead>
                                         <tbody>
                                     
@@ -390,16 +423,16 @@
 <script src="<?php echo js_url('Maincustomers');?>"></script>
 
 
+<script src="<?php echo js_url('ajaxChangeStatusGroupCustomers');?>"></script>
+
+
 <script type="text/javascript">
     
-    function test($id){
-        $url = "deleteGroupCustomer.html";
+    function test($id,$nameGroup){
 
-    $.post($url, {id:$id}, function(data) {
+         $("#idGroupCustomer").val($id);
+        $("#nameGroupCustomer").val($nameGroup); 
 
-
-        }, "json");
-        alert("cest la jungle" + $id);
     }
 </script>
 

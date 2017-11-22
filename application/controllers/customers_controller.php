@@ -74,7 +74,7 @@ Class Customers_controller extends CI_Controller
             $data = array();
 
             foreach ($results  as $result) {
-                $data[] = array($result['id_group_customer'],$result['name']);
+                $data[] = array($result['id_group_customer'],$result['name'],$result['actif']);
             }
      
             echo json_encode(array('data' => $data));
@@ -82,14 +82,14 @@ Class Customers_controller extends CI_Controller
     //----------------------------------------------------------------------------------------------------------------//
 
 
-        public function deleteGroupCustomer(){
+        public function changeStatusGroupCustomer(){
             
             //-------Stock in my attribute the result of the ajax post--------//
             $this->id_group_customer = $this->input->post('id');
             //----------------------------------------------------------------//
 
             //---Call the method of my model to delete the group in the database---//
-            $this->modelGroupCustomers->disableOneGroupMember($this->id_group_customer);
+            $this->modelGroupCustomers->disableEnableOneGroupCustomer($this->id_group_customer);
             //-----------------------------------------------------------------//
 
         } 
