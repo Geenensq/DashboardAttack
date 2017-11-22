@@ -17,8 +17,8 @@ $(document).ready(function() {
             ],
             columnDefs:[
 
-            {"targets": 2,render: function(data,type,full){return '<button onclick = "test('+ data[0] +' , '+ data[0] +' )" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Edition </button>';}},
-            
+            {"targets": 2,render: function(data,type,full){return '<button onclick = "test('+data[0]+')" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Edition </button>';}},
+        
             {"targets": 3,render: function(data,type,full){return '<a onclick="ajaxChangeStatusGroupCustomers(' + data[0] + ')' + '"' +'class="btn btn-info"><i class="fa fa-edit"></a>';}},
 
             {"targets": 4,render: function(data,type,full)

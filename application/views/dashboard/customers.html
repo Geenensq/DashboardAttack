@@ -205,7 +205,6 @@
                         </div>
                     </div>
 
-          <!--           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button> -->
                     <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
                     <div class="modal fade" data-backdrop="false" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -217,21 +216,23 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                              <form>
+                            <form method="post" action="test.html">
                                 <div  class="form-group">
-                                    <input type="text" class="form-control" id="idGroupCustomer">
-                                  </div>
+                                    <input  type="hidden" class="form-control" id="idGroupCustomer">
+                                </div>
 
-                                  <div class="form-group">
+                                <div class="form-group">
                                     <label for="nameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
-                                    <input type="text" class="form-control" id="nameGroupCustomer">
-                                  </div>
+                                    <input value="Nouveau nom" type="text" class="form-control" id="nameGroupCustomer">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-info">Enregistrer</button>
+                                </div>
                             </form>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                          </div>
+                 
                         </div>
                       </div>
                     </div>
@@ -431,7 +432,6 @@
     function test($id,$nameGroup){
 
          $("#idGroupCustomer").val($id);
-        $("#nameGroupCustomer").val($nameGroup); 
 
     }
 </script>
