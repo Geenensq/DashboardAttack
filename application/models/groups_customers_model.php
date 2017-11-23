@@ -63,10 +63,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         public function loadGrid() 
         {
-       
         $query = $this->db->get($this->table);
         return $query->result_array();
-        
         }
         //------------------------------------------------------------------------------------------//
 
@@ -91,6 +89,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             } 
         }
         //------------------------------------------------------------------------------------------//
-
+        public function updateNameGroupById($model){
+            $data = array ('name' =>$model->getNameGroupCustomer());
+            $this->db->where('id_group_customer' , $model->getIdGroupCustomer());
+            $this->db->update($this->table , $data);
+            
+        }
+        //-----------------------------------------------------------------------------------------//
 
     }

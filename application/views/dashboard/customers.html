@@ -206,29 +206,29 @@
                     </div>
 
                     <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-                    <div class="modal fade" data-backdrop="false" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" data-backdrop="false" id="exampleModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edition du groupe client</h5>
+                            <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form method="post" action="test.html">
-                                <div  class="form-group">
-                                    <input  type="hidden" class="form-control" id="idGroupCustomer">
+                            <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
+                                <div class="form-group">
+                                    <input  type="hidden" class="form-control" name="idGroupCustomer" id="idGroupCustomer">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="nameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
-                                    <input value="Nouveau nom" type="text" class="form-control" id="nameGroupCustomer">
+                                    <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
+                                    <input placeholder="Nouveau nom" name="newNameGroupCustomer" id ="newNameGroupCustomer" type="text" class="form-control">
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-info">Enregistrer</button>
+                                    <button  class="btn btn-info">Enregistrer</button>
                                 </div>
                             </form>
                           </div>
@@ -418,22 +418,39 @@
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
 <!-- Request AJax for page customers -->
 <script src="<?php echo js_url('ajaxRequestCustomers');?>"></script>
-<!-- Notifications for customers -->
-<script src="<?php echo js_url('notificationsCustomers');?>"></script>
+<!-- Notifications -->
+<script src="<?php echo js_url('notifications');?>"></script>
 <!-- Global Javascript for profil page -->
 <script src="<?php echo js_url('Maincustomers');?>"></script>
 
-
 <script src="<?php echo js_url('ajaxChangeStatusGroupCustomers');?>"></script>
 
-
 <script type="text/javascript">
-    
-    function test($id,$nameGroup){
+    $(document).ready(function() {
+            $("#modalUpdateNameGroupCustomer").submit(function(){
+                idGroupCustomer = $(this).find("input[name=idGroupCustomer]").val();
+                newNameGroupCustomer = $(this).find("input[name=newNameGroupCustomer]").val();
+                url = $(this).attr("action");
+                $.post(url,{idGroupCustomer: idGroupCustomer , newNameGroupCustomer:newNameGroupCustomer},function(data){
 
-         $("#idGroupCustomer").val($id);
+                    if (data.confirm == "success") {
+                 
+                    notify("pe-7s-refresh-2","<b>Informations</b> : Le nom du groupe à été modifier avec succès ","info");
+                } else if (data.errorNewNameGroup == "error") {
+                     notify("pe-7s-refresh-2","<b>Erreur</b> : Le nom du groupe doit comporter au moins 3 caractères","danger");
+                }
+                }, "json");
+                return false;
+            });
 
+
+    });
+
+    function takeIdForChangeName($id,$name){
+    $("#idGroupCustomer").val($id);
     }
+
 </script>
+
 
 </html>

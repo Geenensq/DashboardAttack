@@ -83,16 +83,43 @@ Class Customers_controller extends CI_Controller
 
 
         public function changeStatusGroupCustomer(){
-            
             //-------Stock in my attribute the result of the ajax post--------//
             $this->id_group_customer = $this->input->post('id');
             //----------------------------------------------------------------//
-
             //---Call the method of my model to delete the group in the database---//
             $this->modelGroupCustomers->disableEnableOneGroupCustomer($this->id_group_customer);
             //-----------------------------------------------------------------//
 
         } 
+
+        public function changeNameGroupCustomer(){
+            //---------------------------------------FORM VALIDATION---------------------------------------------------------//
+            $this->form_validation->set_rules('newNameGroupCustomer', '"New name for the group"', 'required|min_length[3]');
+            //--------------------------------------------------------------------------------------------------------------// 
+            //---creating a array to manage ajax returns---//
+             $callBack = array();
+            //---------------------------------------------//
+            
+            if ($this->form_validation->run())
+            {
+                //---------------------------------------------------------------------------------------------//
+                $this->modelGroupCustomers->setIdGroupCustomer($this->input->post('idGroupCustomer'));
+                $this->modelGroupCustomers->setNameGroupCustomer($this->input->post('newNameGroupCustomer'));
+                //---------------------------------------------------------------------------------------------//
+                $groupMembersModel = $this->modelGroupCustomers;
+                $this->modelGroupCustomers->updateNameGroupById($groupMembersModel);
+                //--------------------------------------------------------------------------------------------//
+                //--Add returns success for javascript processing--//
+                $callBack["confirm"] = "success";
+                //------------------------------------------------//
+            } else {
+                $callBack["errorNewNameGroup"] = "error";
+            } 
+            
+            //----returns the result of the array in JSON---//
+            echo json_encode($callBack);
+            //---------------------------------------------//       
+        }
 
 }
 

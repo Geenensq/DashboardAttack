@@ -24,18 +24,18 @@ $(document).ready(function() {
             //--Si le retour Ajax me retourne success--//
             if (data.confirm == "success") {
                 $("#panel").fadeOut();
-                PasswordSuccesChange();
+                notify("pe-7s-refresh-2","<b>Informations : </b> Votre mot de passe à été modifier avec succès !","info");
                 $('#flip').removeAttr("disabled");
                 //------------------------------------------//
 
                 //--Si le retour Ajax me retourne errorConfirm--//      
             } else if (data.errorPasswordConfirm == "error") {
-                PasswordErrorConfirm();
+               notify("pe-7s-refresh-2","<b>Erreur : </b> Les 2 mots de passes ne sont pas identiques !","danger");
                 //------------------------------------------------//
 
                 //--Si le retour Ajax me retourne errorPassword--//
             } else if (data.errorPasswordActuel == "error") {
-                PasswordError();
+                notify("pe-7s-refresh-2","<b>Erreur : </b> Le mot de passe actuel n'est pas valide !","danger");
             }
             //-------------------------------------------------//
 

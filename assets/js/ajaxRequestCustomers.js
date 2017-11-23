@@ -7,13 +7,14 @@
             }, function(data) {
                 if (data.confirm == "success") {
                     /*Call notifications*/
-                    customersAddSuccess();
+                   notify("pe-7s-refresh-2","<b>Informations : </b> Votre groupe à été créer avec succès !","info");
+
                     /*Delete content of the input*/
                     $('#name_group_customers').val('');
                     $('#testLoad').DataTable().ajax.reload();
                 } else if (data.confirm == "error") {
                     /*Call notifications*/
-                    customersAddError();
+                    notify("pe-7s-refresh-2","<b>Informations : </b> Le groupe doit contenir au moins 3 caracteres !","danger");
                     /*Delete content of the input*/
                     $('#name_group_customers').val('');
                 }
