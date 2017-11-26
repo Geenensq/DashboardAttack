@@ -436,6 +436,11 @@
                     if (data.confirm == "success") {
                  
                     notify("pe-7s-refresh-2","<b>Informations</b> : Le nom du groupe à été modifier avec succès ","info");
+                    $('#newNameGroupCustomer').val('');
+                    $('#exampleModal').modal('hide');
+                    $('#testLoad').DataTable().ajax.reload();
+
+
                 } else if (data.errorNewNameGroup == "error") {
                      notify("pe-7s-refresh-2","<b>Erreur</b> : Le nom du groupe doit comporter au moins 3 caractères","danger");
                 }
