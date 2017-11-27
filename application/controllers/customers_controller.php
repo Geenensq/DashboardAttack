@@ -10,7 +10,6 @@ Class Customers_controller extends CI_Controller
         {
             parent::__construct();
             $this->name = $this->input->post('name_group_customers');
-            
             //-------------------Loading model-----------------------//
             $this->load->model('Groups_customers_model' , 'modelGroupCustomers');
             //-------------------------------------------------------// 

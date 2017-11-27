@@ -12,7 +12,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $group_member; 
         protected $table = "members";
 
-        //-------- Constructor--------------------------------------------------------------------------//
+        //----------------------------------- Constructor---------------------------------------------//
         public function __construct()
         {
             $this->load->model('Groups_members_model' , 'GroupsMembersModel');
@@ -129,17 +129,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->from($this->table);
             $this->db->where($data);
             $query = $this->db->get();
-
+            
                 if(count($query->result_array())  >= 1)
                 {
                     return true;
-                
-                } else {
-                    
+                } else { 
                     return false;
-
                 }
-
         }
 
 

@@ -210,7 +210,7 @@
                     </div>
 
                     <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-                    <div class="modal fade" data-backdrop="false" id="modalUpdate" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal fade" data-backdrop="false" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -278,26 +278,26 @@
                                 </div>
 
                                 <div class="content">
-                                    <form method="POST" action="addGroupCustomers">
+                                    <form method="POST" action="">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Nom</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Nom">
+                                                    <label for="nameCustomers">Nom</label>
+                                                    <input id="nameCustomers" name="nameCustomers" type="text" class="form-control" placeholder="Nom">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Prénom</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Prenom">
+                                                    <label for="firstNameCustomers">Prénom</label>
+                                                    <input id="firstNameCustomers" name="firstNameCustomers" type="text" class="form-control" placeholder="Prenom">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Tel port</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Tel port">
+                                                    <label for="mobilPhoneNumberCustomers">Tel port</label>
+                                                    <input id="mobilPhoneNumberCustomers" name="mobilPhoneNumberCustomers" type="text" class="form-control" placeholder="Tel port">
                                                 </div>
                                             </div>
                                         </div>
@@ -305,22 +305,22 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Tel fixe</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Tel fixe">
+                                                    <label for="phoneNumberCustomers">Tel fixe</label>
+                                                    <input id="phoneNumberCustomers" name="phoneNumberCustomers" type="text" class="form-control" placeholder="Tel fixe">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Adresse email</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Adresse email">
+                                                    <label for="emailCustomers">Adresse email</label>
+                                                    <input id="emailCustomers" name="emailCustomers" type="text" class="form-control" placeholder="Adresse email">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Adresse postale</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Adresse">
+                                                    <label for="adressCustomers">Adresse postale</label>
+                                                    <input id="adressCustomers" name="adressCustomers" type="text" class="form-control" placeholder="Adresse">
                                                 </div>
                                             </div>
                                         </div>
@@ -328,15 +328,15 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Code postal</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Code postal">
+                                                    <label for="codePostalCustomers">Code postal</label>
+                                                    <input id="codePostalCustomers" name="codePostalCustomers" type="text" class="form-control" placeholder="Code postal">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Ville</label>
-                                                    <input id="" name="" type="text" class="form-control" placeholder="Ville">
+                                                    <label for="cityCustomers">Ville</label>
+                                                    <input id="cityCustomers" name="cityCustomers" type="text" class="form-control" placeholder="Ville">
                                                 </div>
                                             </div>
 
@@ -351,7 +351,7 @@
                                             </div>
                                         </div>
 
-                                        <button id="addGroupCustomers" type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
+                                        <button id="addCustomers" type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -412,13 +412,14 @@
 <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
-<!-- Request AJax for page customers -->
-<script src="<?php echo js_url('ajaxRequestCustomers');?>"></script>
-<!-- Notifications -->
-<script src="<?php echo js_url('notifications');?>"></script>
 <!-- Global Javascript for profil page -->
 <script src="<?php echo js_url('Maincustomers');?>"></script>
-<script src="<?php echo js_url('ajaxChangeStatusGroupCustomers');?>"></script>
+<!-- Request AJax for add groups customers -->
+<script src="<?php echo js_url('addGroupsCustomers');?>"></script>
+<!-- Functions for notifications -->
+<script src="<?php echo js_url('notifications');?>"></script>
+<!--Request AJax for change status of groups customers -->
+<script src="<?php echo js_url('changeStatusGroupsCustomers');?>"></script>
+<!--Request AJax for change names of groups customers -->
 <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
-
 </html>

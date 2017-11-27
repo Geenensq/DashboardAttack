@@ -93,7 +93,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $data = array ('name' =>$model->getNameGroupCustomer());
             $this->db->where('id_group_customer' , $model->getIdGroupCustomer());
             $this->db->update($this->table , $data);
-            
         }
         //-----------------------------------------------------------------------------------------//
 
