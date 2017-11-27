@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $("#flip").click(function() {
+   
+    $("#flipPassword").click(function() {
 
         $("#panel").slideDown("slow");
         $(this).attr("disabled", true);
@@ -7,10 +8,10 @@ $(document).ready(function() {
 
         });
 
-    $("#cancelChange").click(function() {
+    $("#cancelChangePassword").click(function() {
 
         $("#panel").fadeOut();
-        $('#flip').removeAttr("disabled");
+        $('#flipPassword').removeAttr("disabled");
         $("#updateEmail").removeAttr("disabled");
     });
 

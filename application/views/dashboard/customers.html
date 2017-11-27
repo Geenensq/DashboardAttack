@@ -206,7 +206,7 @@
                     </div>
 
                     <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-                    <div class="modal fade" data-backdrop="false" id="exampleModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal fade" data-backdrop="false" id="modalUpdate" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -422,40 +422,6 @@
 <script src="<?php echo js_url('notifications');?>"></script>
 <!-- Global Javascript for profil page -->
 <script src="<?php echo js_url('Maincustomers');?>"></script>
-
 <script src="<?php echo js_url('ajaxChangeStatusGroupCustomers');?>"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-            $("#modalUpdateNameGroupCustomer").submit(function(){
-                idGroupCustomer = $(this).find("input[name=idGroupCustomer]").val();
-                newNameGroupCustomer = $(this).find("input[name=newNameGroupCustomer]").val();
-                url = $(this).attr("action");
-                $.post(url,{idGroupCustomer: idGroupCustomer , newNameGroupCustomer:newNameGroupCustomer},function(data){
-
-                    if (data.confirm == "success") {
-                 
-                    notify("pe-7s-refresh-2","<b>Informations</b> : Le nom du groupe à été modifier avec succès ","info");
-                    $('#newNameGroupCustomer').val('');
-                    $('#exampleModal').modal('hide');
-                    $('#testLoad').DataTable().ajax.reload();
-
-
-                } else if (data.errorNewNameGroup == "error") {
-                     notify("pe-7s-refresh-2","<b>Erreur</b> : Le nom du groupe doit comporter au moins 3 caractères","danger");
-                }
-                }, "json");
-                return false;
-            });
-
-
-    });
-
-    function takeIdForChangeName($id,$name){
-    $("#idGroupCustomer").val($id);
-    }
-
-</script>
-
-
+<script  src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
 </html>

@@ -16,7 +16,7 @@ $(document).ready(function() {
             //Data represente dans ce cas les data de chaque ligne
             columnDefs:[
 
-            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Edition </button>';}},
+            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modalUpdate">Edition </button>';}},
         
             {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusGroupCustomers(' + data[0] + ')' + '"' +' class="btn btn-info"><i class="fa fa-edit"></a>';}},
 

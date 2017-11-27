@@ -82,7 +82,9 @@ CREATE TABLE `groups_colors` (
 
 CREATE TABLE `groups_customers` (
   `id_group_customer` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `actif` tinyint(1) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

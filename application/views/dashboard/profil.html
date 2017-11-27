@@ -175,9 +175,8 @@
                             <div class="header">
                                 <h4 class="title">Edition du Profil</h4>
                             </div>
-
                             <div class="content">
-                                <form method="POST" action="editEmailProfil.html">
+                                <form id="formEditEmail" method="POST" action="editEmailProfil.html">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -210,8 +209,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="updateEmail" type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour l'adresse e-mail</button>
-                                    <span id="flip" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Changer le mot de passe</span>
+                                    <button id="updateEmail" name="updateEmail" type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour l'adresse e-mail</button>
+                                    <span id="flipPassword" name="flipPassword" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Changer le mot de passe</span>
                                     
                                     <div class="clearfix"></div>
                                 </form>
@@ -233,14 +232,14 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Mot de passe actuel</label>
-                                                <input id="currentPassword" name="currentPassword" type="password" class="form-control" value="">
+                                                <input id="currentPassword" name="currentPassword" placeholder="******" type="password" class="form-control">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Nouveau mot de passe</label>
-                                                <input id="newPassword" name="newPassword" type="password" value="" class="form-control">
+                                                <input id="newPassword" name="newPassword" placeholder="******" type="password" class="form-control">
                                                
                                             </div>
                                         </div>
@@ -248,15 +247,14 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Nouveau mot de passe (confirmation)</label>
-                                                <input id="newPasswordConfirmation" name="newPasswordConfirmation" type="password" value="" class="form-control">
+                                                <input id="newPasswordConfirmation" name="newPasswordConfirmation" placeholder="******" type="password"  class="form-control">
                                             </div>
                                         </div>
-
                                     </div>
 
-                                    <button class="btn btn-info btn-fill pull-right">Mettre à jour le mot de passe</button>
-                                    <span id="cancelChange" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Annulation</span>
-                                    <div class="clearfix"></div>
+                                <button class="btn btn-info btn-fill pull-right">Mettre à jour le mot de passe</button>
+                                <span id="cancelChangePassword" name="cancelChangePassword" style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Annulation</span>
+                                <div class="clearfix"></div>
                                 </form>
                             </div>
                             
