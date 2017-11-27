@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
@@ -19,10 +20,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
     <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
 </head>
-<body>
 
+<body>
     <div class="wrapper">
-            <div class="sidebar" data-color="blue" data-image="<?php  img_url("sidebar-5.jpg"); ?> ">
+        <div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg "); ?> ">
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="" class="simple-text">
@@ -197,9 +198,12 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
+                                        <button id="btnEditGroupsCustomers" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapseEditGroupsCustomers" class="btn btn-danger btn-fill pull-right">Editer les groupes clients</button>
                                         <div class="clearfix"></div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -207,64 +211,63 @@
 
                     <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
                     <div class="modal fade" data-backdrop="false" id="modalUpdate" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
-                                <div class="form-group">
-                                    <input  type="hidden" class="form-control" name="idGroupCustomer" id="idGroupCustomer">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
+                                <div class="modal-body">
+                                    <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="idGroupCustomer" id="idGroupCustomer">
+                                        </div>
 
-                                <div class="form-group">
-                                    <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
-                                    <input placeholder="Nouveau nom" name="newNameGroupCustomer" id ="newNameGroupCustomer" type="text" class="form-control">
-                                </div>
+                                        <div class="form-group">
+                                            <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
+                                            <input placeholder="Nouveau nom" name="newNameGroupCustomer" id="newNameGroupCustomer" type="text" class="form-control">
+                                        </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                                    <button  class="btn btn-info">Enregistrer</button>
-                                </div>
-                            </form>
-                          </div>
-                 
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Gestion des groupes de clients</h4>
-                                    <p class="category">Liste des groupes de clients</p>
-                                </div>
-
-                                <div class="content table-responsive">
-                                    <table id="testLoad" class="table table-hover table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Nom</th>
-                                            <th>Edition du nom</th>
-                                            <th>Désactivation / Activation</th>
-                                            <th>Status</th>
-                                        </thead>
-                                        <tbody>
-                                    
-                                        </tbody>
-                                    </table>
-
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                            <button class="btn btn-info">Enregistrer</button>
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>
                         </div>
+                    </div>
+                    <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
+                    <div class="collapse" id="collapseEditGroupsCustomers">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h4 class="title">Gestion des groupes de clients</h4>
+                                            <p class="category">Liste des groupes de clients</p>
+                                        </div>
 
+                                        <div class="content table-responsive">
+                                            <table style="width:100% !important;" id="testLoad" class="col-md-12 table table-hover table-striped">
+                                                <thead>
+                                                    <th>ID</th>
+                                                    <th>Nom</th>
+                                                    <th>Edition du nom</th>
+                                                    <th>Désactivation / Activation</th>
+                                                    <th>Status</th>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -291,7 +294,6 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Tel port</label>
@@ -314,7 +316,6 @@
                                                     <input id="" name="" type="text" class="form-control" placeholder="Adresse email">
                                                 </div>
                                             </div>
-
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -339,7 +340,6 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="sel1">Groupe de l'utilisateur</label>
@@ -361,10 +361,6 @@
                 </div>
 
             </div>
-
-
-
-
 
             <footer class="footer">
                 <div class="container-fluid">
@@ -423,5 +419,6 @@
 <!-- Global Javascript for profil page -->
 <script src="<?php echo js_url('Maincustomers');?>"></script>
 <script src="<?php echo js_url('ajaxChangeStatusGroupCustomers');?>"></script>
-<script  src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
+<script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
+
 </html>

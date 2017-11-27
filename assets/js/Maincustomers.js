@@ -1,4 +1,19 @@
 $(document).ready(function() {
+    
+    //-------------------------At the user's click-------------------------------------------//
+    $("#btnEditGroupsCustomers").click(function(){
+        //---if the div of the edition is open or closed we change the text of the button---//
+        if ($("#collapseEditGroupsCustomers").is(":visible") == true ){
+             $("#btnEditGroupsCustomers").text( "Editer les groupes clients" );
+        } else {
+             $("#btnEditGroupsCustomers").text( "Annuler l'édition" );
+        }
+    });
+    //-------------------------------------------------------------------------------------//
+
+
+
+    //------------------------------------------------------------Declaration of datatable-------------------------------------------------------------------------//
     $('#testLoad').DataTable({
         ajax: "encodeGrid.html",
         order: [[ 0, "asc" ]],
@@ -31,11 +46,13 @@ $(document).ready(function() {
                 {
                 return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
                 }
-
+                
             }}
            
             ]
 
         });
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 });

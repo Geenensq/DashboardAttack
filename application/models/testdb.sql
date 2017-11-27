@@ -90,6 +90,13 @@ CREATE TABLE `groups_customers` (
 -- --------------------------------------------------------
 
 --
+-- Insertion d'un groupe par defaut dans la table 'groups_customers'
+--
+INSERT INTO `groups_customers` (`id_group_customer`, `name`, `actif`) VALUES (NULL, 'Defaut', '1')
+-- --------------------------------------------------------
+
+
+--
 -- Structure de la table `groups_members`
 --
 
