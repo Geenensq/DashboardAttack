@@ -41,6 +41,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $name_group_customer = $model->getNameGroupCustomer();
  
             $this->db->set('name', $name_group_customer)
+                     ->set('actif', "1")
                      ->insert($this->table);       
         }
         //------------------------------------------------------------------------------------------//
