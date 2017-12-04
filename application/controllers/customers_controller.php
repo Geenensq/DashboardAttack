@@ -168,12 +168,13 @@ Class Customers_controller extends CI_Controller
                 /* ----------------------------Create my object----------------------------------*/
                 $this->modelMembers->SetFirstName($this->nameCustomers);
                 $this->modelMembers->setLastName($this->firstNameCustomers);
-                $this->modelMembers->setMobilPhoneNumber($this->firstNameCustomers);
-                $this->modelMembers->setPhoneNumber($this->firstNameCustomers);
-                $this->modelMembers->setAddress($this->firstNameCustomers);
-                $this->modelMembers->setZipCode($this->firstNameCustomers);
-                $this->modelMembers->setCity($this->firstNameCustomers);
-                $this->modelMembers->setIdGroupCustomer($this->firstNameCustomers);
+                $this->modelMembers->setMobilPhoneNumber($this->mobilPhoneCustomers);
+                $this->modelMembers->setPhoneNumber($this->phoneNumberCustomers);
+                $this->modelMembers->setMail($this->emailCustomers);
+                $this->modelMembers->setAddress($this->addressCustomers);
+                $this->modelMembers->setZipCode($this->codePostalCustomers);
+                $this->modelMembers->setCity($this->cityCustomers);
+                $this->modelMembers->setIdGroupCustomer($this->nameGroupForCustomers);
                 /*-------------------------------------------------------------------------------*/
 
                 $customerModel = $this->modelCustomers;
