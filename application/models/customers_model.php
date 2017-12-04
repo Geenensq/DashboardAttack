@@ -15,9 +15,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $zip_code;
         private $city;
         private $id_group_customer;
+        private $test;
+
         //---------------------------------------//
 
-    
     //------------------Getters------------------//
     public function getTable()
     {
