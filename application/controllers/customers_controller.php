@@ -24,9 +24,11 @@ Class Customers_controller extends CI_Controller
         {
             parent::__construct();
             $this->nameGroupCustomers = $this->input->post('name_group_customers');
-            //-------------------Loading model-----------------------//
+
+            /*-------------------Loading model-----------------------*/
             $this->load->model('Groups_customers_model' , 'modelGroupCustomers');
-            //-------------------------------------------------------// 
+            $this->load->model('Customers_model' , 'modelCustomers');
+            /*-------------------------------------------------------*/
         }
 
         
@@ -162,6 +164,21 @@ Class Customers_controller extends CI_Controller
                 $this->codePostalCustomers = $this->input->post('codePostalCustomers');
                 $this->cityCustomers = $this->input->post('cityCustomers');
                 $this->nameGroupForCustomers = $this->input->post('nameGroupForCustomers');
+
+                /* ----------------------------Create my object----------------------------------*/
+                $this->modelMembers->SetFirstName($this->nameCustomers);
+                $this->modelMembers->setLastName($this->firstNameCustomers);
+                $this->modelMembers->setMobilPhoneNumber($this->firstNameCustomers);
+                $this->modelMembers->setPhoneNumber($this->firstNameCustomers);
+                $this->modelMembers->setAddress($this->firstNameCustomers);
+                $this->modelMembers->setZipCode($this->firstNameCustomers);
+                $this->modelMembers->setCity($this->firstNameCustomers);
+                $this->modelMembers->setIdGroupCustomer($this->firstNameCustomers);
+                /*-------------------------------------------------------------------------------*/
+
+                $customerModel = $this->modelCustomers;
+                $this->modelCustomers->insertOneCustomers($customerModel);
+
 
             } else {
 

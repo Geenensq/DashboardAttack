@@ -18,6 +18,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         /*End of declaration*/
 
 
+
+
         /*Start my getters methods*/
         public function getTable()
         {
@@ -158,7 +160,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         public function insertOneCustomers($model){
 
-            $firstNameCustomer = $model->getFirstName();
+            debug($firstNameCustomer = $model->getFirstName());
             $lastNameCustomer = $model->getLastname();
             $mobilPhoneCustomer = $model->getMobilPhoneNumber();
             $phoneNumberCustomer = $model ->getPhoneNumber();
@@ -167,15 +169,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $zipCodeCustomer = $model->getZipCode();
             $cityCustomer = $model->getCity();
 
+
             $this->db->set('firstname', $firstNameCustomer)
-                set('lastname', $lastNameCustomer)
-                set('mobil_phone_number', $mobilPhoneCustomer)
-                set('phone_number', $phoneNumberCustomer)
-                set('mail', $mailCustomer)
-                set('address', $addressCustomer)
-                set('zip_code',$zipCodeCustomer )
-                set('city', $cityCustomer)
-                    ->insert($this->table)
+                        ->set('lastname', $lastNameCustomer)
+                        ->set('mobil_phone_number', $mobilPhoneCustomer)
+                        ->set('phone_number', $phoneNumberCustomer)
+                        ->set('mail', $mailCustomer)
+                        ->set('address', $addressCustomer)
+                        ->set('zip_code',$zipCodeCustomer )
+                        ->set('city', $cityCustomer)
+                        ->insert($this->table);
         }
 
         /*End CRUD methods*/
