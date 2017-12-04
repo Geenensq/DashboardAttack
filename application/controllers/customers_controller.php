@@ -1,15 +1,29 @@
 <?php 
 Class Customers_controller extends CI_Controller
 {
-    //--------------Declarations of attributes-------------//
-    private $name;
+    /*Attributes groups customers declaration*/
+    private $nameGroupCustomers;
     private $id_group_customer;
-    //-----------------------------------------------------//
+    /*End of declaration for group customers*/
+
+    /*Attributes customers declaration */
+    private $nameCustomers;
+    private $firstNameCustomers;
+    private $mobilPhoneCustomers;
+    private $phoneNumberCustomers;
+    private $emailCustomers;
+    private $addressCustomers;
+    private $codePostalCustomers;
+    private $cityCustomers;
+    private $nameGroupForCustomers;
+    /*End of declaration for customers*/
+
+
 
         public function __construct()
         {
             parent::__construct();
-            $this->name = $this->input->post('name_group_customers');
+            $this->nameGroupCustomers = $this->input->post('name_group_customers');
             //-------------------Loading model-----------------------//
             $this->load->model('Groups_customers_model' , 'modelGroupCustomers');
             //-------------------------------------------------------// 
@@ -40,7 +54,7 @@ Class Customers_controller extends CI_Controller
             //---------------------------------------------//
             
             //-------------Create my objet--------------//
-            $this->modelGroupCustomers->setNameGroupCustomer($this->name);
+            $this->modelGroupCustomers->setNameGroupCustomer($this->nameGroupCustomers);
             //-----------------------------------------//
             
             //---Call the method of my model to add the group in the database---//
@@ -122,7 +136,43 @@ Class Customers_controller extends CI_Controller
 
 
         public function addCustomers(){
-            /*DO IT*/
+
+            /*Form validation configuration*/
+            $this->form_validation->set_rules('nameCustomers', '"nameCustomers"', 'required');
+            $this->form_validation->set_rules('firstNameCustomers', '"firstNameCustomers"', 'required');
+            $this->form_validation->set_rules('mobilPhoneNumberCustomers', '"mobilPhoneNumberCustomers"', 'required');
+            $this->form_validation->set_rules('phoneNumberCustomers', '"phoneNumberCustomers"', 'required');
+            $this->form_validation->set_rules('emailCustomers', '"emailCustomers"', 'required');
+            $this->form_validation->set_rules('addressCustomers', '"addressCustomers"', 'required');
+            $this->form_validation->set_rules('codePostalCustomers', '"codePostalCustomers"', 'required');
+            $this->form_validation->set_rules('cityCustomers', '"cityCustomers"', 'required');
+            $this->form_validation->set_rules('nameGroupForCustomers', '"nameGroupForCustomers"', 'required');
+            /*End of configuration*/
+
+
+
+            if ($this->form_validation->run())
+            {
+                $this->nameCustomers = $this->input->post('nameCustomers');
+                $this->firstNameCustomers = $this->input->post('firstNameCustomers');
+                $this->mobilPhoneCustomers = $this->input->post('mobilPhoneNumberCustomers');
+                $this->phoneNumberCustomers = $this->input->post('phoneNumberCustomers');
+                $this->emailCustomers = $this->input->post('emailCustomers');
+                $this->addressCustomers = $this->input->post('addressCustomers');
+                $this->codePostalCustomers = $this->input->post('codePostalCustomers');
+                $this->cityCustomers = $this->input->post('cityCustomers');
+                $this->nameGroupForCustomers = $this->input->post('nameGroupForCustomers');
+
+            } else {
+
+                /*TODO CALL BACK Json FOR ERROR IN FRONT INTERFACE*/
+
+            }
+
+
+
+
+
         }
 
 }

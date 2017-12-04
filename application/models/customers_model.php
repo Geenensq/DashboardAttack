@@ -3,156 +3,181 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Customers_model extends CI_Model
     {
-        //-----------------------------------------//
+        /*Declaration attributes of my model*/
         private $table="customers";
         private $id_customer;
-        private $firstname;
-        private $lastname;
-        private $mobil_phone;
+        private $firstName;
+        private $lastName;
+        private $mobil_phone_number;
         private $phone_number;
         private $mail;
-        private $adress;
+        private $address;
         private $zip_code;
         private $city;
         private $id_group_customer;
-        private $test;
+        /*End of declaration*/
 
-        //---------------------------------------//
 
-    //------------------Getters------------------//
-    public function getTable()
-    {
+        /*Start my getters methods*/
+        public function getTable()
+        {
         return $this->table;
-    }
+        }
 
-    public function getIdCustomer()
-    {
-        return $this->id_customer;
-    }
-   public function getFirstname()
-    {
-        return $this->firstname;
-    }
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
+        public function getIdCustomer()
+        {
+            return $this->id_customer;
+        }
+       public function getFirstName()
+        {
+            return $this->firstName;
+        }
+        public function getLastName()
+        {
+            return $this->lastName;
+        }
 
-    public function getMobilPhone()
-    {
-        return $this->mobil_phone;
-    }
+        public function getMobilPhoneNumber()
+        {
+            return $this->mobil_phone_number;
+        }
 
-    public function getPhoneNumber()
-    {
-        return $this->phone_number;
-    }
-    public function getMail()
-    {
-        return $this->mail;
-    }
-    public function getAdress()
-    {
-        return $this->adress;
-    }
+        public function getPhoneNumber()
+        {
+            return $this->phone_number;
+        }
+        public function getMail()
+        {
+            return $this->mail;
+        }
+        public function getAddress()
+        {
+            return $this->address;
+        }
 
-    public function getZipCode()
-    {
-        return $this->zip_code;
-    }
-    public function getCity()
-    {
-        return $this->city;
-    }
-    public function getIdGroupCustomer()
-    {
-        return $this->id_group_customer;
-    }
+        public function getZipCode()
+        {
+            return $this->zip_code;
+        }
+        public function getCity()
+        {
+            return $this->city;
+        }
+        public function getIdGroupCustomer()
+        {
+            return $this->id_group_customer;
+        }
+        /*End of my getters*/
 
-    //-------------------------------------------//
+        /*Start my setters methods*/
+        public function setTable($table)
+        {
+            $this->table = $table;
 
-    //------------------Setters------------------//
-    public function setTable($table)
-    {
-        $this->table = $table;
+            return $this;
+        }
 
-        return $this;
-    }
+        public function setIdCustomer($id_customer)
+        {
+            $this->id_customer = $id_customer;
 
-    public function setIdCustomer($id_customer)
-    {
-        $this->id_customer = $id_customer;
+            return $this;
+        }
 
-        return $this;
-    }
+        public function setFirstName($firstName)
+        {
+            $this->firstName = $firstName;
 
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
+            return $this;
+        }
 
 
-    public function setMobilPhone($mobil_phone)
-    {
-        $this->mobil_phone = $mobil_phone;
+        public function setLastName($lastName)
+        {
+            $this->lastName = $lastName;
 
-        return $this;
-    }
-
-
-    public function setPhoneNumber($phone_number)
-    {
-        $this->phone_number = $phone_number;
-
-        return $this;
-    }
+            return $this;
+        }
 
 
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
+        public function setMobilPhoneNumber($mobil_phone_number)
+        {
+            $this->mobil_phone_number = $mobil_phone_number;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    public function setAdress($adress)
-    {
-        $this->adress = $adress;
 
-        return $this;
-    }
+        public function setPhoneNumber($phone_number)
+        {
+            $this->phone_number = $phone_number;
 
-    public function setZipCode($zip_code)
-    {
-        $this->zip_code = $zip_code;
+            return $this;
+        }
 
-        return $this;
-    }
 
-    public function setCity($city)
-    {
-        $this->city = $city;
+        public function setMail($mail)
+        {
+            $this->mail = $mail;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    public function setIdGroupCustomer($id_group_customer)
-    {
-        $this->id_group_customer = $id_group_customer;
+        public function setAddress($address)
+        {
+            $this->address = $address;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    //-------------------------------------------//
+        public function setZipCode($zip_code)
+        {
+            $this->zip_code = $zip_code;
+
+            return $this;
+        }
+
+        public function setCity($city)
+        {
+            $this->city = $city;
+
+            return $this;
+        }
+
+        public function setIdGroupCustomer($id_group_customer)
+        {
+            $this->id_group_customer = $id_group_customer;
+
+            return $this;
+        }
+
+        /*End of my setters methods*/
+
+
+        /*Start CRUD methods*/
+
+        public function insertOneCustomers($model){
+
+            $firstNameCustomer = $model->getFirstName();
+            $lastNameCustomer = $model->getLastname();
+            $mobilPhoneCustomer = $model->getMobilPhoneNumber();
+            $phoneNumberCustomer = $model ->getPhoneNumber();
+            $mailCustomer = $model->getMail();
+            $addressCustomer = $model->getAddress();
+            $zipCodeCustomer = $model->getZipCode();
+            $cityCustomer = $model->getCity();
+
+            $this->db->set('firstname', $firstNameCustomer)
+                set('lastname', $lastNameCustomer)
+                set('mobil_phone_number', $mobilPhoneCustomer)
+                set('phone_number', $phoneNumberCustomer)
+                set('mail', $mailCustomer)
+                set('address', $addressCustomer)
+                set('zip_code',$zipCodeCustomer )
+                set('city', $cityCustomer)
+                    ->insert($this->table)
+        }
+
+        /*End CRUD methods*/
     
 }
