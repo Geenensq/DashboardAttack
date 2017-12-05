@@ -149,7 +149,8 @@ Class Customers_controller extends CI_Controller
         /*End of my declaration*/
 
 
-        if ($this->form_validation->run()) {
+        if ($this->form_validation->run())
+        {
             /*Retrieving my POST values ​​to store them in my attributes*/
             $this->nameCustomers = $this->input->post('nameCustomers');
             $this->firstNameCustomers = $this->input->post('firstNameCustomers');
@@ -179,6 +180,10 @@ Class Customers_controller extends CI_Controller
             /*Call my method in my model for insert an customers*/
             $this->modelCustomers->insertOneCustomers($customerModel);
             /*End*/
+
+            //-----Finish reload index-----//
+            $this->index();
+            //-----------------------------//
         }
 
 

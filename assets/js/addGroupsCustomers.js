@@ -6,6 +6,7 @@
                 name_group_customers: name_group_customers
             }, function(data) {
                 if (data.confirm == "success") {
+
                     /*Call notifications*/
                    notify("pe-7s-refresh-2","<b>Informations : </b> Votre groupe à été créer avec succès !","info");
 
