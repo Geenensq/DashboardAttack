@@ -2,402 +2,424 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Administration de votre compte utilisateur</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
-    <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+    <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet"/>
     <!-- Animation library for notifications   -->
-    <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+    <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+    <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
-    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
+    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg "); ?> ">
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="" class="simple-text">
-                    STICK ATTACK
-                </a>
-                </div>
+<div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg
+    "); ?> ">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="" class="simple-text">
+                STICK ATTACK
+            </a>
+        </div>
 
-                <ul class="nav">
+        <ul class="nav">
+            <li>
+                <a href="<?php echo base_url();?>dashboard_controller/index.html">
+                    <i class="pe-7s-graph"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo base_url();?>profil_controller/index.html">
+                    <i class="pe-7s-user"></i>
+                    <p>Votre profil</p>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="<?php echo base_url();?>customers_controller/index.html">
+                    <i class="pe-7s-user"></i>
+                    <p>Clients</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="pe-7s-note2"></i>
+                    <p>Commandes</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-news-paper"></i>
+                    <p>Produits</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-science"></i>
+                    <p>Coloris</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-map-marker"></i>
+                    <p>Tailles</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-bell"></i>
+                    <p>Gestion</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="main-panel">
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Gestion des clients</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="<?php echo base_url();?>dashboard_controller/index.html">
-                            <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-dashboard"></i>
+                            <p class="hidden-lg hidden-md">Dashboard</p>
                         </a>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-globe"></i>
+                            <b class="caret hidden-sm hidden-xs"></b>
+                            <span class="notification hidden-sm hidden-xs">5</span>
+                            <p class="hidden-lg hidden-md">
+                                5 Notifications
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Notification 1</a>
+                            </li>
+                            <li><a href="#">Notification 2</a>
+                            </li>
+                            <li><a href="#">Notification 3</a>
+                            </li>
+                            <li><a href="#">Notification 4</a>
+                            </li>
+                            <li><a href="#">Another notification</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-search"></i>
+                            <p class="hidden-lg hidden-md">Search</p>
+                        </a>
+                    </li>
+                </ul>
 
+                <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?php echo base_url();?>profil_controller/index.html">
-                            <i class="pe-7s-user"></i>
-                            <p>Votre profil</p>
+                            <p>Mon compte</p>
                         </a>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <p>
+                                Accès rapide
+                                <b class="caret"></b>
+                            </p>
 
-                    <li class="active">
-                        <a href="<?php echo base_url();?>customers_controller/index.html">
-                            <i class="pe-7s-user"></i>
-                            <p>Clients</p>
                         </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-note2"></i>
-                            <p>Commandes</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-news-paper"></i>
-                            <p>Produits</p>
-                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="pe-7s-science"></i>
-                            <p>Coloris</p>
+                        <a href="<?php echo base_url();?>session_controller/index.html">
+                            <p>Se deconnecter</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-map-marker"></i>
-                            <p>Tailles</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-bell"></i>
-                            <p>Gestion</p>
-                        </a>
-                    </li>
-
+                    <li class="separator hidden-lg hidden-md"></li>
                 </ul>
             </div>
         </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Gestion des clients</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-dashboard"></i>
-                                    <p class="hidden-lg hidden-md">Dashboard</p>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret hidden-sm hidden-xs"></b>
-                                    <span class="notification hidden-sm hidden-xs">5</span>
-                                    <p class="hidden-lg hidden-md">
-                                        5 Notifications
-                                        <b class="caret"></b>
-                                    </p>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a>
-                                    </li>
-                                    <li><a href="#">Notification 2</a>
-                                    </li>
-                                    <li><a href="#">Notification 3</a>
-                                    </li>
-                                    <li><a href="#">Notification 4</a>
-                                    </li>
-                                    <li><a href="#">Another notification</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-search"></i>
-                                    <p class="hidden-lg hidden-md">Search</p>
-                                </a>
-                            </li>
-                        </ul>
+    </nav>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="<?php echo base_url();?>profil_controller/index.html">
-                                    <p>Mon compte</p>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>
-                                        Accès rapide
-                                        <b class="caret"></b>
-                                    </p>
-
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a>
-                                    </li>
-                                    <li><a href="#">Another action</a>
-                                    </li>
-                                    <li><a href="#">Something</a>
-                                    </li>
-                                    <li><a href="#">Another action</a>
-                                    </li>
-                                    <li><a href="#">Something</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url();?>session_controller/index.html">
-                                    <p>Se deconnecter</p>
-                                </a>
-                            </li>
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Ajout de groupes de clients</h4>
-                                </div>
-                                <div class="content">
-                                    <form id="formAddGroupCustomers" method="POST" action="addGroupCustomers.html">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Nom du groupe client</label>
-                                                    <input id="name_group_customers" name="name_group_customers" type="text" class="form-control" placeholder="Exemple : particuliers">
-                                                    <?php echo form_error( 'name_group_customers'); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le groupe de clients</button>
-                                        <button id="btnEditGroupsCustomers" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapseEditGroupsCustomers" class="btn btn-danger btn-fill pull-right">Editer les groupes clients</button>
-                                        <div class="clearfix"></div>
-                                    </form>
-
-                                </div>
-                            </div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Ajout de groupes de clients</h4>
                         </div>
-                    </div>
-
-                    <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-                    <div class="modal fade" data-backdrop="false" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
+                        <div class="content">
+                            <form id="formAddGroupCustomers" method="POST" action="addGroupCustomers.html">
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="hidden" class="form-control" name="idGroupCustomer" id="idGroupCustomer">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe client:</label>
-                                            <input placeholder="Nouveau nom" name="newNameGroupCustomer" id="newNameGroupCustomer" type="text" class="form-control">
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                                            <button class="btn btn-info">Enregistrer</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
-                    <div class="collapse" id="collapseEditGroupsCustomers">
-                        <div class="card card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title">Gestion des groupes de clients</h4>
-                                            <p class="category">Liste des groupes de clients</p>
-                                        </div>
-
-                                        <div class="content table-responsive">
-                                            <table style="width:100% !important;" id="testLoad" class="col-md-12 table table-hover table-striped">
-                                                <thead>
-                                                    <th>ID</th>
-                                                    <th>Nom</th>
-                                                    <th>Edition du nom</th>
-                                                    <th>Désactivation / Activation</th>
-                                                    <th>Status</th>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
+                                            <label for="exampleInputEmail1">Nom du groupe client</label>
+                                            <input id="name_group_customers" name="name_group_customers" type="text"
+                                                   class="form-control" placeholder="Exemple : particuliers">
+                                            <?php echo form_error( 'name_group_customers'); ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le
+                                    groupe de clients
+                                </button>
+                                <button id="btnEditGroupsCustomers" style="margin-right: 20px;" type="button"
+                                        data-toggle="collapse" data-target="#collapseEditGroupsCustomers"
+                                        class="btn btn-danger btn-fill pull-right">Editer les groupes clients
+                                </button>
+                                <div class="clearfix"></div>
+                            </form>
+
                         </div>
                     </div>
+                </div>
+            </div>
 
+            <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
+            <div class="modal fade" data-backdrop="false" id="modalUpdate" tabindex="-1" role="dialog"
+                 aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="idGroupCustomer"
+                                           id="idGroupCustomer">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe
+                                        client:</label>
+                                    <input placeholder="Nouveau nom" name="newNameGroupCustomer"
+                                           id="newNameGroupCustomer" type="text" class="form-control">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button class="btn btn-info">Enregistrer</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
+            <div class="collapse" id="collapseEditGroupsCustomers">
+                <div class="card card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Ajout de clients</h4>
+                                    <h4 class="title">Gestion des groupes de clients</h4>
+                                    <p class="category">Liste des groupes de clients</p>
                                 </div>
-                                <div class="content">
-                                    <form method="POST" action="">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="nameCustomers">Nom</label>
-                                                    <input id="nameCustomers" name="nameCustomers" type="text" class="form-control" placeholder="Nom">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="firstNameCustomers">Prénom</label>
-                                                    <input id="firstNameCustomers" name="firstNameCustomers" type="text" class="form-control" placeholder="Prenom">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="mobilPhoneNumberCustomers">Tel port</label>
-                                                    <input id="mobilPhoneNumberCustomers" name="mobilPhoneNumberCustomers" type="text" class="form-control" placeholder="Tel port">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="phoneNumberCustomers">Tel fixe</label>
-                                                    <input id="phoneNumberCustomers" name="phoneNumberCustomers" type="text" class="form-control" placeholder="Tel fixe">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="emailCustomers">Adresse email</label>
-                                                    <input id="emailCustomers" name="emailCustomers" type="text" class="form-control" placeholder="Adresse email">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="adressCustomers">Adresse postale</label>
-                                                    <input id="adressCustomers" name="adressCustomers" type="text" class="form-control" placeholder="Adresse">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="codePostalCustomers">Code postal</label>
-                                                    <input id="codePostalCustomers" name="codePostalCustomers" type="text" class="form-control" placeholder="Code postal">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="cityCustomers">Ville</label>
-                                                    <input id="cityCustomers" name="cityCustomers" type="text" class="form-control" placeholder="Ville">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="sel1">Groupe de l'utilisateur</label>
-                                                    <select class="form-control" id="sel1">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <button id="addCustomers" type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                <div class="content table-responsive">
+                                    <table style="width:100% !important;" id="testLoad"
+                                           class="col-md-12 table table-hover table-striped">
+                                        <thead>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Edition du nom</th>
+                                        <th>Désactivation / Activation</th>
+                                        <th>Status</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                Home
-                            </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                Company
-                            </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                Portfolio
-                            </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                               Blog
-                            </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Ajout de clients</h4>
+                        </div>
+                        <div class="content">
+                            <form method="POST" action="addCustomers.html">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nameCustomers">Nom</label>
+                                            <input id="nameCustomers" name="nameCustomers" type="text"
+                                                   class="form-control" placeholder="Nom">
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstNameCustomers">Prénom</label>
+                                            <input id="firstNameCustomers" name="firstNameCustomers" type="text"
+                                                   class="form-control" placeholder="Prenom">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="mobilPhoneNumberCustomers">Tel port</label>
+                                            <input id="mobilPhoneNumberCustomers" name="mobilPhoneNumberCustomers"
+                                                   type="text" class="form-control" placeholder="Tel port">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="phoneNumberCustomers">Tel fixe</label>
+                                            <input id="phoneNumberCustomers" name="phoneNumberCustomers" type="text"
+                                                   class="form-control" placeholder="Tel fixe">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="emailCustomers">Adresse email</label>
+                                            <input id="emailCustomers" name="emailCustomers" type="text"
+                                                   class="form-control" placeholder="Adresse email">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="addressCustomers">Adresse postale</label>
+                                            <input id="addressCustomers" name="addressCustomers" type="text"
+                                                   class="form-control" placeholder="Adresse">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="codePostalCustomers">Code postal</label>
+                                            <input id="codePostalCustomers" name="codePostalCustomers" type="text"
+                                                   class="form-control" placeholder="Code postal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="cityCustomers">Ville</label>
+                                            <input id="cityCustomers" name="cityCustomers" type="text"
+                                                   class="form-control" placeholder="Ville">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="sel1">Groupe de l'utilisateur</label>
+                                            <select class="form-control" id="sel1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter le client
+                                </button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Company
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copyright pull-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+            </p>
+        </div>
+    </footer>
+
+</div>
+</div>
 
 </body>
 

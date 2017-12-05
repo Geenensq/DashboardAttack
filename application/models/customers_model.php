@@ -160,7 +160,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         public function insertOneCustomers($model){
 
-            debug($firstNameCustomer = $model->getFirstName());
+            $firstNameCustomer = $model->getFirstName();
             $lastNameCustomer = $model->getLastname();
             $mobilPhoneCustomer = $model->getMobilPhoneNumber();
             $phoneNumberCustomer = $model ->getPhoneNumber();
