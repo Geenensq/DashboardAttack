@@ -3,7 +3,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Customers_model extends CI_Model
     {
-        /*Declaration attributes of my model*/
+        /*-----------Declaration attributes of my model-----------*/
         private $table="customers";
         private $id_customer;
         private $firstName;
@@ -15,12 +15,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $zip_code;
         private $city;
         private $id_group_customer;
-        /*End of declaration*/
+        /*-----------End of declaration-----------*/
 
 
-
-
-        /*Start my getters methods*/
+        /*-----------Start my getters methods-----------*/
         public function getTable()
         {
         return $this->table;
@@ -71,7 +69,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
         /*End of my getters*/
 
-        /*Start my setters methods*/
+
+        /*-----------Start my setters methods-----------*/
         public function setTable($table)
         {
             $this->table = $table;
@@ -153,10 +152,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             return $this;
         }
 
-        /*End of my setters methods*/
+        /*-----------End of my setters methods-----------*/
 
 
-        /*Start CRUD methods*/
+        /*-----------Start CRUD methods-----------*/
 
         public function insertOneCustomers($model){
 
@@ -168,6 +167,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $addressCustomer = $model->getAddress();
             $zipCodeCustomer = $model->getZipCode();
             $cityCustomer = $model->getCity();
+            $groupForCustomer = $model->getIdGroupCustomer();
 
 
             $this->db->set('firstname', $firstNameCustomer)
@@ -178,9 +178,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                         ->set('address', $addressCustomer)
                         ->set('zip_code',$zipCodeCustomer )
                         ->set('city', $cityCustomer)
+                        ->set('id_group_customer', $groupForCustomer)
                         ->insert($this->table);
         }
 
-        /*End CRUD methods*/
+        /*-----------End CRUD methods-----------*/
     
 }
