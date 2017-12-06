@@ -11,19 +11,24 @@
 Class Dashboard_controller extends CI_Controller
 {
 
+// =======================================================================//
+// !                  Constructor of my Class                            //
+// ======================================================================//
+
     public function __construct()
     {
         parent::__construct();
     }
 
+// =======================================================================//
+// !                         Default method                              //
+// ======================================================================//
+
     public function index()
     {
         $this->load->view('dashboard/dashboard.html');
-
     }
 
 
-
 }
-
  ?>

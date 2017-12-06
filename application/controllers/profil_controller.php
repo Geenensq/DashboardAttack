@@ -10,37 +10,47 @@
 
 Class Profil_controller extends CI_Controller
 {
-    //------------------------------------------------------//
-    /*--------------Declarations of attributes--------------*/
-    //------------------------------------------------------//
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
     private $id_member;
     private $password;
     private $newPassword;
     private $newPasswordConfirm;
     private $email;
-    /*-----------------------------------------------------*/
 
-    //-----------------------------------------------//
-    /*-------------------Constructor-----------------*/
-    //-----------------------------------------------//
+// =======================================================================//
+// !                  Constructor of my Class                            //
+// ======================================================================//
     public function __construct()
     {
         parent::__construct();
         $this->load->model('members_model', 'modelMembers');
         $this->load->model('Groups_members_model', 'GroupsMembersModel');
         $this->id_member = $this->session->userdata('id_member');
-    }
-    /*-----------------------------------------------*/
 
-    //---------------------------------------------------//
-    /*-------------------Default method-----------------*/
-    //-------------------------------------------------//
+    }
+
+// =======================================================================//
+// !                         Default method                              //
+// ======================================================================//
+    public function index()
+    {
+        //-----Get all informations of my user and group user-----//
+        $infosUser = $this->modelMembers->getOne($this->id_member);
+        //---Load my view profil and give an array associativ with my variable infouser---//
+        $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
+    }
+
+
+
+// =======================================================================//
+// !                  Method for edit email profil members               //
+// ======================================================================//
 
     public function editEmailProfil()
     {
-        //---------------------------------------FORM VALIDATION--------------------------------------------//
         $this->form_validation->set_rules('email', '"Email adress"', 'required|valid_email|min_length[1]');
-        //--------------------------------------------------------------------------------------------------//
 
         if ($this->form_validation->run()) {
             //-----Get my adress mail of my input-----//
@@ -61,7 +71,6 @@ Class Profil_controller extends CI_Controller
             $this->index();
         }
     }
-    /*--------------------------------------------------*/
 
 
     /////////////////////////////
@@ -69,22 +78,9 @@ Class Profil_controller extends CI_Controller
     ///////////////////////////
 
 
-    //----------------------------------------------------------------------------------------//
-    /*--------------------------Method for edit the mail customer-----------------------------*/
-    //----------------------------------------------------------------------------------------//
-
-    public function index()
-    {
-        //-----Get all informations of my user and group user-----//
-        $infosUser = $this->modelMembers->getOne($this->id_member);
-        //---Load my view profil and give an array associativ with my variable infouser---//
-        $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
-    }
-    /*-----------------------------------------------------------------------------------------*/
-
-    //----------------------------------------------------------------------------------------//
-    /*------------------------Method for edit the password customer---------------------------*/
-    //----------------------------------------------------------------------------------------//
+// =======================================================================//
+// !                  Method for edit password members                   //
+// ======================================================================//
 
     public function editPasswordProfil()
     {

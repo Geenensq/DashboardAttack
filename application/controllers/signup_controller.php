@@ -9,6 +9,10 @@
 
 Class Signup_controller extends CI_Controller
 {
+
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
         private $login;
         private $email;
         private $password;
@@ -16,27 +20,42 @@ Class Signup_controller extends CI_Controller
         private $actif;
         private $id_group_member;
 
+// =======================================================================//
+// !                  Constructor of my Class                            //
+// ======================================================================//
+        //Instance all methods of CI_CONTROLLER
         public function __construct()
         {
-        parent::__construct();
-        $this->load->model('members_model' , 'modelMembers');
-        $this->actif = 0;
-        $this->id_group_member = 3;
-        $this->login = $this->input->post('login');
-        $this->email = $this->input->post('email');
-        $this->password = $this->input->post('password');
-        $this->password_confirm = $this->input->post('password2');
+            parent::__construct();
+            $this->load->model('members_model' , 'modelMembers');
+            $this->actif = 0;
+            $this->id_group_member = 3;
+            $this->login = $this->input->post('login');
+            $this->email = $this->input->post('email');
+            $this->password = $this->input->post('password');
+            $this->password_confirm = $this->input->post('password2');
         }
+
+// =======================================================================//
+// !                         Default method                              //
+// ======================================================================//
+        public function index()
+        {
+            $this->load->view('signup/index.html');
+        }
+
+// =======================================================================//
+// !                      Method for signup users                        //
+// ======================================================================//
 
         public function signup()
         {
-            //---------------------------------------FORM VALIDATION--------------------------------------------//
             $this->form_validation->set_rules('login', '"login"', 'required|min_length[3]');
             $this->form_validation->set_rules('email', '"Email adress"', 'valid_email|required|min_length[1]');
             $this->form_validation->set_rules('password', '"Password"', 'required|min_length[2]');
             $this->form_validation->set_rules('password2', '"Password confirm"', 'required|min_length[2]');
-            //--------------------------------------------------------------------------------------------------//
 
+            //------------------------If the form is valid and password & password confirm matches ---------------------//
             if ($this->form_validation->run() && $this->password === $this->password_confirm)
             {
                 //-------------Create my objet--------------//
@@ -47,24 +66,17 @@ Class Signup_controller extends CI_Controller
                 $this->modelMembers->SetIdGroupMember($this->id_group_member);
                 //-----------------------------------------//
 
-
                 $membersModel = $this->modelMembers;
                 $this->modelMembers->insertMember($membersModel);
                 redirect(array('login_controller', 'index'));
 
             } else {
-
-                //----------------------------If the form is'nt valid load the base view and display error------------------------------//
                  $this->index();
-                //----------------------------------------------------------------------------------------------------------------------//
             }
 
         }
 
-        public function index()
-        {
-            $this->load->view('signup/index.html');
-        }
+
 }
 
  ?>

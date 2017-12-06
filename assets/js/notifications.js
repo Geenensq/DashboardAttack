@@ -9,4 +9,4 @@ function notify($icon,$message,$type) {
         timer: 4000
     });
 
-};
+}
