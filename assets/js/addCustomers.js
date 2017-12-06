@@ -8,7 +8,7 @@ $(document).ready(function () {
         address_customers = $(this).find("input[name=address_customers]").val();
         code_postal_customers = $(this).find("input[name=code_postal_customers]").val();
         city_customers = $(this).find("input[name=city_customers]").val();
-        name_group_for_customers = $(this).find("input[name=name_group_for_customers]").val();
+        name_group_for_customers = $("#name_group_for_customers").val();
 
         url = $(this).attr("action");
         $.post(url, {

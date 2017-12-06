@@ -136,10 +136,10 @@ Class Customers_controller extends CI_Controller
 
 
         if ($this->form_validation->run()) {
-
+            
             /*Retrieving my POST values ​​to store them in my attributes*/
-            $this->nameCustomers = $this->input->post('name_customers');
             $this->firstNameCustomers = $this->input->post('first_name_customers');
+            $this->nameCustomers = $this->input->post('name_customers');
             $this->mobilPhoneCustomers = $this->input->post('mobil_phone_number_customers');
             $this->phoneNumberCustomers = $this->input->post('phone_number_customers');
             $this->emailCustomers = $this->input->post('email_customers');
@@ -147,10 +147,10 @@ Class Customers_controller extends CI_Controller
             $this->codePostalCustomers = $this->input->post('code_postal_customers');
             $this->cityCustomers = $this->input->post('city_customers');
             $this->nameGroupForCustomers = $this->input->post('name_group_for_customers');
-            /*End of retrieving*/
+
 
             /* ----------------------------Create my object----------------------------------*/
-            $this->modelCustomers->SetFirstName($this->firstNameCustomers);
+            $this->modelCustomers->setFirstName($this->firstNameCustomers);
             $this->modelCustomers->setLastName($this->nameCustomers);
             $this->modelCustomers->setMobilPhoneNumber($this->mobilPhoneCustomers);
             $this->modelCustomers->setPhoneNumber($this->phoneNumberCustomers);
@@ -160,6 +160,7 @@ Class Customers_controller extends CI_Controller
             $this->modelCustomers->setCity($this->cityCustomers);
             $this->modelCustomers->setIdGroupCustomer($this->nameGroupForCustomers);
             /*-------------------------------------------------------------------------------*/
+
 
             $customerModel = $this->modelCustomers;
 
