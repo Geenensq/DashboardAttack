@@ -33,7 +33,15 @@ $(document).ready(function () {
                 /*Call notifications*/
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le groupe doit contenir au moins 3 caracteres !", "danger");
                 /*Delete content of the input*/
-                /*DOIT*/
+                $("#name_customers").val('');
+                $("#first_name_customers").val('');
+                $("#mobil_phone_number_customers".val('');
+                $("#phone_number_customers").val('');
+                $("#email_customers").val('');
+                $("#address_customers").val('');
+                $("#code_postal_customers").val('');
+                $("#city_customers").val('');
+                $("#name_group_for_customers").val('');
             }
         }, "json");
         return false;
