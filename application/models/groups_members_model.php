@@ -10,19 +10,17 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Groups_members_model extends CI_Model
-    {   
+    {
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
         private $id_group_member;
         private $name;
         protected $table = "groups_members";
 
-        //-------- Constructor--------//
-        public function __construct()
-        {
-            
-        }
-        //---------------------------//
-
-        // ---------------------------------------- Getters methods----------------------------------//
+// =======================================================================//
+// !                     Start methods getters                           //
+// ======================================================================//
         public function getIdGroupMember()
         {
             return $this->id_group_member;
@@ -32,10 +30,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->name;
         }
-       
-        // -------------------------------------------------------------------------------------------//
 
-        // ---------------------------------------- Setters methods----------------------------------//
+// =======================================================================//
+// !                     Start methods setters                           //
+// ======================================================================//
         public function setIdGroupMember($id_group_member)
         {
             return $this->id_group_member = $id_group_member;
@@ -45,9 +43,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->name = $name;
         }
-        // -------------------------------------------------------------------------------------------//
+// =======================================================================//
+// !                     Start CRUD methods                              //
+// ======================================================================//
 
-        //----------------------------------------SELECT ONE------------------------------------------//
+
+
+// =======================================================================//
+// !                Method SELECT one group members                      //
+// ======================================================================//
         public function getOneGroupMember($id_group_member)
         {
             $this->db->select('*');
@@ -63,8 +67,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                 return $myMembers;
         }
-        //-------------------------------------------------------------------------------------------//
-  
     }
 
 ?>

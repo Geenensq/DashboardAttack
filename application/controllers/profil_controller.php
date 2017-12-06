@@ -63,7 +63,7 @@ Class Profil_controller extends CI_Controller
             //-----------------------------------------//
 
             $membersModel = $this->modelMembers;
-            $this->modelMembers->updateProfilMember($membersModel);
+            $this->modelMembers->updateEmailMember($membersModel);
 
             $this->index();
 
@@ -116,7 +116,7 @@ Class Profil_controller extends CI_Controller
                 //-----------------------------------------//
 
                 //--------using my method to update the password-------------//
-                $this->modelMembers->updateProfilMemberPassword($membersModel);
+                $this->modelMembers->updatePasswordMember($membersModel);
                 //----------------------------------------------------------//
 
                 $callBack["confirm"] = "success";

@@ -11,7 +11,10 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Members_model extends CI_Model
-    {   
+    {
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
         private $id;
         private $login;
         private $password;
@@ -21,15 +24,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $group_member; 
         protected $table = "members";
 
-        //----------------------------------- Constructor---------------------------------------------//
+// =======================================================================//
+// !                  Constructor of my Class                            //
+// ======================================================================//
         public function __construct()
         {
             $this->load->model('Groups_members_model' , 'GroupsMembersModel');
             $this->group_member = new groups_members_model(); 
         }
-        //--------------------------------------------------------------------------------------------//
 
-        // ---------------------------------------- Getters methods----------------------------------//
+// =======================================================================//
+// !                     Start methods getters                           //
+// ======================================================================//
         public function getId()
         {
             return $this->id;
@@ -62,10 +68,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->group_member;
         }
-        // -------------------------------------------------------------------------------------------//
 
-        // ---------------------------------------- Setters methods----------------------------------//
-
+// =======================================================================//
+// !                     Start methods setters                           //
+// ======================================================================//
         public function setId($id)
         {
             return $this->id = $id;
@@ -99,9 +105,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->group_member = $group_member;
         }
-        // -------------------------------------------------------------------------------------------//
+// =======================================================================//
+// !                     Start CRUD methods                              //
+// ======================================================================//
 
-        // ----------------------------------------CHECK INFO USERS----------------------------------//
+
+
+// =======================================================================================================//
+// !     Method SELECT * members and verify that the user exists and that the password matches           //
+// ======================================================================================================//
         public function CheckInfoUser($model)
         {
             $data = array ('login' => $model->getLogin(),'password' => $model->getPassword());
@@ -129,7 +141,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 }
                        
         }
-        // -------------------------------------------------------------------------------------------//
+// ==================================================================================//
+// !     Method SELECT * and verify that the user id matches the password           //
+// ===================================================== ===========================//
         
         public function checkPasswordById($model)
         {
@@ -148,7 +162,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
 
 
-        // ------------------------------SELECT ONE USER BY ID---------------------------------------//
+// ==================================================================================//
+// !                        Method SELECT ONE user by his id                        //
+// =================================================================================//
         public function getOne($id)
         {
             $this->db->select('*');
@@ -167,9 +183,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $myMembers->group_member = $myMembers->group_member->getOneGroupMember($result->id_group_member);
             return $myMembers;
         }
-        // -------------------------------------------------------------------------------------------//
-       
-        // ------------------------------SELECT ALL USERS--------------------------------------------//
+// ==================================================================================//
+// !                        Method SELECT ONE * members                             //
+// =================================================================================//
         public function getAll()
         {
             $query = $this->db->get($this->table);
@@ -186,9 +202,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                 return $arrayMembers;
         }
-        // -------------------------------------------------------------------------------------------//
-        
-        // ---------------------------------INSERT AN MEMBERS----------------------------------------//
+
+// ==================================================================================//
+// !                        Method for INSERT an members                            //
+// =================================================================================//
         public function insertMember($model)
         {
             $login  = $model->getLogin();
@@ -203,7 +220,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->where('login', $login );
             $this->db->or_where('email', $email);
             $query = $this->db->get();
-            //----------------------------------------------------------------------------------//
             if (empty($query->result_array())){
                    return $this->db->set('login', $login)
                             ->set('password', $password)
@@ -213,9 +229,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             ->insert($this->table);
             }   
         }
-        // -------------------------------------------------------------------------------------------//
-        
-        // ---------------------------------UPDATE AN MEMBERS----------------------------------------//
+
+// ==================================================================================//
+// !                        Method for UPDATE an members                            //
+// =================================================================================//
         public function updateMember($model)
         {
             $data = array (
@@ -229,34 +246,41 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
-        // -------------------------------------------------------------------------------------------//
-        
-        // ---------------------------UPDATE MEMBERS ON PROFIL PAGE----------------------------------//
-        public function updateProfilMember($model)
+
+
+// ==================================================================================//
+// !                        Method for UPDATE email members                         //
+// =================================================================================//
+        public function updateEmailMember($model)
         {
            $data = array ('email' => $model->getEmail());
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
-        // -------------------------------------------------------------------------------------------//
-        public function updateProfilMemberPassword($model)
+// ==================================================================================//
+// !                        Method for UPDATE password members                      //
+// =================================================================================//
+
+        public function updatePasswordMember($model)
         {
            $data = array ('password' => $model->getPassword());
                     $this->db->where('id_member' ,$model->getId());
                     $this->db->update($this->table , $data);
         }
-        // -------------------------------------------------------------------------------------------//
-        
-        // ---------------------------------DISABLE AN MEMBERS----------------------------------------//
+// ==================================================================================//
+// !      Method to set the active field to 0 and therefore disabled the member     //
+// =================================================================================//
+
         public function disableMember($model)
         {
                 $data = array ('actif' => 0 );
                 $this->db->where('id_member' ,$model->getId());
                 $this->db->update($this->table , $data);   
         }
-        // -------------------------------------------------------------------------------------------//
 
-        // -------------------------------------------------------------------------------------------//
+// ==================================================================================//
+// !                Method to select a group of members with its id                 //
+// =================================================================================//
          public function selectGroupMember($model)
          {
             $id = $model->getId();
@@ -266,7 +290,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $query = $this->db->get();
 
          }
-         // -------------------------------------------------------------------------------------------//
     }
 
 ?>

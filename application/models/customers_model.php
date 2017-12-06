@@ -11,7 +11,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Customers_model extends CI_Model
     {
-        /*-----------Declaration attributes of my model-----------*/
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
         private $table="customers";
         private $id_customer;
         private $firstName;
@@ -23,10 +25,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $zip_code;
         private $city;
         private $id_group_customer;
-        /*-----------End of declaration-----------*/
 
 
-        /*-----------Start my getters methods-----------*/
+
+// =======================================================================//
+// !                     Start methods getters                           //
+// ======================================================================//
         public function getTable()
         {
         return $this->table;
@@ -75,10 +79,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->id_group_customer;
         }
-        /*End of my getters*/
 
 
-        /*-----------Start my setters methods-----------*/
+
+// =======================================================================//
+// !                     Start methods setters                           //
+// ======================================================================//
         public function setTable($table)
         {
             $this->table = $table;
@@ -160,11 +166,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             return $this;
         }
 
-        /*-----------End of my setters methods-----------*/
 
 
-        /*-----------Start CRUD methods-----------*/
+// =======================================================================//
+// !                     Start CRUD methods                              //
+// ======================================================================//
 
+
+
+// =======================================================================//
+// !                Method for insert on customers                       //
+// ======================================================================//
         public function insertOneCustomers($model){
 
             $firstNameCustomer = $model->getFirstName();

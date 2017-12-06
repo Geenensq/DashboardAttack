@@ -11,13 +11,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Groups_customers_model extends CI_Model
     {
-    	//----Attribute of group customer----//
+// =======================================================================//
+// !                  Declaration of my attributes                       //
+// ======================================================================//
     	private $id_group_customer;
     	private $name;
     	protected $table = "groups_customers";
-    	//----------------------------------//
-    	
-    	// ---------------------------------------- Getters methods----------------------------------//
+
+
+// =======================================================================//
+// !                     Start methods getters                           //
+// ======================================================================//
         public function getIdGroupCustomer()
         {
             return $this->id_group_customer;
@@ -27,10 +31,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->name;
         }
-        //-------------------------------------------------------------------------------------------//
 
-        
-        // ---------------------------------------- Setters methods----------------------------------//
+// =======================================================================//
+// !                     Start methods setters                           //
+// ======================================================================//
          public function setIdGroupCustomer($id)
         {
             return $this->id_group_customer = $id;
@@ -40,10 +44,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             return $this->name = $name;
         }
-        //-------------------------------------------------------------------------------------------//
-       	
-        
-        // ----------------------------------INSERT GROUP CUSTOMERS----------------------------------//
+
+// =======================================================================//
+// !                     Start CRUD methods                              //
+// ======================================================================//
+
+
+
+// =======================================================================//
+// !                Method for insert an group customers                 //
+// ======================================================================//
        	public function insertGroupCustomer($model)
         {
             $name_group_customer = $model->getNameGroupCustomer();
@@ -52,7 +62,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                      ->set('actif', "1")
                      ->insert($this->table);       
         }
-        //------------------------------------------------------------------------------------------//
+// =======================================================================//
+// !                      Method SELECT * customers                      //
+// ======================================================================//
 
         public function selectAll()
         {
@@ -68,14 +80,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                     return $arrayGroupsCustomers;
         }
-        //------------------------------------------------------------------------------------------//
+// =======================================================================//
+// !               Method SELECT * customers for datatable               //
+// ======================================================================//
 
         public function loadGrid() 
         {
         $query = $this->db->get($this->table);
         return $query->result_array();
         }
-        //------------------------------------------------------------------------------------------//
+// =======================================================================//
+// !        Method for disable and enable the groups customers           //
+// ======================================================================//
 
         public function disableEnableOneGroupCustomer($id)
         {
@@ -97,12 +113,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $this->db->update($this->table , $data);
             } 
         }
-        //------------------------------------------------------------------------------------------//
+
+// =======================================================================//
+// !                 Method update a group by its id                     //
+// ======================================================================//
+
         public function updateNameGroupById($model){
             $data = array ('name' =>$model->getNameGroupCustomer());
             $this->db->where('id_group_customer' , $model->getIdGroupCustomer());
             $this->db->update($this->table , $data);
         }
-        //-----------------------------------------------------------------------------------------//
 
     }
