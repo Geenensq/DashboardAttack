@@ -66,9 +66,9 @@ Class Profil_controller extends CI_Controller
     public function editPasswordProfil()
     {
     //------------------------Get informations of the Ajax POST----------------------//
-    $this->password = $this->input->post('currentPassword');
-    $this->newPassword = $this->input->post('newPassword');
-    $this->newPasswordConfirm = $this->input->post('newPasswordConfirmation');
+    $this->password = $this->input->post('current_password');
+    $this->newPassword = $this->input->post('new_password');
+    $this->newPasswordConfirm = $this->input->post('new_password_confirmation');
     //------------------------------------------------------------------------------//
                
                

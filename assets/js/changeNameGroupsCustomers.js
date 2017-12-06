@@ -1,21 +1,21 @@
 
     function takeIdForChangeName($id,$name){
-    $("#idGroupCustomer").val($id);
+    $("#id_group_customer").val($id);
     }
     
     $(document).ready(function() {
-            $("#modalUpdateNameGroupCustomer").submit(function(){
-                idGroupCustomer = $(this).find("input[name=idGroupCustomer]").val();
-                newNameGroupCustomer = $(this).find("input[name=newNameGroupCustomer]").val();
+            $("#modal_update_name_group_customer").submit(function(){
+                id_group_customer = $(this).find("input[name=id_group_customer]").val();
+                new_name_group_customer = $(this).find("input[name=new_name_group_customer]").val();
                 url = $(this).attr("action");
-                $.post(url,{idGroupCustomer: idGroupCustomer , newNameGroupCustomer:newNameGroupCustomer},function(data){
+                $.post(url,{id_group_customer: id_group_customer , new_name_group_customer:new_name_group_customer},function(data){
 
                     if (data.confirm == "success") {
                  
                     notify("pe-7s-refresh-2","<b>Informations</b> : Le nom du groupe à été modifier avec succès ","info");
-                    $('#newNameGroupCustomer').val('');
-                    $('#modalUpdate').modal('hide');
-                    $('#testLoad').DataTable().ajax.reload();
+                    $('#new_name_group_customer').val('');
+                    $('#modal_update').modal('hide');
+                    $('#tab_groups_customers').DataTable().ajax.reload();
 
 
                 } else if (data.errorNewNameGroup == "error") {

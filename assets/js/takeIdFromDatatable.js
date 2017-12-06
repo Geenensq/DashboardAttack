@@ -1,3 +1,3 @@
     function takeIdForChangeName($id,$name){
-    $("#idGroupCustomer").val($id);
+    $("#id_group_customer").val($id);
     }

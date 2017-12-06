@@ -99,7 +99,7 @@ Class Customers_controller extends CI_Controller
     public function changeNameGroupCustomer()
     {
         /*Declaration of the rules of my form*/
-        $this->form_validation->set_rules('newNameGroupCustomer', '"New name for the group"', 'required|min_length[3]');
+        $this->form_validation->set_rules('new_name_group_customer', '"New name for the group"', 'required|min_length[3]');
         /*End of my declaration*/
 
         /*---creating a array to manage ajax returns---*/
@@ -109,8 +109,8 @@ Class Customers_controller extends CI_Controller
         if ($this->form_validation->run()) {
 
             /*Retrieving my POST values ​​to store them in my attributes*/
-            $this->modelGroupCustomers->setIdGroupCustomer($this->input->post('idGroupCustomer'));
-            $this->modelGroupCustomers->setNameGroupCustomer($this->input->post('newNameGroupCustomer'));
+            $this->modelGroupCustomers->setIdGroupCustomer($this->input->post('id_group_customer'));
+            $this->modelGroupCustomers->setNameGroupCustomer($this->input->post('new_name_group_customer'));
             /*End of retrieving*/
 
             $groupMembersModel = $this->modelGroupCustomers;
@@ -137,30 +137,30 @@ Class Customers_controller extends CI_Controller
     public function addCustomers()
     {
         /*Declaration of the rules of my form*/
-        $this->form_validation->set_rules('nameCustomers', '"nameCustomers"', 'required');
-        $this->form_validation->set_rules('firstNameCustomers', '"firstNameCustomers"', 'required');
-        $this->form_validation->set_rules('mobilPhoneNumberCustomers', '"mobilPhoneNumberCustomers"', 'required');
-        $this->form_validation->set_rules('phoneNumberCustomers', '"phoneNumberCustomers"', 'required');
-        $this->form_validation->set_rules('emailCustomers', '"emailCustomers"', 'required');
-        $this->form_validation->set_rules('addressCustomers', '"addressCustomers"', 'required');
-        $this->form_validation->set_rules('codePostalCustomers', '"codePostalCustomers"', 'required');
-        $this->form_validation->set_rules('cityCustomers', '"cityCustomers"', 'required');
-        $this->form_validation->set_rules('nameGroupForCustomers', '"nameGroupForCustomers"', 'required');
+        $this->form_validation->set_rules('name_customers', '"name_customers"', 'required');
+        $this->form_validation->set_rules('first_name_customers', '"first_name_customers"', 'required');
+        $this->form_validation->set_rules('mobil_phone_number_customers', '"mobil_phone_number_customers"', 'required');
+        $this->form_validation->set_rules('phone_number_customers', '"phone_number_customers"', 'required');
+        $this->form_validation->set_rules('email_customers', '"email_customers"', 'required');
+        $this->form_validation->set_rules('address_customers', '"address_customers"', 'required');
+        $this->form_validation->set_rules('code_postal_customers', '"code_postal_customers"', 'required');
+        $this->form_validation->set_rules('city_customers', '"city_customers"', 'required');
+        $this->form_validation->set_rules('name_group_for_customers', '"name_group_for_customers"', 'required');
         /*End of my declaration*/
 
 
         if ($this->form_validation->run())
         {
             /*Retrieving my POST values ​​to store them in my attributes*/
-            $this->nameCustomers = $this->input->post('nameCustomers');
-            $this->firstNameCustomers = $this->input->post('firstNameCustomers');
-            $this->mobilPhoneCustomers = $this->input->post('mobilPhoneNumberCustomers');
-            $this->phoneNumberCustomers = $this->input->post('phoneNumberCustomers');
-            $this->emailCustomers = $this->input->post('emailCustomers');
-            $this->addressCustomers = $this->input->post('addressCustomers');
-            $this->codePostalCustomers = $this->input->post('codePostalCustomers');
-            $this->cityCustomers = $this->input->post('cityCustomers');
-            $this->nameGroupForCustomers = $this->input->post('nameGroupForCustomers');
+            $this->nameCustomers = $this->input->post('name_customers');
+            $this->firstNameCustomers = $this->input->post('first_name_customers');
+            $this->mobilPhoneCustomers = $this->input->post('mobil_phone_number_customers');
+            $this->phoneNumberCustomers = $this->input->post('phone_number_customers');
+            $this->emailCustomers = $this->input->post('email_customers');
+            $this->addressCustomers = $this->input->post('address_customers');
+            $this->codePostalCustomers = $this->input->post('code_postal_customers');
+            $this->cityCustomers = $this->input->post('city_customers');
+            $this->nameGroupForCustomers = $this->input->post('name_group_for_customers');
             /*End of retrieving*/
 
             /* ----------------------------Create my object----------------------------------*/

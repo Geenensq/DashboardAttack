@@ -3,9 +3,9 @@ $(document).ready(function() {
     //---------On lance la function lors du submit--------///
     $("#formEditPassword").submit(function() {
         //-------------------Stockage des informations du mot de passe actuel et du nouveau mot de passe-----------------//
-        currentPassword = $(this).find("input[name=currentPassword]").val();
-        newPassword = $(this).find("input[name=newPassword]").val();
-        newPasswordConfirmation = $(this).find("input[name=newPasswordConfirmation]").val();
+        current_password = $(this).find("input[name=current_password]").val();
+        new_password = $(this).find("input[name=new_password]").val();
+        new_password_confirmation = $(this).find("input[name=new_password_confirmation]").val();
         //--------------------------------------------------------------------------------------------------------------//
 
         //--------------------Stockage de l'url via l'attribut action du formulaire-------------//
@@ -15,9 +15,9 @@ $(document).ready(function() {
         //----------------Utilisation de la méthode post en jquery pour envoyer à php les informations à php sous forme de tableau associatif------------------//
         //------------Lors du post on appelle une fonction. Le paramettre data sont les données qui seront récupérés lors de la soumission en ajax------------//
         $.post(url, {
-            currentPassword: currentPassword,
-            newPassword: newPassword,
-            newPasswordConfirmation: newPasswordConfirmation
+            current_password: current_password,
+            new_password: new_password,
+            new_password_confirmation: new_password_confirmation
         }, function(data) {
             //---------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -25,7 +25,11 @@ $(document).ready(function() {
             if (data.confirm == "success") {
                 $("#panel").fadeOut();
                 notify("pe-7s-refresh-2","<b>Informations : </b> Votre mot de passe à été modifier avec succès !","info");
-                $('#flip').removeAttr("disabled");
+                $('#flipPassword').removeAttr("disabled");
+                $('#updateEmail').removeAttr("disabled");
+                $('#current_password').val("");
+                $('#new_password').val("");
+                $('#new_password_confirmation').val("");
                 //------------------------------------------//
 
                 //--Si le retour Ajax me retourne errorConfirm--//      

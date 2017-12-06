@@ -1,26 +1,26 @@
 $(document).ready(function () {
-    $("#formAddCustomers").submit(function () {
-        nameCustomers = $(this).find("input[name=nameCustomers]").val();
-        firstNameCustomers = $(this).find("input[name=firstNameCustomers]").val();
-        mobilPhoneNumberCustomers = $(this).find("input[name=mobilPhoneNumberCustomers]").val();
-        phoneNumberCustomers = $(this).find("input[name=phoneNumberCustomers]").val();
-        emailCustomers = $(this).find("input[name=emailCustomers]").val();
-        addressCustomers = $(this).find("input[name=addressCustomers]").val();
-        codePostalCustomers = $(this).find("input[name=codePostalCustomers]").val();
-        cityCustomers = $(this).find("input[name=cityCustomers]").val();
-        nameGroupForCustomers = $(this).find("input[name=nameGroupForCustomers]").val();
+    $("#form_add_customers").submit(function () {
+        name_customers = $(this).find("input[name=name_customers]").val();
+        first_name_customers = $(this).find("input[name=first_name_customers]").val();
+        mobil_phone_number_customers = $(this).find("input[name=mobil_phone_number_customers]").val();
+        phone_number_customers = $(this).find("input[name=phone_number_customers]").val();
+        email_customers = $(this).find("input[name=email_customers]").val();
+        address_customers = $(this).find("input[name=address_customers]").val();
+        code_postal_customers = $(this).find("input[name=code_postal_customers]").val();
+        city_customers = $(this).find("input[name=city_customers]").val();
+        name_group_for_customers = $(this).find("input[name=name_group_for_customers]").val();
 
         url = $(this).attr("action");
         $.post(url, {
-            nameCustomers: nameCustomers,
-            firstNameCustomers: firstNameCustomers,
-            mobilPhoneNumberCustomers: mobilPhoneNumberCustomers,
-            phoneNumberCustomers:phoneNumberCustomers,
-            emailCustomers:emailCustomers,
-            addressCustomers:addressCustomers,
-            codePostalCustomers:codePostalCustomers,
-            cityCustomers:cityCustomers,
-            nameGroupForCustomers:nameGroupForCustomers
+            name_customers: name_customers,
+            first_name_customers: first_name_customers,
+            mobil_phone_number_customers: mobil_phone_number_customers,
+            phone_number_customers:phone_number_customers,
+            email_customers:email_customers,
+            address_customers:address_customers,
+            code_postal_customers:code_postal_customers,
+            city_customers:city_customers,
+            name_group_for_customers:name_group_for_customers
 
         }, function (data) {
             if (data.confirm == "success") {

@@ -1,5 +1,5 @@
     $(document).ready(function() {
-        $("#formAddGroupCustomers").submit(function() {
+        $("#form_add_group_customers").submit(function() {
             name_group_customers = $(this).find("input[name=name_group_customers]").val();
             url = $(this).attr("action");
             $.post(url, {
@@ -12,7 +12,7 @@
 
                     /*Delete content of the input*/
                     $('#name_group_customers').val('');
-                    $('#testLoad').DataTable().ajax.reload();
+                    $('#tab_groups_customers').DataTable().ajax.reload();
                 } else if (data.confirm == "error") {
                     /*Call notifications*/
                     notify("pe-7s-refresh-2","<b>Informations : </b> Le groupe doit contenir au moins 3 caracteres !","danger");

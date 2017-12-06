@@ -1,12 +1,12 @@
 $(document).ready(function() {
     
     //-------------------------At the user's click-------------------------------------------//
-    $("#btnEditGroupsCustomers").click(function(){
+    $("#btn_edit_groups_customers").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
-        if ($("#collapseEditGroupsCustomers").is(":visible") == true ){
-             $("#btnEditGroupsCustomers").text( "Editer les groupes clients" );
+        if ($("#collapse_edit_groups_customers").is(":visible") == true ){
+             $("#btn_edit_groups_customers").text( "Editer les groupes clients" );
         } else {
-             $("#btnEditGroupsCustomers").text( "Annuler l'édition" );
+             $("#btn_edit_groups_customers").text( "Annuler l'édition" );
         }
     });
     //-------------------------------------------------------------------------------------//
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 
     //------------------------------------------------------------Declaration of datatable-------------------------------------------------------------------------//
-    $('#testLoad').DataTable({
+    $('#tab_groups_customers').DataTable({
         ajax: "encodeGrid.html",
         order: [[ 0, "asc" ]],
         "columns": [
@@ -31,7 +31,7 @@ $(document).ready(function() {
             //Data represente dans ce cas les data de chaque ligne
             columnDefs:[
 
-            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modalUpdate">Edition </button>';}},
+            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update">Edition </button>';}},
         
             {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusGroupCustomers(' + data[0] + ')' + '"' +' class="btn btn-info"><i class="fa fa-edit"></a>';}},
 

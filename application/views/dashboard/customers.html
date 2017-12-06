@@ -189,7 +189,7 @@
                             <h4 class="title">Ajout de groupes de clients</h4>
                         </div>
                         <div class="content">
-                            <form id="formAddGroupCustomers" method="POST" action="addGroupCustomers.html">
+                            <form id="form_add_group_customers" method="POST" action="addGroupCustomers.html">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -201,11 +201,11 @@
                                     </div>
                                 </div>
 
-                                <button id="btnAddGroupCustomers" class="btn btn-info btn-fill pull-right">Ajouter le
+                                <button id="btn_add_group_customers" class="btn btn-info btn-fill pull-right">Ajouter le
                                     groupe de clients
                                 </button>
-                                <button id="btnEditGroupsCustomers" style="margin-right: 20px;" type="button"
-                                        data-toggle="collapse" data-target="#collapseEditGroupsCustomers"
+                                <button id="btn_edit_groups_customers" style="margin-right: 20px;" type="button"
+                                        data-toggle="collapse" data-target="#collapse_edit_groups_customers"
                                         class="btn btn-danger btn-fill pull-right">Editer les groupes clients
                                 </button>
                                 <div class="clearfix"></div>
@@ -217,7 +217,7 @@
             </div>
 
             <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-            <div class="modal fade" data-backdrop="false" id="modalUpdate" tabindex="-1" role="dialog"
+            <div class="modal fade" data-backdrop="false" id="modal_update" tabindex="-1" role="dialog"
                  aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -228,17 +228,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="modalUpdateNameGroupCustomer" method="POST" action="changeNameGroupCustomer.html">
+                            <form id="modal_update_name_group_customer" method="POST" action="changeNameGroupCustomer.html">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="idGroupCustomer"
-                                           id="idGroupCustomer">
+                                    <input type="hidden" class="form-control" name="id_group_customer"
+                                           id="id_group_customer">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="newNameGroupCustomer" class="form-control-label">Nom du groupe
+                                    <label for="new_name_group_customer" class="form-control-label">Nom du groupe
                                         client:</label>
-                                    <input placeholder="Nouveau nom" name="newNameGroupCustomer"
-                                           id="newNameGroupCustomer" type="text" class="form-control">
+                                    <input placeholder="Nouveau nom" name="new_name_group_customer"
+                                           id="new_name_group_customer" type="text" class="form-control">
                                 </div>
 
                                 <div class="modal-footer">
@@ -252,7 +252,7 @@
                 </div>
             </div>
             <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
-            <div class="collapse" id="collapseEditGroupsCustomers">
+            <div class="collapse" id="collapse_edit_groups_customers">
                 <div class="card card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -263,7 +263,7 @@
                                 </div>
 
                                 <div class="content table-responsive">
-                                    <table style="width:100% !important;" id="testLoad"
+                                    <table style="width:100% !important;" id="tab_groups_customers"
                                            class="col-md-12 table table-hover table-striped">
                                         <thead>
                                         <th>ID</th>
@@ -289,28 +289,28 @@
                             <h4 class="title">Ajout de clients</h4>
                         </div>
                         <div class="content">
-                            <form id="formAddCustomers" method="POST" action="addCustomers.html">
+                            <form id="form_add_customers" method="POST" action="addCustomers.html">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="nameCustomers">Nom</label>
-                                            <input id="nameCustomers" name="nameCustomers" type="text"
+                                            <label for="name_customers">Nom</label>
+                                            <input id="name_customers" name="name_customers" type="text"
                                                    class="form-control" placeholder="Nom">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="firstNameCustomers">Prénom</label>
-                                            <input id="firstNameCustomers" name="firstNameCustomers" type="text"
+                                            <label for="first_name_customers">Prénom</label>
+                                            <input id="first_name_customers" name="first_name_customers" type="text"
                                                    class="form-control" placeholder="Prenom">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="mobilPhoneNumberCustomers">Tel port</label>
-                                            <input id="mobilPhoneNumberCustomers" name="mobilPhoneNumberCustomers"
+                                            <label for="mobil_phone_number_customers">Tel port</label>
+                                            <input id="mobil_phone_number_customers" name="mobil_phone_number_customers"
                                                    type="text" class="form-control" placeholder="Tel port">
                                         </div>
                                     </div>
@@ -319,24 +319,24 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="phoneNumberCustomers">Tel fixe</label>
-                                            <input id="phoneNumberCustomers" name="phoneNumberCustomers" type="text"
+                                            <label for="phone_number_customers">Tel fixe</label>
+                                            <input id="phone_number_customers" name="phone_number_customers" type="text"
                                                    class="form-control" placeholder="Tel fixe">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="emailCustomers">Adresse email</label>
-                                            <input id="emailCustomers" name="emailCustomers" type="text"
+                                            <label for="email_customers">Adresse email</label>
+                                            <input id="email_customers" name="email_customers" type="text"
                                                    class="form-control" placeholder="Adresse email">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="addressCustomers">Adresse postale</label>
-                                            <input id="addressCustomers" name="addressCustomers" type="text"
+                                            <label for="address_customers">Adresse postale</label>
+                                            <input id="address_customers" name="address_customers" type="text"
                                                    class="form-control" placeholder="Adresse">
                                         </div>
                                     </div>
@@ -345,16 +345,16 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="codePostalCustomers">Code postal</label>
-                                            <input id="codePostalCustomers" name="codePostalCustomers" type="text"
+                                            <label for="code_postal_customers">Code postal</label>
+                                            <input id="code_postal_customers" name="code_postal_customers" type="text"
                                                    class="form-control" placeholder="Code postal">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="cityCustomers">Ville</label>
-                                            <input id="cityCustomers" name="cityCustomers" type="text"
+                                            <label for="city_customers">Ville</label>
+                                            <input id="city_customers" name="city_customers" type="text"
                                                    class="form-control" placeholder="Ville">
                                         </div>
                                     </div>
@@ -362,7 +362,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="sel1">Groupe de l'utilisateur</label>
-                                            <select name="nameGroupForCustomers" class="form-control" id="nameGroupForCustomers">
+                                            <select name="name_group_for_customers" class="form-control" id="name_group_for_customers">
                                                 <option value="1" >1</option>
                                                 <option value="2" >2</option>
                                             </select>
