@@ -1,7 +1,17 @@
 <?php
+/**
+ * Dashboard Attack, command manager
+ * customers_controller.php
+ * Coded with Codeigniter 3
+ * @author Geenens Quentin <geenensq@gmail.com>
+ * @version 1.0
+ */
 
 Class Customers_controller extends CI_Controller
 {
+    //------------------------------------------------------//
+    /*--------------Declarations of attributes--------------*/
+    //------------------------------------------------------//
     /*Attributes groups customers declaration*/
     private $nameGroupCustomers;
     private $id_group_customer;
@@ -18,9 +28,12 @@ Class Customers_controller extends CI_Controller
     private $cityCustomers;
     private $nameGroupForCustomers;
     /*End of declaration for customers*/
+    /*-----------------------------------------------------*/
 
 
-    /*Declaration of my constructor*/
+    //-----------------------------------------------//
+    /*-------------------Constructor-----------------*/
+    //-----------------------------------------------//
     public function __construct()
     {
         parent::__construct();
@@ -28,18 +41,12 @@ Class Customers_controller extends CI_Controller
         $this->load->model('Groups_customers_model', 'modelGroupCustomers');
         $this->load->model('Customers_model', 'modelCustomers');
     }
-    /*End of the declaration of my constructor*/
+    /*-----------------------------------------------*/
 
 
-    /*---Declaration of my default method---*/
-    public function index()
-    {
-        $this->load->view('dashboard/customers.html');
-    }
-    /*--------End of the declaration--------*/
-
-
-    /*----------------------------Method to add a client group in my database with my model---------------------------*/
+    //----------------------------------------------------------------------------------------//
+    /*--------------------------Method for add an group customers-----------------------------*/
+    //----------------------------------------------------------------------------------------//
     public function addGroupCustomers()
     {
         /*Declaration of the rules of my form*/
@@ -66,10 +73,11 @@ Class Customers_controller extends CI_Controller
         echo json_encode($callBack);
         /*End*/
     }
-    /*----------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------*/
 
-
-    /*---------------------------------method to send the result in json to datatable --------------------------------*/
+    //----------------------------------------------------------------------------------------//
+    /*--------------------------Method to load my datatable array-----------------------------*/
+    //----------------------------------------------------------------------------------------//
     public function encodeGrid()
     {
         $results = $this->modelGroupCustomers->loadGrid();
@@ -84,6 +92,9 @@ Class Customers_controller extends CI_Controller
     /*----------------------------------------------------------------------------------------------------------------*/
 
 
+    //----------------------------------------------------------------------------------------------------------------//
+    /*-------------------------------method to change the status of my group customers-------------------------------*/
+    //---------------------------------------------------------------------------------------------------------------//
     public function changeStatusGroupCustomer()
     {
         /*-------Stock in my attribute the result of the ajax post--------*/
@@ -93,9 +104,12 @@ Class Customers_controller extends CI_Controller
         /*---Call the method of my model to delete the group in the database---*/
         $this->modelGroupCustomers->disableEnableOneGroupCustomer($this->id_group_customer);
         /*--------------------------------------------------------------------*/
-
     }
+    /*----------------------------------------------------------------------------------------------------------------*/
 
+    //----------------------------------------------------------------------------------------------------------------//
+    /*--------------------------------method to change the name of my group customers--------------------------------*/
+    //---------------------------------------------------------------------------------------------------------------//
     public function changeNameGroupCustomer()
     {
         /*Declaration of the rules of my form*/
@@ -133,6 +147,8 @@ Class Customers_controller extends CI_Controller
         /*---------------------------------------------*/
     }
 
+    //----------------------------------------------------------------------------------------------------------------//
+
 
     public function addCustomers()
     {
@@ -149,8 +165,7 @@ Class Customers_controller extends CI_Controller
         /*End of my declaration*/
 
 
-        if ($this->form_validation->run())
-        {
+        if ($this->form_validation->run()) {
             /*Retrieving my POST values ​​to store them in my attributes*/
             $this->nameCustomers = $this->input->post('name_customers');
             $this->firstNameCustomers = $this->input->post('first_name_customers');
@@ -187,6 +202,11 @@ Class Customers_controller extends CI_Controller
         }
 
 
+    }
+
+    public function index()
+    {
+        $this->load->view('dashboard/customers.html');
     }
 
 }

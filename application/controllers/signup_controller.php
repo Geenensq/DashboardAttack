@@ -1,4 +1,12 @@
-<?php 
+<?php
+/**
+ * Dashboard Attack, command manager
+ * signup_controller.php
+ * Coded with Codeigniter 3
+ * @author Geenens Quentin <geenensq@gmail.com>
+ * @version 1.0
+ */
+
 Class Signup_controller extends CI_Controller
 {
         private $login;
@@ -20,11 +28,6 @@ Class Signup_controller extends CI_Controller
         $this->password_confirm = $this->input->post('password2');
         }
 
-        public function index()
-        {
-            $this->load->view('signup/index.html');
-        }
-
         public function signup()
         {
             //---------------------------------------FORM VALIDATION--------------------------------------------//
@@ -33,7 +36,7 @@ Class Signup_controller extends CI_Controller
             $this->form_validation->set_rules('password', '"Password"', 'required|min_length[2]');
             $this->form_validation->set_rules('password2', '"Password confirm"', 'required|min_length[2]');
             //--------------------------------------------------------------------------------------------------//
-            
+
             if ($this->form_validation->run() && $this->password === $this->password_confirm)
             {
                 //-------------Create my objet--------------//
@@ -43,19 +46,24 @@ Class Signup_controller extends CI_Controller
                 $this->modelMembers->setActif($this->actif);
                 $this->modelMembers->SetIdGroupMember($this->id_group_member);
                 //-----------------------------------------//
-                
+
 
                 $membersModel = $this->modelMembers;
                 $this->modelMembers->insertMember($membersModel);
-                redirect(array('login_controller', 'index')); 
+                redirect(array('login_controller', 'index'));
 
             } else {
 
-                //----------------------------If the form is'nt valid load the base view and display error------------------------------// 
+                //----------------------------If the form is'nt valid load the base view and display error------------------------------//
                  $this->index();
-                //----------------------------------------------------------------------------------------------------------------------//    
+                //----------------------------------------------------------------------------------------------------------------------//
             }
 
+        }
+
+        public function index()
+        {
+            $this->load->view('signup/index.html');
         }
 }
 

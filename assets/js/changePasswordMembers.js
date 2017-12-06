@@ -25,8 +25,8 @@ $(document).ready(function() {
             if (data.confirm == "success") {
                 $("#panel").fadeOut();
                 notify("pe-7s-refresh-2","<b>Informations : </b> Votre mot de passe à été modifier avec succès !","info");
-                $('#flipPassword').removeAttr("disabled");
-                $('#updateEmail').removeAttr("disabled");
+                $('#flip_password').removeAttr("disabled");
+                $('#update_email').removeAttr("disabled");
                 $('#current_password').val("");
                 $('#new_password').val("");
                 $('#new_password_confirmation').val("");

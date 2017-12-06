@@ -1,18 +1,18 @@
 $(document).ready(function() {
    
-    $("#flipPassword").click(function() {
+    $("#flip_password").click(function() {
 
         $("#panel").slideDown("slow");
         $(this).attr("disabled", true);
-        $("#updateEmail").attr("disabled", true);
+        $("#update_email").attr("disabled", true);
 
         });
 
-    $("#cancelChangePassword").click(function() {
+    $("#cancel_change_password").click(function() {
 
         $("#panel").fadeOut();
-        $('#flipPassword').removeAttr("disabled");
-        $("#updateEmail").removeAttr("disabled");
+        $('#flip_password').removeAttr("disabled");
+        $("#update_email").removeAttr("disabled");
     });
 
 });

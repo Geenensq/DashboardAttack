@@ -1,97 +1,119 @@
-<?php 
+<?php
+/**
+ * Dashboard Attack, command manager
+ * profil_controller.php
+ * Coded with Codeigniter 3
+ * @author Geenens Quentin <geenensq@gmail.com>
+ * @version 1.0
+ */
+
 
 Class Profil_controller extends CI_Controller
 {
-	private $id_member;
+    //------------------------------------------------------//
+    /*--------------Declarations of attributes--------------*/
+    //------------------------------------------------------//
+    private $id_member;
     private $password;
-	private $newPassword;
+    private $newPassword;
     private $newPasswordConfirm;
     private $email;
+    /*-----------------------------------------------------*/
 
+    //-----------------------------------------------//
+    /*-------------------Constructor-----------------*/
+    //-----------------------------------------------//
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('members_model' , 'modelMembers');
-        $this->load->model('Groups_members_model' , 'GroupsMembersModel');
-        $this->id_member = $this->session->userdata('id_member');  
+        $this->load->model('members_model', 'modelMembers');
+        $this->load->model('Groups_members_model', 'GroupsMembersModel');
+        $this->id_member = $this->session->userdata('id_member');
     }
+    /*-----------------------------------------------*/
 
+    //---------------------------------------------------//
+    /*-------------------Default method-----------------*/
+    //-------------------------------------------------//
 
-    public function index()
+    public function editEmailProfil()
     {
-        //-----Get all informations of my user and group user-----//
-        $infosUser = $this->modelMembers->getOne($this->id_member);
-        //---------------------------------------------------//
+        //---------------------------------------FORM VALIDATION--------------------------------------------//
+        $this->form_validation->set_rules('email', '"Email adress"', 'required|valid_email|min_length[1]');
+        //--------------------------------------------------------------------------------------------------//
 
-        //---Load my view profil and give an array associativ with my variable infouser---//
-        $this->load->view('dashboard/profil.html' , array('infosUser' => $infosUser) , false);
-        //-------------------------------------------------------------------------------//
+        if ($this->form_validation->run()) {
+            //-----Get my adress mail of my input-----//
+            $this->email = $this->input->post('email');
+            //---------------------------------------//
+
+            //-------------Create my objet--------------//
+            $this->modelMembers->setId($this->id_member);
+            $this->modelMembers->setEmail($this->email);
+            //-----------------------------------------//
+
+            $membersModel = $this->modelMembers;
+            $this->modelMembers->updateProfilMember($membersModel);
+
+            $this->index();
+
+        } else {
+            $this->index();
+        }
     }
+    /*--------------------------------------------------*/
 
 
     /////////////////////////////
     /// TODO : AJax proccess ///
     ///////////////////////////
 
-    public function editEmailProfil()
+
+    //----------------------------------------------------------------------------------------//
+    /*--------------------------Method for edit the mail customer-----------------------------*/
+    //----------------------------------------------------------------------------------------//
+
+    public function index()
     {
-   		//---------------------------------------FORM VALIDATION--------------------------------------------//
-    	$this->form_validation->set_rules('email', '"Email adress"', 'required|valid_email|min_length[1]');
-    	//--------------------------------------------------------------------------------------------------//
-
-    	if ($this->form_validation->run())
-        {
-            //-----Get my adress mail of my input-----//
-            $this->email = $this->input->post('email');
-            //---------------------------------------//
-
-        	//-------------Create my objet--------------//
-        	$this->modelMembers->setId($this->id_member);
-        	$this->modelMembers->setEmail($this->email);
-            //-----------------------------------------//
-            
-            $membersModel = $this->modelMembers;
-            $this->modelMembers->updateProfilMember($membersModel);
-
-            //-----Finish reload index-----//
-            $this->index();
-            //-----------------------------//
-   		
-        } else {
-             $this->index();
-        }
+        //-----Get all informations of my user and group user-----//
+        $infosUser = $this->modelMembers->getOne($this->id_member);
+        //---Load my view profil and give an array associativ with my variable infouser---//
+        $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
     }
+    /*-----------------------------------------------------------------------------------------*/
 
+    //----------------------------------------------------------------------------------------//
+    /*------------------------Method for edit the password customer---------------------------*/
+    //----------------------------------------------------------------------------------------//
 
     public function editPasswordProfil()
     {
-    //------------------------Get informations of the Ajax POST----------------------//
-    $this->password = $this->input->post('current_password');
-    $this->newPassword = $this->input->post('new_password');
-    $this->newPasswordConfirm = $this->input->post('new_password_confirmation');
-    //------------------------------------------------------------------------------//
-               
-               
-    //-------------create my objet for test password and id--------------//
-    $this->modelMembers->setId($this->id_member);
-    $this->modelMembers->setPassword($this->password);
-    //-----------------------------------------------------------------//
-                
-    //----------------Call my method to verify that the id matches the password-----------------------//
-    $membersModel = $this->modelMembers;
-    $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
-    //-----------------------------------------------------------------------------------------------//
+        //------------------------Get informations of the Ajax POST----------------------//
+        $this->password = $this->input->post('current_password');
+        $this->newPassword = $this->input->post('new_password');
+        $this->newPasswordConfirm = $this->input->post('new_password_confirmation');
+        //------------------------------------------------------------------------------//
 
-    ///---creating a array to manage ajax returns---//
-    $callBack = array();
-    //---------------------------------------------//
+
+        //-------------create my objet for test password and id--------------//
+        $this->modelMembers->setId($this->id_member);
+        $this->modelMembers->setPassword($this->password);
+        //-----------------------------------------------------------------//
+
+        //----------------Call my method to verify that the id matches the password-----------------------//
+        $membersModel = $this->modelMembers;
+        $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
+        //-----------------------------------------------------------------------------------------------//
+
+        $callBack = array();
+
         //--If the method returns true--//
-        if ($resultRequest){
-            
+        if ($resultRequest) {
+
             //---------if the 2 passwords are the same----------//
-            if ($this->newPasswordConfirm == $this->newPassword )
-            {   
-                //------------create my object-------------//     
+            if ($this->newPasswordConfirm == $this->newPassword) {
+
+                //------------create my object-------------//
                 $this->modelMembers->setId($this->id_member);
                 $this->modelMembers->setPassword($this->newPassword);
                 $membersModel = $this->modelMembers;
@@ -101,27 +123,22 @@ Class Profil_controller extends CI_Controller
                 $this->modelMembers->updateProfilMemberPassword($membersModel);
                 //----------------------------------------------------------//
 
-                //--Add returns success for javascript processing--//
-                 $callBack["confirm"] = "success";
-                //------------------------------------------------//
-            
+                $callBack["confirm"] = "success";
+
             } else {
-                //--Add returns error confirm password for javascript processing--//
                 $callBack["errorPasswordConfirm"] = "error";
-            }   //---------------------------------------------------------------//
-                  
-            
-            } else {
-                //--Add returns error password for javascript processing--//
-                $callBack["errorPasswordActuel"] = "error";
-            }  //--------------------------------------------------------//
-            
-            
-            //----returns the result of the array in JSON---//
-            echo json_encode($callBack);
-            //---------------------------------------------//
+            }
+
+        } else {
+            $callBack["errorPasswordActuel"] = "error";
+        }
+
+
+        echo json_encode($callBack);
     }
+    //----------------------------------------------------------------------------------------//
 
 
 }
- ?>
+
+?>

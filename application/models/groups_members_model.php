@@ -1,4 +1,12 @@
-<?php 
+<?php
+/**
+ * Dashboard Attack, command manager
+ * groups_members_model.php
+ * Coded with Codeigniter 3
+ * @author Geenens Quentin <geenensq@gmail.com>
+ * @version 1.0
+ */
+
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     Class Groups_members_model extends CI_Model
