@@ -67,11 +67,11 @@ Class Customers_controller extends CI_Controller
         } else {
             $callBack["confirm"] = "error";
         }
-            echo json_encode($callBack);
+        echo json_encode($callBack);
     }
 
 // =======================================================================//
-// !                  Method for add an group of customers                //
+// !            Method for display groups customers on dataables         //
 // ======================================================================//
     public function encodeGrid()
     {
@@ -137,7 +137,7 @@ Class Customers_controller extends CI_Controller
         $callBack = array();
 
         if ($this->form_validation->run()) {
-            
+
             /*Retrieving my POST values ​​to store them in my attributes*/
             $this->firstNameCustomers = $this->input->post('first_name_customers');
             $this->nameCustomers = $this->input->post('name_customers');
@@ -162,25 +162,19 @@ Class Customers_controller extends CI_Controller
             $this->modelCustomers->setIdGroupCustomer($this->nameGroupForCustomers);
             /*-------------------------------------------------------------------------------*/
 
-
             $customerModel = $this->modelCustomers;
             $this->modelCustomers->insertOneCustomers($customerModel);
             $callBack["confirm"] = "success";
 
-            //-----Finish reload index-----//
-            $this->index();
-            //-----------------------------//
         } else {
-
-            $callBack["errorNewNameGroup"] = "error";
-
+            $callBack["confirm"] = "error";
         }
 
         echo json_encode($callBack);
     }
-
-
+// =======================================================================//
+// !       Method GET GROUPS CUSTOMERS FOR AUTOCOMPLETE FUNCTION          //
+// ======================================================================//
 }
-
 
 ?>

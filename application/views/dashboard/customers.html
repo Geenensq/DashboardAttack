@@ -19,6 +19,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
     <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
+
 </head>
 
 <body>
@@ -360,11 +361,9 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="sel1">Groupe de l'utilisateur</label>
-                                            <select name="name_group_for_customers" class="form-control" id="name_group_for_customers">
-                                                <option value="1" >1</option>
-                                                <option value="2" >2</option>
-                                            </select>
+                                            <label for="name_group_for_customers">Groupe de l'utilisateur</label>
+                                            <input type="text" name="name_group_for_customers" class="form-control" id="name_group_for_customers">
+
                                         </div>
                                     </div>
                                 </div>
@@ -444,4 +443,7 @@
 <script src="<?php echo js_url('changeStatusGroupsCustomers');?>"></script>
 <!--Request AJax for change names of groups customers -->
 <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
+
 </html>
+
+

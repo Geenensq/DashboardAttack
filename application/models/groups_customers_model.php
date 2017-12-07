@@ -124,4 +124,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->update($this->table , $data);
         }
 
+// =======================================================================//
+// !                 Method SELECT GROUPS CUSTOMERS FOR AUTOCOMPLETE      //
+// ======================================================================//
+
+
+
     }

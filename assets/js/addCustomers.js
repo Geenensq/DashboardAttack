@@ -22,16 +22,10 @@ $(document).ready(function () {
             city_customers:city_customers,
             name_group_for_customers:name_group_for_customers
 
-        }, function (data) {
+        }, function(data) {
             if (data.confirm == "success") {
                 /*Call notifications*/
-                notify("pe-7s-refresh-2", "<b>Informations : </b> Votre groupe à été créer avec succès !", "info");
-
-                /*Delete content of the input*/
-                /*DOIT*/
-            } else if (data.confirm == "error") {
-                /*Call notifications*/
-                notify("pe-7s-refresh-2", "<b>Informations : </b> Le groupe doit contenir au moins 3 caracteres !", "danger");
+                notify("pe-7s-refresh-2", "<b>Informations : </b> L'utilisateur à été créer avec succès !", "info");
                 /*Delete content of the input*/
                 $("#name_customers").val('');
                 $("#first_name_customers").val('');
@@ -42,6 +36,11 @@ $(document).ready(function () {
                 $("#code_postal_customers").val('');
                 $("#city_customers").val('');
                 $("#name_group_for_customers").val('');
+
+            } else if (data.confirm == "error") {
+                /*Call notifications*/
+                notify("pe-7s-refresh-2", "<b>Informations : </b> Tous les champs doivent etre remplis", "danger");
+
             }
         }, "json");
         return false;
