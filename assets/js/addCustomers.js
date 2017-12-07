@@ -35,7 +35,7 @@ $(document).ready(function () {
                 /*Delete content of the input*/
                 $("#name_customers").val('');
                 $("#first_name_customers").val('');
-                $("#mobil_phone_number_customers".val('');
+                $("#mobil_phone_number_customers").val('');
                 $("#phone_number_customers").val('');
                 $("#email_customers").val('');
                 $("#address_customers").val('');

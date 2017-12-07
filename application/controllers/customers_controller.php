@@ -134,6 +134,7 @@ Class Customers_controller extends CI_Controller
         $this->form_validation->set_rules('name_group_for_customers', '"name_group_for_customers"', 'required');
         /*End of my declaration*/
 
+        $callBack = array();
 
         if ($this->form_validation->run()) {
             
@@ -163,15 +164,19 @@ Class Customers_controller extends CI_Controller
 
 
             $customerModel = $this->modelCustomers;
-
-            /*Call my method in my model for insert an customers*/
             $this->modelCustomers->insertOneCustomers($customerModel);
-            /*End*/
+            $callBack["confirm"] = "success";
 
             //-----Finish reload index-----//
             $this->index();
             //-----------------------------//
+        } else {
+
+            $callBack["errorNewNameGroup"] = "error";
+
         }
+
+        echo json_encode($callBack);
     }
 
 
