@@ -20,11 +20,17 @@
     <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
     <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
 
+
 </head>
 
 <body>
+
+<!--<div class="container-fluid">
+    <input id="test" class="typeahead form-control" style="margin:0px auto;width:300px;" type="text">
+</div>-->
+
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="<?php  img_url("sidebar-5.jpg");?>">
+    <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="" class="simple-text">
@@ -217,30 +223,28 @@
             </div>
 
             <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
-            <div class="modal fade" data-backdrop="false" id="modal_update" tabindex="-1" role="dialog"
-                 aria-labelledby="modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+                <div class="modal fade" data-backdrop="false" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
+                            </div>
                             <form id="modal_update_name_group_customer" method="POST" action="changeNameGroupCustomer.html">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="id_group_customer"
-                                           id="id_group_customer">
-                                </div>
+                                <div class="modal-body">
 
-                                <div class="form-group">
-                                    <label for="new_name_group_customer" class="form-control-label">Nom du groupe
-                                        client:</label>
-                                    <input placeholder="Nouveau nom" name="new_name_group_customer"
-                                           id="new_name_group_customer" type="text" class="form-control">
-                                </div>
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="id_group_customer" id="id_group_customer">
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="new_name_group_customer" class="form-control-label">Nom du groupe client:</label>
+                                        <input placeholder="Nouveau nom" name="new_name_group_customer" id="new_name_group_customer" type="text" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
                                     <button class="btn btn-info">Enregistrer</button>
@@ -250,9 +254,8 @@
 
                     </div>
                 </div>
-            </div>
-            <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
-            <div class="collapse" id="collapse_edit_groups_customers">
+                <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
+                <div class="collapse" id="collapse_edit_groups_customers">
                 <div class="card card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -362,7 +365,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="name_group_for_customers">Groupe de l'utilisateur</label>
-                                            <select type="text" name="name_group_for_customers" class="form-control" id="name_group_for_customers">
+                                            <select type="text" name="name_group_for_customers" class="form-control js-example-basic-single" id="name_group_for_customers">
                                                 <?php
                                                 foreach($groups as $value){
                                                 echo '<option value=' . '"' . $value->getIdGroupCustomer() . '">' . $value->getNameGroupCustomer() .'</option>';
@@ -383,10 +386,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 
     <footer class="footer">
@@ -434,7 +434,6 @@
 <!--   Core JS Files   -->
 <script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
 <script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo js_url_lib('bootstrap-checkbox-radio-switch');?>"></script>
 <!--  Notifications Plugin    -->
@@ -454,8 +453,18 @@
 <script src="<?php echo js_url('changeStatusGroupsCustomers');?>"></script>
 <!--Request AJax for change names of groups customers -->
 <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    $('#test').typeahead({
+        source:  function (query, process) {
+            return $.get('fetch.html', { query: query }, function (data) {
+                console.log(data);
+                data = $.parseJSON(data);
+                return process(data);
+            });
+        }
+    });
+</script>
 </html>
 
 
