@@ -186,9 +186,7 @@ Class Customers_controller extends CI_Controller
 
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
-    $sql = "SELECT name FROM groups_customers 
-            WHERE name LIKE '%".$_GET['query']."%'
-            LIMIT 10"; 
+    $sql = "SELECT name FROM groups_customers WHERE name LIKE '%".$_GET['query']."%' LIMIT 10";
     $result = $mysqli->query($sql);
     
     $json = [];
