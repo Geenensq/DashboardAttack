@@ -57,20 +57,20 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
        	public function insertGroupCustomer($model)
         {
             $name_group_customer = $model->getNameGroupCustomer();
- 
+
             $this->db->set('name', $name_group_customer)
                      ->set('actif', "1")
-                     ->insert($this->table);       
+                     ->insert($this->table);
         }
 // =======================================================================//
-// !                      Method SELECT * customers                      //
+// !                 Method SELECT * groupscustomers                      //
 // ======================================================================//
 
         public function selectAll()
         {
         	$arrayGroupsCustomers = [];
             $query = $this->db->get($this->table);
-            
+
             foreach ($query->result_object() as $ligne)
             {
                     $groupsCustomers = new Groups_customers_model();
@@ -84,7 +84,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !               Method SELECT * customers for datatable               //
 // ======================================================================//
 
-        public function loadGrid() 
+        public function loadGrid()
         {
         $query = $this->db->get($this->table);
         return $query->result_array();
@@ -102,16 +102,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $result = $query->result_array();
 
             if($result[0]['actif'] == 0){
-                
+
                 $data = array ('actif' => 1 );
                 $this->db->where('id_group_customer' , $id);
                 $this->db->update($this->table , $data);
             } else {
-                
+
                 $data = array ('actif' => 0 );
                 $this->db->where('id_group_customer' , $id);
                 $this->db->update($this->table , $data);
-            } 
+            }
         }
 
 // =======================================================================//
@@ -124,9 +124,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $this->db->update($this->table , $data);
         }
 
-// =======================================================================//
-// !                 Method SELECT GROUPS CUSTOMERS FOR AUTOCOMPLETE      //
-// ======================================================================//
 
 
 

@@ -362,12 +362,17 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="name_group_for_customers">Groupe de l'utilisateur</label>
-                                            <input type="text" name="name_group_for_customers" class="form-control" id="name_group_for_customers">
+                                            <select type="text" name="name_group_for_customers" class="form-control" id="name_group_for_customers">
+                                                <?php
+                                                foreach($groups as $value){
+                                                echo '<option value=' . '"' . $value->getIdGroupCustomer() . '">' . $value->getNameGroupCustomer() .'</option>';
+                                                }
+                                                ?>
+                                            </select>
 
                                         </div>
                                     </div>
 
-                                    <input class="typeahead" type="text">
                                 </div>
 
                                 <button class="btn btn-info btn-fill pull-right">Ajouter le client
@@ -383,7 +388,6 @@
         </div>
 
     </div>
-
 
     <footer class="footer">
         <div class="container-fluid">
@@ -430,7 +434,7 @@
 <!--   Core JS Files   -->
 <script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
 <script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo js_url_lib('bootstrap-checkbox-radio-switch');?>"></script>
 <!--  Notifications Plugin    -->
@@ -450,21 +454,6 @@
 <script src="<?php echo js_url('changeStatusGroupsCustomers');?>"></script>
 <!--Request AJax for change names of groups customers -->
 <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
-
-
-<script type="text/javascript">
-
-    $('input.typeahead').typeahead({
-        source:  function (query, process) {
-        return $.get('fetch.html', { query: query }, function (data) {
-
-                data = $.parseJSON(data);
-                return process(data);
-            });
-        }
-    });
-
-</script>
 
 
 </html>
