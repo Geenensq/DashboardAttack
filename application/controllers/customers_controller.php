@@ -90,6 +90,23 @@ Class Customers_controller extends CI_Controller
         echo json_encode(array('data' => $data));
     }
 
+
+// =======================================================================//
+// !            Method for display groups customers on dataables         //
+// ======================================================================//
+    public function encodeGrid2()
+    {
+        $results = $this->modelCustomers->loadGrid2();
+        $data = array();
+
+        foreach ($results as $result) {
+            $data[] = array($result['id_customer'], $result['lastname'], $result['firstname'], $result['mobil_phone_number'],
+                $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['id_group_customer']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
+
 // =======================================================================//
 // !      Method for activate or desactivate and group of customers      //
 // ======================================================================//

@@ -202,6 +202,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                         ->insert($this->table);
         }
 
+
+// =======================================================================//
+// !               Method SELECT * customers for datatable               //
+// ======================================================================//
+
+    public function loadGrid2()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
         /*-----------End CRUD methods-----------*/
     
 }
