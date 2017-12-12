@@ -86,7 +86,7 @@ $(document).ready(function() {
                     {"targets": 9, data: 9},
                     {"targets": 10, data: null},
                     {"targets": 11, data: null},
-                    {"targets": 12, data: null},
+
 
 
         ],
@@ -95,9 +95,7 @@ $(document).ready(function() {
             columnDefs:[
 
                 {"targets": 10,render: function(data,full){return '<button  type="button"  class="btn btn-info">Edition </button>';}},
-                {"targets": 11,render: function(data,full){return '<a id="btn_state" class="btn btn-info"><i class="fa fa-edit"></a>';}},
-                {"targets": 12,render: function(data,full){return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>';}},
-
+                {"targets": 11,render: function(data,full){return '<a id="btn_state" class="btn btn-info"><i class="fa fa-edit"></a>';}}
 
 
             ]

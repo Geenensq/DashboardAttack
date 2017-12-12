@@ -36,6 +36,7 @@ $(document).ready(function () {
                 $("#code_postal_customers").val('');
                 $("#city_customers").val('');
                 $("#name_group_for_customers").val('');
+                $('#tab_customers').DataTable().ajax.reload();
 
             } else if (data.confirm == "error") {
                 /*Call notifications*/
