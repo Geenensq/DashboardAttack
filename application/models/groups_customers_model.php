@@ -84,7 +84,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !               Method SELECT * customers for datatable               //
 // ======================================================================//
 
-        public function loadGrid()
+        public function loadDataGroupsCustomersDataTable()
         {
         $query = $this->db->get($this->table);
         return $query->result_array();

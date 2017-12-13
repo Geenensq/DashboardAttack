@@ -66,7 +66,6 @@ $(document).ready(function() {
         });
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
     //------------------------------------------------------------Declaration of datatable-------------------------------------------------------------------------//
     $('#tab_customers').DataTable({
         ajax: "encodeGrid2.html",
@@ -86,16 +85,29 @@ $(document).ready(function() {
                     {"targets": 9, data: 9},
                     {"targets": 10, data: null},
                     {"targets": 11, data: null},
-
-
-
+                    {"targets": 12, data: null},
         ],
             //L'afficharge par defaut des collones de Datatable
             //Data represente dans ce cas les data de chaque ligne
+
             columnDefs:[
 
-                {"targets": 10,render: function(data,full){return '<button  type="button"  class="btn btn-info">Edition </button>';}},
-                {"targets": 11,render: function(data,full){return '<a id="btn_state" class="btn btn-info"><i class="fa fa-edit"></a>';}}
+                {"targets": 10,render: function(data,full){return '<button type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
+                {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusCustomers(' + data[0] + ')' + '"' + 'class="btn btn-info"><i class="fa fa-edit"></a>';}},
+                {"targets": 12,render: function(data,full) { 
+                if (data[10] == 1) 
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+                
+                } else if(data[10] == 0) 
+                
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+                }
+                
+            }}
+    
+
 
 
             ]

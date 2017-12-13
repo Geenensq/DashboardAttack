@@ -203,7 +203,7 @@
                      </div>
                   </div>
                   
-                  <!-- //////////////////////////////////////Modal//////////////////////////////////////////// -->
+                  <!-- //////////////////////////////////////Modal GROUPS CUSTOMERS//////////////////////////////////////////// -->
                   <div class="modal fade" data-backdrop="false" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                      <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -231,7 +231,73 @@
                         </div>
                      </div>
                   </div>
+                  <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
+
+
+
+                  <!-- //////////////////////////////////////Modal CUSTOMERS//////////////////////////////////////////// -->
+                  <div class="modal fade" data-backdrop="false" id="modal_update_customers" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h5 class="modal-title" id="modalLabel">Edition du client</h5>
+                           </div>
+                           <form id="modal_update_customer" method="POST" action="">
+                              <div class="modal-body">
+                                 <div class="form-group">
+                                    <input type="hidden" class="form-control" name="id_customer" id="id_customer">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_name_customer" class="form-control-label">Nom du client:</label>
+                                    <input name="new_name_customer" id="new_name_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_firstname_customer" class="form-control-label">Prénom du client:</label>
+                                    <input name="new_firstname_customer" id="new_firstname_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_mobil_phone_customer" class="form-control-label">Téléphone portable:</label>
+                                    <input name="new_mobil_phone_customer" id="new_mobil_phone_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_phone_customer" class="form-control-label">Téléphone fixe:</label>
+                                    <input name="new_phone_customer" id="new_phone_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_mail_customer" class="form-control-label">Adresse e-mail:</label>
+                                    <input name="new_mail_customer" id="new_mail_customer" type="email" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_adress_customer" class="form-control-label">Adresse postale:</label>
+                                    <input name="new_adress_customer" id="new_adress_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_cp_group_customer" class="form-control-label">Code postal:</label>
+                                    <input name="new_cp_group_customer" id="new_cp_group_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_city_customer" class="form-control-label">Ville:</label>
+                                    <input name="new_city_customer" id="new_city_customer" type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="new_group_customer" class="form-control-label">Groupe de l'utilisateur:</label>
+                                    <input name="new_group_customer" id="new_group_customer" type="text" class="form-control">
+                                 </div>
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                 <button class="btn btn-info">Enregistrer</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
                   <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
+
                   
                   <div class="row">
                      <div class="col-md-12">
@@ -389,7 +455,8 @@
                                                 <th>Ville</th>
                                                 <th>Groupe de l'utilisateur</th>
                                                 <th>Edition du nom</th>
-                                                <th>Désactivation / Activation</th>
+                                                <th>Des/Actv</th>
+                                                <th>Status</th>
                                              </thead>
                                              <tbody>
                                              </tbody>
@@ -402,6 +469,7 @@
                         </div>
                      </div>
                   </div>
+
 
                </div>
             </div>
@@ -463,18 +531,8 @@
    <script src="<?php echo js_url('notifications');?>"></script>
    <!--Request AJax for change status of groups customers -->
    <script src="<?php echo js_url('changeStatusGroupsCustomers');?>"></script>
+   <!--Request AJax for change status of customers -->
+   <script src="<?php echo js_url('changeStatusCustomers');?>"></script>
    <!--Request AJax for change names of groups customers -->
    <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-   <script type="text/javascript">
-      $('#test').typeahead({
-          source:  function (query, process) {
-              return $.get('fetch.html', { query: query }, function (data) {
-                  console.log(data);
-                  data = $.parseJSON(data);
-                  return process(data);
-              });
-          }
-      });
-   </script>
 </html>

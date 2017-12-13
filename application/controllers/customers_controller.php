@@ -18,6 +18,7 @@ Class Customers_controller extends CI_Controller
     private $id_group_customer;
 
     /*Attributes customers declaration */
+    private $id_customer;
     private $nameCustomers;
     private $firstNameCustomers;
     private $mobilPhoneCustomers;
@@ -80,7 +81,7 @@ Class Customers_controller extends CI_Controller
 // ======================================================================//
     public function encodeGrid()
     {
-        $results = $this->modelGroupCustomers->loadGrid();
+        $results = $this->modelGroupCustomers->loadDataGroupsCustomersDataTable();
         $data = array();
 
         foreach ($results as $result) {
@@ -96,12 +97,12 @@ Class Customers_controller extends CI_Controller
 // ======================================================================//
     public function encodeGrid2()
     {
-        $results = $this->modelCustomers->loadGrid2();
+        $results = $this->modelCustomers->loadDataCustomersDataTable();
         $data = array();
 
         foreach ($results as $result) {
             $data[] = array($result['id_customer'], $result['lastname'], $result['firstname'], $result['mobil_phone_number'],
-                $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['group_name']);
+            $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['group_name'], $result['actif']);
         }
 
         echo json_encode(array('data' => $data));
@@ -114,6 +115,15 @@ Class Customers_controller extends CI_Controller
     {
         $this->id_group_customer = $this->input->post('id');
         $this->modelGroupCustomers->disableEnableOneGroupCustomer($this->id_group_customer);
+    }
+
+// =======================================================================//
+// !      Method for activate or desactivate customers                   //
+// ======================================================================//
+    public function changeStatusCustomer()
+    {
+        $this->id_customer = $this->input->post('id');
+        $this->modelCustomers->disableEnableOneCustomer($this->id_customer);
     }
 
 
@@ -193,25 +203,6 @@ Class Customers_controller extends CI_Controller
         }
 
         echo json_encode($callBack);
-    }
-
-    public function fetch()
-    {
-        define ("DB_USER", "root");
-        define ("DB_PASSWORD", "");
-        define ("DB_DATABASE", "testdb");
-        define ("DB_HOST", "localhost");
-        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-        $sql = "SELECT name FROM groups_customers 
-            WHERE name LIKE '%".$_GET['query']."%'
-            LIMIT 10";
-        $result = $mysqli->query($sql);
-
-        $json = [];
-        while($row = $result->fetch_assoc()){
-            $json[] = $row['name'];
-        }
-        echo json_encode($json);
     }
 
 

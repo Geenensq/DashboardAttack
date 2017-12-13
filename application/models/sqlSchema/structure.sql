@@ -27,11 +27,12 @@ CREATE TABLE customers(
         firstname          Varchar (255) NOT NULL ,
         lastname           Varchar (255) NOT NULL ,
         mobil_phone_number Varchar (20) NOT NULL ,
-        phone_number        Varchar (20) NOT NULL ,
+        phone_number       Varchar (20) NOT NULL ,
         mail               Varchar (25) NOT NULL ,
-        address             Varchar (255) NOT NULL ,
+        address            Varchar (255) NOT NULL ,
         zip_code           Varchar (255) NOT NULL ,
         city               Varchar (255) NOT NULL ,
+        actif              Bool ,   
         id_group_customer  Int NOT NULL ,
         PRIMARY KEY (id_customer )
 )ENGINE=InnoDB;
