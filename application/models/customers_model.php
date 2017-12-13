@@ -209,10 +209,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function loadGrid2()
     {
-        $query = $this->db->get($this->table);
+        $query = $this->db->query("SELECT `id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city` , groups_customers.name AS 'group_name' FROM customers JOIN groups_customers ON customers.id_group_customer = groups_customers.id_group_customer;");
+
         return $query->result_array();
     }
 
-        /*-----------End CRUD methods-----------*/
+/*-----------End CRUD methods-----------*/
     
 }

@@ -101,7 +101,7 @@ Class Customers_controller extends CI_Controller
 
         foreach ($results as $result) {
             $data[] = array($result['id_customer'], $result['lastname'], $result['firstname'], $result['mobil_phone_number'],
-                $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['id_group_customer']);
+                $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['group_name']);
         }
 
         echo json_encode(array('data' => $data));
