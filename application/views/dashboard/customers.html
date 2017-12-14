@@ -220,7 +220,7 @@
                                  </div>
                                  <div class="form-group">
                                     <label for="new_name_group_customer" class="form-control-label">Nom du groupe client:</label>
-                                    <input placeholder="Nouveau nom" name="new_name_group_customer" id="new_name_group_customer" type="text" class="form-control">
+                                    <input required placeholder="Nouveau nom" name="new_name_group_customer" id="new_name_group_customer" type="text" class="form-control">
                                  </div>
                               </div>
                               <div class="modal-footer">
@@ -249,43 +249,43 @@
                            <form id="modal_update_customer" method="POST" action="">
                               <div class="modal-body">
                                  <div class="form-group">
-                                    <input type="hidden" class="form-control" name="id_customer" id="id_customer">
+                                    <input required type="hidden" class="form-control" name="id_customer" id="id_customer">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_name_customer" class="form-control-label">Nom du client:</label>
-                                    <input name="new_name_customer" id="new_name_customer" type="text" class="form-control">
+                                    <input required name="new_name_customer" id="new_name_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_firstname_customer" class="form-control-label">Prénom du client:</label>
-                                    <input name="new_firstname_customer" id="new_firstname_customer" type="text" class="form-control">
+                                    <input required name="new_firstname_customer" id="new_firstname_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_mobil_phone_customer" class="form-control-label">Téléphone portable:</label>
-                                    <input name="new_mobil_phone_customer" id="new_mobil_phone_customer" type="text" class="form-control">
+                                    <input required name="new_mobil_phone_customer" id="new_mobil_phone_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_phone_customer" class="form-control-label">Téléphone fixe:</label>
-                                    <input name="new_phone_customer" id="new_phone_customer" type="text" class="form-control">
+                                    <input required name="new_phone_customer" id="new_phone_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_mail_customer" class="form-control-label">Adresse e-mail:</label>
-                                    <input name="new_mail_customer" id="new_mail_customer" type="email" class="form-control">
+                                    <input required name="new_mail_customer" id="new_mail_customer" type="email" class="form-control">
                                  </div>
                                  <div class="form-group">
-                                    <label for="new_adress_customer" class="form-control-label">Adresse postale:</label>
-                                    <input name="new_adress_customer" id="new_adress_customer" type="text" class="form-control">
+                                    <label for="new_address_customer" class="form-control-label">Adresse postale:</label>
+                                    <input required name="new_address_customer" id="new_address_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_cp_group_customer" class="form-control-label">Code postal:</label>
-                                    <input name="new_cp_group_customer" id="new_cp_group_customer" type="text" class="form-control">
+                                    <input required name="new_cp_group_customer" id="new_cp_group_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_city_customer" class="form-control-label">Ville:</label>
-                                    <input name="new_city_customer" id="new_city_customer" type="text" class="form-control">
+                                    <input required name="new_city_customer" id="new_city_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_group_customer" class="form-control-label">Groupe de l'utilisateur:</label>
-                                    <input name="new_group_customer" id="new_group_customer" type="text" class="form-control">
+                                    <input required name="new_group_customer" id="new_group_customer" type="text" class="form-control">
                                  </div>
                               </div>
                               <div class="modal-footer">
@@ -535,4 +535,6 @@
    <script src="<?php echo js_url('changeStatusCustomers');?>"></script>
    <!--Request AJax for change names of groups customers -->
    <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
+
+   <script src="<?php echo js_url('editCustomersModal');?>"></script>
 </html>

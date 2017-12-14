@@ -207,8 +207,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function loadDataCustomersDataTable()
     {
-        $query = $this->db->query("SELECT `id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, groups_customers.name AS 'group_name', customers.actif AS 'actif' FROM customers JOIN groups_customers ON customers.id_group_customer = groups_customers.id_group_customer;");
-
+        $this->db->select('`id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, `groups_customers.name` AS `group_name`, `customers.actif` AS `actif`');
+        $this->db->from($this->table);
+        $this->db->join('groups_customers', 'customers.id_group_customer = groups_customers.id_group_customer');
+        $query = $this->db->get();
         return $query->result_array();
     }
 

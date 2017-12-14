@@ -77,9 +77,9 @@ Class Customers_controller extends CI_Controller
     }
 
 // =======================================================================//
-// !            Method for display groups customers on dataables         //
+// !            Method for send groups customers on datatables        //
 // ======================================================================//
-    public function encodeGrid()
+    public function encodeGridGroupsCustomers()
     {
         $results = $this->modelGroupCustomers->loadDataGroupsCustomersDataTable();
         $data = array();
@@ -93,9 +93,9 @@ Class Customers_controller extends CI_Controller
 
 
 // =======================================================================//
-// !            Method for display groups customers on dataables         //
+// !            Method for send groups customers on datatable         //
 // ======================================================================//
-    public function encodeGrid2()
+    public function encodeGridCustomers()
     {
         $results = $this->modelCustomers->loadDataCustomersDataTable();
         $data = array();
