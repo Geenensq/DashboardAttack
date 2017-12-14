@@ -37,7 +37,7 @@ $(document).ready(function() {
                     {"targets": 1, data: 1},
                     {"targets": 2, data: null},
                     {"targets": 3, data: null},
-                    {"targets": 4, data: null},         
+                    {"targets": 4, data: null}
             ],
             //L'afficharge par defaut des collones de Datatable
             //Data represente dans ce cas les data de chaque ligne
@@ -85,14 +85,15 @@ $(document).ready(function() {
                     {"targets": 9, data: 9},
                     {"targets": 10, data: null},
                     {"targets": 11, data: null},
-                    {"targets": 12, data: null},
+                    {"targets": 12, data: null}
         ],
+
             //L'afficharge par defaut des collones de Datatable
             //Data represente dans ce cas les data de chaque ligne
 
             columnDefs:[
 
-                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ',' + data[1] + ',' + data[2] + ',' + data[3] + ',' + data[4] + ',' + data[5] + ',' + data[6] + ',' + data[7] + ',' + data[8] + ',' + data[9] +')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
+                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ',' + '\''+data[1]+'\'' + ','+ '\''+data[2]+'\'' + ',' + '\''+data[3]+'\'' + ',' + '\''+data[4]+'\'' + ',' + '\''+data[5]+'\'' + ',' + '\''+data[6]+'\'' + ',' + '\''+data[7]+'\'' + ',' + '\''+data[8]+'\'' + ',' + '\''+data[9]+'\'' + ')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
                 {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusCustomers(' + data[0] + ')' + '"' + 'class="btn btn-info"><i class="fa fa-edit"></a>';}},
                 {"targets": 12,render: function(data,full) { 
                 if (data[10] == 1) 
@@ -107,8 +108,6 @@ $(document).ready(function() {
                 
             }}
     
-
-
 
             ]
 
