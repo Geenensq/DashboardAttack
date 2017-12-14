@@ -187,7 +187,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $cityCustomer = $model->getCity();
             $groupForCustomer = $model->getIdGroupCustomer();
 
-
             $this->db->set('firstname', $firstNameCustomer)
                         ->set('lastname', $lastNameCustomer)
                         ->set('mobil_phone_number', $mobilPhoneCustomer)
@@ -241,6 +240,28 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     }
 
+// =======================================================================//
+// !             Method UPDATE ALL customers informations                //
+// ======================================================================//
+
+    public function updateOneCustomers($model)
+    {
+        $data = array (
+            'firstname' =>$model->getFirstName(),
+            'lastname' =>$model->getLastName(),
+            'mobil_phone_number' =>$model->getMobilPhoneNumber(),
+            'phone_number' =>$model->getPhoneNumber(),
+            'mail' =>$model->getMail(),
+            'address' =>$model->getAddress(),
+            'zip_code' =>$model->getZipCode(),
+            'city' =>$model->getCity(),
+            'actif' =>"1",
+            'id_group_customer' =>"1");
+
+        $this->db->where('id_customer' , $model->getIdCustomer());
+        $this->db->update($this->table , $data);
+
+    }
 /*-----------End CRUD methods-----------*/
     
 }
