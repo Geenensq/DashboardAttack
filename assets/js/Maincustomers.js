@@ -93,7 +93,7 @@ $(document).ready(function() {
 
             columnDefs:[
 
-                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ',' + '\''+data[1]+'\'' + ','+ '\''+data[2]+'\'' + ',' + '\''+data[3]+'\'' + ',' + '\''+data[4]+'\'' + ',' + '\''+data[5]+'\'' + ',' + '\''+data[6]+'\'' + ',' + '\''+data[7]+'\'' + ',' + '\''+data[8]+'\'' + ',' + '\''+data[9]+'\'' + ')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
+                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
                 {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusCustomers(' + data[0] + ')' + '"' + 'class="btn btn-info"><i class="fa fa-edit"></a>';}},
                 {"targets": 12,render: function(data,full) { 
                 if (data[10] == 1) 
@@ -114,8 +114,6 @@ $(document).ready(function() {
         });
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
 
 
 

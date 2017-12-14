@@ -246,6 +246,16 @@ Class Customers_controller extends CI_Controller
 
         echo json_encode($callBack);
     }
+// ==========================================================================================//
+// !                       Method get all informations of an customers                       //
+// ==========================================================================================//
+
+public function getAllInformationsOfcustomersForModal()
+{
+    $this->$id_customer = $this->input->post('id');
+    $this->modelCustomers->selectAllCustomersForModal($this->$id_customer);
+
+}
 
 
 

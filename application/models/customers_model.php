@@ -262,6 +262,21 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->update($this->table , $data);
 
     }
+// =======================================================================//
+// !         Method SELECT ALL customers informations FOR MODAL          //
+// ======================================================================//
+    public function selectAllCustomersForModal($id)
+    {
+        $this->db->select('`id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, `groups_customers.name` AS `group_name`, `customers.actif` AS `actif`');
+        $this->db->from($this->table);
+        $this->db->join('groups_customers', 'customers.id_group_customer = groups_customers.id_group_customer');
+        $this->db->where('id_customer' , $id);
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+
+
 /*-----------End CRUD methods-----------*/
     
 }

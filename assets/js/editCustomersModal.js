@@ -1,21 +1,34 @@
+function editCustomersModal($id){
+    url = "getAllInformationsOfcustomersForModal.html";
+    // on declare un formulaire
+    var form = {
+        id:$id
+    };
 
-    function editCustomersModal($id,$name,$firstname,$mobil_phone,$phone,$email,$address,$code_postal,$city,$group_customer){
+    //on post
+    var result = send_post(form,url);
 
-
-        /*fill in the fields of my form*/
-        $('#id_customer').val($id);
-        $('#new_name_customer').val($name);
-        $('#new_firstname_customer').val($firstname);
-        $('#new_mobil_phone_customer').val($mobil_phone);
-        $('#new_phone_customer').val($phone);
-        $('#new_mail_customer').val($email);
-        $('#new_address_customer').val($address);
-        $('#new_cp_group_customer').val($code_postal);
-        $('#new_city_customer').val($city);
-        $('#new_group_customer').val($group_customer);
-        /*END*/
-
-    }
+}
 
 
+function send_post(v,url) {
+    var resultat = null;
+    $.ajax({
+        type: "POST",
+        url: url,
+        async: false,
+        data: v,
+        dataType: "json",
+        cache: false,
+        success: function(data) {
+            resultat = data;
+            return resultat;
+        },
+        error: function(error) {
+            resultat = error;
+            return resultat;
+        }
+    });
+    return resultat;
 
+}
