@@ -6,14 +6,9 @@ function deleteMultipleEntrySelect(){
         b = a[x] = $(this).val();
         for (i=0;i<a.length-1;i++){
             if (b ==a[i]) test =true;
-
         }
         if (test) $(this).remove();
     })
-
-
-
-
 }
 /*End*/
 
@@ -39,7 +34,7 @@ function editCustomersModal($id){
     $('#new_address_customer').val(customer.address);
     $('#new_cp_group_customer').val(customer.zip_code);
     $('#new_city_customer').val(customer.city);
-    $("#new_group_customer").append($("<option class=\"protected\" selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
+    $("#new_group_customer").prepend($("<option class=\"protected\" selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
     deleteMultipleEntrySelect();
 }
 

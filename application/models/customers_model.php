@@ -279,8 +279,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             'address' =>$model->getAddress(),
             'zip_code' =>$model->getZipCode(),
             'city' =>$model->getCity(),
-            'actif' =>"1",
-            'id_group_customer' =>"1");
+            'actif' =>$model->getActif(),
+            'id_group_customer'=>$this->getIdGroupCustomer()
+        );
+
 
         $this->db->where('id_customer' , $model->getIdCustomer());
         $this->db->update($this->table , $data);
