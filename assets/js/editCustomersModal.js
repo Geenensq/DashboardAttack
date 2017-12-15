@@ -6,8 +6,9 @@ function editCustomersModal($id){
     };
 
     //on post
-    var result = send_post(form,url);
-    $('#new_firstname_customer').val(resultat.firstname);
+    var customer  = send_post(form,url);
+    console.log(customer);
+    $('#new_firstname_customer').val(customer.firstname);
 }
 
 

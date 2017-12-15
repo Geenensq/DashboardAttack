@@ -255,7 +255,6 @@ public function getAllInformationsOfcustomersForModal()
     $this->id_customer = $this->input->post('id');
     $return = $this->modelCustomers->selectAllCustomersForModal($this->id_customer);
     echo json_encode($return);
-
 }
 
 

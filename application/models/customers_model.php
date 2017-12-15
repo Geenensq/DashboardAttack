@@ -25,6 +25,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $zip_code;
         private $city;
         private $id_group_customer;
+        private $name_group_customer;
+        private $actif;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -76,6 +78,16 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         public function getIdGroupCustomer()
         {
             return $this->id_group_customer;
+        }
+
+        public function getActif()
+        {
+            return $this->actif;
+        }
+
+        public function getNameGroupCustomer()
+        {
+            return $this->name_group_customer;
         }
 
 
@@ -161,6 +173,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             $this->id_group_customer = $id_group_customer;
 
+            return $this;
+        }
+
+        public function setActif($actif)
+        {
+            $this->actif = $actif;
+            return $this;
+        }
+
+        public function setNameGroupCustomer($name_group_customer)
+        {
+            $this->name_group_customer = $name_group_customer;
             return $this;
         }
 
@@ -267,12 +291,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
     public function selectAllCustomersForModal($id)
     {
-        $this->db->select('`id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, `groups_customers.name` AS `group_name`, `customers.actif` AS `actif`');
+        $this->db->select('`id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, `groups_customers.name` AS `group_name`, `customers.actif` AS `actif`, `customers.id_group_customer` as `id_group_customer`');
         $this->db->from($this->table);
         $this->db->join('groups_customers', 'customers.id_group_customer = groups_customers.id_group_customer');
         $this->db->where('id_customer' , $id);
         $query = $this->db->get();
-        return $query->result_array();
+        $customer = new customers_model();
+
+        foreach ($query->result() as $row)
+        {
+            $customer->setIdCustomer($row->id_customer);
+            $customer->setLastName($row->lastname);
+            $customer->setFirstName($row->firstname);
+            $customer->setMobilPhoneNumber($row->mobil_phone_number);
+            $customer->setPhoneNumber($row->phone_number);
+            $customer->setMail($row->mail);
+            $customer->setAddress($row->address);
+            $customer->setZipCode($row->zip_code);
+            $customer->setCity($row->city);
+            $customer->setNameGroupCustomer($row->group_name);
+            $customer->setActif($row->actif);
+            $customer->setIdGroupCustomer($row->id_group_customer);
+        }
+
+        return $customer;
 
     }
 
