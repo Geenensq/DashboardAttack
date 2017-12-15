@@ -7,7 +7,7 @@ function editCustomersModal($id){
 
     //on post
     var result = send_post(form,url);
-
+    $('#new_firstname_customer').val(resultat.firstname);
 }
 
 
@@ -30,5 +30,7 @@ function send_post(v,url) {
         }
     });
     return resultat;
+
+
 
 }
