@@ -296,22 +296,21 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->join('groups_customers', 'customers.id_group_customer = groups_customers.id_group_customer');
         $this->db->where('id_customer' , $id);
         $query = $this->db->get();
-        $customer = new customers_model();
 
         foreach ($query->result() as $row)
         {
-            $customer->setIdCustomer($row->id_customer);
-            $customer->setLastName($row->lastname);
-            $customer->setFirstName($row->firstname);
-            $customer->setMobilPhoneNumber($row->mobil_phone_number);
-            $customer->setPhoneNumber($row->phone_number);
-            $customer->setMail($row->mail);
-            $customer->setAddress($row->address);
-            $customer->setZipCode($row->zip_code);
-            $customer->setCity($row->city);
-            $customer->setNameGroupCustomer($row->group_name);
-            $customer->setActif($row->actif);
-            $customer->setIdGroupCustomer($row->id_group_customer);
+            $customer["id_customer"] =  $row->id_customer;
+            $customer["lastname"] = $row->lastname;
+            $customer["firstname"] = $row->firstname;
+            $customer["mobil_phone_number"] = $row->mobil_phone_number;
+            $customer["phone_number"] = $row->phone_number;
+            $customer["mail"] = $row->mail;
+            $customer["address"] = $row->address;
+            $customer["zip_code"] = $row->zip_code;
+            $customer["city"] = $row->city;
+            $customer["group_name"] = $row->group_name;
+            $customer["actif"] = $row->actif;
+            $customer["id_group_customer"] = $row->id_group_customer;
         }
 
         return $customer;
