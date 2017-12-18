@@ -5,8 +5,10 @@ $(document).ready(function() {
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_groups_customers").is(":visible") == true ){
              $("#btn_edit_groups_customers").text( "Editer les groupes clients" );
+             $("#btn_add_group_customers").attr("disabled", false);
         } else {
              $("#btn_edit_groups_customers").text( "Annuler l'édition" );
+             $("#btn_add_group_customers").attr("disabled", true);
         }
     });
     //-------------------------------------------------------------------------------------//
@@ -17,8 +19,11 @@ $(document).ready(function() {
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_customers").is(":visible") == true ){
              $("#btn_edit_customers").text( "Editer les clients" );
+             $("#btn_add_customers").attr("disabled", false);
         } else {
              $("#btn_edit_customers").text( "Annuler l'édition" );
+             $("#btn_add_customers").attr("disabled", true);
+
         }
     });
     //-------------------------------------------------------------------------------------//

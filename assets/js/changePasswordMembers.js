@@ -24,7 +24,7 @@ $(document).ready(function() {
             //--Si le retour Ajax me retourne success--//
             if (data.confirm == "success") {
                 $("#panel").fadeOut();
-                notify("pe-7s-refresh-2","<b>Informations : </b> Votre mot de passe à été modifier avec succès !","info");
+                notify("pe-7s-refresh-2", "<b>Informations : </b> Votre mot de passe à été modifier avec succès !", "info");
                 $('#flip_password').removeAttr("disabled");
                 $('#update_email').removeAttr("disabled");
                 $('#current_password').val("");
@@ -32,14 +32,14 @@ $(document).ready(function() {
                 $('#new_password_confirmation').val("");
                 //------------------------------------------//
 
-                //--Si le retour Ajax me retourne errorConfirm--//      
+                //--Si le retour Ajax me retourne errorConfirm--//
             } else if (data.errorPasswordConfirm == "error") {
-               notify("pe-7s-refresh-2","<b>Erreur : </b> Les 2 mots de passes ne sont pas identiques !","danger");
+                notify("pe-7s-refresh-2", "<b>Erreur : </b> Les 2 mots de passes ne sont pas identiques !", "danger");
                 //------------------------------------------------//
 
                 //--Si le retour Ajax me retourne errorPassword--//
             } else if (data.errorPasswordActuel == "error") {
-                notify("pe-7s-refresh-2","<b>Erreur : </b> Le mot de passe actuel n'est pas valide !","danger");
+                notify("pe-7s-refresh-2", "<b>Erreur : </b> Le mot de passe actuel n'est pas valide !", "danger");
             }
             //-------------------------------------------------//
 

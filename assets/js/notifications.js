@@ -1,4 +1,4 @@
-function notify($icon,$message,$type) {
+function notify($icon, $message, $type) {
 
     $.notify({
         icon: $icon,

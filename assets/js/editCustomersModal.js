@@ -1,11 +1,11 @@
 /*Function for track duplicate entry in my select and delete dupliacte*/
-function deleteMultipleEntrySelect(){
+function deleteMultipleEntrySelect() {
     var a = new Array();
-    $("#new_group_customer").children("option").each(function(x){
+    $("#new_group_customer").children("option").each(function(x) {
         test = false;
         b = a[x] = $(this).val();
-        for (i=0;i<a.length-1;i++){
-            if (b ==a[i]) test =true;
+        for (i = 0; i < a.length - 1; i++) {
+            if (b == a[i]) test = true;
         }
         if (test) $(this).remove();
     })
@@ -15,15 +15,15 @@ function deleteMultipleEntrySelect(){
 
 
 
-function editCustomersModal($id){
-    url = "getAllInformationsOfcustomersForModal.html";
+function editCustomersModal($id) {
+    url = "getInfosCustomersModal.html";
     // on declare un formulaire
     var form = {
-        id:$id
+        id: $id
     };
 
     //on post
-    var customer  = send_post(form,url);
+    var customer = send_post(form, url);
 
     $('#id_customer').val(customer.id_customer);
     $('#new_firstname_customer').val(customer.firstname);
@@ -32,14 +32,14 @@ function editCustomersModal($id){
     $('#new_phone_customer').val(customer.phone_number);
     $('#new_mail_customer').val(customer.mail);
     $('#new_address_customer').val(customer.address);
-    $('#new_cp_group_customer').val(customer.zip_code);
+    $('#new_cp_customer').val(customer.zip_code);
     $('#new_city_customer').val(customer.city);
-    $("#new_group_customer").prepend($("<option class=\"protected\" selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
+    $("#new_group_customer").prepend($("<option selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
     deleteMultipleEntrySelect();
 }
 
 
-function send_post(v,url) {
+function send_post(v, url) {
     var resultat = null;
     $.ajax({
         type: "POST",

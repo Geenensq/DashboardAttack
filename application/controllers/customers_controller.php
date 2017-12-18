@@ -77,7 +77,7 @@ Class Customers_controller extends CI_Controller
     }
 
 // =======================================================================//
-// !            Method for send groups customers on datatables        //
+// !            Method for send groups customers on datatables            //
 // ======================================================================//
     public function encodeGridGroupsCustomers()
     {
@@ -93,7 +93,7 @@ Class Customers_controller extends CI_Controller
 
 
 // =======================================================================//
-// !            Method for send groups customers on datatable         //
+// !            Method for send groups customers on datatable            //
 // ======================================================================//
     public function encodeGridCustomers()
     {
@@ -153,23 +153,24 @@ Class Customers_controller extends CI_Controller
 // =======================================================================//
 // !                 Method UPDATE an customers on modal                 //
 // ======================================================================//
-    public function changeInformationsCustomer()
+    public function changeInfosCustomer()
     {
-        $this->form_validation->set_rules('id_customer', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_name_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_firstname_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_mobil_phone_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_phone_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_mail_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_address_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_cp_group_customer', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('new_city_customer', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_group_customer', '" "', 'required|min_length[3]');
+        $this->form_validation->set_rules('id_customer', '"id_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_name_customer', '"new_name_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_firstname_customer', '"new_firstname_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_mobil_phone_customer', '"new_mobil_phone_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_phone_customer', '"new_phone_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_mail_customer', '"new_mail_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_address_customer', '"new_address_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_cp_customer', '"new_cp_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_city_customer', '"new_city_customer"', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_group_customer', '"new_group_customer"', 'required|min_length[1]');
+
+
         
         $callBack = array();
 
         if ($this->form_validation->run()) {
-
             $this->modelCustomers->setIdCustomer($this->input->post('id_customer'));
             $this->modelCustomers->setFirstName($this->input->post('new_firstname_customer'));
             $this->modelCustomers->setLastName($this->input->post('new_name_customer'));
@@ -177,18 +178,21 @@ Class Customers_controller extends CI_Controller
             $this->modelCustomers->setPhoneNumber($this->input->post('new_phone_customer'));
             $this->modelCustomers->setMail($this->input->post('new_mail_customer'));
             $this->modelCustomers->setAddress($this->input->post('new_address_customer'));
-            $this->modelCustomers->setZipCode($this->input->post('new_cp_group_customer'));
+            $this->modelCustomers->setZipCode($this->input->post('new_cp_customer'));
             $this->modelCustomers->setCity($this->input->post('new_city_customer'));
             $this->modelCustomers->setIdGroupCustomer($this->input->post('new_group_customer'));
             $MembersModel = $this->modelCustomers;
             
             $this->modelCustomers->updateOneCustomers($MembersModel);
+
             $callBack["confirm"] = "success";
+            
         } else {
-            $callBack["errorNewNameGroup"] = "error";
+            
+            $callBack["error"] = "error";
         }
 
-       /* echo json_encode($callBack);*/
+        echo json_encode($callBack);
     }
 
 // =======================================================================//
@@ -250,12 +254,14 @@ Class Customers_controller extends CI_Controller
 // !                       Method get all informations of an customers                       //
 // ==========================================================================================//
 
-public function getAllInformationsOfcustomersForModal()
-{
-    $this->id_customer = $this->input->post('id');
-    $return = $this->modelCustomers->selectAllCustomersForModal($this->id_customer);
-    echo json_encode($return);
-}
+    public function getInfosCustomersModal()
+    {
+        $this->id_customer = $this->input->post('id');
+        $return = $this->modelCustomers->selectAllCustomersForModal($this->id_customer);
+        echo json_encode($return);
+    }
+
+
 
 
 

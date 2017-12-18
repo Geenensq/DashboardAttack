@@ -246,7 +246,7 @@
                               </button>
                               <h5 class="modal-title" id="modalLabel">Edition du client</h5>
                            </div>
-                           <form id="modal_update_customer" method="POST" action="changeInformationsCustomer.html">
+                           <form id="modal_update_customer" method="POST" action="changeInfosCustomer.html">
                               <div class="modal-body">
                                  <div class="form-group">
                                     <input required type="hidden" class="form-control" name="id_customer" id="id_customer">
@@ -276,8 +276,8 @@
                                     <input required name="new_address_customer" id="new_address_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
-                                    <label for="new_cp_group_customer" class="form-control-label">Code postal:</label>
-                                    <input required name="new_cp_group_customer" id="new_cp_group_customer" type="text" class="form-control">
+                                    <label for="new_cp_customer" class="form-control-label">Code postal:</label>
+                                    <input required name="new_cp_customer" id="new_cp_customer" type="text" class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label for="new_city_customer" class="form-control-label">Ville:</label>
@@ -424,8 +424,7 @@
                                        </div>
                                     </div>
                                  </div>
-                                 <button class="btn btn-info btn-fill pull-right">Ajouter le client
-                                 </button>
+                                 <button id="btn_add_customers" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
 
                                     <button id="btn_edit_customers" style="margin-right: 20px;" type="button"
                                     data-toggle="collapse" data-target="#collapse_edit_customers"
@@ -543,6 +542,9 @@
    <script src="<?php echo js_url('changeStatusCustomers');?>"></script>
    <!--Request AJax for change names of groups customers -->
    <script src="<?php echo js_url('changeNameGroupsCustomers');?>"></script>
-
+   <!--Request AJax for load informations of customers -->
    <script src="<?php echo js_url('editCustomersModal');?>"></script>
+   <!--Request AJax for change informations of customers -->
+   <script src="<?php echo js_url('changeInfosCustomers');?>"></script>
+
 </html>
