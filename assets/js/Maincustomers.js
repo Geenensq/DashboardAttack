@@ -48,9 +48,9 @@ $(document).ready(function() {
             //Data represente dans ce cas les data de chaque ligne
             columnDefs:[
 
-            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update">Edition </button>';}},
+            {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update">Edition </button>';}},
         
-            {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusGroupCustomers(' + data[0] + ')' + '"' +' class="btn btn-info"><i class="fa fa-edit"></a>';}},
+            {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusGroupCustomers(' + data[0] + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
 
             {"targets": 4,render: function(data,full) { 
 
@@ -98,8 +98,8 @@ $(document).ready(function() {
 
             columnDefs:[
 
-                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
-                {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusCustomers(' + data[0] + ')' + '"' + 'class="btn btn-info"><i class="fa fa-edit"></a>';}},
+                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
+                {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatusCustomers(' + data[0] + ')' + '"' + 'class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
                 {"targets": 12,render: function(data,full) { 
                 if (data[10] == 1) 
                 {
