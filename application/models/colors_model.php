@@ -96,6 +96,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 					->insert($this->table);
 	}
 
+// =======================================================================//
+// !           Method SELECT *  colors for datatable                     //
+// ======================================================================//
+
+    public function loadDataColorsDataTable()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+
 
 
 

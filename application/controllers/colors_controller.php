@@ -86,14 +86,58 @@ Class Colors_controller extends CI_Controller
 	{
 		$this->form_validation->set_rules('name_group_colors', '"name_group_colors"', 'required');
 		$callBack = array();
+
         if ($this->form_validation->run()){
 
+            /*Retrieving my POST values ​​to store them in my attributes*/
+            $this->name_group_colors = $this->input->post('name_group_colors');
 
+            /* ----------------------------Create my object----------------------------------*/
+            $this->modelGroupsColors->setName($this->name_group_colors);
+            $modelGroupsColors = $this->modelGroupsColors;
+
+            $this->modelGroupsColors->insertOneGroupColors($modelGroupsColors);
+            
+            $callBack["confirm"] = "success";
+        } else {
+
+        	$callBack["confirm"] = "error";
         }
+        
+        echo json_encode($callBack);
 
 	}
 
 
+// =======================================================================//
+// !            Method for send groups colors on datatable               //
+// ======================================================================//
+    public function encodeGridGroupsColors()
+    {
+        $results = $this->modelGroupsColors->loadDataGroupsColorsDataTable();
+        $data = array();
+
+        foreach ($results as $result) {
+            $data[] = array($result['id_group_color'], $result['name']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
+
+// =======================================================================//
+// !                 Method for send colors on datatable                 //
+// ======================================================================//
+    public function encodeGridColors()
+    {
+        $results = $this->modelColors->loadDataColorsDataTable();
+        $data = array();
+
+        foreach ($results as $result) {
+            $data[] = array($result['id_color'], $result['name'], $result['color_code'],$result['id_group_color']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
 
 
 

@@ -13,9 +13,8 @@
     <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-
-        <link href="<?php echo css_url_lib('jquery.minicolors'); ?>" rel="stylesheet"/>
-
+    <link href="<?php echo css_url_lib('jquery.minicolors'); ?>" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
     <!--  My global CSS    -->
     <link href="<?php echo css_url('globalColors'); ?>" rel="stylesheet"/>
     <!--     Fonts and icons     -->
@@ -178,7 +177,7 @@
                               <h4 class="title">Ajout de groupes de coloris</h4>
                            </div>
                            <div class="content">
-                              <form id="" method="POST" action="">
+                              <form id="form_add_groups_colors" method="POST" action="addGroupColors.html">
                                  <div class="row">
                                     <div class="col-md-12">
                                        <div class="form-group">
@@ -271,9 +270,11 @@
                                        <div class="form-group">
                                           <label for="name_group_for_color">Groupe du coloris</label>
                                           <select id="name_group_for_color" name="name_group_for_color" type="text" class="form-control" placeholder="Nom du coloris">
-                              
-
-                                            <option value="1">test</option>
+                                              <?php
+                                             foreach($groups as $value){
+                                                echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getName() .'</option>';
+                                              }
+                                              ?>
                                           </select>
                                        </div>
                                     </div>
@@ -310,6 +311,7 @@
                                                 <th>ID</th>
                                                 <th>Nom</th>
                                                 <th>Code couleur</th>
+                                                <th>Goupe associé</th>
                                                 <th>Edition</th>
                                                 <th>Des/Actv</th>
                                                 <th>Status</th>
@@ -371,6 +373,7 @@
     <script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
     <!--  Notifications Plugin    -->
     <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
+    <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="<?php echo js_url_lib('jquery.minicolors.min');?>"></script>
     <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
@@ -380,6 +383,8 @@
     <script src="<?php echo js_url('notifications');?>"></script>
      <!-- Ajax request for add colors-->
     <script src="<?php echo js_url('addColors');?>"></script>
+    <!-- Ajax request for add groups colors-->
+    <script src="<?php echo js_url('addGroupsColors');?>"></script>
 
     
 

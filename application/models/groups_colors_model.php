@@ -60,9 +60,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->name = $name;
         return $this;
     }
-    
-
-
 
 // =======================================================================//
 // !                     Start CRUD methods                              //
@@ -87,9 +84,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $groupsColors->setName($ligne->name);
             $arrayGroupsColors[] = $groupsColors;
         }
+
         return $arrayGroupsColors;
     }
 
+// =======================================================================//
+// !              Method for insert an group of colors                   //
+// ======================================================================//
+
+    public function insertOneGroupColors($model)
+    {
+        $name = $model->getName();
+        $this->db->set('name', $name)
+                ->insert($this->table);
+    }
+
+// =======================================================================//
+// !           Method SELECT * groups colors for datatable               //
+// ======================================================================//
+
+    public function loadDataGroupsColorsDataTable()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
 
 
 
