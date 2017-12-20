@@ -18,7 +18,7 @@ $('#tab_groups_colors').DataTable({
     columnDefs:[
 
         {"targets": 2,render: function(data,full) {return '<button type="button"  class="btn btn-info btn-fill">Edition </button>'}},
-        {"targets": 3,render: function(data,full) {return '<a id="btn_state" class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+        {"targets": 3,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupColors.html" + '\'' + ',' + '\'' + "#tab_groups_colors" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
         {"targets": 4,render: function(data,full) { 
 
                 if (data[2] == 1) 

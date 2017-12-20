@@ -10,6 +10,10 @@
 Class Colors_controller extends CI_Controller
 {
 
+    //----Attributes groups colors----//
+    private $id_group_color;
+
+    //----Attributes colors----//
 	private $name_color;
 	private $code_color;
 	private $name_group_colors;
@@ -137,6 +141,16 @@ Class Colors_controller extends CI_Controller
         }
 
         echo json_encode(array('data' => $data));
+    }
+
+
+// =======================================================================//
+// !          Method for activate or desactivate group of colors         //
+// ======================================================================//
+    public function changeStatusGroupColors()
+    {
+        $this->id_group_color = $this->input->post('id');
+        $this->modelGroupsColors->disableEnableOneGroupColor($this->id_group_color);
     }
 
 
