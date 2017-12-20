@@ -95,7 +95,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function insertOneGroupColors($model)
     {
         $name = $model->getName();
-        $this->db->set('name', $name)
+        $this->db->set('name_group_color', $name)
                 ->insert($this->table);
     }
 
@@ -142,18 +142,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
     public function selectAllGroupsColorForModal($id)
     {
-/*        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('id_group_color',$id);
-        $query = $this->db->get();*/
 
         $this->db->select('*')->from('groups_colors')->where('id_group_color', $id);
         $query = $this->db->get();
-
-        debug($id);
-
-
-        foreach ($query->result_object() as $row)
+        foreach ($query->result() as $row)
         {
             $groupsColors["id_group_color"] =  $row->id_group_color;
             $groupsColors["name_group_color"] = $row->name_group_color;

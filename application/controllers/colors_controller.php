@@ -172,7 +172,8 @@ Class Colors_controller extends CI_Controller
 
     public function getInfosGroupsColorsModal()
     {
-        $this->id_group_color = $this->input->post('new_name_group_colors');
+        $this->id_group_color = $this->input->post('id');
+
         $return = $this->modelGroupsColors->selectAllGroupsColorForModal($this->id_group_color);
         echo json_encode($return);
     }

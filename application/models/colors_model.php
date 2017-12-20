@@ -90,7 +90,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 		$colorCode = $model->getColorCode();
 		$group_color = $model->getIdGroupColor();
 
-		$this->db->set('name', $name)
+		$this->db->set('color_name', $name)
 					->set('color_code', $colorCode)
 					->set('id_group_color' , $group_color)
 					->insert($this->table);

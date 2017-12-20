@@ -2,7 +2,7 @@ function editGroupsColorsModal($id) {
     url = "getInfosGroupsColorsModal.html";
     // on declare un formulaire
     var form = {
-        id: $id
+        id:$id
     };
 
     //on post
