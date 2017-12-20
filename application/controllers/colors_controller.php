@@ -118,7 +118,7 @@ Class Colors_controller extends CI_Controller
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = array($result['id_group_color'], $result['name']);
+            $data[] = array($result['id_group_color'], $result['name'], $result['actif']);
         }
 
         echo json_encode(array('data' => $data));
@@ -133,7 +133,7 @@ Class Colors_controller extends CI_Controller
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = array($result['id_color'], $result['name'], $result['color_code'],$result['id_group_color']);
+            $data[] = array($result['id_color'], $result['name'], $result['color_code'],$result['actif'],$result['name_groups_colors']);
         }
 
         echo json_encode(array('data' => $data));

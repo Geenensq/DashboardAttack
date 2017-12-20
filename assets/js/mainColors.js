@@ -17,9 +17,21 @@ $('#tab_groups_colors').DataTable({
 
     columnDefs:[
 
-        {"targets": 2,render: function(data,full) {return '<p>hello</p>'}},
-        {"targets": 3,render: function(data,full) {return '<p>hello</p>'}},
-        {"targets": 4,render: function(data,full) {return '<p>hello</p>'}}
+        {"targets": 2,render: function(data,full) {return '<button type="button"  class="btn btn-info btn-fill">Edition </button>'}},
+        {"targets": 3,render: function(data,full) {return '<a id="btn_state" class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+        {"targets": 4,render: function(data,full) { 
+
+                if (data[2] == 1) 
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+                
+                } else if(data[2] == 0) 
+                
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+                }
+                
+            }}
 
 
     ]
@@ -37,7 +49,7 @@ $('#tab_colors').DataTable({
         {"targets": 0, data: 0},
         {"targets": 1, data: 1},
         {"targets": 2, data: 2},
-        {"targets": 3, data: 3},
+        {"targets": 3, data: 4},
         {"targets": 4, data: null},
         {"targets": 5, data: null},
         {"targets": 6, data: null},
@@ -49,9 +61,21 @@ $('#tab_colors').DataTable({
 
     columnDefs:[
 
-        {"targets": 4,render: function(data,full) {return '<p>hello</p>'}},
-        {"targets": 5,render: function(data,full) {return '<p>hello</p>'}},
-        {"targets": 6,render: function(data,full) {return '<p>hello</p>'}}
+        {"targets": 4,render: function(data,full) {return '<button type="button"  class="btn btn-info btn-fill">Edition </button>'}},
+        {"targets": 5,render: function(data,full) {return '<a id="btn_state" class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+        {"targets": 6,render: function(data,full) { 
+
+                if (data[3] == 1) 
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+                
+                } else if(data[3] == 0) 
+                
+                {
+                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+                }
+                
+            }}
 
     ]
 
