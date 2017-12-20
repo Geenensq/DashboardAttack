@@ -114,8 +114,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !           Method for disable and enable the groups colors           //
 // ======================================================================//
 
-     public function disableEnableOneGroupColor($id)
-        {
+    public function disableEnableOneGroupColor($id)
+    {
             $this->db->select('actif');
             $this->db->from($this->table);
             $this->db->where('id_group_color', $id );
@@ -133,7 +133,36 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $this->db->where('id_group_color' , $id);
                 $this->db->update($this->table , $data);
             }
+    }
+
+
+
+// =======================================================================//
+// !           Method SELECT ALL colors informations FOR MODAL           //
+// ======================================================================//
+    public function selectAllGroupsColorForModal($id)
+    {
+/*        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('id_group_color',$id);
+        $query = $this->db->get();*/
+
+        $this->db->select('*')->from('groups_colors')->where('id_group_color', $id);
+        $query = $this->db->get();
+
+        debug($id);
+
+
+        foreach ($query->result_object() as $row)
+        {
+            $groupsColors["id_group_color"] =  $row->id_group_color;
+            $groupsColors["name_group_color"] = $row->name_group_color;
+            $groupsColors["actif"] = $row->actif;
         }
+
+        return $groupsColors;
+
+    }
 
 
 

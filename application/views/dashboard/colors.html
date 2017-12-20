@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Administration de votre compte utilisateur</title>
+	<title>Administration des coloris</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -213,7 +213,7 @@
                                <form id="modal_update_name_group_customer" method="POST" action="">
                                    <div class="modal-body">
                                        <div class="form-group">
-                                           <input type="hidden" class="form-control" name="id_group_color" id="id_group_color">
+                                           <input type="hidden" class="form-control" name="new_id_group_color" id="new_id_group_color">
                                        </div>
                                        <div class="form-group">
                                            <label for="new_name_group_colors" class="form-control-label">Nom du groupe de coloris:</label>
@@ -451,9 +451,10 @@
     <script src="<?php echo js_url('addColors');?>"></script>
     <!-- Ajax request for add groups colors-->
     <script src="<?php echo js_url('addGroupsColors');?>"></script>
-    <!--Request AJax for change informations of customers -->
+    <!--Request Ajax for change informations of customers -->
     <script src="<?php echo js_url('changeStatus');?>"></script>
-
+    <!--Request Ajax for load informations of groups colors-->
+    <script src="<?php echo js_url('editGroupsColorsModal');?>"></script>
 
     
 
