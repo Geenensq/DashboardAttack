@@ -97,9 +97,10 @@ CREATE TABLE groups_products(
 
 CREATE TABLE colors(
         id_color       int (11) Auto_increment  NOT NULL ,
-        name           Varchar (255) NOT NULL ,
+        color_name           Varchar (255) NOT NULL ,
         color_code     Varchar (255) ,
         id_group_color Int NOT NULL ,
+        actif             Bool ,
         PRIMARY KEY (id_color )
 )ENGINE=InnoDB;
 
@@ -134,7 +135,8 @@ CREATE TABLE groups_sizes(
 
 CREATE TABLE groups_colors(
         id_group_color int (11) Auto_increment  NOT NULL ,
-        name           Varchar (255) NOT NULL ,
+        name_group_color          Varchar (255) NOT NULL ,
+        actif             Bool ,
         PRIMARY KEY (id_group_color )
 )ENGINE=InnoDB;
 

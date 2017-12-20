@@ -1,13 +1,13 @@
 $(document).ready(function() {
     $("#form_add_colors").submit(function() {
-        name_color = $(this).find("input[name=name_color]").val();
-        code_color = $(this).find("input[name=code_color]").val();
+        color_name = $(this).find("input[name=color_name]").val();
+        color_code = $(this).find("input[name=color_code]").val();
         name_group_for_color = $("#name_group_for_color").val();
 
         url = $(this).attr("action");
         $.post(url, {
-            name_color:name_color,
-            code_color:code_color,
+            color_name:color_name,
+            color_code:color_code,
             name_group_for_color:name_group_for_color
 
         }, function(data) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
                 /*Call notifications*/
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le coloris à été ajouté avec succès !", "info");
-                $('#name_color').val('');
+                $('#color_name').val('');
 
        
 

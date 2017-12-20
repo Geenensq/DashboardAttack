@@ -81,7 +81,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         {
             $groupsColors = new Groups_colors_model();
             $groupsColors->setIdGroupColor($ligne->id_group_color);
-            $groupsColors->setName($ligne->name);
+            $groupsColors->setName($ligne->name_group_color);
             $arrayGroupsColors[] = $groupsColors;
         }
 

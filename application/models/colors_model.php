@@ -102,7 +102,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function loadDataColorsDataTable()
     {
-        $this->db->select('`id_color`, colors.name , `color_code`, colors.actif , groups_colors.name AS name_groups_colors');
+        $this->db->select('`id_color`, colors.color_name , `color_code`, colors.actif , groups_colors.name_group_color AS name_groups_colors');
         $this->db->from($this->table);
         $this->db->join('groups_colors', 'colors.id_group_color = groups_colors.id_group_color');
         $query = $this->db->get();
@@ -137,14 +137,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
 
 
-
-
-
-
-
-
 }
-
-
 
 ?>

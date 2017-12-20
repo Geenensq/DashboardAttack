@@ -13,11 +13,11 @@ Class Colors_controller extends CI_Controller
     //----Attributes groups colors----//
     private $id_group_color;
     private $name_group_colors;
-    
+
     //----Attributes colors----//
     private $id_color;
-	private $name_color;
-	private $code_color;
+	private $color_name;
+	private $color_code;
 
 
 // =======================================================================//
@@ -52,8 +52,8 @@ Class Colors_controller extends CI_Controller
 // ======================================================================//
 	public function addColors()
 	{
-		$this->form_validation->set_rules('name_color', '"name_color"', 'required');
-		$this->form_validation->set_rules('code_color', '"code_color"', 'required');
+		$this->form_validation->set_rules('color_name', '"color_name"', 'required');
+		$this->form_validation->set_rules('color_code', '"color_code"', 'required');
 		$this->form_validation->set_rules('name_group_for_color', '"name_group_for_color"', 'required');
 
 		$callBack = array();
@@ -61,13 +61,13 @@ Class Colors_controller extends CI_Controller
 
         	/*Retrieving my POST values ​​to store them in my attributes*/
 	        $this->name_group_colors = $this->input->post('name_group_for_color');
-			$this->name_color = $this->input->post('name_color');
-			$this->code_color = $this->input->post('code_color');
+			$this->color_name = $this->input->post('color_name');
+			$this->color_code = $this->input->post('color_code');
 
 			/* ----------------------------Create my object----------------------------------*/
 			 $this->modelColors->setIdGroupColor($this->name_group_colors);
-			 $this->modelColors->setName($this->name_color);
-			 $this->modelColors->setColorCode($this->code_color);
+			 $this->modelColors->setName($this->color_name);
+			 $this->modelColors->setColorCode($this->color_code);
 
 			  $modelColors = $this->modelColors;
 			  $this->modelColors->insertOneColor($modelColors);
@@ -75,7 +75,7 @@ Class Colors_controller extends CI_Controller
 			  $callBack["confirm"] = "success";
         } else {
 
-        	$callBack["confirm"] = "error";
+            $callBack["confirm"] = "error";
         }
 
         echo json_encode($callBack);
@@ -124,7 +124,7 @@ Class Colors_controller extends CI_Controller
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = array($result['id_group_color'], $result['name'], $result['actif']);
+            $data[] = array($result['id_group_color'], $result['name_group_color'], $result['actif']);
         }
 
         echo json_encode(array('data' => $data));
@@ -139,7 +139,7 @@ Class Colors_controller extends CI_Controller
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = array($result['id_color'], $result['name'], $result['color_code'],$result['actif'],$result['name_groups_colors']);
+            $data[] = array($result['id_color'], $result['color_name'], $result['color_code'],$result['actif'],$result['name_groups_colors']);
         }
 
         echo json_encode(array('data' => $data));
