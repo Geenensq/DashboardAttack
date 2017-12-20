@@ -200,7 +200,34 @@
                      </div>
                   </div>
                   
-                  <!-- //////////////////////////////////////Modal GROUPS CUSTOMERS//////////////////////////////////////////// -->
+                  <!-- //////////////////////////////////////Modal GROUPS colors//////////////////////////////////////////// -->
+                   <div class="modal fade" data-backdrop="false" id="modal_update_groups_colors" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                       <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                   </button>
+                                   <h5 class="modal-title" id="modalLabel">Edition du groupe de couleurs</h5>
+                               </div>
+                               <form id="modal_update_name_group_customer" method="POST" action="">
+                                   <div class="modal-body">
+                                       <div class="form-group">
+                                           <input type="hidden" class="form-control" name="id_group_color" id="id_group_color">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="new_name_group_colors" class="form-control-label">Nom du groupe de coloris:</label>
+                                           <input required placeholder="Nouveau nom" name="new_name_group_colors" id="new_name_group_colors" type="text" class="form-control">
+                                       </div>
+                                   </div>
+                                   <div class="modal-footer">
+                                       <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+                                       <button class="btn btn-info btn-fill">Enregistrer</button>
+                                   </div>
+                               </form>
+                           </div>
+                       </div>
+                   </div>
                 
                   <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
@@ -208,6 +235,41 @@
 
 
                   <!-- //////////////////////////////////////Modal CUSTOMERS//////////////////////////////////////////// -->
+                   <div class="modal fade" data-backdrop="false" id="modal_update_colors" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                       <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                   </button>
+                                   <h5 class="modal-title" id="modalLabel">Edition du coloris</h5>
+                               </div>
+                               <form id="" method="POST" action="">
+                                   <div class="modal-body">
+                                       <div class="form-group">
+                                           <input type="hidden" class="form-control" name="id_group_customer" id="id_group_customer">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="new_name_colors" class="form-control-label">Nom du coloris:</label>
+                                           <input required placeholder="Nouveau nom" name="new_name_colors" id="new_name_colors" type="text" class="form-control">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="new_code_colors" class="form-control-label">Nouveau code couleurs:</label>
+                                           <input required placeholder="Nouveau nom" name="new_code_colors" id="new_code_colors" type="text" class="form-control">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="new_name_group_colors" class="form-control-label">Nom du groupe de coloris:</label>
+                                           <input required placeholder="Nouveau nom" name="new_name_group_colors" id="new_name_group_colors" type="text" class="form-control">
+                                       </div>
+                                   </div>
+                                   <div class="modal-footer">
+                                       <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+                                       <button class="btn btn-info btn-fill">Enregistrer</button>
+                                   </div>
+                               </form>
+                           </div>
+                       </div>
+                   </div>
      
                   <!-- ////////////////////////////////////// END Modal////////////////////////////////////// -->
 
