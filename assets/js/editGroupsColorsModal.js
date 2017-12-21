@@ -1,3 +1,5 @@
+
+
 function editGroupsColorsModal($id) {
     url = "getInfosGroupsColorsModal.html";
     // on declare un formulaire
@@ -10,6 +12,7 @@ function editGroupsColorsModal($id) {
 
     $('#new_id_group_color').val(customer.id_group_color);
     $('#new_name_group_colors').val(customer.name_group_color);
+    
 }
 
 

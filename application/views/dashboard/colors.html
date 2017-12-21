@@ -260,7 +260,11 @@
                                        <div class="form-group">
                                            <label for="new_group_color" class="form-control-label">Nouveau groupe de la couleur:</label>
                                            <select required name="new_group_color" id="new_group_color" class="form-control">
-
+                                            <?php
+                                             foreach($groups as $value){
+                                                echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getName() .'</option>';
+                                              }
+                                            ?>
                                            </select>
 
                                        </div>

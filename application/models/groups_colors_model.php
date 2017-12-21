@@ -72,7 +72,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function selectAll()
     {
-        $arrayGroupsCustomers = [];
         $this->db->select('*');
         $this->db->from($this->table);
         $query = $this->db->get();
