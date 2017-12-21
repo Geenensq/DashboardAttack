@@ -88,7 +88,7 @@
              <select required name="new_group_color" id="new_group_color" class="form-control">
               <?php
               foreach($groups as $value){
-              echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getName() .'</option>';
+              echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
             }
             ?>
           </select>
@@ -344,7 +344,7 @@
     <select id="name_group_for_color" name="name_group_for_color" type="text" class="form-control" placeholder="Nom du coloris">
       <?php
       foreach($groups as $value){
-      echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getName() .'</option>';
+      echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
     }
     ?>
   </select>

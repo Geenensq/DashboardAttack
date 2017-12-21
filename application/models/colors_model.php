@@ -17,9 +17,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
     	private $table = "colors"; 
     	private $id_color;
-    	private $name;
+    	private $color_name;
     	private $color_code;
     	private $id_group_color;
+
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -30,9 +31,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this->id_color;
     }
 
-    public function getName()
+    public function getColorName()
     {
-        return $this->name;
+        return $this->color_name;
     }
 
     public function getColorCode()
@@ -55,9 +56,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this;
     }
 
-    public function setName($name)
+    public function setColorName($color_name)
     {
-        $this->name = $name;
+        $this->color_name = $color_name;
 
         return $this;
     }
@@ -86,7 +87,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 	public function insertOneColor($model)
 	{
-		$name = $model->getName();
+		$name = $model->getColorName();
 		$colorCode = $model->getColorCode();
 		$group_color = $model->getIdGroupColor();
 

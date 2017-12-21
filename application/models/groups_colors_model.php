@@ -18,7 +18,7 @@ Class groups_colors_model extends CI_Model
 // ======================================================================//
 	private $table = "groups_colors"; 
 	private $id_group_color;
-	private $name;
+	private $name_group_colors;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -34,9 +34,9 @@ Class groups_colors_model extends CI_Model
         return $this->id_group_color;
     }
 
-    public function getName()
+    public function getNameGroupColors()
     {
-        return $this->name;
+        return $this->name_group_colors;
     }
 
 // =======================================================================//
@@ -55,9 +55,9 @@ Class groups_colors_model extends CI_Model
         return $this;
     }
 
-    public function setName($name)
+    public function setNameGroupColors($name_group_colors)
     {
-        $this->name = $name;
+        $this->name_group_colors = $name_group_colors;
         return $this;
     }
 
@@ -80,7 +80,7 @@ Class groups_colors_model extends CI_Model
         {
             $groupsColors = new Groups_colors_model();
             $groupsColors->setIdGroupColor($ligne->id_group_color);
-            $groupsColors->setName($ligne->name_group_color);
+            $groupsColors->setNameGroupColors($ligne->name_group_color);
             $arrayGroupsColors[] = $groupsColors;
         }
 
@@ -93,7 +93,7 @@ Class groups_colors_model extends CI_Model
 
     public function insertOneGroupColors($model)
     {
-        $name = $model->getName();
+        $name = $model->getNameGroupColors();
         $this->db->set('name_group_color', $name)
         ->insert($this->table);
     }
