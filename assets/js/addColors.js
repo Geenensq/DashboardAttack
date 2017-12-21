@@ -17,12 +17,12 @@ $(document).ready(function() {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le coloris à été ajouté avec succès !", "info");
                 $('#color_name').val('');
 
-       
+                
 
             } else if (data.confirm == "error") {
                 /*Call notifications*/
                 notify("pe-7s-refresh-2", "<b>Informations : </b>Tous les champs doivent être remplis", "danger");
-     
+                
             }
         }, "json");
         return false;

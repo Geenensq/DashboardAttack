@@ -21,10 +21,10 @@
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
+    <div class="wrapper">
+        <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
 
-    	<div class="sidebar-wrapper">
+         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="" class="simple-text">
                     STICK ATTACK
@@ -39,7 +39,7 @@
                     </a>
                 </li>
 
-                    <li>
+                <li>
                     <a href="<?php echo base_url();?>profil_controller/index.html">
                         <i class="pe-7s-user"></i>
                         <p>Votre profil</p>
@@ -82,9 +82,9 @@
                         <p>Gestion</p>
                     </a>
                 </li>
-			
+                
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -104,264 +104,114 @@
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-dashboard"></i>
-								<p class="hidden-lg hidden-md">Dashboard</p>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
                         </li>
                         <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret hidden-sm hidden-xs"></b>
-                                    <span class="notification hidden-sm hidden-xs">5</span>
-									<p class="hidden-lg hidden-md">
-										5 Notifications
-										<b class="caret"></b>
-									</p>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-								<p class="hidden-lg hidden-md">Search</p>
-                            </a>
-                        </li>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-globe"></i>
+                            <b class="caret hidden-sm hidden-xs"></b>
+                            <span class="notification hidden-sm hidden-xs">5</span>
+                            <p class="hidden-lg hidden-md">
+                              5 Notifications
+                              <b class="caret"></b>
+                          </p>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Notification 1</a></li>
+                        <li><a href="#">Notification 2</a></li>
+                        <li><a href="#">Notification 3</a></li>
+                        <li><a href="#">Notification 4</a></li>
+                        <li><a href="#">Another notification</a></li>
                     </ul>
+                </li>
+                <li>
+                   <a href="">
+                    <i class="fa fa-search"></i>
+                    <p class="hidden-lg hidden-md">Search</p>
+                </a>
+            </li>
+        </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                           <a href="<?php echo base_url();?>profil_controller/index.html">
-                               <p>Mon compte</p>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>
-										Dropdown
-										<b class="caret"></b>
-									</p>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>session_controller/index.html">
-                                <p>Se deconnecter</p>
-                            </a>
-                        </li>
-						<li class="separator hidden-lg hidden-md"></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+               <a href="<?php echo base_url();?>profil_controller/index.html">
+                   <p>Mon compte</p>
+               </a>
+           </li>
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <p>
+                  Dropdown
+                  <b class="caret"></b>
+              </p>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="<?php echo base_url();?>session_controller/index.html">
+            <p>Se deconnecter</p>
+        </a>
+    </li>
+    <li class="separator hidden-lg hidden-md"></li>
+</ul>
+</div>
+</div>
+</nav>
 
 
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Statistiques des commandes</h4>
-                                <p class="category">Statistiques des status de commandes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> En cours de traitement
-                                        <i class="fa fa-circle text-danger"></i> Livré
-                                        <i class="fa fa-circle text-warning"></i> Réglé
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Statistiques des commandes</h4>
+                        <p class="category">Statistiques des status de commandes</p>
                     </div>
+                    <div class="content">
+                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Statistique des commandes</h4>
-                                <p class="category">Statisqtiques du chiffre d'affaire</p>
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> En cours de traitement
+                                <i class="fa fa-circle text-danger"></i> Livré
+                                <i class="fa fa-circle text-warning"></i> Réglé
                             </div>
-                            <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Mois en cours
-                                        <i class="fa fa-circle text-danger"></i> Mois dernier
-                                        <i class="fa fa-circle text-warning"></i> Avant dernier mois
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">2014 Sales</h4>
-                                <p class="category">All products including Taxes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-check"></i> Data information certified
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Statistique des commandes</h4>
+                        <p class="category">Statisqtiques du chiffre d'affaire</p>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Commandes</h4>
-                                <p class="category">Récapitulatif des commandes en cours</p>
+                    <div class="content">
+                        <div id="chartHours" class="ct-chart"></div>
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Mois en cours
+                                <i class="fa fa-circle text-danger"></i> Mois dernier
+                                <i class="fa fa-circle text-warning"></i> Avant dernier mois
                             </div>
-                            <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement
-</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Commande factice N01202 en cours de traitement</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
                             </div>
                         </div>
                     </div>
@@ -369,76 +219,226 @@
             </div>
         </div>
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
-            </div>
-        </footer>
 
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">2014 Sales</h4>
+                        <p class="category">All products including Taxes</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartActivity" class="ct-chart"></div>
+
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Tesla Model S
+                                <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Data information certified
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">Commandes</h4>
+                        <p class="category">Récapitulatif des commandes en cours</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement"</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement
+                                        </td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement"</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Commande factice N01202 en cours de traitement</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<footer class="footer">
+    <div class="container-fluid">
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Company
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Portfolio
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                       Blog
+                   </a>
+               </li>
+           </ul>
+       </nav>
+       <p class="copyright pull-right">
+        &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+    </p>
+</div>
+</footer>
+
+</div>
 </div>
 
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
-	<script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="<?php echo js_url_lib('bootstrap-checkbox-radio-switch');?>"></script>
-	<!--  Charts Plugin -->
-	<script src="<?php echo js_url_lib('chartist.min');?>"></script>
-    <!--  Notifications Plugin    -->
-    <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
-	 <!-- Notifications for dashboard-->
-    <script src="<?php echo js_url('notificationsDashboard');?>"></script>
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="<?php echo js_url_lib('demo');?>"></script>
+<!--   Core JS Files   -->
+<script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
+<script src="<?php echo js_url_lib('bootstrap.min'); ?>" type="text/javascript"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="<?php echo js_url_lib('bootstrap-checkbox-radio-switch');?>"></script>
+<!--  Charts Plugin -->
+<script src="<?php echo js_url_lib('chartist.min');?>"></script>
+<!--  Notifications Plugin    -->
+<script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
+<!-- Notifications for dashboard-->
+<script src="<?php echo js_url('notificationsDashboard');?>"></script>
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="<?php echo js_url_lib('demo');?>"></script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function(){
+<script type="text/javascript">
+    $(document).ready(function(){
 
-            demo.initChartist();
+        demo.initChartist();
 
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
+        },{
+            type: 'info',
+            timer: 4000
         });
-    </script>
-   
+
+    });
+</script>
+
 </html>

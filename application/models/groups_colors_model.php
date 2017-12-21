@@ -10,8 +10,8 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class groups_colors_model extends CI_Model
-    {
+Class groups_colors_model extends CI_Model
+{
 
 // =======================================================================//
 // !                  Declaration of my attributes                       //
@@ -95,7 +95,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     {
         $name = $model->getName();
         $this->db->set('name_group_color', $name)
-                ->insert($this->table);
+        ->insert($this->table);
     }
 
 // =======================================================================//
@@ -115,23 +115,23 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function disableEnableOneGroupColor($id)
     {
-            $this->db->select('actif');
-            $this->db->from($this->table);
-            $this->db->where('id_group_color', $id );
-            $query = $this->db->get();
-            $result = $query->result_array();
+        $this->db->select('actif');
+        $this->db->from($this->table);
+        $this->db->where('id_group_color', $id );
+        $query = $this->db->get();
+        $result = $query->result_array();
 
-            if($result[0]['actif'] == 0){
+        if($result[0]['actif'] == 0){
 
-                $data = array ('actif' => 1 );
-                $this->db->where('id_group_color' , $id);
-                $this->db->update($this->table , $data);
-            } else {
+            $data = array ('actif' => 1 );
+            $this->db->where('id_group_color' , $id);
+            $this->db->update($this->table , $data);
+        } else {
 
-                $data = array ('actif' => 0 );
-                $this->db->where('id_group_color' , $id);
-                $this->db->update($this->table , $data);
-            }
+            $data = array ('actif' => 0 );
+            $this->db->where('id_group_color' , $id);
+            $this->db->update($this->table , $data);
+        }
     }
 
 
