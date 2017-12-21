@@ -178,6 +178,18 @@ Class Colors_controller extends CI_Controller
         echo json_encode($return);
     }
 
+// ==========================================================================================//
+// !                   Method get all informations of color for modal                        //
+// ==========================================================================================//
+
+    public function getInfosColorsModal()
+    {
+        $this->id_color = $this->input->post('id');
+        $return = $this->modelColors->selectAllColorsForModal($this->id_color);
+        echo json_encode($return);
+    }
+
+
 
 
 

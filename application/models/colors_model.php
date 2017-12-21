@@ -137,7 +137,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+// =======================================================================//
+// !           Method SELECT ALL colors informations FOR MODAL           //
+// ======================================================================//
+    public function selectAllColorsForModal($id)
+    {
+        $this->db->select('id_color, color_name, color_code, colors.id_group_color AS color_id_group_color , colors.actif AS color_actif, groups_colors.name_group_color as name_group_color');
+        $this->db->from($this->table);
+        $this->db->join('groups_colors', 'colors.id_group_color  = groups_colors.id_group_color');
+        $this->db->where('id_color' , $id);
+        $query = $this->db->get();
 
+        foreach ($query->result() as $row)
+        {
+            $colors["id_color"] =  $row->id_color;
+            $colors["color_name"] = $row->color_name;
+            $colors["color_code"] = $row->color_code;
+            $colors["id_group_color"] = $row->color_id_group_color;
+            $colors["actif"] = $row->color_actif;
+            $colors["name_group_color"] = $row->name_group_color;
+        }
+
+        return $colors;
+
+    }
 
 
 

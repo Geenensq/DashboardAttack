@@ -216,7 +216,7 @@
                                            <input type="hidden" class="form-control" name="new_id_group_color" id="new_id_group_color">
                                        </div>
                                        <div class="form-group">
-                                           <label for="new_name_group_colors" class="form-control-label">Nom du groupe de coloris:</label>
+                                           <label for="new_name_group_colors" class="form-control-label">Nouveau nom du groupe de couleurs:</label>
                                            <input required placeholder="Nouveau nom" name="new_name_group_colors" id="new_name_group_colors" type="text" class="form-control">
                                        </div>
                                    </div>
@@ -247,19 +247,22 @@
                                <form id="" method="POST" action="">
                                    <div class="modal-body">
                                        <div class="form-group">
-                                           <input type="hidden" class="form-control" name="id_group_customer" id="id_group_customer">
+                                           <input type="hidden" class="form-control" name="id_color" id="id_color">
                                        </div>
                                        <div class="form-group">
-                                           <label for="new_name_colors" class="form-control-label">Nom du coloris:</label>
-                                           <input required placeholder="Nouveau nom" name="new_name_colors" id="new_name_colors" type="text" class="form-control">
+                                           <label for="new_name_color" class="form-control-label">Nouveau nom de la couleur:</label>
+                                           <input required placeholder="Nouveau nom" name="new_name_color" id="new_name_color" type="text" class="form-control">
                                        </div>
                                        <div class="form-group">
-                                           <label for="new_code_colors" class="form-control-label">Nouveau code couleurs:</label>
-                                           <input required placeholder="Nouveau nom" name="new_code_colors" id="new_code_colors" type="text" class="form-control">
+                                           <label for="new_code_color" class="form-control-label">Nouveau code couleur:</label>
+                                           <input required placeholder="Nouveau code couleurs" name="new_code_color" id="new_code_color" type="text" class="form-control demo">
                                        </div>
                                        <div class="form-group">
-                                           <label for="new_name_group_colors" class="form-control-label">Nom du groupe de coloris:</label>
-                                           <input required placeholder="Nouveau nom" name="new_name_group_colors" id="new_name_group_colors" type="text" class="form-control">
+                                           <label for="new_group_color" class="form-control-label">Nouveau groupe de la couleur:</label>
+                                           <select required name="new_group_color" id="new_group_color" class="form-control">
+
+                                           </select>
+
                                        </div>
                                    </div>
                                    <div class="modal-footer">
@@ -455,6 +458,8 @@
     <script src="<?php echo js_url('changeStatus');?>"></script>
     <!--Request Ajax for load informations of groups colors-->
     <script src="<?php echo js_url('editGroupsColorsModal');?>"></script>
+    <!--Request Ajax for load informations of colors-->
+    <script src="<?php echo js_url('editColorsModal');?>"></script>
 
     
 
