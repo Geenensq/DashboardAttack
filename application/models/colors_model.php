@@ -21,7 +21,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     	private $color_code;
     	private $id_group_color;
 
-
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//

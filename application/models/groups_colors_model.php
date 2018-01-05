@@ -156,6 +156,17 @@ Class groups_colors_model extends CI_Model
     }
 
 
+// =======================================================================//
+// !            Method update a group of colors by its id                //
+// ======================================================================//
+
+        public function updateNameGroupColors($model){
+            $data = array ('name_group_color' =>$model->getNameGroupColors());
+            $this->db->where('id_group_color' , $model->getIdGroupColor());
+            $this->db->update($this->table , $data);
+        }
+
+
 
 
 }
