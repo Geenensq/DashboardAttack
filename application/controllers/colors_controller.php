@@ -216,6 +216,37 @@ Class Colors_controller extends CI_Controller
     }
 
 
+    public function changeNameColors()
+    {
+        $this->form_validation->set_rules('id_color', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_name_color',  '" "', 'required|min_length[2]');
+        $this->form_validation->set_rules('new_code_color', '" "', 'required|min_length[1]');
+
+        $callBack = array();
+
+        if ($this->form_validation->run())
+        {
+            $this->modelColors->setIdColor($this->input->post('id_color'));
+            $this->modelColors->setColorName($this->input->post('new_name_color'));
+            $this->modelColors->setColorCode($this->input->post('new_code_color'));
+            $this->modelColors->setIdGroupColor($this->input->post('new_group_color'));
+          
+            $color = $this->modelColors;
+
+            $this->modelColors->updateNameColors($color);
+            $callBack["confirm"] = "success";
+
+        } else{
+
+            $callBack["errorNewNameGroup"] = "error";
+        }
+
+        echo json_encode($callBack);
+    }
+
+
+
+
 
 }
 

@@ -163,6 +163,23 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+ // =======================================================================//
+// !                  Method update a colors by its id                    //
+// ======================================================================//
+
+        public function updateNameColors($model){
+            $data = array ('id_color' =>$model->getIdColor(),
+                           'color_name' =>$model->getColorName(),
+                           'color_code' =>$model->getColorCode(),
+                           'id_group_color' =>$model->getIdGroupColor()
+                          );
+
+            $this->db->where('id_color' , $model->getIdColor());
+            $this->db->update($this->table , $data);
+        }
+   
+
+
 
 
 

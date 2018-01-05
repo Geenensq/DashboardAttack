@@ -70,7 +70,7 @@
          </button>
          <h5 class="modal-title" id="modalLabel">Edition du coloris</h5>
        </div>
-       <form id="" method="POST" action="">
+       <form id="modal_update_colors" method="POST" action="changeNameColors.html">
          <div class="modal-body">
            <div class="form-group">
              <input type="hidden" class="form-control" name="id_color" id="id_color">
@@ -467,6 +467,8 @@ class="btn btn-danger btn-fill pull-right">Editer les coloris
 <script src="<?php echo js_url('editColorsModal');?>"></script>
 <!--Request Ajax for change informations of groups colors-->
 <script src="<?php echo js_url('changeInfosGroupsColors');?>"></script>
+<!--Request Ajax for change informations of colors-->
+<script src="<?php echo js_url('changeInfosColors');?>"></script>
 
 
 <script type="text/javascript">
