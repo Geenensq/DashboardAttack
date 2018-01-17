@@ -238,7 +238,7 @@ Class Colors_controller extends CI_Controller
 
         } else{
 
-            $callBack["errorNewNameGroup"] = "error";
+            $callBack["errorNewNameColor"] = "error";
         }
 
         echo json_encode($callBack);

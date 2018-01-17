@@ -111,9 +111,10 @@ CREATE TABLE colors(
 
 CREATE TABLE sizes(
         id_size       int (11) Auto_increment  NOT NULL ,
-        name          Varchar (255) NOT NULL ,
+        size_name          Varchar (255) NOT NULL ,
         price         Float NOT NULL ,
         id_group_size Int NOT NULL ,
+        actif           Bool ,
         PRIMARY KEY (id_size )
 )ENGINE=InnoDB;
 
@@ -124,7 +125,8 @@ CREATE TABLE sizes(
 
 CREATE TABLE groups_sizes(
         id_group_size int (11) Auto_increment  NOT NULL ,
-        name          Varchar (25) NOT NULL ,
+        name_group_size          Varchar (25) NOT NULL ,
+        actif             Bool ,         
         PRIMARY KEY (id_group_size )
 )ENGINE=InnoDB;
 

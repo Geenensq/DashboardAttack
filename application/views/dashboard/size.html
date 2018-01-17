@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Administration des coloris</title>
+	<title>Administration des tailles</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->
@@ -13,12 +13,10 @@
   <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
   <!--  Light Bootstrap Table core CSS    -->
   <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-  <!--css minicolors for color pkcers-->
-  <link href="<?php echo css_url_lib('jquery.minicolors'); ?>" rel="stylesheet"/>
   <!--Datatable css-->
   <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
   <!--  My global CSS    -->
-  <link href="<?php echo css_url('globalColors'); ?>" rel="stylesheet"/>
+  <link href="<?php echo css_url('globalSizes'); ?>" rel="stylesheet"/>
   <!-- Fonts and icons     -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -26,24 +24,24 @@
 </head>
 <body>
 
- <!-- //////////////////////////////////////Modal GROUPS colors//////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_groups_colors" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+ <!-- //////////////////////////////////////Modal GROUPS sizes//////////////////////////////////////////// -->
+ <div class="modal fade" data-backdrop="true" id="modal_update_groups_sizes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
-         <h5 class="modal-title" id="modalLabel">Edition du groupe de couleurs</h5>
+         <h5 class="modal-title" id="modalLabel">Edition du groupe de tailles</h5>
        </div>
-       <form id="modal_update_name_group_colors" method="POST" action="changeNameGroupColors.html">
+       <form id="modal_update_name_group_sizes" method="POST" action="changeNameGroupSizes.html">
          <div class="modal-body">
            <div class="form-group">
-             <input type="hidden" class="form-control" name="new_id_group_color" id="new_id_group_color">
+             <input type="hidden" class="form-control" name="new_id_group_sizes" id="new_id_group_sizes">
            </div>
            <div class="form-group">
-             <label for="new_name_group_colors" class="form-control-label">Nouveau nom du groupe de couleurs:</label>
-             <input required placeholder="Nouveau nom" name="new_name_group_colors" id="new_name_group_colors" type="text" class="form-control">
+             <label for="new_name_group_sizes" class="form-control-label">Nouveau nom du groupe de couleurs:</label>
+             <input required placeholder="Nouveau nom" name="new_name_group_sizes" id="new_name_group_sizes" type="text" class="form-control">
            </div>
          </div>
          <div class="modal-footer">
@@ -58,53 +56,6 @@
  <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
 
-
-
- <!-- //////////////////////////////////////////Modal COLORS//////////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_colors" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h5 class="modal-title" id="modalLabel">Edition du coloris</h5>
-       </div>
-       <form id="modal_update_colors" method="POST" action="changeNameColors.html">
-         <div class="modal-body">
-           <div class="form-group">
-             <input type="hidden" class="form-control" name="id_color" id="id_color">
-           </div>
-           <div class="form-group">
-             <label for="new_name_color" class="form-control-label">Nouveau nom de la couleur:</label>
-             <input required placeholder="Nouveau nom" name="new_name_color" id="new_name_color" type="text" class="form-control">
-           </div>
-           <div class="form-group">
-             <label for="new_code_color" class="form-control-label">Nouveau code couleur:</label>
-             <input required placeholder="Nouveau code couleurs" name="new_code_color" id="new_code_color" type="text" class="form-control demo">
-           </div>
-           <div class="form-group">
-             <label for="new_group_color" class="form-control-label">Nouveau groupe de la couleur:</label>
-             <select required name="new_group_color" id="new_group_color" class="form-control">
-              <?php
-              foreach($groups as $value){
-                echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
-              }
-            ?>
-          </select>
-
-        </div>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-       <button class="btn btn-info btn-fill">Enregistrer</button>
-     </div>
-   </form>
- </div>
-</div>
-</div>
-
-<!-- /////////////////////////////////////////// END Modal/////////////////////////////////////////// -->
 
 
 
@@ -149,13 +100,13 @@
             <p>Produits</p>
           </a>
         </li>
-        <li  class="active">
-          <a href="#">
+        <li>
+          <a href="<?php echo base_url();?>colors_controller/index.html">
             <i class="pe-7s-science"></i>
             <p>Coloris</p>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="<?php echo base_url();?>size_controller/index.html">
             <i class="pe-7s-map-marker"></i>
             <p>Tailles</p>
@@ -181,7 +132,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Gestion des coloris</a>
+          <a class="navbar-brand" href="#">Gestion des tailles</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-left">
@@ -258,21 +209,21 @@
    <div class="col-md-12">
     <div class="card">
      <div class="header">
-      <h4 class="title">Ajout de groupes de coloris</h4>
+      <h4 class="title">Ajout de groupes de tailles</h4>
     </div>
     <div class="content">
-      <form id="form_add_groups_colors" method="POST" action="addGroupColors.html">
+      <form id="form_add_groups_sizes" method="POST" action="addGroupSizes.html">
        <div class="row">
         <div class="col-md-12">
          <div class="form-group">
-          <label for="name_group_colors">Nom du groupe de coloris</label>
-          <input id="name_group_colors" name="name_group_colors" type="text" class="form-control" placeholder="Exemple : Couleurs stickers">
+          <label for="name_group_sizes">Nom du groupe de tailles</label>
+          <input id="name_group_sizes" name="name_group_sizes" type="text" class="form-control" placeholder="Exemple : Tailles des t-shirts">
         </div>
       </div>
     </div>
-    <button id="btn_add_group_colors" class="btn btn-info btn-fill pull-right">Ajouter le groupe de coloris</button>
-    <button id="btn_edit_groups_colors" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_colors" 
-    class="btn btn-danger btn-fill pull-right">Editer les groupes de coloris
+    <button id="btn_add_group_sizes" class="btn btn-info btn-fill pull-right">Ajouter le groupe de tailles</button>
+    <button id="btn_edit_groups_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_sizes" 
+    class="btn btn-danger btn-fill pull-right">Editer les groupes de tailles
   </button>
   <div class="clearfix"></div>
 </form>
@@ -284,17 +235,17 @@
 
 <div class="row">
  <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_groups_colors">
+  <div class="collapse" id="collapse_edit_groups_sizes">
    <div class="card card-body">
     <div class="row">
      <div class="col-md-12">
       <div class="card">
        <div class="header">
-        <h4 class="title">Gestion des groupes de coloris</h4>
-        <p class="category">Liste des groupes de coloris</p>
+        <h4 class="title">Gestion des groupes de tailles</h4>
+        <p class="category">Liste des groupes de tailles</p>
       </div>
       <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_groups_colors" class="col-md-12 table table-hover table-striped">
+        <table style="width:100% !important;" id="tab_groups_sizes" class="col-md-12 table table-hover table-striped">
          <thead>
           <th>ID</th>
           <th>Nom</th>
@@ -318,45 +269,47 @@
  <div class="col-md-12">
   <div class="card">
    <div class="header">
-    <h4 class="title">Ajout de coloris</h4>
+    <h4 class="title">Ajout de tailles</h4>
   </div>
   <div class="content">
-    <form id="form_add_colors" method="POST" action="addColors.html">
+    <form id="form_add_sizes" method="POST" action="addSizes.html">
      <div class="row">
       <div class="col-md-4">
        <div class="form-group">
-        <label for="color_name">Nom du coloris</label>
-        <input id="color_name" name="color_name" type="text" class="form-control" placeholder="Nom du coloris">
+        <label for="size_name">Nom de la taille</label>
+        <input id="size_name" name="size_name" type="text" class="form-control" placeholder="Exemple : S">
       </div>
     </div>
     
     <div class="col-md-4">
      <div class="form-group">
-      <label for="color_code">Code couleurs du coloris</label>
-      <input id="color_code" name="color_code" type="text" class="form-control demo" data-control="hue" value="#ff6161">
+      <label for="size_price">Prix de la taille</label>
+      <input id="size_price" name="size_price" type="text" class="form-control" data-control="hue" value="0€">
     </div>
   </div>
 
   <div class="col-md-4">
    <div class="form-group">
-    <label for="name_group_for_color">Groupe du coloris</label>
-    <select id="name_group_for_color" name="name_group_for_color" type="text" class="form-control" placeholder="Nom du coloris">
-      <?php
+    <label for="name_group_for_size">Groupe de la taille</label>
+    <select id="name_group_for_size" name="name_group_for_size" type="text" class="form-control" >
+
+    <?php
       foreach($groups as $value){
-      echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
-    }
+      echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
+      }
     ?>
-  </select>
+    </select>
 </div>
 </div>
 
 </div>
 
 
-<button id="btn_add_colors" class="btn btn-info btn-fill pull-right">Ajouter le coloris</button>
+<button id="btn_add_sizes" class="btn btn-info btn-fill pull-right">Ajouter la taille</button>
 
-<button id="btn_edit_colors" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_colors"
-class="btn btn-danger btn-fill pull-right">Editer les coloris</button>
+<button id="btn_edit_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_sizes"
+class="btn btn-danger btn-fill pull-right">Editer les tailles
+</button>
 <div class="clearfix"></div>
 </form>
 </div>
@@ -366,21 +319,21 @@ class="btn btn-danger btn-fill pull-right">Editer les coloris</button>
 
 <div class="row">
  <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_colors">
+  <div class="collapse" id="collapse_edit_sizes">
    <div class="card card-body">
     <div class="row">
      <div class="col-md-12">
       <div class="card">
        <div class="header">
-        <h4 class="title">Gestion des coloris</h4>
-        <p class="category">Liste des coloris</p>
+        <h4 class="title">Gestion des tailles</h4>
+        <p class="category">Liste des tailles</p>
       </div>
       <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_colors" class="col-md-12 table table-hover table-striped">
+        <table style="width:100% !important;" id="tab_sizes" class="col-md-12 table table-hover table-striped">
          <thead>
           <th>ID</th>
           <th>Nom</th>
-          <th>Code couleur</th>
+          <th>Prix</th>
           <th>Goupe associé</th>
           <th>Edition</th>
           <th>Des/Actv</th>
@@ -447,48 +400,20 @@ class="btn btn-danger btn-fill pull-right">Editer les coloris</button>
 <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
-<!--Plugin minicolors for color picker -->
-<script src="<?php echo js_url_lib('jquery.minicolors.min');?>"></script>
-<!-- Global Javascript for profil page -->
-<script src="<?php echo js_url('mainColors');?>"></script>
 <!-- Notifications-->
 <script src="<?php echo js_url('notifications');?>"></script>
-<!-- Ajax request for add colors-->
-<script src="<?php echo js_url('addColors');?>"></script>
-<!-- Ajax request for add groups colors-->
-<script src="<?php echo js_url('addGroupsColors');?>"></script>
-<!--Request Ajax for change informations of customers -->
+<!-- Global Javascript for sizes page -->
+<script src="<?php echo js_url('mainSizes');?>"></script>
+<!-- Ajax request for add groups sizes-->
+<script src="<?php echo js_url('addGroupsSizes');?>"></script>
+<!-- Ajax request for add  sizes-->
+<script src="<?php echo js_url('addSizes');?>"></script>
+<!--Request Ajax for change informations of sizes -->
 <script src="<?php echo js_url('changeStatus');?>"></script>
-<!--Request Ajax for load informations of groups colors-->
-<script src="<?php echo js_url('editGroupsColorsModal');?>"></script>
-<!--Request Ajax for load informations of colors-->
-<script src="<?php echo js_url('editColorsModal');?>"></script>
-<!--Request Ajax for change informations of groups colors-->
-<script src="<?php echo js_url('changeInfosGroupsColors');?>"></script>
-<!--Request Ajax for change informations of colors-->
-<script src="<?php echo js_url('changeInfosColors');?>"></script>
-
-
-<script type="text/javascript">
- var colpick = $('.demo').each( function() {
-  $(this).minicolors({
-    control: $(this).attr('data-control') || 'hue',
-    inline: $(this).attr('data-inline') === 'true',
-    letterCase: 'lowercase',
-    opacity: false,
-    change: function(hex, opacity) {
-      if(!hex) return;
-      if(opacity) hex += ', ' + opacity;
-      try {
-
-      } catch(e) {}
-      $(this).select();
-    },
-    theme: 'bootstrap'
-  });
-});
-
-</script>
-
-
+<!--Request Ajax for load informations of groups sizes-->
+<script src="<?php echo js_url('editGroupsSizesModal');?>"></script>
+<!--Request Ajax for send new informations of groups sizes-->
+<script src="<?php echo js_url('changeInfosGroupsSizes');?>"></script>
 </html>
+
+

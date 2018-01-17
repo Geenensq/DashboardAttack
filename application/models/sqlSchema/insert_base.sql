@@ -13,3 +13,7 @@ INSERT INTO `groups_customers` (`id_group_customer`, `name` , `actif` ) VALUES (
 #Insertion dans la table groups_colors les groupes obligatoires par defaut
 #--------------------------------------------------------------------------
 INSERT INTO `groups_colors` (`id_group_color`, `name`) VALUES (NULL, 'Defaut');
+
+#Insertion dans la table groups_colors les groupes obligatoires par defaut
+#--------------------------------------------------------------------------
+INSERT INTO `groups_sizes` (`id_group_size`, `name_group_size`) VALUES (NULL, 'Defaut');
