@@ -15,4 +15,13 @@ But the following functions will soon be integrated:
 - Product Management
 - And much more ..
 
+Profil management  ✓
+Customers management  ✓
+Groups customers management ✓
+Groups colors management ✓
+Colors management ✓
 
+
+Groups cut x In progress
+Cut management x In progress
+Orders management x In progress
