@@ -11,6 +11,18 @@
       });
       //-------------------------------------------------------------------------------------//
 
+      //-------------------------At the user's click-------------------------------------------//
+      $("#btn_edit_sizes").click(function() {
+          //---if the div of the edition is open or closed we change the text of the button---//
+          if ($("#collapse_edit_sizes").is(":visible") == true) {
+              $("#btn_edit_sizes").text("Editer les groupes de tailles");
+              $("#btn_add_sizes").attr("disabled", false);
+          } else {
+              $("#btn_edit_sizes").text("Annuler l'édition");
+              $("#btn_add_sizes").attr("disabled", true);
+          }
+      });
+      //-------------------------------------------------------------------------------------//
 
       $('#tab_groups_sizes').DataTable({
           ajax: "encodeGridGroupsSizes.html",
@@ -129,13 +141,13 @@
               {
                   "targets": 4,
                   render: function(data, full) {
-                      return '<button type="button" onclick="editColorsModal(' + data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_colors">Edition </button>'
+                      return '<button type="button" onclick="editSizesModal(' + data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_sizes">Edition </button>'
                   }
               },
               {
                   "targets": 5,
                   render: function(data, full) {
-                      return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' + '\'' + "changeStatusColors.html" + '\'' + ',' + '\'' + "#tab_colors" + '\'' + ')' + '"' + ' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'
+                      return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' + '\'' + "changeStatusSizes.html" + '\'' + ',' + '\'' + "#tab_sizes" + '\'' + ')' + '"' + ' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'
                   }
               },
               {

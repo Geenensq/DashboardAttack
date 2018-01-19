@@ -68,7 +68,7 @@ CREATE TABLE groups_customers(
 
 CREATE TABLE products(
         id_product       int (11) Auto_increment  NOT NULL ,
-        name             Varchar (255) NOT NULL ,
+        product_name     Varchar (255) NOT NULL ,
         reference        Varchar (255) NOT NULL ,
         description      Text ,
         base_price       Float NOT NULL ,
@@ -85,8 +85,9 @@ CREATE TABLE products(
 
 CREATE TABLE groups_products(
         id_group_product int (11) Auto_increment  NOT NULL ,
-        name             Varchar (25) NOT NULL ,
+        name_group_product             Varchar (25) NOT NULL ,
         description      Text NOT NULL ,
+        actif             Bool ,
         PRIMARY KEY (id_group_product )
 )ENGINE=InnoDB;
 

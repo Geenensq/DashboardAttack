@@ -128,6 +128,75 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+// =======================================================================//
+// !                Method for disable and enable size                   //
+// ======================================================================//
+
+    public function disableEnableOneSize($id)
+    {
+        $this->db->select('actif');
+        $this->db->from($this->table);
+        $this->db->where('id_size', $id );
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        if($result[0]['actif'] == 0){
+
+            $data = array ('actif' => 1 );
+            $this->db->where('id_size' , $id);
+            $this->db->update($this->table , $data);
+        } else {
+
+            $data = array ('actif' => 0 );
+            $this->db->where('id_size' , $id);
+            $this->db->update($this->table , $data);
+        }
+    }
+
+
+
+ // =======================================================================//
+// !           Method SELECT ALL sizes informations FOR MODAL           //
+// ======================================================================//
+    public function selectAllSizesForModal($id)
+    {
+        $this->db->select('id_size, size_name, price, sizes.id_group_size AS size_id_group_size , sizes.actif AS size_actif, groups_sizes.name_group_size as name_group_size');
+        $this->db->from($this->table);
+        $this->db->join('groups_sizes', 'sizes.id_group_size  = groups_sizes.id_group_size');
+        $this->db->where('id_size' , $id);
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row)
+        {
+            $sizes["id_size"] =  $row->id_size;
+            $sizes["size_name"] = $row->size_name;
+            $sizes["price"] = $row->price;
+            $sizes["id_group_size"] = $row->size_id_group_size;
+            $sizes["actif"] = $row->size_actif;
+            $sizes["name_group_size"] = $row->name_group_size;
+        }
+
+        return $sizes;
+
+    }
+
+
+// =======================================================================//
+// !                  Method update a size by its id                    //
+// ======================================================================//
+
+    public function updateNameSizes($model){
+        $data = array ('id_size' =>$model->getIdSize(),
+                        'size_name' =>$model->getName(),
+                        'price' =>$model->getPrice(),
+                        'id_group_size' =>$model->getIdGroupSize()
+                        );
+
+        $this->db->where('id_size' , $model->getIdSize());
+        $this->db->update($this->table , $data);
+        
+        }
+
 
 }
 

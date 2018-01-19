@@ -190,6 +190,9 @@ Class Colors_controller extends CI_Controller
         echo json_encode($return);
     }
 
+// ==========================================================================================//
+// !                Method for change informations of color group for modal                  //
+// ==========================================================================================//
 
     public function changeNameGroupColors()
     {
@@ -215,7 +218,9 @@ Class Colors_controller extends CI_Controller
         echo json_encode($callBack);
     }
 
-
+// ==========================================================================================//
+// !                    Method for change informations of color for modal                    //
+// ==========================================================================================//
     public function changeNameColors()
     {
         $this->form_validation->set_rules('id_color', '" "', 'required|min_length[1]');

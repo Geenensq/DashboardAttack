@@ -156,6 +156,20 @@ Class Size_controller extends CI_Controller
     }
 
 
+// =======================================================================//
+// !          Method for activate or desactivate group of colors         //
+// ======================================================================//
+    public function changeStatusSizes()
+    {
+        $this->id_size = $this->input->post('id');
+        $this->modelSizes->disableEnableOneSize($this->id_size);
+    }
+
+
+// ==========================================================================================//
+// !                    Method for change informations of size for modal                     //
+// ==========================================================================================//
+
     public function changeNameGroupSizes()
     {
 
@@ -182,6 +196,40 @@ Class Size_controller extends CI_Controller
 
 
 
+ // ==========================================================================================//
+// !                    Method for change informations of sizes for modal                    //
+// ==========================================================================================//
+    public function changeNameSizes()
+    {
+        $this->form_validation->set_rules('new_id_sizes', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_name_sizes',  '" "', 'required|min_length[2]');
+        $this->form_validation->set_rules('new_price_sizes', '" "', 'required|min_length[1]');
+
+        $callBack = array();
+
+        if ($this->form_validation->run())
+        {
+            $this->modelSizes->setIdSize($this->input->post('new_id_sizes'));
+            $this->modelSizes->setName($this->input->post('new_name_sizes'));
+            $this->modelSizes->setPrice($this->input->post('new_price_sizes'));
+            $this->modelSizes->setIdGroupSize($this->input->post('new_group_sizes'));
+          
+            $size = $this->modelSizes;
+
+            $this->modelSizes->updateNameSizes($size);
+            $callBack["confirm"] = "success";
+
+        } else{
+
+            $callBack["errorNewNameSize"] = "error";
+        }
+
+        echo json_encode($callBack);
+    }
+
+
+
+
 // ==========================================================================================//
 // !                Method get all informations of groups size for modal                    //
 // ==========================================================================================//
@@ -194,7 +242,16 @@ Class Size_controller extends CI_Controller
         echo json_encode($return);
     }
 
+// ==========================================================================================//
+// !                   Method get all informations of sizes for modal                        //
+// ==========================================================================================//
 
+    public function getInfosSizesModal()
+    {
+        $this->id_size = $this->input->post('id');
+        $return = $this->modelSizes->selectAllSizesForModal($this->id_size);
+        echo json_encode($return);
+    }
 
 
 }
