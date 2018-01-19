@@ -19,10 +19,29 @@ Class groups_colors_model extends CI_Model
 	private $table = "groups_colors"; 
 	private $id_group_color;
 	private $name_group_colors;
+    private $colors_list;
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
+    public function getColorsList($id)
+    {
+        /// LOAD DU MODELE COLORS
+
+        /// Select * from colors where id_group_color = $id 
+        
+        /// Boucle pour remplir un tableau d'objets couleurs pour toutes les couleurs de la requettes
+
+/*        foreach ($query->result_object() as $ligne)
+        {
+            $groupsColors = new Groups_colors_model();
+            $groupsColors->setIdGroupColor($ligne->id_group_color);
+            $groupsColors->setNameGroupColors($ligne->name_group_color);
+            $arrayGroupsColors[] = $groupsColors;
+        }*/
+            
+        
+    }
 
     public function getTable()
     {

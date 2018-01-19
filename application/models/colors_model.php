@@ -136,6 +136,28 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
     }
 
+// =======================================================================//
+// !      Method SELECT ALL colors and groups color for product form     //
+// ======================================================================//
+     public function selectAllColorsForProduct()
+    {
+        $query = $this->db->query('SELECT * FROM colors , groups_colors WHERE colors.id_group_color = groups_colors.id_group_color ORDER BY name_group_color');
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row)
+        {
+            $colors["id_color"] =  $row->id_color;
+            $colors["color_name"] = $row->color_name;
+            $colors["color_code"] = $row->color_code;
+            $colors["id_group_color"] = $row->color_id_group_color;
+            $colors["actif"] = $row->color_actif;
+            $colors["name_group_color"] = $row->name_group_color;
+        }
+
+        return $colors;
+
+    }
+
 
 // =======================================================================//
 // !           Method SELECT ALL colors informations FOR MODAL           //

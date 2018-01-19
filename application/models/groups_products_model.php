@@ -29,11 +29,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this->id_group_product;
     }
 
-    public function setIdGroupProduct($id_group_product)
+    public function getActif()
     {
-        $this->id_group_product = $id_group_product;
-
-        return $this;
+        return $this->actif;
     }
 
     public function getName()
@@ -50,17 +48,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
+    public function setIdGroupProduct($id_group_product)
+    {
+        $this->id_group_product = $id_group_product;
+
+        return $this;
+    }
       
     public function setDescription($description)
     {
         $this->description = $description;
 
         return $this;
-    }
-
-    public function getActif()
-    {
-        return $this->actif;
     }
 
     public function setActif($actif)
@@ -91,6 +90,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                  ->set('description' , $description)
                  ->insert($this->table);
     }
+// =======================================================================//
+// !                Method for select all groups products                //
+// ======================================================================//
+
+        public function selectAll()
+        {
+            $arrayGroupsProducts = [];
+            $this->db->select('*');
+            $this->db->from($this->table);
+          
+            $this->db->where('actif', 1 );
+            $query = $this->db->get();
+
+            foreach ($query->result_object() as $ligne)
+            {
+
+                    $groupsProducts = new Groups_products_model();
+                    $groupsProducts->setIdGroupProduct($ligne->id_group_product);
+                    $groupsProducts->setName($ligne->name_group_product);
+                    $arrayGroupsProducts[] = $groupsProducts;
+            }
+
+                    return $arrayGroupsProducts;
+        }
 
 
 // =======================================================================//

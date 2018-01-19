@@ -33,9 +33,6 @@ Class Products_controller extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->model('groups_products_model', 'modelGroupsProducts');
         $this->load->model('products_model', 'modelProducts');
-
-
-        /*$data = $this->modelGroupCustomers->selectAll();*/
     }
 
 // =======================================================================//
@@ -43,7 +40,11 @@ Class Products_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        $this->load->view('dashboard/products.html');
+        $data = $this->modelGroupsProducts->selectAll();
+        $array = [];
+        $array['groups'] = $data;
+
+        $this->load->view('dashboard/products.html' , $array);
     }
 // =======================================================================//
 // !                  Method for upload an image                         //

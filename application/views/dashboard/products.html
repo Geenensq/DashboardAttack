@@ -56,11 +56,11 @@
      </div>
    </div>
  </div>
- 
+
  <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
 <div class="wrapper">
-  <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">    	  
+  <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">
     <div class="sidebar-wrapper">
       <div class="logo">
         <a href="" class="simple-text">
@@ -118,7 +118,7 @@
             <p>Gestion</p>
           </a>
         </li>
-        
+
       </ul>
     </div>
   </div>
@@ -229,7 +229,7 @@
       </div>
     </div>
     <button id="btn_add_group_products" class="btn btn-info btn-fill pull-right">Ajouter le groupe de produits</button>
-    <button id="btn_edit_groups_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_products" 
+    <button id="btn_edit_groups_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_products"
     class="btn btn-danger btn-fill pull-right">Editer les groupes de produits</button>
   <div class="clearfix"></div>
 </form>
@@ -287,7 +287,7 @@
         <input id="product_name" name="product_name" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
       </div>
     </div>
-    
+
     <div class="col-md-4">
      <div class="form-group">
       <label for="product_ref">Référence du produit</label>
@@ -311,19 +311,34 @@
         <input id="product_price" name="product_price" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
       </div>
     </div>
-    
+
     <div class="col-md-4">
      <div class="form-group">
       <label for="product_color">Coloris</label>
-      <input id="product_color" name="product_color" type="text" class="form-control" data-control="hue" placeholder="Exemple : k444">
+    <select class="form-control">
+          <?php
+            $groupsProducts = ['test' , 'lol'];
+            foreach($groupsProducts as $values){
+              echo '<optgroup label=' . '"' . $values . '">' .
+                   '<option id="product_color" name="product_color" value=' . '"' . $values . '">' . $values .'</option>'.
+                   '</optgroup>';
+            }
+          ?>
+    </select>
     </div>
   </div>
 
   <div class="col-md-4">
    <div class="form-group">
     <label for="product_group">Groupe du produit</label>
-    <input id="product_group" name="product_group" type="text" class="form-control" data-control="hue" placeholder="Exemple : Débardeur de haute qualité">
-</div>
+             <select required name="product_group" id="product_group" class="form-control">
+              <?php
+              foreach($groups as $value){
+                echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
+              }
+            ?>
+          </select>
+  </div>
 </div>
 
 </div>
@@ -332,10 +347,20 @@
       <div class="col-md-4">
        <div class="form-group">
         <label for="product_size">Taille du produit</label>
-        <input id="product_size" name="product_size" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
+            <select class="form-control">
+          <?php
+            $groupsProducts = ['test' , 'lol'];
+
+            foreach($groupsProducts as $values){
+              echo '<optgroup label=' . '"' . $values . '">' .
+                   '<option id="product_color" name="product_color" value=' . '"' . $values . '">' . $values .'</option>'.
+                   '</optgroup>';
+            }
+          ?>
+    </select>
       </div>
     </div>
-    
+
     <div class="col-md-8">
      <div class="form-group">
       <label for="image">Image</label>
