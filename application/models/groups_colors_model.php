@@ -19,29 +19,45 @@ Class groups_colors_model extends CI_Model
 	private $table = "groups_colors"; 
 	private $id_group_color;
 	private $name_group_colors;
-    private $colors_list;
+   
+    public $colors_list;
+
+
+// =======================================================================//
+// !                   Start methods collections                         //
+// ======================================================================//
+
+    public function getColorsList()
+    {
+
+        /// chargement du modele et on selectionne toute les couleur du groupe passé en params
+        $this->load->model('colors_model', 'modelColors');
+        $this->db->select('*');
+        $this->db->from('colors');;
+        $this->db->where('id_group_color', $this->id_group_color);
+        $query = $this->db->get();
+        //On boucle sur le retour MYSQL
+        $colorsCollection = array();
+        
+        foreach ($query->result_object() as $ligne)
+        {
+            $colorsModel = new colors_model();
+            $colorsModel->setIdColor($ligne->id_color);
+            $colorsModel->setColorName($ligne->color_name);
+            $colorsModel->setColorCode($ligne->color_code);
+            $colorsModel->setIdGroupColor($ligne->id_group_color);
+            $colorsCollection[] = $colorsModel;
+        }
+
+        $this->colors_list = $colorsCollection; 
+
+        
+    }
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-    public function getColorsList($id)
-    {
-        /// LOAD DU MODELE COLORS
 
-        /// Select * from colors where id_group_color = $id 
-        
-        /// Boucle pour remplir un tableau d'objets couleurs pour toutes les couleurs de la requettes
-
-/*        foreach ($query->result_object() as $ligne)
-        {
-            $groupsColors = new Groups_colors_model();
-            $groupsColors->setIdGroupColor($ligne->id_group_color);
-            $groupsColors->setNameGroupColors($ligne->name_group_color);
-            $arrayGroupsColors[] = $groupsColors;
-        }*/
-            
-        
-    }
 
     public function getTable()
     {
@@ -94,6 +110,7 @@ Class groups_colors_model extends CI_Model
         $this->db->select('*');
         $this->db->from($this->table);
         $query = $this->db->get();
+        $arrayGroupsColors = array();
 
         foreach ($query->result_object() as $ligne)
         {
@@ -102,8 +119,13 @@ Class groups_colors_model extends CI_Model
             $groupsColors->setNameGroupColors($ligne->name_group_color);
             $arrayGroupsColors[] = $groupsColors;
         }
-
+        
+        foreach ($arrayGroupsColors as $key => $groupsColors) {
+           $arrayGroupsColors[$key]->getColorsList();  
+        }
+     
         return $arrayGroupsColors;
+
     }
 
 // =======================================================================//

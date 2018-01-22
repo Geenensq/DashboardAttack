@@ -316,14 +316,15 @@
      <div class="form-group">
       <label for="product_color">Coloris</label>
     <select class="form-control">
-          <?php
-            $groupsProducts = ['test' , 'lol'];
-            foreach($groupsProducts as $values){
-              echo '<optgroup label=' . '"' . $values . '">' .
-                   '<option id="product_color" name="product_color" value=' . '"' . $values . '">' . $values .'</option>'.
-                   '</optgroup>';
-            }
-          ?>
+
+       <?php foreach($groupsColors as $group) { ?>
+            <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
+
+                <?php foreach($group->colors_list as $color){ ?>
+                    <?= '<option id="product_color" name="product_color" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
+                <?php } ?>
+            <?= '</optgroup>'; ?> 
+        <?php } ?>
     </select>
     </div>
   </div>
@@ -332,11 +333,11 @@
    <div class="form-group">
     <label for="product_group">Groupe du produit</label>
              <select required name="product_group" id="product_group" class="form-control">
-              <?php
-              foreach($groups as $value){
+             <?php
+              foreach($groupsProducts as $value){
                 echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
               }
-            ?>
+            ?> 
           </select>
   </div>
 </div>
@@ -348,15 +349,7 @@
        <div class="form-group">
         <label for="product_size">Taille du produit</label>
             <select class="form-control">
-          <?php
-            $groupsProducts = ['test' , 'lol'];
 
-            foreach($groupsProducts as $values){
-              echo '<optgroup label=' . '"' . $values . '">' .
-                   '<option id="product_color" name="product_color" value=' . '"' . $values . '">' . $values .'</option>'.
-                   '</optgroup>';
-            }
-          ?>
     </select>
       </div>
     </div>

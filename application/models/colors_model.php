@@ -20,6 +20,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     	private $color_name;
     	private $color_code;
     	private $id_group_color;
+        private $actif;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -75,6 +76,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         return $this;
     }
+
 // =======================================================================//
 // !                     Start CRUD methods                              //
 // ======================================================================//

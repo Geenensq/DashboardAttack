@@ -102,7 +102,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
           
             $this->db->where('actif', 1 );
             $query = $this->db->get();
-
+ 
             foreach ($query->result_object() as $ligne)
             {
 
@@ -111,7 +111,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     $groupsProducts->setName($ligne->name_group_product);
                     $arrayGroupsProducts[] = $groupsProducts;
             }
-
+                    /// osef de ici wesh
                     return $arrayGroupsProducts;
         }
 
