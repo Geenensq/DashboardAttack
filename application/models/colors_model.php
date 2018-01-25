@@ -191,7 +191,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !                  Method update a colors by its id                    //
 // ======================================================================//
 
-        public function updateNameColors($model){
+        public function updateNameColors($model)
+        {
             $data = array ('id_color' =>$model->getIdColor(),
                            'color_name' =>$model->getColorName(),
                            'color_code' =>$model->getColorCode(),

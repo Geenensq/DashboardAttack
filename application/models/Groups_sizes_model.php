@@ -19,6 +19,35 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $actif;
         private $table = "groups_sizes";
 
+        public $sizes_list;
+// =======================================================================//
+// !                   Start methods collections                         //
+// ======================================================================//
+
+    public function getSizesList()
+    {
+        /// chargement du modele et on selectionne toute les couleur du groupe passé en params
+        $this->load->model('sizes_model', 'modelSizes');
+        $this->db->select('*');
+        $this->db->from('sizes');;
+        $this->db->where('id_group_size', $this->id_group_size);
+        $query = $this->db->get();
+        //On boucle sur le retour MYSQL
+        $sizesCollection = array();
+        
+        foreach ($query->result_object() as $ligne)
+        {
+            $sizesModel = new sizes_model();
+            $sizesModel->setIdSize($ligne->id_size);
+            $sizesModel->setName($ligne->size_name);
+            $sizesModel->setPrice($ligne->price);
+            $sizesModel->setIdGroupSize($ligne->id_group_size);
+            $sizesCollection[] = $sizesModel;
+        }
+
+        $this->sizes_list = $sizesCollection; 
+
+    }
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -65,6 +94,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+   
+
 // =======================================================================//
 // !                 Method SELECT * groups sizes                       //
 // ======================================================================//
@@ -73,7 +104,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     {
         $this->db->select('*');
         $this->db->from($this->table);
+        $this->db->where('actif', 1 );
+        
         $query = $this->db->get();
+        $arrayGroupsSizes = array();
 
         foreach ($query->result_object() as $ligne)
         {
@@ -81,6 +115,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $groupsSizes->setIdGroupSize($ligne->id_group_size);
             $groupsSizes->setNameGroupSize($ligne->name_group_size);
             $arrayGroupsSizes[] = $groupsSizes;
+        }
+
+        foreach ($arrayGroupsSizes as $key => $groupsSizes) {
+           $arrayGroupsSizes[$key]->getSizesList();  
         }
 
         return $arrayGroupsSizes;

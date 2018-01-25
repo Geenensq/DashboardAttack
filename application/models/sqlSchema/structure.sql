@@ -32,7 +32,7 @@ CREATE TABLE customers(
         address            Varchar (255) NOT NULL ,
         zip_code           Varchar (255) NOT NULL ,
         city               Varchar (255) NOT NULL ,
-        actif              Bool ,   
+        actif              Bool NOT NULL ,
         id_group_customer  Int NOT NULL ,
         PRIMARY KEY (id_customer )
 )ENGINE=InnoDB;
@@ -72,9 +72,11 @@ CREATE TABLE products(
         reference        Varchar (255) NOT NULL ,
         description      Text ,
         base_price       Float NOT NULL ,
-        id_group_color   Int NOT NULL ,
+        img_url          Varchar (255) NOT NULL ,
+        actif              Bool NOT NULL ,
         id_group_product Int NOT NULL ,
-        id_group_size    Int NOT NULL ,
+        id_color         Int NOT NULL ,
+        id_size          Int NOT NULL ,
         PRIMARY KEY (id_product )
 )ENGINE=InnoDB;
 
@@ -84,10 +86,10 @@ CREATE TABLE products(
 #------------------------------------------------------------
 
 CREATE TABLE groups_products(
-        id_group_product int (11) Auto_increment  NOT NULL ,
-        name_group_product             Varchar (25) NOT NULL ,
-        description      Text NOT NULL ,
-        actif             Bool ,
+        id_group_product   int (11) Auto_increment  NOT NULL ,
+        name_group_product Varchar (25) NOT NULL ,
+        description        Text NOT NULL ,
+        actif              Bool NOT NULL ,
         PRIMARY KEY (id_group_product )
 )ENGINE=InnoDB;
 
@@ -98,10 +100,10 @@ CREATE TABLE groups_products(
 
 CREATE TABLE colors(
         id_color       int (11) Auto_increment  NOT NULL ,
-        color_name           Varchar (255) NOT NULL ,
+        color_name     Varchar (255) NOT NULL ,
         color_code     Varchar (255) ,
+        actif          Bool NOT NULL ,
         id_group_color Int NOT NULL ,
-        actif             Bool ,
         PRIMARY KEY (id_color )
 )ENGINE=InnoDB;
 
@@ -112,10 +114,10 @@ CREATE TABLE colors(
 
 CREATE TABLE sizes(
         id_size       int (11) Auto_increment  NOT NULL ,
-        size_name          Varchar (255) NOT NULL ,
+        size_name     Varchar (255) NOT NULL ,
         price         Float NOT NULL ,
+        actif         Bool NOT NULL ,
         id_group_size Int NOT NULL ,
-        actif           Bool ,
         PRIMARY KEY (id_size )
 )ENGINE=InnoDB;
 
@@ -125,9 +127,9 @@ CREATE TABLE sizes(
 #------------------------------------------------------------
 
 CREATE TABLE groups_sizes(
-        id_group_size int (11) Auto_increment  NOT NULL ,
-        name_group_size          Varchar (25) NOT NULL ,
-        actif             Bool ,         
+        id_group_size   int (11) Auto_increment  NOT NULL ,
+        name_group_size Varchar (25) NOT NULL ,
+        actif           Bool NOT NULL ,
         PRIMARY KEY (id_group_size )
 )ENGINE=InnoDB;
 
@@ -137,9 +139,9 @@ CREATE TABLE groups_sizes(
 #------------------------------------------------------------
 
 CREATE TABLE groups_colors(
-        id_group_color int (11) Auto_increment  NOT NULL ,
-        name_group_color          Varchar (255) NOT NULL ,
-        actif             Bool ,
+        id_group_color   int (11) Auto_increment  NOT NULL ,
+        name_group_color Varchar (255) NOT NULL ,
+        actif            Bool NOT NULL ,
         PRIMARY KEY (id_group_color )
 )ENGINE=InnoDB;
 
@@ -220,9 +222,9 @@ CREATE TABLE orders_members(
 
 ALTER TABLE members ADD CONSTRAINT FK_members_id_group_member FOREIGN KEY (id_group_member) REFERENCES groups_members(id_group_member);
 ALTER TABLE customers ADD CONSTRAINT FK_customers_id_group_customer FOREIGN KEY (id_group_customer) REFERENCES groups_customers(id_group_customer);
-ALTER TABLE products ADD CONSTRAINT FK_products_id_group_color FOREIGN KEY (id_group_color) REFERENCES groups_colors(id_group_color);
 ALTER TABLE products ADD CONSTRAINT FK_products_id_group_product FOREIGN KEY (id_group_product) REFERENCES groups_products(id_group_product);
-ALTER TABLE products ADD CONSTRAINT FK_products_id_group_size FOREIGN KEY (id_group_size) REFERENCES groups_sizes(id_group_size);
+ALTER TABLE products ADD CONSTRAINT FK_products_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
+ALTER TABLE products ADD CONSTRAINT FK_products_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE colors ADD CONSTRAINT FK_colors_id_group_color FOREIGN KEY (id_group_color) REFERENCES groups_colors(id_group_color);
 ALTER TABLE sizes ADD CONSTRAINT FK_sizes_id_group_size FOREIGN KEY (id_group_size) REFERENCES groups_sizes(id_group_size);
 ALTER TABLE orders ADD CONSTRAINT FK_orders_id_customer FOREIGN KEY (id_customer) REFERENCES customers(id_customer);

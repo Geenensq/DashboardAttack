@@ -18,6 +18,7 @@ $(document).ready(function() {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La taille à été ajouté avec succès !", "info");
                 $('#size_name').val('');
                 $('#size_price').val('');
+                $('#tab_sizes').DataTable().ajax.reload();
                 
 
             } else if (data.confirm == "error") {

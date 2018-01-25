@@ -14,7 +14,7 @@ $(document).ready(function() {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le groupe de produits à été ajouté avec succès !", "info");
                 $('#name_group_products').val('');
                 $('#description_group_products').val('');
-
+                $('#tab_groups_products').DataTable().ajax.reload();
 
             } else if (data.confirm == "error") {
                 /*Call notifications*/

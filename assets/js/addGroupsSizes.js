@@ -12,8 +12,8 @@ $(document).ready(function() {
                 /*Call notifications*/
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le groupe de tailles à été ajouté avec succès !", "info");
                 $('#name_group_sizes').val('');
-
-
+                $('#tab_groups_sizes').DataTable().ajax.reload();
+                
 
             } else if (data.confirm == "error") {
                 /*Call notifications*/

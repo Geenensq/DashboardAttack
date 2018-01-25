@@ -12,6 +12,7 @@ $(document).ready(function() {
                 /*Call notifications*/
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le groupe de couleurs à été ajouté avec succès !", "info");
                 $('#name_group_colors').val('');
+                $('#tab_groups_colors').DataTable().ajax.reload();
 
 
 

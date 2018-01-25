@@ -109,6 +109,7 @@ Class groups_colors_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
+        $this->db->where('actif', 1 );
         $query = $this->db->get();
         $arrayGroupsColors = array();
 

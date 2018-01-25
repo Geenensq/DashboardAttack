@@ -59,6 +59,106 @@
 
  <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
+  <!-- //////////////////////////////////////Modal products//////////////////////////////////////////// -->
+ <div class="modal fade" data-backdrop="true" id="modal_update_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <h5 class="modal-title" id="modalLabel">Edition du produit</h5>
+       </div>
+       <form id="modal_update_name_products" method="POST" action="">
+         <div class="modal-body">
+           <div class="form-group">
+             <input type="hidden" class="form-control" name="new_id_product" id="new_id_product">
+           </div>
+           <div class="form-group">
+             <label for="new_name_product" class="form-control-label">Nouveau nom du produit:</label>
+             <input required placeholder="Nouveau nom" name="new_name_product" id="new_name_product" type="text" class="form-control">
+           </div>
+
+          <div class="form-group">
+             <label for="new_ref_products" class="form-control-label">Nouvelle référence du produit:</label>
+             <input required placeholder="Nouveau nom" name="new_ref_products" id="new_ref_products" type="text" class="form-control">
+           </div>
+
+            <div class="form-group">
+             <label for="new_desc_product" class="form-control-label"> Nouvelle description du produit:</label>
+             <input required placeholder="Nouveau nom" name="new_desc_product" id="new_desc_product" type="text" class="form-control">
+           </div>
+
+           <div class="form-group">
+             <label for="new_price_product" class="form-control-label">Nouveau prix produit:</label>
+             <input required placeholder="Nouveau nom" name="new_price_product" id="new_price_product" type="text" class="form-control">
+           </div>
+
+          <div class="form-group">
+             <label for="image" class="form-control-label">Nouvelle image du produit:</label>
+              <input id="image" name="image" type="file" class="form-control" data-control="hue">
+           </div>
+
+            <div class="form-group">
+             <label for="new_group_product" class="form-control-label">Nouveau groupe du produit:</label>
+       <select required name="new_group_product" id="new_group_product" class="form-control">
+             <?php
+              foreach($groupsProducts as $value){
+                echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
+              }
+            ?> 
+          </select>
+           </div>
+         
+           <div class="form-group">
+             <label for="new_color_product" class="form-control-label">Nouvelle couleur du produit:</label>
+                 <select required name="new_color_product" id="new_color_product" class="form-control">
+                  <option value="" disabled selected>---</option>
+                 <?php foreach($groupsColors as $group) { ?>
+                      <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
+
+                          <?php foreach($group->colors_list as $color){ ?>
+                              <?= '<option id="new_color_product" name="new_color_product" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
+                          <?php } ?>
+                      <?= '</optgroup>'; ?> 
+                  <?php } ?>
+              </select>
+           </div>
+
+          <div class="form-group">
+             <label for="new_size_product class="form-control-label">Nouvelle taille du produit:</label>
+               <select required name="new_size_product" id="new_size_product" class="form-control">
+                 <option value="" disabled selected>---</option>
+              <?php foreach($groupsSizes as $group) { ?>
+            <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
+
+                <?php foreach($group->sizes_list as $size){ ?>
+                    <?= '<option id="new_size_product" name="new_size_product" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
+                <?php } ?>
+            <?= '</optgroup>'; ?> 
+        <?php } ?>
+
+    </select>
+           </div>
+
+
+
+         </div>
+
+
+
+
+         <div class="modal-footer">
+           <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+           <button class="btn btn-info btn-fill">Enregistrer</button>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+
+ <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
 <div class="wrapper">
   <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">
     <div class="sidebar-wrapper">
@@ -279,7 +379,7 @@
     <h4 class="title">Ajout de produits</h4>
   </div>
   <div class="content">
-    <form id="" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="http://127.0.0.1/local/products_controller/addProducts.html">
+    <form id="form_add_products" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="http://127.0.0.1/local/products_controller/addProducts.html">
      <div class="row">
       <div class="col-md-4">
        <div class="form-group">
@@ -315,7 +415,7 @@
     <div class="col-md-4">
      <div class="form-group">
       <label for="product_color">Coloris</label>
-    <select class="form-control">
+    <select name="product_color" id="product_color" class="form-control">
 
        <?php foreach($groupsColors as $group) { ?>
             <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
@@ -348,7 +448,16 @@
       <div class="col-md-4">
        <div class="form-group">
         <label for="product_size">Taille du produit</label>
-            <select class="form-control">
+            <select name="product_size" id="product_size" class="form-control">
+
+              <?php foreach($groupsSizes as $group) { ?>
+            <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
+
+                <?php foreach($group->sizes_list as $size){ ?>
+                    <?= '<option id="product_size" name="product_size" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
+                <?php } ?>
+            <?= '</optgroup>'; ?> 
+        <?php } ?>
 
     </select>
       </div>
@@ -364,11 +473,10 @@
 
 </div>
 
+<button id="btn_add_products" class="btn btn-info btn-fill pull-right">Ajouter le produit</button>
 
-<button id="btn_add_sizes" class="btn btn-info btn-fill pull-right">Ajouter la taille</button>
-
-<button id="btn_edit_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_sizes"
-class="btn btn-danger btn-fill pull-right">Editer les tailles
+<button id="btn_edit_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_products"
+class="btn btn-danger btn-fill pull-right">Editer les produits
 </button>
 <div class="clearfix"></div>
 </form>
@@ -379,24 +487,29 @@ class="btn btn-danger btn-fill pull-right">Editer les tailles
 
 <div class="row">
  <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_sizes">
+  <div class="collapse" id="collapse_edit_products">
    <div class="card card-body">
     <div class="row">
      <div class="col-md-12">
       <div class="card">
        <div class="header">
-        <h4 class="title">Gestion des tailles</h4>
-        <p class="category">Liste des tailles</p>
+        <h4 class="title">Gestion des Produits</h4>
+        <p class="category">Liste des produits</p>
       </div>
       <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_sizes" class="col-md-12 table table-hover table-striped">
+        <table style="width:100% !important;" id="tab_products" class="col-md-12 table table-hover table-striped">
          <thead>
           <th>ID</th>
           <th>Nom</th>
+          <th>Reference</th>
+          <th>Description</th>
           <th>Prix</th>
-          <th>Goupe associé</th>
-          <th>Edition</th>
-          <th>Des/Actv</th>
+          <th>Photos</th>
+          <th>Groupe du produit</th>
+          <th>Coloris</th>
+          <th>Taille</th>
+          <th>Edition du nom</th>
+          <th>Désactivation / Activation</th>
           <th>Status</th>
         </thead>
         <tbody>
@@ -468,10 +581,16 @@ class="btn btn-danger btn-fill pull-right">Editer les tailles
 <script src="<?php echo js_url('mainProducts');?>"></script>
 <!-- Ajax request for add groups products-->
 <script src="<?php echo js_url('addGroupsProducts');?>"></script>
+<!-- Ajax request for add products-->
+<script src="<?php echo js_url('addProducts');?>"></script>
 <!--Request Ajax for load informations of groups products-->
 <script src="<?php echo js_url('editGroupsProductsModal');?>"></script>
 <!--Request Ajax for change informations of groups products-->
 <script src="<?php echo js_url('changeInfosGroupsProducts');?>"></script>
+<!--Request Ajax for change informations of groups products-->
+<script src="<?php echo js_url('changeInfosProducts');?>"></script>
+<!--Request Ajax for change informations of groups products-->
+<script src="<?php echo js_url('editProductsModal');?>"></script>
 </html>
 
 
