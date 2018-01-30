@@ -73,7 +73,7 @@ CREATE TABLE products(
         description      Text ,
         base_price       Float NOT NULL ,
         img_url          Varchar (255) NOT NULL ,
-        actif              Bool NOT NULL ,
+        actif            Bool NOT NULL ,
         id_group_product Int NOT NULL ,
         id_color         Int NOT NULL ,
         id_size          Int NOT NULL ,
@@ -153,24 +153,24 @@ CREATE TABLE groups_colors(
 CREATE TABLE orders(
         id_order           int (11) Auto_increment  NOT NULL ,
         date_order         Date NOT NULL ,
-        status_order       Varchar (255) NOT NULL ,
         comment_order      Text NOT NULL ,
         price_order        Float NOT NULL ,
         id_customer        Int NOT NULL ,
         id_method_payment  Int NOT NULL ,
         id_method_shipping Int NOT NULL ,
+        id_state           Int NOT NULL ,
         PRIMARY KEY (id_order )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: etats
+# Table: states
 #------------------------------------------------------------
 
-CREATE TABLE etats(
-        id_etat   int (11) Auto_increment  NOT NULL ,
-        name_etat Varchar (25) NOT NULL ,
-        PRIMARY KEY (id_etat )
+CREATE TABLE states(
+        id_state   int (11) Auto_increment  NOT NULL ,
+        name_state Varchar (25) NOT NULL ,
+        PRIMARY KEY (id_state )
 )ENGINE=InnoDB;
 
 
@@ -216,8 +216,7 @@ CREATE TABLE orders_members(
         date_cm   Date ,
         id_member Int NOT NULL ,
         id_order  Int NOT NULL ,
-        id_etat   Int NOT NULL ,
-        PRIMARY KEY (id_member ,id_order ,id_etat )
+        PRIMARY KEY (id_member ,id_order )
 )ENGINE=InnoDB;
 
 ALTER TABLE members ADD CONSTRAINT FK_members_id_group_member FOREIGN KEY (id_group_member) REFERENCES groups_members(id_group_member);
@@ -230,8 +229,8 @@ ALTER TABLE sizes ADD CONSTRAINT FK_sizes_id_group_size FOREIGN KEY (id_group_si
 ALTER TABLE orders ADD CONSTRAINT FK_orders_id_customer FOREIGN KEY (id_customer) REFERENCES customers(id_customer);
 ALTER TABLE orders ADD CONSTRAINT FK_orders_id_method_payment FOREIGN KEY (id_method_payment) REFERENCES methods_payments(id_method_payment);
 ALTER TABLE orders ADD CONSTRAINT FK_orders_id_method_shipping FOREIGN KEY (id_method_shipping) REFERENCES methods_shippings(id_method_shipping);
+ALTER TABLE orders ADD CONSTRAINT FK_orders_id_state FOREIGN KEY (id_state) REFERENCES states(id_state);
 ALTER TABLE product_order ADD CONSTRAINT FK_product_order_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
 ALTER TABLE product_order ADD CONSTRAINT FK_product_order_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
-ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_etat FOREIGN KEY (id_etat) REFERENCES etats(id_etat);

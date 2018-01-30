@@ -57,6 +57,10 @@ Class Products_controller extends CI_Controller
         $this->load->view('dashboard/products.html' , $array);
 
     }
+
+
+
+
 // =======================================================================//
 // !                  Method for upload an image                         //
 // ======================================================================//
@@ -108,14 +112,24 @@ Class Products_controller extends CI_Controller
         $callBack = array();
 
            if ($this->form_validation->run()) {
-            $this->img_url = $this->uploadImage();
 
+            $this->img_url = $this->uploadImage();
             $this->modelProducts->setIdProduct($this->input->post('new_id_product'));
             $this->modelProducts->setName($this->input->post('new_name_product'));
             $this->modelProducts->setReference($this->input->post('new_ref_products'));
             $this->modelProducts->setDescription($this->input->post('new_desc_product'));
             $this->modelProducts->setBasePrice($this->input->post('new_price_product'));
-            $this->modelProducts->setImgUrl($this->img_url);
+            
+            if ($this->img_url == "errorImageFormat") {
+
+               $this->modelProducts->setImgUrl("noimage.gif");
+            
+            } else {
+
+                $this->modelProducts->setImgUrl($this->img_url);
+            }
+
+
             $this->modelProducts->setIdGroupProduct($this->input->post('new_group_product'));
             $this->modelProducts->setIdGroupColor($this->input->post('new_color_product'));
             $this->modelProducts->setIdGroupSize($this->input->post('new_size_product'));
@@ -167,7 +181,7 @@ Class Products_controller extends CI_Controller
 // ======================================================================//
     public function encodeGridProducts()
     {
-        $results = $this->modelProducts->loadDataProductsDataTable();
+        $results = $this->modelProducts->loadDataProducts();
         $data = array();
 
         foreach ($results as $result) {
@@ -320,9 +334,12 @@ Class Products_controller extends CI_Controller
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('image')) {
+
             $error = 'errorImageFormat';
             return $error;
+
         } else {
+
             $upload_data = $this->upload->data();
             $file_name = $upload_data['file_name'];
             return $file_name;

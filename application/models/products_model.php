@@ -193,8 +193,39 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+
 // =======================================================================//
-// !                  Method update a products by its id                    //
+// !                     Select an products by its id                    //
+// ======================================================================//
+    public function selectProductsById($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('id_product' , $id);
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row)
+        {
+            $products["id_product"] =  $row->id_product;
+            $products["product_name"] = $row->product_name;
+            $products["reference"] = $row->reference;
+            $products["description"] = $row->description;
+            $products["base_price"] = $row->base_price;
+            $products["img_url"] = $row->img_url;
+            $products["actif"] = $row->actif;
+            $products["id_group_product"] = $row->id_group_product;
+            $products["id_color"] = $row->id_color;
+            $products["id_size"] = $row->id_size;
+        }
+
+        return $products;
+
+    }
+
+
+
+// =======================================================================//
+// !                  Method update a products by its id                  //
 // ======================================================================//
 
     public function updateNameProducts($model)
@@ -219,7 +250,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !           Method SELECT *  colors for datatable                     //
 // ======================================================================//
 
-    public function loadDataProductsDataTable()
+    public function loadDataProducts()
     {
         $this->db->select
         ('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
@@ -272,7 +303,48 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+// =======================================================================//
+// !           Method SELECT ALL products informations                   //
+// ======================================================================//
+    public function selectAll()
+    {
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
+
+        $this->db->from($this->table);
+        $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
+        $this->db->join('colors', 'products.id_color = colors.id_color');
+        $this->db->join('sizes', 'products.id_size = sizes.id_size');
+
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row)
+        {
+            $products["id_product"] =  $row->id_product;
+            $products["product_name"] = $row->product_name;
+            $products["reference"] = $row->reference;
+            $products["description"] = $row->description;
+            $products["base_price"] = $row->base_price;
+            $products["img_url"] = $row->img_url;
+            $products["img_url"] = $row->img_url;
+            $products["name_groups_products"] = $row->name_groups_products;
+            $products["id_groups_products"] = $row->id_groups_products;
+            $products["colors_names"] = $row->colors_names;
+            $products["sizes_names"] = $row->sizes_names;
+            $products["actif"] = $row->actif;
+        }
+
+        return $products;
+
+    }
+
+
+
+
 }
+
+
+
+
 
 
 

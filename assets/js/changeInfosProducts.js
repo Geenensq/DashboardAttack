@@ -16,7 +16,6 @@ e.preventDefault();
                                notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté avec succès !", "info");
                                 $('#tab_products').DataTable().ajax.reload();
                                 $('#modal_update_products').modal('hide');
-                               
                                 } else {
                                     notify("pe-7s-refresh-2", "<b>Informations : </b>Tous les champs doivent être remplis", "danger");
                                 }

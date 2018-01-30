@@ -194,7 +194,27 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !                     Start CRUD methods                              //
 // ======================================================================//
 
+// =======================================================================//
+// !                 Method SELECT * groupscustomers                      //
+// ======================================================================//
 
+        public function selectAll()
+        {
+            $arrayCustomers = [];
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $query = $this->db->get();
+
+            foreach ($query->result_object() as $ligne)
+            {
+                    $customers = new Customers_model();
+                    $customers->setIdCustomer($ligne->id_customer);
+                    $customers->setFirstName($ligne->firstname);
+                    $customers->setLastName($ligne->lastname);
+                    $arrayCustomers[] = $customers;
+            }
+                    return $arrayCustomers;
+        }
 
 // =======================================================================//
 // !                Method for insert on customers                       //
