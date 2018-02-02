@@ -17,6 +17,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $id_size;
         private $name;
         private $price;
+        private $actif;
         private $id_group_size; 
         protected $table = "sizes";
 
@@ -57,6 +58,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this->table;
     }
 
+    public function getActif()
+    {
+        return $this->actif;
+    }
+
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
@@ -77,6 +83,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function setActif($actif)
+    {
+        $this->actif = $actif;
 
         return $this;
     }

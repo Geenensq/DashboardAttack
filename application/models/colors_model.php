@@ -46,6 +46,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this->id_group_color;
     }
 
+    public function getActif()
+    {
+        return $this->actif;
+    }
+
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
@@ -77,6 +82,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $this;
     }
 
+    public function setActif($actif)
+    {
+        $this->actif = $actif;
+
+        return $this;
+    }
 // =======================================================================//
 // !                     Start CRUD methods                              //
 // ======================================================================//

@@ -26,6 +26,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $id_group_size;
         private $img_url;
 
+
+        private $color;
+        private $size;
+        private $group_product;
+
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
@@ -74,6 +79,22 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     {
         return $this->description;
     }
+
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function getGroupProduct()
+    {
+        return $this->group_product;
+    }
+
 
 
 
@@ -138,6 +159,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         return $this;
     }
+
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+
+    public function setGroupProduct($group_product)
+    {
+        $this->group_product = $group_product;
+
+        return $this;
+    }
+
+
 // =======================================================================//
 // !                    Method for insert an products                    //
 // ======================================================================//
@@ -304,36 +349,72 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
 // =======================================================================//
-// !           Method SELECT ALL products informations                   //
+// !                                                                     //
 // ======================================================================//
     public function selectAll()
     {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
+        $this->load->model('colors_model' , 'modelColors');
+        $this->load->model('sizes_model' , 'modelSizes');
+        $this->load->model('groups_products_model' , 'modelGroupsProducts');
+
+        $this->db->select('id_product , product_name , reference , products.description AS product_description , base_price , img_url , products.actif AS product_actif ,
+        products.id_group_product AS id_group_product  , groups_products.id_group_product AS group_product_id_group_product , groups_products.name_group_product AS name_group_product , groups_products.description AS group_product_description ,
+        groups_products.actif AS group_product_actif , colors.id_color AS id_color , colors.color_name AS color_name , colors.color_code AS color_code , colors.actif AS
+        color_actif , colors.id_group_color AS id_group_color , sizes.id_size AS id_size , sizes.size_name AS size_name , sizes.price AS price , sizes.actif AS size_actif , 
+        sizes.id_group_size AS id_group_size');
 
         $this->db->from($this->table);
-        $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
-        $this->db->join('colors', 'products.id_color = colors.id_color');
-        $this->db->join('sizes', 'products.id_size = sizes.id_size');
+        $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
+        $this->db->join('colors' , 'products.id_color = colors.id_color');
+        $this->db->join('sizes' , 'products.id_size = sizes.id_size');
 
         $query = $this->db->get();
 
-        foreach ($query->result() as $row)
-        {
-            $products["id_product"] =  $row->id_product;
-            $products["product_name"] = $row->product_name;
-            $products["reference"] = $row->reference;
-            $products["description"] = $row->description;
-            $products["base_price"] = $row->base_price;
-            $products["img_url"] = $row->img_url;
-            $products["img_url"] = $row->img_url;
-            $products["name_groups_products"] = $row->name_groups_products;
-            $products["id_groups_products"] = $row->id_groups_products;
-            $products["colors_names"] = $row->colors_names;
-            $products["sizes_names"] = $row->sizes_names;
-            $products["actif"] = $row->actif;
-        }
+        $products = array();
 
+        foreach ($query->result_object() as $ligne) {
+
+            $product = new products_model();
+            $product->setIdProduct($ligne->id_product);
+            $product->setName($ligne->product_name);
+            $product->setReference($ligne->reference);
+            $product->setDescription($ligne->product_description);
+            $product->setBasePrice($ligne->base_price);
+            $product->setImgUrl($ligne->img_url);
+            $product->setIdGroupProduct($ligne->id_group_product);
+
+            $color = new colors_model();
+            $color->setIdColor($ligne->id_color);
+            $color->setColorName($ligne->color_name);
+            $color->setColorCode($ligne->color_code);
+            $color->setActif($ligne->color_actif);
+
+            $size = new sizes_model();
+            $size->setIdSize($ligne->id_size);
+            $size->setName($ligne->size_name);
+            $size->setPrice($ligne->price);
+            $size->setActif($ligne->size_actif);
+            $size->setIdGroupSize($ligne->id_group_size);
+
+            $group_product = new groups_products_model();
+            $group_product->setIdGroupProduct($ligne->group_product_id_group_product);
+            $group_product->setName($ligne->name_group_product);
+            $group_product->setDescription($ligne->group_product_description);
+            $group_product->setActif($ligne->group_product_actif);
+
+
+            $product->setColor($color);
+            $product->setSize($size);
+            $product->setGroupProduct($group_product);
+
+            $products[] = $product;
+
+            
+        
+        }
+        
         return $products;
+
 
     }
 

@@ -21,6 +21,8 @@ Class Orders_controller extends CI_Controller
 	private $id_method_payment;
 	private $id_method_shipping;
 
+    private $id_product;
+
 // =======================================================================//
 // !                  Constructor of my Class                            //
 // ======================================================================//
@@ -56,6 +58,18 @@ Class Orders_controller extends CI_Controller
 
     
         $this->load->view('dashboard/orders.html', $array);
+    }
+
+
+// ==========================================================================================//
+// !               Method get all informations of products for my array                      //
+// ==========================================================================================//
+
+    public function getInfosProductsArray()
+    {
+        $this->id_product = $this->input->post('id');
+        $return = $this->modelProducts->selectAllProductsForModal($this->id_product);
+        echo json_encode($return);
     }
 
 

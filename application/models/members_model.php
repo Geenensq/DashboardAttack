@@ -278,6 +278,34 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 $this->db->update($this->table , $data);   
         }
 
+
+
+// =======================================================================//
+// !                Method for disable and enable an members              //
+// ======================================================================//
+
+    public function disableEnableOneMember($id)
+    {
+        $this->db->select('actif');
+        $this->db->from($this->table);
+        $this->db->where('id_member', $id );
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        if($result[0]['actif'] == 0){
+
+            $data = array ('actif' => 1 );
+            $this->db->where('id_member' , $id);
+            $this->db->update($this->table , $data);
+        } else {
+
+            $data = array ('actif' => 0 );
+            $this->db->where('id_member' , $id);
+            $this->db->update($this->table , $data);
+        }
+    }
+
+
 // ==================================================================================//
 // !                Method to select a group of members with its id                 //
 // =================================================================================//
@@ -290,6 +318,50 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $query = $this->db->get();
 
          }
+
+
+// =======================================================================//
+// !       Method SELECT * members and groups members for datatable       //
+// ======================================================================//
+
+    public function loadMembersDatatable()
+    {
+        $this->db->select('`id_member`, `login`, `password`, members.actif AS actif , `email`, members.id_group_member , groups_members.name');
+        $this->db->from($this->table);
+        $this->db->join('groups_members', 'members.id_group_member = groups_members.id_group_member');
+        $query = $this->db->get();
+        return $query->result_array();
     }
+
+
+ // =======================================================================//
+// !           Method SELECT ALL members informations FOR MODAL           //
+// ======================================================================//
+    public function selectAllMembersForModal($id)
+    {
+        $this->db->select('`id_member`, `login`, `password`, members.actif AS actif , `email`, members.id_group_member AS id_group_member , groups_members.name AS name');
+        $this->db->from($this->table);
+        $this->db->join('groups_members', 'members.id_group_member  = groups_members.id_group_member');
+        $this->db->where('id_member' , $id);
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row)
+        {
+            $members["id_member"] =  $row->id_member;
+            $members["login"] = $row->login;
+            $members["actif"] = $row->actif;
+            $members["email"] = $row->email;
+            $members["id_group_member"] = $row->id_group_member;
+            $members["name"] = $row->name;
+        }
+
+        return $members;
+
+    }
+
+
+
+
+}
 
 ?>

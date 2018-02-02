@@ -59,10 +59,8 @@ Class Products_controller extends CI_Controller
     }
 
 
-
-
 // =======================================================================//
-// !                  Method for upload an image                         //
+// !                  Method for add an group of products                 //
 // ======================================================================//
 
     public function addGroupProducts()
@@ -160,7 +158,7 @@ Class Products_controller extends CI_Controller
 
 
 // =======================================================================//
-// !                   Method for add groups of products                 //
+// !          Method for send groups products on datatable               //
 // ======================================================================//
 
     public function encodeGridGroupsProducts()
@@ -177,7 +175,7 @@ Class Products_controller extends CI_Controller
 
 
 // =======================================================================//
-// !                 Method for send colors on datatable                 //
+// !               Method for send products on datatable                 //
 // ======================================================================//
     public function encodeGridProducts()
     {
@@ -193,7 +191,7 @@ Class Products_controller extends CI_Controller
     }
 
 // =======================================================================//
-// !            Method for send groups products on datatable             //
+// !                 Method for send groups products on modal             //
 // ======================================================================//
 
     public function getInfosGroupsProductsModal()
@@ -258,9 +256,9 @@ Class Products_controller extends CI_Controller
     }
 
 
-// ==========================================================================================//
-// !                Method for change informations of color group for modal                  //
-// ==========================================================================================//
+// ====================================================//
+// !                Method for add an products        //
+// ==================================================//
 
     public function addProducts()
     {
@@ -322,7 +320,7 @@ Class Products_controller extends CI_Controller
     }
 
 // =======================================================================//
-// !                      Method for add an products                     //
+// !                      Method for upload an image                     //
 // ======================================================================//
 
     public function uploadImage()

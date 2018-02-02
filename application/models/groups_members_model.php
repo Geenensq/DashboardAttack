@@ -67,6 +67,31 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             }
                 return $myMembers;
         }
-    }
+// =======================================================================//
+// !                Method SELECT all group members                      //
+// ======================================================================//
+
+        public function selectAll()
+        {
+            $arrayGroupsMembers = [];
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $query = $this->db->get();
+
+            foreach ($query->result_object() as $ligne)
+            {
+                    $groupsMembers = new Groups_members_model();
+                    $groupsMembers->setIdGroupMember($ligne->id_group_member);
+                    $groupsMembers->setName($ligne->name);
+                    $arrayGroupsMembers[] = $groupsMembers;
+            }
+                    return $arrayGroupsMembers;
+        }
+
+
+
+
+
+}
 
 ?>

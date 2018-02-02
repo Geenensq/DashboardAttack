@@ -1,120 +1,122 @@
 <!doctype html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html">
-<head>
-   <meta charset="utf-8"/>
-   <link rel="icon" type="image/png" href="assets/img/favicon.ico">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-   <title>Administration des commandes</title>
-   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
-   <meta name="viewport" content="width=device-width"/>
-   <!-- Bootstrap core CSS     -->
-   <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet"/>
-   <!-- Animation library for notifications   -->
-   <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
-   <!--  Light Bootstrap Table core CSS    -->
-   <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-   <!--     Fonts and icons     -->
-   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/> 
-   <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-   <style type="text/css">
-      .select2-selection{
-         height: 35px !important;
-         padding-top: 3px !important;
-      }
 
-      .select2-container--default .select2-selection--single {
-         border: 1px solid #E3E3E3;
-      }
-   </style>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Administration des commandes</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
+    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .select2-selection{
+             height: 35px !important;
+             padding-top: 3px !important;
+          }
+    
+          .select2-container--default .select2-selection--single {
+             border: 1px solid #E3E3E3;
+          }
+    </style>
 
 </head>
+
 <body>
 
-<div class="wrapper">
-   <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
-      <div class="sidebar-wrapper">
-         <div class="logo">
-            <a href="" class="simple-text">
+    <div class="wrapper">
+        <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="" class="simple-text">
                STICK ATTACK
             </a>
-         </div>
-         <ul class="nav">
-            <li>
-               <a href="<?php echo base_url();?>dashboard_controller/index.html">
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a href="<?php echo base_url();?>dashboard_controller/index.html">
                   <i class="pe-7s-graph"></i>
                   <p>Dashboard</p>
                </a>
-            </li>
-            <li>
-               <a href="<?php echo base_url();?>profil_controller/index.html">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>profil_controller/index.html">
                   <i class="pe-7s-user"></i>
                   <p>Votre profil</p>
                </a>
-            </li>
-            <li>
-               <a href="<?php echo base_url();?>customers_controller/index.html">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>customers_controller/index.html">
                   <i class="pe-7s-user"></i>
                   <p>Clients</p>
                </a>
-            </li>
-            <li class="active">
-               <a href="<?php echo base_url();?>orders_controller/index.html">
+                    </li>
+                    <li class="active">
+                        <a href="<?php echo base_url();?>orders_controller/index.html">
                   <i class="pe-7s-note2"></i>
                   <p>Commandes</p>
                </a>
-            </li>
-            <li>
-               <a href="<?php echo base_url();?>products_controller/index.html">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>products_controller/index.html">
                   <i class="pe-7s-news-paper"></i>
                   <p>Produits</p>
                </a>
-            </li>
-            <li>
-               <a href="<?php echo base_url();?>colors_controller/index.html">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>colors_controller/index.html">
                   <i class="pe-7s-science"></i>
                   <p>Coloris</p>
                </a>
-            </li>
-            <li>
-               <a href="<?php echo base_url();?>size_controller/index.html">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>size_controller/index.html">
                   <i class="pe-7s-map-marker"></i>
                   <p>Tailles</p>
                </a>
-            </li>
-            <li>
-               <a href="#">
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>management_controller/index.html">
                   <i class="pe-7s-bell"></i>
                   <p>Gestion</p>
                </a>
-            </li>
-         </ul>
-      </div>
-   </div>
-   <div class="main-panel">
-      <nav class="navbar navbar-default navbar-fixed">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="#">Gestion des commandes</a>
-            </div>
-            <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-left">
-                  <li>
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a class="navbar-brand" href="#">Gestion des commandes</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-dashboard"></i>
                         <p class="hidden-lg hidden-md">Dashboard</p>
                      </a>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-globe"></i>
                         <b class="caret hidden-sm hidden-xs"></b>
                         <span class="notification hidden-sm hidden-xs">5</span>
@@ -123,80 +125,58 @@
                            <b class="caret"></b>
                         </p>
                      </a>
-                     <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a>
-                        </li>
-                        <li><a href="#">Notification 2</a>
-                        </li>
-                        <li><a href="#">Notification 3</a>
-                        </li>
-                        <li><a href="#">Notification 4</a>
-                        </li>
-                        <li><a href="#">Another notification</a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li>
-                     <a href="">
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Notification 1</a>
+                                    </li>
+                                    <li><a href="#">Notification 2</a>
+                                    </li>
+                                    <li><a href="#">Notification 3</a>
+                                    </li>
+                                    <li><a href="#">Notification 4</a>
+                                    </li>
+                                    <li><a href="#">Another notification</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
                         <i class="fa fa-search"></i>
                         <p class="hidden-lg hidden-md">Search</p>
                      </a>
-                  </li>
-               </ul>
-               <ul class="nav navbar-nav navbar-right">
-                  <li>
-                     <a href="<?php echo base_url();?>profil_controller/index.html">
-                        <p>Mon compte</p>
-                     </a>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <p>
-                           Accès rapide
-                           <b class="caret"></b>
-                        </p>
-                     </a>
-                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a>
-                        </li>
-                        <li><a href="#">Another action</a>
-                        </li>
-                        <li><a href="#">Something</a>
-                        </li>
-                        <li><a href="#">Another action</a>
-                        </li>
-                        <li><a href="#">Something</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li>
-                     <a href="<?php echo base_url();?>session_controller/index.html">
-                        <p>Se deconnecter</p>
-                     </a>
-                  </li>
-                  <li class="separator hidden-lg hidden-md"></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
-      <div class="content">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="card">
-                     <div class="header">
-                        <h4 class="title">Ajouter une commande</h4>
-                     </div>
-                     <div class="content">
-                        <form id="form_add_customers" method="POST" action="addCustomers.html">
-                           <div class="row">
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="">Client</label>
-                                    <select class="js-example-basic-multiple form-control" name="state">
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="<?php echo base_url();?>profil_controller/index.html">
+                                    <p>Mon compte</p>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="<?php echo base_url();?>session_controller/index.html">
+                                    <p>Se deconnecter</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Ajouter une commande</h4>
+                                </div>
+                                <div class="content">
+                                    <form id="form_add_customers" method="POST" action="addCustomers.html">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Client</label>
+                                                    <select class="js-example-basic-multiple form-control" name="state">
                                     <?php
                                     foreach($customers as $value)
                                     {
@@ -204,18 +184,18 @@
                                     }
                                     ?>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="">Date de la commande</label>
-                                    <input class="form-control" name="" id="" type="date">
-                                 </div>
-                              </div>
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="">Statut de la commande</label>
-                                    <select class="js-example-basic-multiple form-control" name="state">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Date de la commande</label>
+                                                    <input class="form-control" name="" id="" type="date">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Statut de la commande</label>
+                                                    <select class="js-example-basic-multiple form-control" name="state">
                                     <?php
                                     foreach($states as $value)
                                     {
@@ -223,14 +203,14 @@
                                     }
                                     ?>
                                     </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="">Mode de livraison</label>
-                                    <select class="js-example-basic-multiple form-control" name="state">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Mode de livraison</label>
+                                                    <select class="js-example-basic-multiple form-control" name="state">
                                     <?php
                                     foreach($shipping as $value)
                                     {
@@ -238,12 +218,12 @@
                                     }
                                     ?>
                                     </select>
-                                 </div>
-                              </div>
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="">Méthode de paiement</label>
-                                    <select class="js-example-basic-multiple form-control" name="state">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Méthode de paiement</label>
+                                                    <select class="js-example-basic-multiple form-control" name="state">
                                     <?php
                                     foreach($payments as $value)
                                     {
@@ -251,98 +231,148 @@
                                     }
                                     ?>
                                     </select>
-                              </div>
-                              </div>
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label for="address_customers">Prix total de la commande</label>
-                                    <input Disabled id="" name="" type="text" class="form-control" placeholder="0€">
-                                 </div>
-                              </div>
-                           </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="address_customers">Prix total de la commande</label>
+                                                    <input Disabled id="" name="" type="text" class="form-control" placeholder="0€">
+                                                </div>
+                                            </div>
+                                        </div>
 
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group">
-                                    <label for="">Ajouter un produit à la commande à la commande : </label>
-                                    <select class="form-control" name="state">
-                                    <?php
-                                    foreach($products as $key => $value)
-                                    {
+                                        <div class="row">
 
-              
-                                    }
-                                    ?>
-                                    </select>
-                                 </div>
-                              </div>
-                                <button style="margin-right: 20px;" class="btn btn-danger btn-fill pull-right">Ajouter le produit à la commande</button>
-
-           
-                           </div>
+                                             <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="">Quantité : </label>
+                                                    <input id="qte_product" name="qte_product" type="number" style="height:33px;" placeholder="Exemple : 2" class="form-control" > </input>
+                                                </div>
+                                            </div>
 
 
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group">
-                                    <label for="">Commentaire de la commande : </label>
-                                    <textarea class="form-control" name="textarea" rows="4" cols="100"> </textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           <button id="btn_add_customers" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
 
-                           <button id="btn_edit_customers" style="margin-right: 20px;" type="button"
-                                   data-toggle="collapse" data-target="#collapse_edit_customers"
-                                   class="btn btn-danger btn-fill pull-right">Editer les clients
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <label for="">Ajouter un produit à la commande à la commande : </label>
+                                                    <select name="select_product" id="select_product" class="js-example-basic-multiple form-control"> 
+                                       <?php
+                                          foreach($products as $value)
+                                          {
+                                             echo '<option  value=' .'"' .$value->getIdProduct() . '">'. " Référence : " . " " . $value->getReference(). " " . "Nom du produit : " . $value->getName(). " Mesure / Taille : " . $value->getSize()->getName() . " Couleur : " . $value->getColor()->getColorName() . '</option>';
+                                          }
+                                       ?>
+                                      
+                                       </select>
+                                                </div>
+                                            </div>
+
+                                            <a style="margin-right: 20px;" id="add_product" class="btn btn-danger btn-fill pull-right">Ajouter le produit</a>
+
+
+                                        </div>
+
+                                        <div class="content">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+                                                            <div class="header">
+                                                                <h4 class="title">Gestion des produits de la commande</h4>
+                                                            </div>
+                                                            <div class="content">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="content table-responsive">
+                                                                                    <table style="width:100% !important;" id="tab_products_order" class="col-md-12 table table-hover table-striped">
+                                                                                        <thead>
+                                                                                            <th>Quantité</th>
+                                                                                            <th>Nom du produit</th>
+                                                                                            <th>Référence</th>
+                                                                                            <th>Description du produit</th>
+                                                                                            <th>Prix du produit</th>
+                                                                                            <th>Image du produit</th>
+                                                                                            <th>Couleur du produit</th>
+                                                                                            <th>Taille du produit</th>
+                                                                                            <th>Suppression du produit</th>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Commentaire de la commande : </label>
+                                                    <textarea class="form-control" name="textarea" rows="4" cols="100"> </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="btn_add_customers" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
+
+                                        <button id="btn_edit_customers" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_customers" class="btn btn-danger btn-fill pull-right">Editer les clients
                            </button>
-                           <div class="clearfix"></div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            </div>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-         </div>
-</div>
-</div>
-<footer class="footer">
-   <div class="container-fluid">
-      <nav class="pull-left">
-         <ul>
-            <li>
-               <a href="#">
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
                   Home
                </a>
-            </li>
-            <li>
-               <a href="#">
+                        </li>
+                        <li>
+                            <a href="#">
                   Company
                </a>
-            </li>
-            <li>
-               <a href="#">
+                        </li>
+                        <li>
+                            <a href="#">
                   Portfolio
                </a>
-            </li>
-            <li>
-               <a href="#">
+                        </li>
+                        <li>
+                            <a href="#">
                   Blog
                </a>
-            </li>
-         </ul>
-      </nav>
-      <p class="copyright pull-right">
-         &copy;
-         <script>
-            document.write(new Date().getFullYear())
-         </script>
-         <a href="http://www.creative-tim.com">Quentin Geenens</a>, Conçus et développer pour STICK-ATTACK
-      </p>
-   </div>
-</footer>
-</div>
-</div>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    <a href="http://www.creative-tim.com">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+                </p>
+            </div>
+        </footer>
+    </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo js_url_lib('jquery-1.10.2'); ?>" type="text/javascript"></script>
@@ -352,7 +382,7 @@
 <!--  Notifications Plugin    -->
 <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
 <!--Plugin datatable -->
-<script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script> 
+<script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
 <!-- Functions for notifications -->
@@ -360,14 +390,13 @@
 <!-- Functions for change the status of orders -->
 <script src="<?php echo js_url('changeStatus');?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
+<script src="<?php echo js_url('mainOrder');?>"></script>
 <script type="text/javascript">
-// In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-   
-    $('.js-example-basic-multiple').select2();
-});
-
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+       
+        $('.js-example-basic-multiple').select2();
+    });
 </script>
 
 </html>
