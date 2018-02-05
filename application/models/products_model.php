@@ -209,6 +209,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             ->set('id_color' , $id_color)
             ->set('id_group_product' , $id_group_product)
             ->set('id_size' , $id_size)
+            ->set('actif' , 1)
             ->insert($this->table);
     }
 
@@ -297,8 +298,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function loadDataProducts()
     {
-        $this->db->select
-        ('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
 
         $this->db->from($this->table);
         $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
@@ -317,7 +317,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
     public function selectAllProductsForModal($id)
     {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names , sizes.price AS size_price');
 
         $this->db->from($this->table);
         $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
@@ -341,6 +341,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $products["colors_names"] = $row->colors_names;
             $products["sizes_names"] = $row->sizes_names;
             $products["actif"] = $row->actif;
+            $products["sizes_price"] = $row->size_price;
         }
 
         return $products;

@@ -22,38 +22,6 @@ Class groups_colors_model extends CI_Model
    
     public $colors_list;
 
-
-// =======================================================================//
-// !                   Start methods collections                         //
-// ======================================================================//
-
-    public function getColorsList()
-    {
-
-        /// chargement du modele et on selectionne toute les couleur du groupe passé en params
-        $this->load->model('colors_model', 'modelColors');
-        $this->db->select('*');
-        $this->db->from('colors');;
-        $this->db->where('id_group_color', $this->id_group_color);
-        $query = $this->db->get();
-        //On boucle sur le retour MYSQL
-        $colorsCollection = array();
-        
-        foreach ($query->result_object() as $ligne)
-        {
-            $colorsModel = new colors_model();
-            $colorsModel->setIdColor($ligne->id_color);
-            $colorsModel->setColorName($ligne->color_name);
-            $colorsModel->setColorCode($ligne->color_code);
-            $colorsModel->setIdGroupColor($ligne->id_group_color);
-            $colorsCollection[] = $colorsModel;
-        }
-
-        $this->colors_list = $colorsCollection; 
-
-        
-    }
-
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
@@ -137,6 +105,7 @@ Class groups_colors_model extends CI_Model
     {
         $name = $model->getNameGroupColors();
         $this->db->set('name_group_color', $name)
+                 ->set('actif' , 1)
         ->insert($this->table);
     }
 
@@ -207,6 +176,39 @@ Class groups_colors_model extends CI_Model
             $this->db->where('id_group_color' , $model->getIdGroupColor());
             $this->db->update($this->table , $data);
         }
+
+
+
+// =======================================================================//
+// !                   Start methods collections                         //
+// ======================================================================//
+
+    public function getColorsList()
+    {
+
+        /// chargement du modele et on selectionne toute les couleur du groupe passé en params
+        $this->load->model('colors_model', 'modelColors');
+        $this->db->select('*');
+        $this->db->from('colors');;
+        $this->db->where('id_group_color', $this->id_group_color);
+        $query = $this->db->get();
+        //On boucle sur le retour MYSQL
+        $colorsCollection = array();
+        
+        foreach ($query->result_object() as $ligne)
+        {
+            $colorsModel = new colors_model();
+            $colorsModel->setIdColor($ligne->id_color);
+            $colorsModel->setColorName($ligne->color_name);
+            $colorsModel->setColorCode($ligne->color_code);
+            $colorsModel->setIdGroupColor($ligne->id_group_color);
+            $colorsCollection[] = $colorsModel;
+        }
+
+        $this->colors_list = $colorsCollection; 
+
+        
+    }
 
 
 

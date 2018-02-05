@@ -230,12 +230,10 @@
                                     <div class="col-md-4">
                                        <div class="form-group">
                                           <label for="address_customers">Prix total de la commande</label>
-                                          <input Disabled id="" name="" type="text" class="form-control" placeholder="0€">
+                                          <input value="0" id="current_order_price" name="order_price" type="number" class="form-control" disabled>
                                        </div>
                                     </div>
                                  </div>
-
-
                                  <div class="row">
                                     <div class="col-md-2">
                                        <div class="form-group">
@@ -245,12 +243,12 @@
                                     </div>
                                     <div class="col-md-10">
                                        <div class="form-group">
-                                          <label for="">Ajouter un produit à la commande à la commande : </label>
+                                          <label for="">Rechercher un produit à ajouter : </label>
                                           <select name="select_product" id="select_product" class="js-example-basic-multiple form-control"> 
                                           <?php
                                              foreach($products as $value)
                                              {
-                                                echo '<option  value=' .'"' .$value->getIdProduct() . '">'. " Référence : " . " " . $value->getReference(). " " . "Nom du produit : " . $value->getName(). " Mesure / Taille : " . $value->getSize()->getName() . " Couleur : " . $value->getColor()->getColorName() . '</option>';
+                                                echo '<option  value=' .'"' .$value->getIdProduct() . '">'. " <span style=\"font-weight: bold;\">Référence :</span> " . " " . $value->getReference(). " " . "Nom du produit : " . $value->getName(). " Mesure / Taille : " . $value->getSize()->getName() . " Couleur : " . $value->getColor()->getColorName() . '</option>';
                                              }
                                              ?>
                                           </select>

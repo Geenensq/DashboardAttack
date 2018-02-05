@@ -88,6 +88,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         $this->db->set('name_group_product', $name)
                  ->set('description' , $description)
+                 ->set('actif' , 1)
                  ->insert($this->table);
     }
 // =======================================================================//

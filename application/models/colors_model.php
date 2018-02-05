@@ -106,6 +106,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 		$this->db->set('color_name', $name)
 					->set('color_code', $colorCode)
 					->set('id_group_color' , $group_color)
+                    ->set('actif' , 1)
 					->insert($this->table);
 	}
 
