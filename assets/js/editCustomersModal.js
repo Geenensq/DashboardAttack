@@ -14,14 +14,12 @@ function deleteMultipleEntrySelect() {
 
 
 
-
 function editCustomersModal($id) {
     url = "getInfosCustomersModal.html";
     // on declare un formulaire
     var form = {
         id: $id
     };
-
     //on post
     var customer = send_post(form, url);
     $('#id_customer').val(customer.id_customer);
@@ -35,31 +33,6 @@ function editCustomersModal($id) {
     $('#new_city_customer').val(customer.city);
     $("#new_group_customer").prepend($("<option selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
     deleteMultipleEntrySelect();
-
-
-}
-
-
-function send_post(v, url) {
-    var resultat = null;
-    $.ajax({
-        type: "POST",
-        url: url,
-        async: false,
-        data: v,
-        dataType: "json",
-        cache: false,
-        success: function(data) {
-            resultat = data;
-            return resultat;
-        },
-        error: function(error) {
-            resultat = error;
-            return resultat;
-        }
-    });
-    return resultat;
-
 
 
 }

@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 
             } else if (data.errorNewNameGroup == "error") {
-                notify("pe-7s-refresh-2", "<b>Erreur</b> : Le nom du groupe doit comporter au moins 3 caractères", "danger");
+                notify("pe-7s-refresh-2", "<b>Erreur</b> : Le nom du groupe doit comporter au moins 1 caractères", "danger");
             }
         }, "json");
         return false;

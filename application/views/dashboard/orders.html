@@ -169,8 +169,9 @@
                                  <div class="row">
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Client</label>
-                                          <select class="js-example-basic-multiple form-control" name="state">
+                                          <label for="customer_order">Client</label>
+                                          <select id="customer_order" name="customer_order" class="js-example-basic-multiple form-control" name="state">
+                                             <option  disabled selected="selected">Sélectionner un client</option>
                                           <?php
                                              foreach($customers as $value)
                                              {
@@ -182,14 +183,15 @@
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Date de la commande</label>
-                                          <input class="form-control" name="" id="" type="date">
+                                          <label for="date_order">Date de la commande</label>
+                                          <input id="date_order" name="date_order" class="form-control" name="" id="" type="date">
                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Statut de la commande</label>
-                                          <select class="js-example-basic-multiple form-control" name="state">
+                                          <label for="state_order">Statut de la commande</label>
+                                          <select id="state_order" name="state_order" class="js-example-basic-multiple form-control" >
+                                             <option  disabled selected="selected">Sélectionner un statut de commande</option>
                                           <?php
                                              foreach($states as $value)
                                              {
@@ -203,8 +205,9 @@
                                  <div class="row">
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Mode de livraison</label>
-                                          <select class="js-example-basic-multiple form-control" name="state">
+                                          <label for="shipping_order">Mode de livraison</label>
+                                          <select id="shipping_order" name="shipping_order" class="js-example-basic-multiple form-control">
+                                             <option disabled selected="selected">Sélectionner un mode de livraison</option>
                                           <?php
                                              foreach($shipping as $value)
                                              {
@@ -216,8 +219,9 @@
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Méthode de paiement</label>
-                                          <select class="js-example-basic-multiple form-control" name="state">
+                                          <label for="payments_order">Méthode de paiement</label>
+                                          <select id="payments_order" name="payments_order" class="js-example-basic-multiple form-control" >
+                                             <option  disabled selected="selected">Sélectionner une méthode de paiement</option>
                                           <?php
                                              foreach($payments as $value)
                                              {
@@ -229,22 +233,23 @@
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="address_customers">Prix total de la commande</label>
+                                          <label for="current_order_price">Prix total de la commande</label>
                                           <input value="0" id="current_order_price" name="order_price" type="number" class="form-control" disabled>
                                        </div>
                                     </div>
                                  </div>
                                  <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="">Quantité : </label>
-                                       <input id="qte_product" name="qte_product" type="number" style="height:33px;" placeholder="Exemple : 2" class="form-control"> </input>
+                                          <label for="qte_product_order">Quantité : </label>
+                                       <input min="1" id="qte_product_order" name="qte_product_order" type="number" style="height:33px;" value="1" class="form-control"> </input>
                                        </div>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                        <div class="form-group">
                                           <label for="">Rechercher un produit à ajouter : </label>
-                                          <select name="select_product" id="select_product" class="js-example-basic-multiple form-control"> 
+                                          <select name="select_product_order" id="select_product_order" class="js-example-basic-multiple form-control"> 
+                                             <option  disabled selected="selected">Ajouter un produit à la commande :</option>
                                           <?php
                                              foreach($products as $value)
                                              {
@@ -308,8 +313,8 @@
                            <div class="row">
                               <div class="col-md-12">
                                  <div class="form-group">
-                                    <label for="">Commentaire de la commande : </label>
-                                    <textarea class="form-control" name="textarea" rows="4" cols="100"> </textarea>
+                                    <label for="comment_order">Commentaire de la commande : </label>
+                                    <textarea id="comment_order" name="comment_order" class="form-control"  rows="4" cols="100"> </textarea>
                                  </div>
                               </div>
                            </div>
@@ -372,23 +377,26 @@
    <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
    <!--Plugin datatable -->
    <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
+   <!-- Plugin select2 for select option -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+   <!-- Function for send data in ajax -->
+   <script type="text/javascript" src="<?php echo js_url('sendPost');?>"></script>
    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
    <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
    <!-- Functions for notifications -->
    <script src="<?php echo js_url('notifications');?>"></script>
    <!-- Functions for change the status of orders -->
    <script src="<?php echo js_url('changeStatus');?>"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+   <!-- Default js for page order -->
    <script src="<?php echo js_url('mainOrder');?>"></script>
-   <script type="text/javascript">
-      function deleteRow($id) {
-          $("#ligne" + $id).remove();
-      }
-   </script>
+   <!-- Functions for delete an product on table-->
+   <script src="<?php echo js_url('deleteRow');?>"></script>
+   
+
+
    <script type="text/javascript">
       // In your Javascript (external .js resource or <script> tag)
       $(document).ready(function() {
-      
           $('.js-example-basic-multiple').select2();
       });
    </script>

@@ -60,6 +60,24 @@ Class Orders_controller extends CI_Controller
         $this->load->view('dashboard/orders.html', $array);
     }
 
+// ==========================================================================================//
+// !                               Method for add an order                                   //
+// ==========================================================================================//
+    public function addOrder()
+    {
+        $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
+        $this->form_validation->set_rules('date_order', '"date_order"', 'required');
+        $this->form_validation->set_rules('state_order', '"state_order"', 'required');
+        $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
+        $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
+
+        
+
+        
+    }
+
+
+
 
 // ==========================================================================================//
 // !               Method get all informations of products for my array                      //

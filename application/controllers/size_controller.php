@@ -173,7 +173,7 @@ Class Size_controller extends CI_Controller
     public function changeNameGroupSizes()
     {
 
-        $this->form_validation->set_rules('new_name_group_sizes', '" "', 'required|min_length[3]');
+        $this->form_validation->set_rules('new_name_group_sizes', '" "', 'required|min_length[1]');
         $callBack = array();
 
         if ($this->form_validation->run())
@@ -202,7 +202,7 @@ Class Size_controller extends CI_Controller
     public function changeNameSizes()
     {
         $this->form_validation->set_rules('new_id_sizes', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_name_sizes',  '" "', 'required|min_length[2]');
+        $this->form_validation->set_rules('new_name_sizes',  '" "', 'required|min_length[1]');
         $this->form_validation->set_rules('new_price_sizes', '" "', 'required|min_length[1]');
 
         $callBack = array();

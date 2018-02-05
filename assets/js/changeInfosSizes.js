@@ -5,17 +5,17 @@ $(document).ready(function() {
         new_price_sizes = $(this).find("input[name=new_price_sizes]").val();
         new_group_sizes = $("#new_group_sizes").val();
 
-       /* url = $(this).attr("action");*/
+        /* url = $(this).attr("action");*/
         url = "changeNameSizes.html";
         $.post(url, {
-            new_id_sizes:new_id_sizes,
-            new_name_sizes:new_name_sizes,
-            new_price_sizes:new_price_sizes,
-            new_group_sizes:new_group_sizes
+            new_id_sizes: new_id_sizes,
+            new_name_sizes: new_name_sizes,
+            new_price_sizes: new_price_sizes,
+            new_group_sizes: new_group_sizes
 
         }, function(data) {
             console.log(data);
-                       
+
             if (data.confirm == "success") {
 
                 notify("pe-7s-refresh-2", "<b>Informations</b> : La taille à été modifier avec succès ", "info");
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
             } else if (data.errorNewNameSize == "error") {
 
-                notify("pe-7s-refresh-2", "<b>Erreur</b> : Le nom de la taille comporter au moins 3 caractères", "danger");
+                notify("pe-7s-refresh-2", "<b>Erreur</b> : Le nom de la taille comporter au moins 1 caractère", "danger");
 
             }
         }, "json");
@@ -39,5 +39,3 @@ $(document).ready(function() {
 
 
 });
-
-

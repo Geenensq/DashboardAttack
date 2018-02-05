@@ -30,27 +30,3 @@ function editSizesModal($id) {
     $("#new_group_sizes").prepend($("<option selected=\"selected\"></option>").val(size.id_group_size).html(size.name_group_size));
     deleteMultipleEntrySelect();
 }
-
-
-function send_post(v, url) {
-    var resultat = null;
-    $.ajax({
-        type: "POST",
-        url: url,
-        async: false,
-        data: v,
-        dataType: "json",
-        cache: false,
-        success: function(data) {
-            resultat = data;
-            return resultat;
-        },
-        error: function(error) {
-            resultat = error;
-            return resultat;
-        }
-    });
-    return resultat;
-
-
-}
