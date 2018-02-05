@@ -70,8 +70,23 @@ Class Orders_controller extends CI_Controller
         $this->form_validation->set_rules('state_order', '"state_order"', 'required');
         $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
         $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
+        $this->form_validation->set_rules('current_order_price', '"current_order_price"', 'required');
 
-        
+
+        if ($this->form_validation->run()) {
+
+            $this->id_customer = $this->input->post('customer_order');
+            $this->date_order = $this->input->post('date_order');
+            $this->status_order = $this->input->post('state_order');
+            $this->comment_order = $this->input->post('comment_order');
+            $this->price_order = $this->input->post('current_order_price');
+            $this->id_method_payment = $this->input->post('payments_order');
+            $this->id_method_shipping = $this->input->post('shipping_order');
+            $this->id_product = 1;
+
+            debug($this->id_customer);
+
+        }
 
         
     }
