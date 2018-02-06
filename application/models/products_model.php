@@ -25,8 +25,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         private $id_group_product;
         private $id_group_size;
         private $img_url;
-
-
+        
         private $color;
         private $size;
         private $group_product;

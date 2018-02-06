@@ -8,6 +8,7 @@ $(document).ready(function() {
     let qte_product;
     let product_added;
     let counterProducts = 0;
+    let product_checked;
     /*------------------------------------------------*/
 
     /*---------------------Event---------------------*/
@@ -22,6 +23,7 @@ $(document).ready(function() {
                 addOrders();
                 counterProducts++;
             } else {
+
                 /*call function javascript for add products in the order*/
                 addProductsOrder($("#current_id_order").val());
             }
@@ -34,7 +36,11 @@ $(document).ready(function() {
 
 
     function addRowProduct($id) {
+
+
         if (product_added != null) {
+
+
 
             if (($('#qte_product_order').val() != '') && ($('#qte_product_order').val() > 0)) {
                 /*******************************************/
@@ -48,14 +54,19 @@ $(document).ready(function() {
                 
 
                 /*IF A FIRST PRODUCT HAS ALREADY BE ADDED*/
-                if (count > 1 ){
+                if (count > 1)
+                {
                 ///////////////////////////POST AJAX TO CHECK THAT THE PRODUCT IS NOT IN ORDER////////////////////
-                url = "toto.html";
-                form = {id:$id , id_product_check:product.id_product};
-                let product_checked = send_post(form , url);
-                console.log($("#current_id_order").val());
+                url = "CheckProductInOrder.html";
+                form = {id:$id , id_product_check:$("#current_id_order").val()};
+                product_checked = send_post(form , url);
                 //////////////////////////////////////////////////////////////////////////////////////////////////
                 } 
+
+               if (product_checked = true){
+
+
+               }
 
                 /****************************************************/
                 /*Calculation of price of sizes + price of products * number of products*/
@@ -79,6 +90,7 @@ $(document).ready(function() {
                 let cell10 = row.insertCell(9);
 
                 cell1.innerHTML = product.id_product
+                
                 cell2.innerHTML = qte_product;
                 cell3.innerHTML = product.product_name;
                 cell4.innerHTML = product.reference;
@@ -88,6 +100,7 @@ $(document).ready(function() {
                 cell8.innerHTML = product.colors_names;
                 cell9.innerHTML = product.sizes_names;
                 cell10.innerHTML = '<a onClick="deleteRow(' + count + ',' + product.id_product + ',' + qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
+                
                 count++;
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
 
@@ -101,3 +114,7 @@ $(document).ready(function() {
     }
 
 });
+
+function createOrder(){
+
+}

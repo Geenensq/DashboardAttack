@@ -2,7 +2,6 @@ function addProductsOrder($id_order) {
     /*DEFINES VARIABLES */
     let id_product_order = $('#select_product_order').val();
     let quantity_product_order = $('#qte_product_order').val();
-    console.log(id_product_order);
     let id_order = $id_order;
     /*END DEFINES VARIABLES*/
 

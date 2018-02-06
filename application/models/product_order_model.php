@@ -81,5 +81,35 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
 
+// =======================================================================//
+// !       Select * for check if product is already in a command          //
+// ======================================================================//
+    public function selectCheckProductInOrder($model)
+    {
+        $id_product = $model->getIdProduct();
+        $id_order = $model->getIdOrder();
+
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('id_product', $id_product );
+        $this->db->where('id_order', $id_order );
+        $query = $this->db->get();
+        $result = $query->result_array();
+        
+        if(count($result) > 0){
+
+            /*returns false if the product is in command*/
+            return false;
+
+        } else{
+            /*returns true if the product is not associated with the command*/
+            return true;
+        }
+
+    }
+
+
+
+
 }
 ?>

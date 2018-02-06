@@ -141,9 +141,15 @@ Class Orders_controller extends CI_Controller
 
     public function CheckProductInOrder()
     {
+        $this->id_order = $this->input->post('id_product_check');
         $this->id_product = $this->input->post('id');
+
+        $this->modelProductOrder->setIdOrder($this->id_order);
+        $this->modelProductOrder->setIdProduct($this->id_product);
+        $modelProductOrder = $this->modelProductOrder;
         
-        /*$return = $this->modelProducts->selectAllProductsForModal($this->id_product);*/
+        $return = $this->modelProductOrder->selectCheckProductInOrder($modelProductOrder);
+
         echo json_encode($return);
     }
 
