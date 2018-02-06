@@ -123,14 +123,28 @@ Class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product_order');
         $this->qte_product = $this->input->post('quantity_product_order');
         $this->id_order = $this->input->post('id_order');
-
         $this->modelProductOrder->setIdProduct($this->id_product);
         $this->modelProductOrder->setQuantityProduct($this->qte_product);
         $this->modelProductOrder->setIdOrder($this->id_order);
-
+       
         $modelProductOrder = $this->modelProductOrder;
         $this->modelProductOrder->inserOneProductOrder($modelProductOrder);
+        $callBack["confirm"] = "success";
+        echo json_encode($callBack);
         
+    }
+
+
+// ==========================================================================================//
+// !              Method to find out if a product is already in a command                     //
+// ==========================================================================================//
+
+    public function CheckProductInOrder()
+    {
+        $this->id_product = $this->input->post('id');
+        
+        /*$return = $this->modelProducts->selectAllProductsForModal($this->id_product);*/
+        echo json_encode($return);
     }
 
 

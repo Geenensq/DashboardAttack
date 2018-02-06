@@ -15,6 +15,7 @@ function addProductsOrder($id_order) {
     }, function(data) {
 
         if (data.confirm == "success") {
+            updatePriceOrder();
 
         } else if (data.confirm == "error") {
 
@@ -22,7 +23,9 @@ function addProductsOrder($id_order) {
     }, "json");
     return false;
 
-
-
-
 };
+
+
+function updatePriceOrder(){
+
+}
