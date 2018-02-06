@@ -7,13 +7,35 @@ $(document).ready(function() {
     let current_order_price;
     let qte_product;
     let product_added;
+    let counterProducts = 0;
+
+   
     /*------------------------------------------------*/
 
     /*---------------------Event---------------------*/
     $("#add_product").click(function() {
-        product_added = $('#select_product_order').val();
-        qte_product = $('#qte_product_order').val();
-        addRowProduct(product_added);
+        if ($("#customer_order,#date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null ) {
+                product_added = $('#select_product_order').val();
+                qte_product = $('#qte_product_order').val();
+                /*Call function fo add an row in table*/
+                addRowProduct(product_added);
+
+                if (counterProducts < 1){
+                    addOrders();
+                    counterProducts++;
+                } else {
+                    
+                /*Affecte l'id enresitré de la commande pour ajouter les produits à la bonne commande*/
+                $("#current_id_order").val(data.id_order);
+                /*call function javascript for add products in the order*/
+                addProductsOrder($("#current_id_order").val());
+                }
+
+        } else {
+             notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez renseignez tous les champs de la commande avant d'ajouter un produit", "danger");
+        }
+    
+
     });
     /*-----------------------------------------------*/
 
@@ -53,16 +75,18 @@ $(document).ready(function() {
                 let cell7 = row.insertCell(6);
                 let cell8 = row.insertCell(7);
                 let cell9 = row.insertCell(8);
+                let cell10 = row.insertCell(9);
 
-                cell1.innerHTML = qte_product;
-                cell2.innerHTML = product.product_name;
-                cell3.innerHTML = product.reference;
-                cell4.innerHTML = product.description;
-                cell5.innerHTML = product.base_price;
-                cell6.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + product.img_url + "\" width=\"80px\" height=\"80px\">";;
-                cell7.innerHTML = product.colors_names;
-                cell8.innerHTML = product.sizes_names;
-                cell9.innerHTML = '<a onClick="deleteRow(' + count + ',' + product.id_product + ',' + qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
+                cell1.innerHTML = product.id_product
+                cell2.innerHTML = qte_product;
+                cell3.innerHTML = product.product_name;
+                cell4.innerHTML = product.reference;
+                cell5.innerHTML = product.description;
+                cell6.innerHTML = product.base_price;
+                cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + product.img_url + "\" width=\"80px\" height=\"80px\">";;
+                cell8.innerHTML = product.colors_names;
+                cell9.innerHTML = product.sizes_names;
+                cell10.innerHTML = '<a onClick="deleteRow(' + count + ',' + product.id_product + ',' + qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
                 count++;
                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
 
@@ -71,10 +95,8 @@ $(document).ready(function() {
             }
 
         } else{
-            notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez selectionner un produit avant de l'ajouter à la commande", "danger");
+            notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez sélectionner un produit avant de l'ajouter à la commande", "danger");
         }
-
-
     }
 
 });

@@ -23,6 +23,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     private $id_method_payment;
     private $id_method_shipping;
 
+    protected $table = "orders";
+
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -135,6 +137,33 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
 
 
+// =======================================================================//
+// !                     Method for insert one order                     //
+// ======================================================================//
+
+    public function insertOneOrder($model){
+
+        $id_customer = $model->getIdCustomer();
+        $date_order = $model->getDateOrder();
+        $status_order = $model->getStatusOrder();
+        $comment_order = $model->getCommentOrder();
+        $price_order = $model->getPriceOrder();
+        $method_payment = $model->getIdMethodPayment();
+        $method_shipping = $model->getIdMethodShipping();
+
+        $this->db->set('id_customer', $id_customer)
+            ->set('date_order', $date_order)
+            ->set('id_state' , $status_order)
+            ->set('comment_order' , $comment_order)
+            ->set('price_order' , $price_order)
+            ->set('id_method_payment' , $method_payment)
+            ->set('id_method_shipping' , $method_shipping)
+            ->insert($this->table);
+
+            return $this->db->insert_id();
+
+
+    }
 
 
 }
