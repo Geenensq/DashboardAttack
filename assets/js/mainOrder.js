@@ -50,9 +50,10 @@ $(document).ready(function() {
                 /*IF A FIRST PRODUCT HAS ALREADY BE ADDED*/
                 if (count > 1 ){
                 ///////////////////////////POST AJAX TO CHECK THAT THE PRODUCT IS NOT IN ORDER////////////////////
-                 url = "toto.html";
-                 form = {id:$id , id_product_check:product.id_product};
+                url = "toto.html";
+                form = {id:$id , id_product_check:product.id_product};
                 let product_checked = send_post(form , url);
+                console.log($("#current_id_order").val());
                 //////////////////////////////////////////////////////////////////////////////////////////////////
                 } 
 
