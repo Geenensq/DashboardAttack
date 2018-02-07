@@ -78,56 +78,48 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function setIdOrder($id_order)
     {
         $this->id_order = $id_order;
-
         return $this;
     }
     
     public function setDateOrder($date_order)
     {
         $this->date_order = $date_order;
-
         return $this;
     }
    
     public function setStatusOrder($status_order)
     {
         $this->status_order = $status_order;
-
         return $this;
     }
     
     public function setCommentOrder($comment_order)
     {
         $this->comment_order = $comment_order;
-
         return $this;
     }
     
     public function setPriceOrder($price_order)
     {
         $this->price_order = $price_order;
-
         return $this;
     }
     
     public function setIdCustomer($id_customer)
     {
         $this->id_customer = $id_customer;
-
         return $this;
     }
    
     public function setIdMethodPayment($id_method_payment)
     {
         $this->id_method_payment = $id_method_payment;
-
         return $this;
     }
     
     public function setIdMethodShipping($id_method_shipping)
     {
         $this->id_method_shipping = $id_method_shipping;
-
         return $this;
     }
 
@@ -142,7 +134,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
 
     public function insertOneOrder($model){
-
         $id_customer = $model->getIdCustomer();
         $date_order = $model->getDateOrder();
         $status_order = $model->getStatusOrder();
@@ -159,10 +150,20 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             ->set('id_method_payment' , $method_payment)
             ->set('id_method_shipping' , $method_shipping)
             ->insert($this->table);
-
             return $this->db->insert_id();
 
+    }
 
+// =======================================================================//
+// !               Method for update the price of the order              //
+// ======================================================================//
+    public function updatePriceOrder($model)
+    {
+        $id_order = $model->getIdOrder();
+        $price_order = $model->getPriceOrder();
+        $this->db->set('price_order', $price_order);
+        $this->db->where('id_order', $id_order);
+        $this->db->update($this->table); 
     }
 
 

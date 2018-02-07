@@ -22,8 +22,10 @@
 
                 /*Affecte l'id enresitré de la commande pour ajouter les produits à la bonne commande*/
                 $("#current_id_order").val(data.id_order);
+                priceUpdate($("#current_id_order").val() , $("#current_order_price").val());
                 /*call function javascript for add products in the order*/
                 addProductsOrder($("#current_id_order").val());
+              
             } else if (data.confirm == "error") {
                 
             }

@@ -12,7 +12,33 @@ $(document).ready(function() {
     let return_product_exist;
     /*------------------------------------------------*/
 
-    /*---------------------Event---------------------*/
+    /*Event for validate order*/
+    $("#valid_order").click(function(){
+        $('input').each(function()
+        {   
+            let input = this;
+            $(input).val('');
+        })
+
+        $('select').each(function()
+        {   
+            let select = this;
+            $(select).val(0).change();
+            
+        })
+        $("#tab_products_order td").parent().remove();
+        $("#collapse_products").hide("slow");
+        $("#valid_order").attr('disabled', 'disabled');
+
+        notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
+
+
+    });
+    /**************************************************/
+
+
+
+    /*---------------------Event for create order and products---------------------*/
     $("#add_product").click(function() {
         if ($("#customer_order,#date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null) {
             product_added = $('#select_product_order').val();
@@ -22,14 +48,17 @@ $(document).ready(function() {
              return_product_exist = addRowProduct(product_added);
 
              if(return_product_exist === "ok"){
+                  
                 if (counterProducts < 1 ) {
                     addOrders();
                     counterProducts++;
                 } else {
                     /*call function javascript for add products in the order*/
                     addProductsOrder($("#current_id_order").val());
-                }
+                    
+                    priceUpdate($("#current_id_order").val() , $("#current_order_price").val());
 
+                }
              }
 
         } else {
@@ -58,7 +87,7 @@ $(document).ready(function() {
                     $totalPrice = (parseFloat(qte_product) * parseFloat(product.sizes_price)) + (parseFloat(product.base_price) * parseFloat(qte_product));
                     $current_order_price = parseFloat($("body").find('#current_order_price').val());
                     $("#current_order_price").val($totalPrice + $current_order_price);
-                    constructViewTable(product, count, array, qte_product);
+                    constructViewTable(product, count, array, qte_product); 
                     count++;
                     return_product_exist = "ok"
                     return return_product_exist;
@@ -84,7 +113,7 @@ $(document).ready(function() {
 
 
 function checkProductInOrder($id_product) {
-    url = "CheckProductInOrder.html";
+    url = "checkProductInOrder.html";
     form = { id_order:$("#current_id_order").val() , id_product_check:$id_product};
     product_checked = send_post(form, url);
     return product_checked;
@@ -93,6 +122,7 @@ function checkProductInOrder($id_product) {
 
 
 function constructViewTable($product, $count, $array, $qte_product) {
+    $("#valid_order").removeAttr("disabled");
     /*Insert an row in my table*/
     let row = $array.insertRow(1);
     row.id = "ligne" + $count; /// Pour chaques ligne on lui affecte un id "ligne" + la letiable count*/
@@ -119,5 +149,10 @@ function constructViewTable($product, $count, $array, $qte_product) {
     cell9.innerHTML = $product.sizes_names;
     cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
     notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
+}
 
+function priceUpdate($id_order , $price){
+    url = "editPriceOrder.html";
+    form = {id_order:$id_order , price:$price};
+    let result_price_update = send_post(form, url);
 }

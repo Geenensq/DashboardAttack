@@ -128,18 +128,49 @@ Class Orders_controller extends CI_Controller
         $this->modelProductOrder->setIdOrder($this->id_order);
        
         $modelProductOrder = $this->modelProductOrder;
-        $this->modelProductOrder->inserOneProductOrder($modelProductOrder);
+        $this->modelProductOrder->insertOneProductOrder($modelProductOrder);
         $callBack["confirm"] = "success";
         echo json_encode($callBack);
         
     }
 
+// ==========================================================================================//
+// !                       Method to remove a product from a order                           //
+// ==========================================================================================//
+    public function removeProductOrder()
+    {
+        $this->id_order = $this->input->post('id_order');
+        $this->id_product = $this->input->post('id_product');
+
+        $this->modelProductOrder->setIdOrder($this->id_order);
+        $this->modelProductOrder->setIdProduct($this->id_product);
+        $modelProductOrder = $this->modelProductOrder;
+        $this->modelProductOrder->deleteProductOrder($modelProductOrder);
+        $callback["confirm"] = "success";
+        echo json_encode($callback);
+    }
+    
+// ==========================================================================================//
+// !                        Method to UPDATE the price of an order                           //
+// ==========================================================================================//
+    public function editPriceOrder()
+    {
+        $this->id_order = $this->input->post('id_order');
+        $this->price_order = $this->input->post('price');
+
+        $this->modelOrders->setIdOrder($this->id_order);
+        $this->modelOrders->setPriceOrder($this->price_order);
+        $modelOrders = $this->modelOrders;
+        $this->modelOrders->updatePriceOrder($modelOrders);
+        $callback["confirm"] = "success";
+        echo json_encode($callback);
+    }
 
 // ==========================================================================================//
-// !              Method to find out if a product is already in a command                     //
+// !              Method to find out if a product is already in a order                      //
 // ==========================================================================================//
 
-    public function CheckProductInOrder()
+    public function checkProductInOrder()
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product_check');

@@ -68,7 +68,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                     INSERT ONE PRODUCT ORDER                        //
 // ======================================================================//
-    public function inserOneProductOrder($model)
+    public function insertOneProductOrder($model)
     {
         $id_product = $model->getIdProduct();
         $qte_product = $model->getQuantityProduct();
@@ -79,6 +79,19 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                  ->insert($this->table);
     }
 
+
+// =======================================================================//
+// !                  DELETING A PRODUCT FROM AN ORDER                    //
+// ======================================================================//
+
+    public function deleteProductOrder($model)
+    {
+        $id_product = $model->getIdProduct();
+        $id_order = $model->getIdOrder();
+        $this->db->where('id_product', $id_product);
+        $this->db->where('id_order', $id_order);
+        $this->db->delete($this->table);
+    }
 
 
 // =======================================================================//
