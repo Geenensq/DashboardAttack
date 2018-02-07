@@ -96,12 +96,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $query = $this->db->get();
         $result = $query->result_array();
         
-        if(count($result) > 0){
-
+        if(count($result) === 0){
             /*returns false if the product is in command*/
             return false;
 
-        } else{
+        } else {
             /*returns true if the product is not associated with the command*/
             return true;
         }

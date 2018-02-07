@@ -141,8 +141,8 @@ Class Orders_controller extends CI_Controller
 
     public function CheckProductInOrder()
     {
-        $this->id_order = $this->input->post('id_product_check');
-        $this->id_product = $this->input->post('id');
+        $this->id_order = $this->input->post('id_order');
+        $this->id_product = $this->input->post('id_product_check');
 
         $this->modelProductOrder->setIdOrder($this->id_order);
         $this->modelProductOrder->setIdProduct($this->id_product);
