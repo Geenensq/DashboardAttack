@@ -14,10 +14,20 @@ $(document).ready(function() {
 
     /*Event for validate order*/
     $("#valid_order").click(function(){
-        $('input').each(function()
+
+       $('input').each(function()
         {   
             let input = this;
-            $(input).val('');
+            let name_input = $(input).attr("name");
+                
+                if(name_input =! "current_id_order")
+                {
+                    $(input).val('');
+                } else{
+                    
+                    $(input).val(0);
+                }
+
         })
 
         $('select').each(function()
@@ -29,7 +39,8 @@ $(document).ready(function() {
         $("#tab_products_order td").parent().remove();
         $("#collapse_products").hide("slow");
         $("#valid_order").attr('disabled', 'disabled');
-
+        count = 1;
+        counterProducts = 0;
         notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
 
 
@@ -86,7 +97,9 @@ $(document).ready(function() {
                 if (product_checked == false) {
                     $totalPrice = (parseFloat(qte_product) * parseFloat(product.sizes_price)) + (parseFloat(product.base_price) * parseFloat(qte_product));
                     $current_order_price = parseFloat($("body").find('#current_order_price').val());
+                    
                     $("#current_order_price").val($totalPrice + $current_order_price);
+
                     constructViewTable(product, count, array, qte_product); 
                     count++;
                     return_product_exist = "ok"
