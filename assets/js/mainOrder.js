@@ -52,6 +52,7 @@ $(document).ready(function() {
     /*---------------------Event for create order and products---------------------*/
     $("#add_product").click(function() {
         if ($("#customer_order,#date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null) {
+            lockInputOrder();
             product_added = $('#select_product_order').val();
             qte_product = $('#qte_product_order').val();
             
@@ -77,7 +78,30 @@ $(document).ready(function() {
         }
     });
     /*-----------------------------------------------*/
+    function lockInputOrder()
+    {
+        $('select').each(function()
+        {   
+                let select = this;
+                let name_select = $(select).attr("name");
 
+                if(name_select =! "select_product_order")
+                {
+                   $(select).attr("disabled", true);
+                } 
+        });
+
+        $('input').each(function()
+        {   
+                let input = this;
+                name_input = $(input).attr("name");
+                if(name_input =! "qte_product_order")
+                {
+                   $(input).attr("disabled", true);
+                } 
+        });
+
+    }
 
     function addRowProduct($id) {
         if (product_added != null) {
