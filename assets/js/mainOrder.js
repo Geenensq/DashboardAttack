@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+        $("#edit_orders").click(function(){
+
         $('#tab_orders').DataTable({
         ajax: "encodeGridOrders.html",
         order: [[ 0, "asc" ]],
@@ -28,6 +30,9 @@ $(document).ready(function() {
 
 });
 
+
+        })
+
     /*-----Declare my lets for acces to the DOM------*/
     let array = document.getElementById('tab_products_order');
     let count = 1;
@@ -42,7 +47,6 @@ $(document).ready(function() {
 
     /*Event for validate order*/
     $("#valid_order").click(function() {
-        $('#tab_orders').DataTable().ajax.reload();
 
         if ($('#valid_order').prop("disabled") == false) {
             unlockInputOrder();
@@ -116,9 +120,8 @@ $(document).ready(function() {
         $('select').each(function() {
             let select = this;
             let name_select = $(select).attr("name");
-            console.log(name_select);
 
-            if (name_select != "select_product_order") {
+            if (name_select != "select_product_order" || name_select != "tab_orders_length") {
                 $(select).attr("disabled", true);
             }
         });
