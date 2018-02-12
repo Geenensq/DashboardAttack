@@ -114,6 +114,23 @@ Class Orders_controller extends CI_Controller
         echo json_encode($callBack);
         
     }
+
+// =======================================================================//
+// !                Method for send orders on datatable                  //
+// ======================================================================//
+
+    public function encodeGridOrders()
+    {
+        $results = $this->modelOrders->loadDataOrdersDataTable();
+        $data = array();
+
+        foreach ($results as $result) {
+            $data[] = array($result['id_order'], $result['date_order'], $result['comment_order'], $result['price_order'], $result['firstname'], $result['lastname'], $result['method_payment'], $result['method_shipping'], $result['name_state']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
+
 // =======================================================================//
 // !                     INSERT ONE PRODUCT ORDER                        //
 // ======================================================================//

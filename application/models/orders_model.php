@@ -167,4 +167,18 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+    public function loadDataOrdersDataTable()
+    {
+        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , methods_payments.name_method AS method_payment , methods_shippings.name_method_shipping AS method_shipping , states.name_state AS name_state ');
+        $this->db->from($this->table);
+        $this->db->join('customers', 'orders.id_customer = customers.id_customer');
+        $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
+        $this->db->join('methods_shippings', 'orders.id_method_shipping = methods_shippings.id_method_shipping');
+        $this->db->join('states', 'orders.id_state = states.id_state');
+        $query = $this->db->get();
+        $sql = $this->db->last_query();
+        return $query->result_array();
+    }
+
+
 }
