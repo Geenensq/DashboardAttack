@@ -42,6 +42,7 @@ $(document).ready(function() {
 
     /*Event for validate order*/
     $("#valid_order").click(function() {
+        $('#tab_orders').DataTable().ajax.reload();
 
         if ($('#valid_order').prop("disabled") == false) {
             unlockInputOrder();
