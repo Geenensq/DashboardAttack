@@ -1,5 +1,5 @@
 .DS_Store
-
+assets/js/secret.js
 application/cache/*
 !application/cache/index.html
 

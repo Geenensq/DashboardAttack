@@ -1,38 +1,4 @@
 $(document).ready(function() {
-
-        $("#edit_orders").click(function(){
-
-        $('#tab_orders').DataTable({
-        ajax: "encodeGridOrders.html",
-        order: [[ 0, "asc" ]],
-        "columns": [
-        //target 0 = collone 0 Datatable
-        //data 0 = le tableaux php à l'index 0
-        {"targets": 0, data: 0},
-        {"targets": 1, data: null},
-        {"targets": 2, data: 1},
-        {"targets": 3, data: null},
-        {"targets": 4, data: 2},
-        {"targets": 5, data: 6},
-        {"targets": 6, data: 7},
-        {"targets": 7, data: 8}
-        ],
-
-    //L'afficharge par defaut des collones de Datatable
-    //Data represente dans ce cas les data de chaque ligne
-
-    columnDefs:[
-
-    {"targets": 1,render: function(data,full) {return '<p>'+ data[5] + ' ' + data[4] +'<p>'}},
-    {"targets": 3,render: function(data,full) {return '<p>' + data[3] + '€' + '</p>' }},
-
-    ]
-
-});
-
-
-        })
-
     /*-----Declare my lets for acces to the DOM------*/
     let array = document.getElementById('tab_products_order');
     let count = 1;
@@ -43,39 +9,154 @@ $(document).ready(function() {
     let counterProducts = 0;
     let product_checked;
     let return_product_exist;
+    let counter_datatable = 0;
     /*------------------------------------------------*/
+    /*call an secret function*/
+    secret();
+    /***************************************************/
+
+    $("#edit_orders").click(function() {
+        counter_datatable++
+        if (counter_datatable <= 1) {
+            var myTable = $('#tab_orders').DataTable({
+                ajax: "encodeGridOrders.html",
+                order: [
+                    [0, "asc"]
+                ],
+                "columns": [
+                    //target 0 = collone 0 Datatable
+                    //data 0 = le tableaux php à l'index 0
+                    {
+                        "targets": 0,
+                        data: 0
+                    },
+                    {
+                        "targets": 1,
+                        data: null
+                    },
+                    {
+                        "targets": 2,
+                        data: 1
+                    },
+                    {
+                        "targets": 3,
+                        data: null
+                    },
+                    {
+                        "targets": 4,
+                        data: 2
+                    },
+                    {
+                        "targets": 5,
+                        data: 6
+                    },
+                    {
+                        "targets": 6,
+                        data: 7
+                    },
+                    {
+                        "targets": 7,
+                        data: 8
+                    },
+
+                    {
+                        "targets": 8,
+                        data: null 
+                    },
+
+                    {
+                        "targets": 9,
+                        data: null
+
+                    },
+
+
+                ],
+
+                //L'afficharge par defaut des collones de Datatable
+                //Data represente dans ce cas les data de chaque ligne
+
+                columnDefs: [
+
+                    {"targets": 1,render: function(data, full) {return '<p>' + data[5] + ' ' + data[4] + '<p>'}},
+                    {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
+                    {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
+                    {"targets": 8,render: function(data, full) {return '<a id="btn_state" data-toggle="modal" data-target="#modal_orders" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'}},
+                    {"targets": 9,render: function(data, full) {return '<a id="btn_state" class="btn btn-info btn-fill"><i class="fa fa-file-text-o"></i></a>'}},
+
+                ]
+            });
+
+        } else {
+            return;
+        }
+
+    })
+
+
+        $('#edit_orders').on( 'click', 'tbody tr', function () {
+        myTable.row( this ).edit( {
+            buttons: [
+                { label: 'Cancel', fn: function () { this.close(); } },
+                'Edit'
+            ]
+        } );
+    } );
+
+    $("#edit_orders").click(function(){
+
+          if ($("#collapse_edit_orders").is(":visible") == true) {
+              $("#edit_orders").text("Editer les commandes");
+
+          } else {
+              $("#edit_orders").text("Annuler l'édition");
+
+          }
+    })
+
 
     /*Event for validate order*/
     $("#valid_order").click(function() {
 
         if ($('#valid_order').prop("disabled") == false) {
             unlockInputOrder();
-             $("#title_order").text("Ajouter une commande");
-
+            $("#title_order").text("Ajouter une commande");
 
             $('input').each(function() {
                 let input = this;
                 let name_input = $(input).attr("name");
-
-                if (name_input = !"current_id_order") {
-                    $(input).val('');
-                } else {
+                
+                if (name_input == "current_id_order"){
                     $(input).val(0);
+                } else if (name_input == "tab_orders_length"){
+                    return;
+                } else if(name_input ==="current_order_price"){
+                    $(input).val(0);
+                } else {
+                     $(input).val('');
                 }
+
 
             })
 
             $('select').each(function() {
                 let select = this;
-                $(select).val(0).change();
-
+                let name_select = $(select).attr("name");
+                if (name_select === "tab_orders_length"){
+                    return;
+                } else {
+                    $(select).val(0).change();
+                }
+                
             })
+
             $("#tab_products_order td").parent().remove();
             $("#collapse_products").hide("slow");
             $("#valid_order").attr('disabled', 'disabled');
             count = 1;
             counterProducts = 0;
             notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
+            $('#tab_orders').DataTable().ajax.reload();
 
         } else {
             return;
@@ -121,16 +202,32 @@ $(document).ready(function() {
             let select = this;
             let name_select = $(select).attr("name");
 
-            if (name_select != "select_product_order" || name_select != "tab_orders_length") {
-                $(select).attr("disabled", true);
+            if (name_select != "select_product_order") {
+                if(name_select != "tab_orders_length"){
+                     $(select).attr("disabled", true);
+                 } else {
+                    return;
+                 }
+               
             }
+
         });
 
         $('input').each(function() {
             let input = this;
             name_input = $(input).attr("name");
-            if (name_input != "qte_product_order") {
-                $(input).attr("disabled", true);
+            type_input = $(input).attr("type");
+
+            if (name_input != "qte_product_order") 
+            {
+                if(type_input != "search"){
+                    $(input).attr("disabled", true);
+                } else{
+                    return;
+                }
+                
+            } else {
+                return;
             }
         });
 
@@ -148,14 +245,15 @@ $(document).ready(function() {
 
         $('input').each(function() {
             let input = this;
+
             name_input = $(input).attr("name");
 
-            if(name_input != "current_order_price"){
+            if (name_input != "current_order_price") {
                 $(input).attr("disabled", false);
             } else {
                 $(input).attr("disabled", true);
             }
-            
+
         });
 
     }

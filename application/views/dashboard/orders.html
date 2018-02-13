@@ -30,6 +30,67 @@
       </style>
    </head>
    <body>
+       <!-- //////////////////////////////////////Modal FOR ORDERS//////////////////////////////////////////// -->
+   <div class="modal fade" data-backdrop="true" id="modal_orders" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+               <h5 class="modal-title" id="modalLabel">Edition de votre commande</h5>
+            </div>
+            <form id="" method="POST" action="">
+               <div class="modal-body">
+                  <div class="form-group">
+                     <input type="hidden" class="form-control" name="" id="">
+                  </div>
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Priopriétaire de la commande:</label>
+                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                  </div>
+
+               <div class="form-group">
+                     <label for="" class="form-control-label">Date de la commande:</label>
+                     <input required  name="" id="" type="text" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Prix de la commande:</label>
+                     <input required name="" id="" type="number" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Commentaire de la commande:</label>
+                     <input required  name="" id="" type="text" class="form-control">
+                  </div>
+                  
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Méthode de paiement:</label>
+                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Méthode de livraison:</label>
+                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                     <label for="" class="form-control-label">Etat de la commande:</label>
+                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                  </div>
+               </div>
+
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+                  <button class="btn btn-info btn-fill">Enregistrer</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
       <div class="wrapper">
          <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
             <div class="sidebar-wrapper">
@@ -234,8 +295,8 @@
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                          <label for="current_order_price">Prix total de la commande</label>
-                                          <input value="0" id="current_order_price" name="current_order_price" type="number" class="form-control" disabled>
+                                          <label for="current_order_price">Prix total de la commande </label>
+                                          <input data-toggle="tooltip" data-html="true" title="Prix calculé en fonction du prix du produit de la taille et de la quantité" value="0" id="current_order_price" name="current_order_price" type="number" class="form-control" disabled>
                                        </div>
                                     </div>
                                  </div>
@@ -349,6 +410,8 @@
                                                    <th>Méthode du paiment</th>
                                                    <th>Méthode de livraison</th>
                                                    <th>Etat actuel de la commande</th>
+                                                   <th>Edition de la commande</th>
+                                                   <th>Visualisation des produits</th>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
@@ -419,6 +482,7 @@
    <script type="text/javascript" src="<?php echo js_url('sendPost');?>"></script>
    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
    <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
+   <script src="<?php echo js_url('secret');?>"></script>
    <!-- Functions for notifications -->
    <script src="<?php echo js_url('notifications');?>"></script>
    <!-- Functions for change the status of orders -->
