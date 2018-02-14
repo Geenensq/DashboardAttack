@@ -2,7 +2,7 @@ $(document).ready(function() {
     /*-----Declare my lets for acces to the DOM------*/
     let array = document.getElementById('tab_products_order');
     let count = 1;
-    let totalPrice;
+    let totalPrice = 0;
     let current_order_price;
     let qte_product;
     let product_added;
