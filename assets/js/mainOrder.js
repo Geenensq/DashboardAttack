@@ -12,7 +12,7 @@ $(document).ready(function() {
     let counter_datatable = 0;
     /*------------------------------------------------*/
     /*call an secret function*/
-    secret();
+    /*secret();*/
     /***************************************************/
 
     $("#edit_orders").click(function() {
@@ -198,7 +198,7 @@ $(document).ready(function() {
     /*-----------------------------------------------*/
     function lockInputOrder() {
 
-        $('select').each(function() {
+        $('#form_add_order select').each(function() {
             let select = this;
             let name_select = $(select).attr("name");
 
@@ -213,7 +213,7 @@ $(document).ready(function() {
 
         });
 
-        $('input').each(function() {
+        $('#form_add_order input').each(function() {
             let input = this;
             name_input = $(input).attr("name");
             type_input = $(input).attr("type");
@@ -236,14 +236,14 @@ $(document).ready(function() {
 
     function unlockInputOrder() {
 
-        $('select').each(function() {
+        $('#form_add_order select').each(function() {
             let select = this;
             let name_select = $(select).attr("name");
             $(select).attr("disabled", false);
 
         });
 
-        $('input').each(function() {
+        $('#form_add_order input').each(function() {
             let input = this;
 
             name_input = $(input).attr("name");
