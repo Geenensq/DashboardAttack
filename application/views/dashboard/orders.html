@@ -40,7 +40,7 @@
                </button>
                <h5 class="modal-title" id="modalLabel">Edition de votre commande</h5>
             </div>
-            <form id="" method="POST" action="">
+            <form id="" method="POST" action="changeInfosOrders.html">
                <div class="modal-body">
                   <div class="form-group">
                      <input type="hidden" class="form-control" name="id_order" id="id_order">
@@ -58,17 +58,17 @@
                </div>
 
                <div class="form-group">
-                     <label for="" class="form-control-label">Date de la commande:</label>
+                     <label for="new_date_order" class="form-control-label">Date de la commande:</label>
                      <input required  name="new_date_order" id="new_date_order" type="date" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <label for="" class="form-control-label">Prix de la commande:</label>
+                     <label for="new_price_order" class="form-control-label">Prix de la commande:</label>
                      <input required name="new_price_order" id="new_price_order" type="number" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <label for="" class="form-control-label">Commentaire de la commande:</label>
+                     <label for="new_comment_order" class="form-control-label">Commentaire de la commande:</label>
                     <textarea id="new_comment_order" name="new_comment_order" rows="3" class="form-control"> </textarea>
                   </div>
                   
@@ -86,7 +86,7 @@
                   </div>
 
                   <div class="form-group">
-                     <label for="new_method_shipping" class="form-control-label">Méthode de livraison:</label>
+                     <label for="shipping_order" class="form-control-label">Méthode de livraison:</label>
                      
                      <select id="shipping_order" name="shipping_order" class="form-control">
                            <?php
@@ -99,8 +99,15 @@
                   </div>
 
                   <div class="form-group">
-                     <label for="" class="form-control-label">Etat de la commande:</label>
-                     <input required placeholder="Nouveau nom" name="new_state_order" id="new_state_order" type="text" class="form-control">
+                     <label for="new_state_order" class="form-control-label">Etat de la commande:</label>
+                     <select id="new_state_order" name="new_state_order" class="form-control" >
+                           <?php
+                              foreach($states as $value)
+                           {
+                              echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
+                           }
+                           ?>
+                     </select>
                   </div>
                </div>
 

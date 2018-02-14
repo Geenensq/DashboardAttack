@@ -216,7 +216,7 @@ Class Products_controller extends CI_Controller
 
 
 // =======================================================================//
-// !          Method for activate or desactivate group of products         //
+// !                  Method for EDIT AN GROUPS OF PRODUCTS               //
 // ======================================================================//
 
     public function changeNameGroupProducts()

@@ -159,7 +159,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function selectAllOrdersForModal($id)
     {
         $id_order = $id;
-        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer , methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment , methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , states.name_state AS name_state states.id_state AS id_state');
+        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer , methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment , methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , states.name_state AS name_state , states.id_state AS id_state');
         $this->db->from($this->table);
         $this->db->join('customers', 'orders.id_customer = customers.id_customer');
         $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
@@ -186,7 +186,35 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $order;
 
     }
-    
+
+// =======================================================================//
+// !                    Method update an order with id                    //
+// ======================================================================//
+
+    public function updateOrder($model){
+       $id_order = $model->getIdOrder();
+       $id_customer = $model->getIdCustomer();
+       $date_order = $model->getDateOrder();
+       $price_order = $model->getPriceOrder();
+       $comment_order = $model->getCommentOrder();
+       $method_payment = $model->getIdMethodPayment();
+       $method_shipping = $model->getIdMethodShipping();
+       $state_order = $model->getStatusOrder();
+
+
+        $this->db->set('date_order', $date_order);
+        $this->db->set('comment_order', $comment_order);
+        $this->db->set('price_order', $price_order);
+        $this->db->set('id_customer', $id_customer);
+        $this->db->set('id_method_payment', $method_payment);
+        $this->db->set('id_method_shipping', $method_shipping);
+        $this->db->set('id_state', $state_order);
+
+       $this->db->where('id_order' , $id_order);
+       $this->db->update($this->table);
+    }
+
+
 
 // =======================================================================//
 // !               Method for update the price of the order              //

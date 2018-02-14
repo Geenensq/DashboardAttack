@@ -145,6 +145,50 @@ Class Orders_controller extends CI_Controller
         echo json_encode(array('data' => $data));
     }
 
+
+// =======================================================================//
+// !                  Method for EDIT AN GROUPS OF PRODUCTS               //
+// ======================================================================//
+
+    public function changeInfosOrders()
+    {
+        $this->form_validation->set_rules('id_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_customer_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_date_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_price_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_comment_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_method_payment', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('shipping_order', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_state_order', '" "', 'required|min_length[1]');
+        
+        $callBack = array();
+
+        if ($this->form_validation->run()) {
+            
+            $this->modelOrders->setIdOrder($this->input->post('id_order'));
+            $this->modelOrders->setIdCustomer($this->input->post('new_customer_order'));
+            $this->modelOrders->setDateOrder($this->input->post('new_date_order'));
+            $this->modelOrders->setPriceOrder($this->input->post('new_price_order'));
+            $this->modelOrders->setCommentOrder($this->input->post('new_comment_order'));
+            $this->modelOrders->setIdMethodPayment($this->input->post('new_method_payment'));
+            $this->modelOrders->setIdMethodShipping($this->input->post('shipping_order'));
+            $this->modelOrders->setStatusOrder($this->input->post('new_state_order'));
+
+            $order = $this->modelOrders;
+
+            $this->modelOrders->updateOrder($order);
+            $callBack["confirm"] = "success";
+
+        } else {
+
+            $callBack["errorNewNameGroup"] = "error";
+        }
+
+        echo json_encode($callBack);
+    }
+
+
+
 // =======================================================================//
 // !                     INSERT ONE PRODUCT ORDER                        //
 // ======================================================================//
