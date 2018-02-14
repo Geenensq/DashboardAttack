@@ -43,41 +43,64 @@
             <form id="" method="POST" action="">
                <div class="modal-body">
                   <div class="form-group">
-                     <input type="hidden" class="form-control" name="" id="">
+                     <input type="hidden" class="form-control" name="id_order" id="id_order">
                   </div>
                   <div class="form-group">
-                     <label for="" class="form-control-label">Priopriétaire de la commande:</label>
-                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
-                  </div>
+                     <label for="new_customer_order" class="form-control-label">Propriétaire de la commande:</label>
+                     <select required name="new_customer_order" id="new_customer_order" class="form-control">
+                     <?php
+                        foreach($customers as $value){
+                        echo '<option value=' . '"' . $value->getIdCustomer() . '">' . $value->getLastName() . ' ' . $value->getFirstName(). '</option>';
+                        }
+                     ?>
+                  </select>
+
+               </div>
 
                <div class="form-group">
                      <label for="" class="form-control-label">Date de la commande:</label>
-                     <input required  name="" id="" type="text" class="form-control">
+                     <input required  name="new_date_order" id="new_date_order" type="date" class="form-control">
                   </div>
 
                   <div class="form-group">
                      <label for="" class="form-control-label">Prix de la commande:</label>
-                     <input required name="" id="" type="number" class="form-control">
+                     <input required name="new_price_order" id="new_price_order" type="number" class="form-control">
                   </div>
 
                   <div class="form-group">
                      <label for="" class="form-control-label">Commentaire de la commande:</label>
-                     <input required  name="" id="" type="text" class="form-control">
+                    <textarea id="new_comment_order" name="new_comment_order" rows="3" class="form-control"> </textarea>
                   </div>
                   
                   <div class="form-group">
-                     <label for="" class="form-control-label">Méthode de paiement:</label>
-                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                     <label for="new_method_payment" class="form-control-label">Méthode de paiement:</label>
+                    
+                     <select id="new_method_payment" name="new_method_payment" class="form-control" >
+                        <?php
+                           foreach($payments as $value)
+                              {
+                                 echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
+                              }
+                        ?>
+                     </select>
                   </div>
 
                   <div class="form-group">
-                     <label for="" class="form-control-label">Méthode de livraison:</label>
-                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                     <label for="new_method_shipping" class="form-control-label">Méthode de livraison:</label>
+                     
+                     <select id="shipping_order" name="shipping_order" class="form-control">
+                           <?php
+                           foreach($shipping as $value)
+                           {
+                              echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
+                           }
+                           ?>
+                     </select>
                   </div>
 
                   <div class="form-group">
                      <label for="" class="form-control-label">Etat de la commande:</label>
-                     <input required placeholder="Nouveau nom" name="" id="" type="text" class="form-control">
+                     <input required placeholder="Nouveau nom" name="new_state_order" id="new_state_order" type="text" class="form-control">
                   </div>
                </div>
 
@@ -482,7 +505,10 @@
    <script type="text/javascript" src="<?php echo js_url('sendPost');?>"></script>
    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
    <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
+   <!-- Secret function -->
    <script src="<?php echo js_url('secret');?>"></script>
+   <!-- Function for edit an order on the modal -->
+   <script src="<?php echo js_url('editOrdersModal');?>"></script>
    <!-- Functions for notifications -->
    <script src="<?php echo js_url('notifications');?>"></script>
    <!-- Functions for change the status of orders -->

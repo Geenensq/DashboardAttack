@@ -115,6 +115,20 @@ Class Orders_controller extends CI_Controller
         
     }
 
+
+
+// ==========================================================================================//
+// !                Method get all informations of an order for modal                        //
+// ==========================================================================================//
+
+    public function getInfosOrdersModal()
+    {
+        $this->id_order = $this->input->post('id');
+        $return = $this->modelOrders->selectAllOrdersForModal($this->id_order);
+        echo json_encode($return);
+    }
+
+
 // =======================================================================//
 // !                Method for send orders on datatable                  //
 // ======================================================================//

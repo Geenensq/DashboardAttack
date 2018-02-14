@@ -153,6 +153,40 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             return $this->db->insert_id();
 
     }
+// =======================================================================//
+// !                 Method SELECT * ORDERS for my modal                  //
+// ======================================================================//
+    public function selectAllOrdersForModal($id)
+    {
+        $id_order = $id;
+        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer , methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment , methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , states.name_state AS name_state states.id_state AS id_state');
+        $this->db->from($this->table);
+        $this->db->join('customers', 'orders.id_customer = customers.id_customer');
+        $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
+        $this->db->join('methods_shippings', 'orders.id_method_shipping = methods_shippings.id_method_shipping');
+        $this->db->join('states', 'orders.id_state = states.id_state');
+        $this->db->where('id_order', $id_order);
+        $query = $this->db->get();
+        
+        foreach ($query->result() as $row) {
+            $order["id_order"] = $row->id_order;
+            $order["date_order"] = $row->date_order;
+            $order["comment_order"] = $row->comment_order;
+            $order["price_order"] = $row->price_order;
+            $order["firstname"] = $row->firstname;
+            $order["lastname"] = $row->lastname;
+            $order["id_customer"] = $row->id_customer;
+            $order["method_payment"] = $row->method_payment;
+            $order["id_method_payment"] = $row->id_method_payment;
+            $order["method_shipping"] = $row->method_shipping;
+            $order["id_method_shipping"] = $row->id_method_shipping;
+            $order["name_state"] = $row->name_state;
+            $order["id_state"] = $row->id_state;
+        }
+        return $order;
+
+    }
+    
 
 // =======================================================================//
 // !               Method for update the price of the order              //

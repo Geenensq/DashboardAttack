@@ -81,7 +81,7 @@ $(document).ready(function() {
                     {"targets": 1,render: function(data, full) {return '<p>' + data[5] + ' ' + data[4] + '<p>'}},
                     {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
                     {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
-                    {"targets": 8,render: function(data, full) {return '<a id="btn_state" data-toggle="modal" data-target="#modal_orders" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'}},
+                    {"targets": 8,render: function(data, full) {return '<a id="btn_state" onclick="editOrdersModal('+ data[0] +')" data-toggle="modal" data-target="#modal_orders" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'}},
                     {"targets": 9,render: function(data, full) {return '<a id="btn_state" class="btn btn-info btn-fill"><i class="fa fa-file-text-o"></i></a>'}},
 
                 ]
@@ -156,7 +156,7 @@ $(document).ready(function() {
             count = 1;
             counterProducts = 0;
             notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
-            $('#tab_orders').DataTable().ajax.reload();
+            /*$('#tab_orders').DataTable().ajax.reload();*/
 
         } else {
             return;
