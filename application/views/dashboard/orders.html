@@ -40,7 +40,7 @@
                </button>
                <h5 class="modal-title" id="modalLabel">Edition de votre commande</h5>
             </div>
-            <form id="" method="POST" action="changeInfosOrders.html">
+            <form id="formEditOrder" method="POST" action="changeInfosOrders.html">
                <div class="modal-body">
                   <div class="form-group">
                      <input type="hidden" class="form-control" name="id_order" id="id_order">
@@ -528,7 +528,8 @@
    <script src="<?php echo js_url('mainOrder');?>"></script>
    <!-- Functions for delete an product on table-->
    <script src="<?php echo js_url('deleteRow');?>"></script>
-
+   <!-- Change infos of an orders-->
+   <script src="<?php echo js_url('changeInfosOrders');?>"></script>
 
    <script type="text/javascript">
       // In your Javascript (external .js resource or <script> tag)
