@@ -210,6 +210,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->set('id_method_shipping', $method_shipping);
         $this->db->set('id_state', $state_order);
 
+
        $this->db->where('id_order' , $id_order);
        $this->db->update($this->table);
     }

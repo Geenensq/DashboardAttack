@@ -14,7 +14,7 @@ $(document).ready(function() {
     let actualQuantity;
     /*------------------------------------------------*/
     /*call an secret function*/
-    secret();
+    /*secret();*/
     /***************************************************/
 
 

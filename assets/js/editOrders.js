@@ -34,7 +34,11 @@ function editOrders($id) {
     deleteMultipleEntrySelect("#shipping_order");
     $("#state_order").prepend($("<option selected=\"selected\"></option>").val(order.id_method_payment).html(order.method_shipping));
     deleteMultipleEntrySelect("#state_order");
-    
+
+
+    url = "getInfosProductsOrdersForEdit.html";
+    var form = {id:$id};
+    var order_product = send_post(form, url);
 
     
 }

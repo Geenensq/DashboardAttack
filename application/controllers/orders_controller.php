@@ -118,7 +118,7 @@ Class Orders_controller extends CI_Controller
 
 
 // ==========================================================================================//
-// !                Method get all informations of an order for modal                        //
+// !                      Method get all informations of an order                            //
 // ==========================================================================================//
 
     public function getInfosOrdersForEdit()
@@ -127,6 +127,19 @@ Class Orders_controller extends CI_Controller
         $return = $this->modelOrders->selectAllOrders($this->id_order);
         echo json_encode($return);
     }
+
+
+// ==========================================================================================//
+// !                Method get all informations of product order                             //
+// ==========================================================================================//
+
+    public function getInfosProductsOrdersForEdit()
+    {
+        $this->id_order = $this->input->post('id');
+        $return = $this->modelProductOrder->selectAllProductsOrders($this->id_order);
+        echo json_encode($return);
+    }
+
 
 
 // =======================================================================//

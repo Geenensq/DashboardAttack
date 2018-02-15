@@ -115,18 +115,27 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function selectAllProductsOrders($id)
     {
         $id_order = $id;
-        $this->db->select('product_order.quantity_product' , 'product_order.id_product' ,'products.id_product' , 'products.product_name' , 'products.reference','products.description','products.base_price','products.img_url','products.actif','products.id_group_product','products.id_color','products.id_size');
+        $this->db->select('product_order.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url');
+
         $this->db->from($this->table);
         $this->db->join('products', 'products.id_product = product_order.id_product');
         $this->db->join('orders', 'orders.id_order = product_order.id_order');
-        $this->db->where('id_order', $id_order);
+        $this->db->where('orders.id_order', $id_order);
         $query = $this->db->get();
+
         
         foreach ($query->result() as $row) {
-            $order["id_order"] = $row->id_order;
+
+            $product_order["quantity_product"] = $row->quantity_product;
+            $product_order["id_product"] = $row->id_product;
+            $product_order["product_name"] = $row->product_name;
+            $product_order["reference"] = $row->reference;
+            $product_order["description"] = $row->description;
+            $product_order["base_price"] = $row->base_price;
+            $product_order["img_url"] = $row->img_url;
           
         }
-        return $order;
+        return $product_order;
 
     }
 
