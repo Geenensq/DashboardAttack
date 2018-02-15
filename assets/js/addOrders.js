@@ -25,7 +25,7 @@
                 priceUpdate($("#current_id_order").val() , $("#current_order_price").val());
                 /*call function javascript for add products in the order*/
                 addProductsOrder($("#current_id_order").val());
-                $("#title_order").text("Edition de commande n°" + $("#current_id_order").val());
+                $("#title_order").text("Création de la commande n°" + $("#current_id_order").val());
               
             } else if (data.confirm == "error") {
                 

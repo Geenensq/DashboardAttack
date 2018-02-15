@@ -92,7 +92,43 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->where('id_order', $id_order);
         $this->db->delete($this->table);
     }
+// =======================================================================//
+// !                  DELETING A PRODUCT FROM AN ORDER                    //
+// ======================================================================//
 
+    public function updateQuantityProduct($model)
+    {
+        $id_order = $model->getIdOrder();
+        $id_product = $model->getIdProduct();
+        $new_quantity = $model->getQuantityProduct();
+
+        $this->db->set('quantity_product', $new_quantity);
+        $this->db->set('id_product', $id_product);
+        $this->db->where('id_order', $id_order);
+        $this->db->update($this->table);
+
+    }
+
+// =======================================================================//
+// !                  SELECT * product from an orders                    //
+// ======================================================================//
+    public function selectAllProductsOrders($id)
+    {
+        $id_order = $id;
+        $this->db->select('product_order.quantity_product' , 'product_order.id_product' ,'products.id_product' , 'products.product_name' , 'products.reference','products.description','products.base_price','products.img_url','products.actif','products.id_group_product','products.id_color','products.id_size');
+        $this->db->from($this->table);
+        $this->db->join('products', 'products.id_product = product_order.id_product');
+        $this->db->join('orders', 'orders.id_order = product_order.id_order');
+        $this->db->where('id_order', $id_order);
+        $query = $this->db->get();
+        
+        foreach ($query->result() as $row) {
+            $order["id_order"] = $row->id_order;
+          
+        }
+        return $order;
+
+    }
 
 // =======================================================================//
 // !       Select * for check if product is already in a command          //
@@ -119,7 +155,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
 
     }
-
 
 
 

@@ -121,10 +121,10 @@ Class Orders_controller extends CI_Controller
 // !                Method get all informations of an order for modal                        //
 // ==========================================================================================//
 
-    public function getInfosOrdersModal()
+    public function getInfosOrdersForEdit()
     {
         $this->id_order = $this->input->post('id');
-        $return = $this->modelOrders->selectAllOrdersForModal($this->id_order);
+        $return = $this->modelOrders->selectAllOrders($this->id_order);
         echo json_encode($return);
     }
 
@@ -259,6 +259,23 @@ Class Orders_controller extends CI_Controller
         echo json_encode($return);
     }
 
+// ==========================================================================================//
+// !                 method to update the number of the product in the order                 //
+// ==========================================================================================//
+
+    public function EditQuantityProduct()
+    {
+        $this->id_order = $this->input->post('id_order');
+        $this->id_product = $this->input->post('id_product');
+        $this->qte_product = $this->input->post('new_quantity');
+
+        $this->modelProductOrder->setIdOrder($this->id_order);
+        $this->modelProductOrder->setIdProduct($this->id_product);
+        $this->modelProductOrder->setQuantityProduct($this->qte_product);
+        $modelProductOrder = $this->modelProductOrder;
+        
+        $this->modelProductOrder->updateQuantityProduct($modelProductOrder);
+    }
 
 
 

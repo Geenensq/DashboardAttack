@@ -18,109 +18,8 @@
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
       <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-      <style type="text/css">
-         .select2-selection {
-         height: 35px !important;
-         padding-top: 3px !important;
-         }
-         .select2-container--default .select2-selection--single {
-         border: 1px solid #E3E3E3;
-         }
-      </style>
    </head>
    <body>
-       <!-- //////////////////////////////////////Modal FOR ORDERS//////////////////////////////////////////// -->
-   <div class="modal fade" data-backdrop="true" id="modal_orders" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-               </button>
-               <h5 class="modal-title" id="modalLabel">Edition de votre commande</h5>
-            </div>
-            <form id="formEditOrder" method="POST" action="changeInfosOrders.html">
-               <div class="modal-body">
-                  <div class="form-group">
-                     <input type="hidden" class="form-control" name="id_order" id="id_order">
-                  </div>
-                  <div class="form-group">
-                     <label for="new_customer_order" class="form-control-label">Propriétaire de la commande:</label>
-                     <select required name="new_customer_order" id="new_customer_order" class="form-control">
-                     <?php
-                        foreach($customers as $value){
-                        echo '<option value=' . '"' . $value->getIdCustomer() . '">' . $value->getLastName() . ' ' . $value->getFirstName(). '</option>';
-                        }
-                     ?>
-                  </select>
-
-               </div>
-
-               <div class="form-group">
-                     <label for="new_date_order" class="form-control-label">Date de la commande:</label>
-                     <input required  name="new_date_order" id="new_date_order" type="date" class="form-control">
-                  </div>
-
-                  <div class="form-group">
-                     <label for="new_price_order" class="form-control-label">Prix de la commande:</label>
-                     <input required name="new_price_order" id="new_price_order" type="number" class="form-control">
-                  </div>
-
-                  <div class="form-group">
-                     <label for="new_comment_order" class="form-control-label">Commentaire de la commande:</label>
-                    <textarea id="new_comment_order" name="new_comment_order" rows="3" class="form-control"> </textarea>
-                  </div>
-                  
-                  <div class="form-group">
-                     <label for="new_method_payment" class="form-control-label">Méthode de paiement:</label>
-                    
-                     <select id="new_method_payment" name="new_method_payment" class="form-control" >
-                        <?php
-                           foreach($payments as $value)
-                              {
-                                 echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
-                              }
-                        ?>
-                     </select>
-                  </div>
-
-                  <div class="form-group">
-                     <label for="shipping_order" class="form-control-label">Méthode de livraison:</label>
-                     
-                     <select id="shipping_order" name="shipping_order" class="form-control">
-                           <?php
-                           foreach($shipping as $value)
-                           {
-                              echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
-                           }
-                           ?>
-                     </select>
-                  </div>
-
-                  <div class="form-group">
-                     <label for="new_state_order" class="form-control-label">Etat de la commande:</label>
-                     <select id="new_state_order" name="new_state_order" class="form-control" >
-                           <?php
-                              foreach($states as $value)
-                           {
-                              echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
-                           }
-                           ?>
-                     </select>
-                  </div>
-               </div>
-
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-                  <button class="btn btn-info btn-fill">Enregistrer</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-   <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
-
       <div class="wrapper">
          <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
             <div class="sidebar-wrapper">
@@ -255,6 +154,7 @@
                            <div class="header">
                               <h4 id="title_order" class="title">Ajouter une commande</h4>
                            </div>
+                          
                            <div class="content">
                               <form id="form_add_order" method="POST" action="addOrder.html">
                                  <input type="hidden" name="current_id_order" id="current_id_order" >
@@ -262,7 +162,7 @@
                                     <div class="col-md-4">
                                        <div class="form-group">
                                           <label for="customer_order">Client</label>
-                                          <select id="customer_order" name="customer_order" class="js-example-basic-multiple form-control" name="state">
+                                          <select id="customer_order" name="customer_order" class="form-control" name="state">
                                              <option value="0" disabled selected="selected">Sélectionner un client</option>
                                           <?php
                                              foreach($customers as $value)
@@ -282,7 +182,7 @@
                                     <div class="col-md-4">
                                        <div class="form-group">
                                           <label for="state_order">Statut de la commande</label>
-                                          <select id="state_order" name="state_order" class="js-example-basic-multiple form-control" >
+                                          <select id="state_order" name="state_order" class="form-control" >
                                              <option value="0" disabled selected="selected">Sélectionner un statut de commande</option>
                                           <?php
                                              foreach($states as $value)
@@ -298,7 +198,7 @@
                                     <div class="col-md-4">
                                        <div class="form-group">
                                           <label for="shipping_order">Mode de livraison</label>
-                                          <select id="shipping_order" name="shipping_order" class="js-example-basic-multiple form-control">
+                                          <select id="shipping_order" name="shipping_order" class="form-control">
                                              <option value="0" disabled selected="selected">Sélectionner un mode de livraison</option>
                                           <?php
                                              foreach($shipping as $value)
@@ -342,7 +242,7 @@
                                     <div class="col-md-8">
                                        <div class="form-group">
                                           <label for="select_product_order">Rechercher un produit à ajouter : </label>
-                                          <select name="select_product_order" id="select_product_order" class="js-example-basic-multiple form-control"> 
+                                          <select name="select_product_order" id="select_product_order" class="form-control">
                                              <option value="0" disabled selected="selected">Ajouter un produit à la commande :</option>
                                           <?php
                                              foreach($products as $value)
@@ -387,6 +287,7 @@
                                                                   <th>Couleur du produit</th>
                                                                   <th>Taille du produit</th>
                                                                   <th>Suppression du produit</th>
+                                                                  <th>Gestion de la quantitée</th>
                                                                </thead>
                                                                <tbody>
                                                                </tbody>
@@ -412,7 +313,7 @@
                               </div>
                            </div>
                            <a disabled id="valid_order" name="valid_order" class="btn btn-danger btn-fill pull-right">Valider la commande</a>
-                           <p id="edit_orders" style="margin-right: 20px;" data-toggle="collapse" data-target="#collapse_edit_orders" type="button" class="btn btn-info btn-fill pull-right">Edition des commandes</p>
+                           <p id="edit_orders" style="margin-right: 20px;" data-toggle="collapse" data-target="#collapse_edit_orders" type="button" class="btn btn-info btn-fill pull-right">Commandes en cours</p>
                            <div class="clearfix"></div>
                            </form>
                         </div>
@@ -441,7 +342,6 @@
                                                    <th>Méthode de livraison</th>
                                                    <th>Etat actuel de la commande</th>
                                                    <th>Edition de la commande</th>
-                                                   <th>Visualisation des produits</th>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
@@ -515,7 +415,7 @@
    <!-- Secret function -->
    <script src="<?php echo js_url('secret');?>"></script>
    <!-- Function for edit an order on the modal -->
-   <script src="<?php echo js_url('editOrdersModal');?>"></script>
+   <script src="<?php echo js_url('editOrders');?>"></script>
    <!-- Functions for notifications -->
    <script src="<?php echo js_url('notifications');?>"></script>
    <!-- Functions for change the status of orders -->
@@ -531,10 +431,4 @@
    <!-- Change infos of an orders-->
    <script src="<?php echo js_url('changeInfosOrders');?>"></script>
 
-   <script type="text/javascript">
-      // In your Javascript (external .js resource or <script> tag)
-      $(document).ready(function() {
-          $('.js-example-basic-multiple').select2();
-      });
-   </script>
 </html>

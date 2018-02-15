@@ -10,12 +10,15 @@ $(document).ready(function() {
     let product_checked;
     let return_product_exist;
     let counter_datatable = 0;
+    let Quantity;
+    let actualQuantity;
     /*------------------------------------------------*/
     /*call an secret function*/
-    /*secret();*/
+    secret();
     /***************************************************/
 
-    $("#edit_orders").click(function() {
+
+    $("#edit_orders").click(function () {
         counter_datatable++
         if (counter_datatable <= 1) {
             var myTable = $('#tab_orders').DataTable({
@@ -61,14 +64,9 @@ $(document).ready(function() {
 
                     {
                         "targets": 8,
-                        data: null 
-                    },
-
-                    {
-                        "targets": 9,
                         data: null
-
                     },
+
 
 
                 ],
@@ -78,12 +76,30 @@ $(document).ready(function() {
 
                 columnDefs: [
 
-                    {"targets": 1,render: function(data, full) {return '<p>' + data[5] + ' ' + data[4] + '<p>'}},
-                    {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
-                    {"targets": 3,render: function(data, full) {return '<p>' + data[3] + '€' + '</p>'}},
-                    {"targets": 8,render: function(data, full) {return '<a id="btn_state" onclick="editOrdersModal('+ data[0] +')" data-toggle="modal" data-target="#modal_orders" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'}},
-                    {"targets": 9,render: function(data, full) {return '<a id="btn_state" class="btn btn-info btn-fill"><i class="fa fa-file-text-o"></i></a>'}},
-
+                    {
+                        "targets": 1,
+                        render: function(data, full) {
+                            return '<p>' + data[5] + ' ' + data[4] + '<p>'
+                        }
+                    },
+                    {
+                        "targets": 3,
+                        render: function(data, full) {
+                            return '<p>' + data[3] + '€' + '</p>'
+                        }
+                    },
+                    {
+                        "targets": 3,
+                        render: function(data, full) {
+                            return '<p>' + data[3] + '€' + '</p>'
+                        }
+                    },
+                    {
+                        "targets": 8,
+                        render: function(data, full) {
+                            return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'
+                        }
+                    },
                 ]
             });
 
@@ -94,29 +110,27 @@ $(document).ready(function() {
     })
 
 
-        $('#edit_orders').on( 'click', 'tbody tr', function () {
-        myTable.row( this ).edit( {
-            buttons: [
-                { label: 'Cancel', fn: function () { this.close(); } },
-                'Edit'
-            ]
-        } );
-    } );
 
-    $("#edit_orders").click(function(){
 
-          if ($("#collapse_edit_orders").is(":visible") == true) {
-              $("#edit_orders").text("Editer les commandes");
+    $("#edit_orders").click(function() {
 
-          } else {
-              $("#edit_orders").text("Annuler l'édition");
+        if ($("#collapse_edit_orders").is(":visible") == true) {
+            $("#edit_orders").text("Commandes en cours");
 
-          }
+        } else {
+            $("#edit_orders").text("Annuler l'édition");
+
+        }
     })
 
 
     /*Event for validate order*/
     $("#valid_order").click(function() {
+
+        $('[data-toggle=collapse]').prop('disabled',false);
+        $('#edit_orders').attr("disabled", false);
+
+
 
         if ($('#valid_order').prop("disabled") == false) {
             unlockInputOrder();
@@ -125,15 +139,15 @@ $(document).ready(function() {
             $('input').each(function() {
                 let input = this;
                 let name_input = $(input).attr("name");
-                
-                if (name_input == "current_id_order"){
+
+                if (name_input == "current_id_order") {
                     $(input).val(0);
-                } else if (name_input == "tab_orders_length"){
+                } else if (name_input == "tab_orders_length") {
                     return;
-                } else if(name_input ==="current_order_price"){
+                } else if (name_input === "current_order_price") {
                     $(input).val(0);
                 } else {
-                     $(input).val('');
+                    $(input).val('');
                 }
 
 
@@ -142,12 +156,12 @@ $(document).ready(function() {
             $('select').each(function() {
                 let select = this;
                 let name_select = $(select).attr("name");
-                if (name_select === "tab_orders_length"){
+                if (name_select === "tab_orders_length") {
                     return;
                 } else {
                     $(select).val(0).change();
                 }
-                
+
             })
 
             $("#tab_products_order td").parent().remove();
@@ -169,7 +183,12 @@ $(document).ready(function() {
 
     /*---------------------Event for create order and products---------------------*/
     $("#add_product").click(function() {
-        if ($("#customer_order,#date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null) {
+        
+        if ($("#customer_order #date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null) {
+
+            $('[data-toggle=collapse]').prop('disabled',true);
+            $('#edit_orders').attr("disabled", true);
+
             lockInputOrder();
             product_added = $('#select_product_order').val();
             qte_product = $('#qte_product_order').val();
@@ -203,12 +222,12 @@ $(document).ready(function() {
             let name_select = $(select).attr("name");
 
             if (name_select != "select_product_order") {
-                if(name_select != "tab_orders_length"){
-                     $(select).attr("disabled", true);
-                 } else {
+                if (name_select != "tab_orders_length") {
+                    $(select).attr("disabled", true);
+                } else {
                     return;
-                 }
-               
+                }
+
             }
 
         });
@@ -218,14 +237,13 @@ $(document).ready(function() {
             name_input = $(input).attr("name");
             type_input = $(input).attr("type");
 
-            if (name_input != "qte_product_order") 
-            {
-                if(type_input != "search"){
+            if (name_input != "qte_product_order") {
+                if (type_input != "search") {
                     $(input).attr("disabled", true);
-                } else{
+                } else {
                     return;
                 }
-                
+
             } else {
                 return;
             }
@@ -337,6 +355,7 @@ function constructViewTable($product, $count, $array, $qte_product) {
     let cell8 = row.insertCell(7);
     let cell9 = row.insertCell(8);
     let cell10 = row.insertCell(9);
+    let cell11 = row.insertCell(10);
 
     cell1.innerHTML = $product.id_product
     cell2.innerHTML = $qte_product;
@@ -348,14 +367,63 @@ function constructViewTable($product, $count, $array, $qte_product) {
     cell8.innerHTML = $product.colors_names;
     cell9.innerHTML = $product.sizes_names;
     cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
+
+    cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';
+
+
     notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
 }
 
+function AddQuantity($id_product, $row, $price_product) {
+    Quantity = $row.cells[1];
+    actualQuantity = parseFloat(Quantity.innerHTML);
+    Quantity.innerHTML = actualQuantity + 1;
+    
+    updateQuantityProduct($("#current_id_order").val() , $id_product , parseFloat(Quantity.innerHTML));
+    
+    current_order_price = parseFloat($("#current_order_price").val());
+    $("#current_order_price").val(parseFloat(current_order_price + $price_product));
+    /*AJAX CALL FOR UPDATE THE PRICE*/
+    priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+}
+
+function RemoveQuantity($id_product, $row, $price_product) {
+    Quantity = $row.cells[1];
+    actualQuantity = parseFloat(Quantity.innerHTML);
+    if (actualQuantity <= 1) {
+        notify("pe-7s-refresh-2", "<b>Erreur : </b> Vous devez obligatoirement au moins 1 exemplaire", "danger");
+
+    } else {
+        Quantity.innerHTML = actualQuantity - 1;
+
+        updateQuantityProduct($("#current_id_order").val() , $id_product , parseFloat(Quantity.innerHTML));
+
+        current_order_price = parseFloat($("#current_order_price").val());
+        $("#current_order_price").val(parseFloat(current_order_price - $price_product));
+
+        /*AJAX CALL FOR UPDATE THE PRICE*/
+        priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+    }
+}
+
+function updateQuantityProduct($id_order , $id_product , $new_quantity){
+    url = "EditQuantityProduct.html"
+    $.post(url, {id_order:$id_order, id_product:$id_product, new_quantity:$new_quantity}, 
+
+        function(data) {
+
+        if (data.confirm == "success") {
+         
+
+        } else if (data.confirm == "error") {
+
+        }
+    }, "json");
+}
+
+
 function priceUpdate($id_order, $price) {
     url = "editPriceOrder.html";
-    form = {
-        id_order: $id_order,
-        price: $price
-    };
+    form = {id_order: $id_order,price: $price};
     let result_price_update = send_post(form, url);
 }

@@ -156,7 +156,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                 Method SELECT * ORDERS for my modal                  //
 // ======================================================================//
-    public function selectAllOrdersForModal($id)
+    public function selectAllOrders($id)
     {
         $id_order = $id;
         $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer , methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment , methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , states.name_state AS name_state , states.id_state AS id_state');
