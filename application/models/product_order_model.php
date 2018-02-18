@@ -115,27 +115,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function selectAllProductsOrders($id)
     {
         $id_order = $id;
-        $this->db->select('product_order.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url');
+        $this->db->select('product_order.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url , colors.color_name AS color_name , sizes.size_name AS size_name');
 
         $this->db->from($this->table);
         $this->db->join('products', 'products.id_product = product_order.id_product');
         $this->db->join('orders', 'orders.id_order = product_order.id_order');
+        $this->db->join('colors', 'products.id_color = colors.id_color');
+        $this->db->join('sizes', 'products.id_size = sizes.id_size');
         $this->db->where('orders.id_order', $id_order);
         $query = $this->db->get();
-
-        
-        foreach ($query->result() as $row) {
-
-            $product_order["quantity_product"] = $row->quantity_product;
-            $product_order["id_product"] = $row->id_product;
-            $product_order["product_name"] = $row->product_name;
-            $product_order["reference"] = $row->reference;
-            $product_order["description"] = $row->description;
-            $product_order["base_price"] = $row->base_price;
-            $product_order["img_url"] = $row->img_url;
-          
-        }
-        return $product_order;
+        $query->result_array();
+        return $query->result_array();
 
     }
 
