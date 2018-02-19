@@ -12,6 +12,7 @@ $(document).ready(function() {
     let counter_datatable = 0;
     let Quantity;
     let actualQuantity;
+
     /*------------------------------------------------*/
     /*call an secret function*/
     /*secret();*/
@@ -118,7 +119,7 @@ $(document).ready(function() {
             $("#edit_orders").text("Commandes en cours");
 
         } else {
-            $("#edit_orders").text("Annuler l'édition");
+            $("#edit_orders").text("Fermer les commandes en cours");
 
         }
     })
@@ -209,13 +210,16 @@ $(document).ready(function() {
             count = 1;
             counterProducts = 0;
 
-            if(edit_mode === 0 ) {
+            if (edit_mode === 0) {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
-            } 
-            
+            }
+
+            $("#title_order").css("font-weight", "300");
+            $("#title_order").css("color", "#333333");
+
 
         } else {
-            console.log("on sort de la condition");
+
             return;
         }
 
@@ -232,24 +236,41 @@ $(document).ready(function() {
             $('[data-toggle=collapse]').prop('disabled', true);
             $('#edit_orders').attr("disabled", true);
 
-            lockInputOrder();
-            product_added = $('#select_product_order').val();
-            qte_product = $('#qte_product_order').val();
+            /**********************************************************************/
+            /****************if the command is in edit mode***********************/
+            /*********************************************************************/
+            if ($('h4:contains("Edition de la commande existante")').length > 0) {
 
-            /*Call function fo add an row in table*/
-            return_product_exist = addRowProduct(product_added);
-
-            if (return_product_exist === "ok") {
-
-                if (counterProducts < 1) {
-                    addOrders();
-                    counterProducts++;
-                } else {
-                    /*call function javascript for add products in the order*/
+                product_added = $('#select_product_order').val();
+                qte_product = $('#qte_product_order').val();
+                return_product_exist = addRowProduct(product_added);
+                 if (return_product_exist === "ok") {
+                     /*call function javascript for add products in the order*/
                     addProductsOrder($("#current_id_order").val());
-
                     priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
 
+                 }
+                   
+            } else {
+                lockInputOrder();
+                product_added = $('#select_product_order').val();
+                qte_product = $('#qte_product_order').val();
+
+                /*Call function fo add an row in table*/
+                return_product_exist = addRowProduct(product_added);
+
+                if (return_product_exist === "ok") {
+
+                    if (counterProducts < 1) {
+                        addOrders();
+                        counterProducts++;
+                    } else {
+                        /*call function javascript for add products in the order*/
+                        addProductsOrder($("#current_id_order").val());
+
+                        priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+
+                    }
                 }
             }
 
@@ -384,10 +405,14 @@ function checkProductInOrder($id_product) {
 
 function constructViewTable($product, $count, $array, $qte_product) {
     $("#valid_order").removeAttr("disabled");
-    /*Insert an row in my table*/
+    
+    if ($('h4:contains("Edition de la commande existante")').length > 0) {
+        $count =+ $("#tab_products_order tr:nth-child(2)").attr('id').replace("ligne" , "") + 1;
+    } 
     let row = $array.insertRow(1);
     row.id = "ligne" + $count; /// Pour chaques ligne on lui affecte un id "ligne" + la letiable count*/
-
+    
+    /*Insert an row in my table*/
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
