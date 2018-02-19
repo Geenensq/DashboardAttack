@@ -162,12 +162,14 @@ $(document).ready(function() {
 
                 if (data.confirm == "success") {
                     notify("pe-7s-refresh-2", "<b>Informations : </b> Votre commande à été modifier avec succès !", "info");
-
+                    $('#tab_orders').DataTable().ajax.reload();
                 } else {
                     notify("pe-7s-refresh-2", "<b>Erreur !", "danger");
                 }
 
             }, "json");
+
+
         }
         ////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////
@@ -212,6 +214,7 @@ $(document).ready(function() {
 
             if (edit_mode === 0) {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
+                 $('#tab_orders').DataTable().ajax.reload();
             }
 
             $("#title_order").css("font-weight", "300");
