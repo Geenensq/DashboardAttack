@@ -103,8 +103,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $new_quantity = $model->getQuantityProduct();
 
         $this->db->set('quantity_product', $new_quantity);
-        $this->db->set('id_product', $id_product);
         $this->db->where('id_order', $id_order);
+        $this->db->where('id_product', $id_product);
         $this->db->update($this->table);
 
     }

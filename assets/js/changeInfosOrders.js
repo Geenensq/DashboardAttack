@@ -1,15 +1,18 @@
 $(document).ready(function() {
 
-    $("#formEditOrder").submit(function() {
+    $("#edit_order").click(function() {
+
         //-------------------Stockage des informations du mot de passe actuel et du nouveau mot de passe-----------------//
-        id_order = $(this).find("input[name=id_order]").val();
-        new_customer_order = $("#new_customer_order").val();
-        new_date_order = $(this).find("input[name=new_date_order]").val();
-        new_price_order = $(this).find("input[name=new_price_order]").val();
-        new_comment_order = $(this).find("input[name=new_comment_order]").val();
-        new_method_payment = $("#new_method_payment").val();
+        id_order = $("#current_id_order").val();
+        new_customer_order = $("#customer_order").val();
+        new_date_order = $("#date_order").val();
+        new_price_order = $("#current_order_price").val();
+        new_comment_order = $("#comment_order").val();
+        new_method_payment = $("#payments_order").val();
         shipping_order = $("#shipping_order").val();
-        new_state_order = $("#new_state_order").val();
+        new_state_order = $("#state_order").val();
+
+
         //--------------------------------------------------------------------------------------------------------------//
 
         //--------------------Stockage de l'url via l'attribut action du formulaire-------------//

@@ -18,7 +18,7 @@ $(document).ready(function() {
     /***************************************************/
 
 
-    $("#edit_orders").click(function () {
+    $("#edit_orders").click(function() {
         counter_datatable++
         if (counter_datatable <= 1) {
             var myTable = $('#tab_orders').DataTable({
@@ -126,11 +126,50 @@ $(document).ready(function() {
 
     /*Event for validate order*/
     $("#valid_order").click(function() {
-
-        $('[data-toggle=collapse]').prop('disabled',false);
+        let edit_mode = 0;
+        /*close collapse orders*/
+        $('[data-toggle=collapse]').prop('disabled', false);
+        /*Change attribute disabled to false*/
         $('#edit_orders').attr("disabled", false);
 
+        //////////////////////////////////////////////////////////////
+        //*IF IS IN EDITION MODE UPDATE THE ORDER WITH REQUEST AJAX*/
+        ////////////////////////////////////////////////////////////
+        if ($('h4:contains("Edition de la commande existante")').length > 0) {
+            edit_mode = 1;
+            id_order = $("#current_id_order").val();
+            new_customer_order = $("#customer_order").val();
+            new_date_order = $("#date_order").val();
+            new_price_order = $("#current_order_price").val();
+            new_comment_order = $("#comment_order").val();
+            new_method_payment = $("#payments_order").val();
+            shipping_order = $("#shipping_order").val();
+            new_state_order = $("#state_order").val();
 
+            url = "changeInfosOrders.html"
+
+            $.post(url, {
+                id_order: id_order,
+                new_customer_order: new_customer_order,
+                new_date_order: new_date_order,
+                new_price_order: new_price_order,
+                new_comment_order: new_comment_order,
+                new_method_payment: new_method_payment,
+                shipping_order: shipping_order,
+                new_state_order: new_state_order
+            }, function(data) {
+
+                if (data.confirm == "success") {
+                    notify("pe-7s-refresh-2", "<b>Informations : </b> Votre commande à été modifier avec succès !", "info");
+
+                } else {
+                    notify("pe-7s-refresh-2", "<b>Erreur !", "danger");
+                }
+
+            }, "json");
+        }
+        ////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////
 
         if ($('#valid_order').prop("disabled") == false) {
             unlockInputOrder();
@@ -169,10 +208,14 @@ $(document).ready(function() {
             $("#valid_order").attr('disabled', 'disabled');
             count = 1;
             counterProducts = 0;
-            notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
-            /*$('#tab_orders').DataTable().ajax.reload();*/
+
+            if(edit_mode === 0 ) {
+                notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
+            } 
+            
 
         } else {
+            console.log("on sort de la condition");
             return;
         }
 
@@ -183,10 +226,10 @@ $(document).ready(function() {
 
     /*---------------------Event for create order and products---------------------*/
     $("#add_product").click(function() {
-        
+
         if ($("#customer_order #date_order,#state_order,#shipping_order,#payments_order , #qte_product_order").val() != null) {
 
-            $('[data-toggle=collapse]').prop('disabled',true);
+            $('[data-toggle=collapse]').prop('disabled', true);
             $('#edit_orders').attr("disabled", true);
 
             lockInputOrder();
@@ -378,9 +421,9 @@ function AddQuantity($id_product, $row, $price_product) {
     Quantity = $row.cells[1];
     actualQuantity = parseFloat(Quantity.innerHTML);
     Quantity.innerHTML = actualQuantity + 1;
-    
-    updateQuantityProduct($("#current_id_order").val() , $id_product , parseFloat(Quantity.innerHTML));
-    
+
+    updateQuantityProduct($("#current_id_order").val(), $id_product, parseFloat(Quantity.innerHTML));
+
     current_order_price = parseFloat($("#current_order_price").val());
     $("#current_order_price").val(parseFloat(current_order_price + $price_product));
     /*AJAX CALL FOR UPDATE THE PRICE*/
@@ -396,7 +439,7 @@ function RemoveQuantity($id_product, $row, $price_product) {
     } else {
         Quantity.innerHTML = actualQuantity - 1;
 
-        updateQuantityProduct($("#current_id_order").val() , $id_product , parseFloat(Quantity.innerHTML));
+        updateQuantityProduct($("#current_id_order").val(), $id_product, parseFloat(Quantity.innerHTML));
 
         current_order_price = parseFloat($("#current_order_price").val());
         $("#current_order_price").val(parseFloat(current_order_price - $price_product));
@@ -406,24 +449,31 @@ function RemoveQuantity($id_product, $row, $price_product) {
     }
 }
 
-function updateQuantityProduct($id_order , $id_product , $new_quantity){
+function updateQuantityProduct($id_order, $id_product, $new_quantity) {
     url = "EditQuantityProduct.html"
-    $.post(url, {id_order:$id_order, id_product:$id_product, new_quantity:$new_quantity}, 
+    $.post(url, {
+            id_order: $id_order,
+            id_product: $id_product,
+            new_quantity: $new_quantity
+        },
 
         function(data) {
 
-        if (data.confirm == "success") {
-         
+            if (data.confirm == "success") {
 
-        } else if (data.confirm == "error") {
 
-        }
-    }, "json");
+            } else if (data.confirm == "error") {
+
+            }
+        }, "json");
 }
 
 
 function priceUpdate($id_order, $price) {
     url = "editPriceOrder.html";
-    form = {id_order: $id_order,price: $price};
+    form = {
+        id_order: $id_order,
+        price: $price
+    };
     let result_price_update = send_post(form, url);
 }

@@ -20,8 +20,13 @@ function editOrders($id) {
     url = "getInfosOrdersForEdit.html";
     var form = {id:$id};
     var order = send_post(form, url);
-
+    /*change id of submit form*/
+     $("#form_add_order").attr("id", "form_edit_order");
+    /***************************/    
     $("#title_order").text("Edition de la commande existante n°" + order.id_order);
+    $("#valid_order").text("Valider la modification de la commande n°" + order.id_order);
+    $("#valid_order").removeAttr("disabled");
+
     $("#title_order").css("font-weight", "bold");
     $("#title_order").css("color", "#1DC7EA");
 
@@ -69,7 +74,7 @@ function editOrders($id) {
         cell8.innerHTML = order_product[i]["color_name"];
         cell9.innerHTML = order_product[i]["size_name"];
         cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-        cell11.innerHTML = '<i style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';   
+        cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';   
 
 }
 
