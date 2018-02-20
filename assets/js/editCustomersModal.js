@@ -1,19 +1,3 @@
-/*Function for track duplicate entry in my select and delete dupliacte*/
-function deleteMultipleEntrySelect() {
-    var a = new Array();
-    $("#new_group_customer").children("option").each(function(x) {
-        test = false;
-        b = a[x] = $(this).val();
-        for (i = 0; i < a.length - 1; i++) {
-            if (b == a[i]) test = true;
-        }
-        if (test) $(this).remove();
-    })
-}
-/*End*/
-
-
-
 function editCustomersModal($id) {
     url = "getInfosCustomersModal.html";
     // on declare un formulaire
@@ -31,8 +15,6 @@ function editCustomersModal($id) {
     $('#new_address_customer').val(customer.address);
     $('#new_cp_customer').val(customer.zip_code);
     $('#new_city_customer').val(customer.city);
-    $("#new_group_customer").prepend($("<option selected=\"selected\"></option>").val(customer.id_group_customer).html(customer.group_name));
-    deleteMultipleEntrySelect();
-
+    $("#new_group_customer").val(customer.id_group_customer);
 
 }

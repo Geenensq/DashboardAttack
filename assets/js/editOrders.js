@@ -1,17 +1,7 @@
 let array = document.getElementById('tab_products_order');
 
 
-function deleteMultipleEntrySelect($id_select) {
-    var a = new Array();
-    $($id_select).children("option").each(function(x) {
-        test = false;
-        b = a[x] = $(this).val();
-        for (i = 0; i < a.length - 1; i++) {
-            if (b == a[i]) test = true;
-        }
-        if (test) $(this).remove();
-    })
-}
+
 
 
 

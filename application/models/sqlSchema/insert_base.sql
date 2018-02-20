@@ -32,10 +32,10 @@ INSERT INTO `methods_payments` (`id_method_payment`, `name_method`) VALUES (NULL
 
 #Insertion dans la table methods_shipping des methodes de livraisons par defaut
 #--------------------------------------------------------------------------
-INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, ''), (NULL, 'Lettre suivie');
-INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, ''), (NULL, 'Lettre sans suivie');
-INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, ''), (NULL, 'Colissimo');
-INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, ''), (NULL, 'DPD');
+INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, 'Lettre suivie');
+INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, 'Lettre sans suivie');
+INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, 'Colissimo');
+INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) VALUES (NULL, 'DPD');
 
 #Insertion dans la table states des status par defaut
 #--------------------------------------------------------------------------

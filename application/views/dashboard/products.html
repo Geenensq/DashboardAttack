@@ -113,7 +113,7 @@
            <div class="form-group">
              <label for="new_color_product" class="form-control-label">Nouvelle couleur du produit:</label>
                  <select required name="new_color_product" id="new_color_product" class="form-control">
-                  <option value="" disabled selected>---</option>
+                 
                  <?php foreach($groupsColors as $group) { ?>
                       <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
 
@@ -128,7 +128,7 @@
           <div class="form-group">
              <label for="new_size_product class="form-control-label">Nouvelle taille du produit:</label>
                <select required name="new_size_product" id="new_size_product" class="form-control">
-                 <option value="" disabled selected>---</option>
+                 
               <?php foreach($groupsSizes as $group) { ?>
             <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
 

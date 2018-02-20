@@ -316,7 +316,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // ======================================================================//
     public function selectAllProductsForModal($id)
     {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names , sizes.price AS size_price');
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , colors.id_color AS id_color , sizes.size_name AS sizes_names , sizes.id_size AS id_size , sizes.price AS size_price');
 
         $this->db->from($this->table);
         $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
@@ -338,7 +338,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $products["name_groups_products"] = $row->name_groups_products;
             $products["id_groups_products"] = $row->id_groups_products;
             $products["colors_names"] = $row->colors_names;
+            $products["id_color"] = $row->id_color;
             $products["sizes_names"] = $row->sizes_names;
+            $products["id_size"] = $row->id_size;
             $products["actif"] = $row->actif;
             $products["sizes_price"] = $row->size_price;
         }
