@@ -1,21 +1,9 @@
-type = ['','info','success','warning','danger'];
-    	
+/*CALL AJAX EACH 5 MINUTES*/
+const status_number = 7;
+/********************************************************************/
 
-demo = {
-    initPickColor: function(){
-        $('.pick-class-label').click(function(){
-            var new_class = $(this).attr('new-class');  
-            var old_class = $('#display-buttons').attr('data-class');
-            var display_div = $('#display-buttons');
-            if(display_div.length) {
-            var display_buttons = display_div.find('.btn');
-            display_buttons.removeClass(old_class);
-            display_buttons.addClass(new_class);
-            display_div.attr('data-class', new_class);
-            }
-        });
-    },
-    
+
+stats = {
     initChartist: function(){    
         
         var dataSales = {
@@ -55,9 +43,30 @@ demo = {
     
         Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
         
-    
+
+
+/**************************STATS turnover********************************/
+        url = "getEarnings.html";
+        var form = {};
+        var EarningsReturned = send_post(form, url);
+
+        var EarningsThisYear = [];
+        var EarningsLastYear = [];
+
+
+        for (var i = 0; i < 24; i++) {
+            
+            if(typeof EarningsReturned[i]  === 'undefined' ){
+              console.log("alert");
+            } else if (EarningsReturned[i]["years"] == 2018){
+              alert("2018");
+            }
+
+          
+        }
+
         var data = {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: ['Jan', 'Fevr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juill', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
           series: [
             [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
             [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
@@ -85,68 +94,72 @@ demo = {
         
         Chartist.Bar('#chartActivity', data, options, responsiveOptions);
     
-        var dataPreferences = {
-            series: [
-                [25, 30, 20, 25]
-            ]
-        };
-        
+
+
+/**************************STATUS ORDERS********************************/
+    url = "getStatusOrders.html";
+    var form = {};
+    var statsReturned = send_post(form, url);
+   
+    statsStatus = [];
+
+    /************************************************************************************************************/
+    /************************************Creation of the object**************************************************/
+    /************************************************************************************************************/
+    for (var i = 0; i < statsReturned.length; i++) 
+    {
+         statsStatus[i] = { how_much : statsReturned[i]["how_much"] , name_state : statsReturned[i]["name_state"]}; 
+    }
+
+
+
+    /******************************************/
+    /*filling the object if it is not complete*/
+    /******************************************/
+
+    if(statsStatus.length < 7){
+
+      for (var i = 0; i < 7; i++) {
+
+        if(typeof statsStatus[i] === 'undefined') {
+          statsStatus[i] = { how_much : 0 , name_state : 0 };
+
+        }
+
+      }
+    }
+
+        var dataPreferences = {series: [[25, 30, 20, 25]]};
         var optionsPreferences = {
             donut: true,
             donutWidth: 40,
             startAngle: 0,
             total: 100,
-            showLabel: false,
+            showLabel: true,
             axisX: {
                 showGrid: false
             }
         };
     
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
-        
-        Chartist.Pie('#chartPreferences', {
-          labels: ['14.2%','14.2%','14.2%' ,'14.2%' , '14.2%' , '14.2%' , '14.2%' ],
-          series: [14.2, 14.2, 14.2,14.2,14.2,14.2,14.2]
-        });   
-    },
-    
-    initGoogleMaps: function(){
-        var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
-        var mapOptions = {
-          zoom: 13,
-          center: myLatlng,
-          scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-          styles: [{"featureType":"water","stylers":[{"saturation":43},{"lightness":-11},{"hue":"#0088ff"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"},{"saturation":-100},{"lightness":99}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#808080"},{"lightness":54}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#ece2d9"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#ccdca1"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#767676"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b8cb93"}]},{"featureType":"poi.park","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","stylers":[{"visibility":"on"}]},{"featureType":"poi.medical","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","stylers":[{"visibility":"simplified"}]}]
-    
-        };
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Hello World!"
-        });
-        
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
-    },
-    
-	showNotification: function(from, align){
-    	color = Math.floor((Math.random() * 4) + 1);
-    	
-    	$.notify({
-        	icon: "pe-7s-gift",
-        	message: "Bienvenue sur votre gestionnaire de commandes ! Retrouvez ici tous vos statistiques récent concernant les commandes"
-        	
-        },{
-            type: type[color],
-            timer: 4000,
-            placement: {
-                from: from,
-                align: align
-            }
-        });
-	}
 
+        Chartist.Pie('#chartPreferences', {
+          
+        labels: [ statsStatus[0]["how_much"],statsStatus[1]["how_much"],statsStatus[2]["how_much"] ,statsStatus[3]["how_much"] ,statsStatus[4]["how_much"] , statsStatus[5]["how_much"] , statsStatus[6]["how_much"]],
+        series: [ statsStatus[0]["how_much"],statsStatus[1]["how_much"],statsStatus[2]["how_much"] ,statsStatus[3]["how_much"] ,statsStatus[4]["how_much"] , statsStatus[5]["how_much"] , statsStatus[6]["how_much"]]
+        });   
+
+       
+/***********************************************************************/
     
+
+
+
+
+
+
+
+    },
+  
 };
 

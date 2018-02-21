@@ -13,6 +13,9 @@ function editProductsModal($id) {
     $("#new_group_product").val(product.id_groups_products);
     $("#new_color_product").val(product.id_color);
     $("#new_size_product").val(product.id_size);
+    $("#image").val(product.img_url);
+
+
 
 }
 

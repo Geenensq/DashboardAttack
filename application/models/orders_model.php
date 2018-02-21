@@ -128,6 +128,58 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !                     Start CRUD methods                              //
 // ======================================================================//
 
+// =======================================================================//
+// !                     Method for get status stats                     //
+// ======================================================================//
+    public function OrdersStatusStats()
+    {
+        $this->db->select('COUNT(*) AS how_much , orders.id_state , states.name_state');
+        $this->db->from($this->table);
+        $this->db->join('states', 'orders.id_state = states.id_state');
+        $this->db->group_by("id_state");
+        $query = $this->db->get();
+
+        return $query->result_array();
+        
+    }   
+
+// =======================================================================//
+// !                method to get the last 6 orders                     //
+// ======================================================================//
+
+    public function lastOrders()
+    {
+        $this->db->select('orders.id_order , states.name_state , customers.firstname , customers.lastname');
+        $this->db->from($this->table);
+        $this->db->join('states', 'orders.id_state = states.id_state');
+        $this->db->join('customers', 'orders.id_customer = customers.id_customer');
+        $this->db->order_by("id_order");
+        $this->db->limit('6');
+        $query = $this->db->get();
+
+        return $query->result_array();
+        
+    }  
+
+
+// =======================================================================//
+// !           Method to calculate the earnings on every month           //
+// ======================================================================//
+
+    public function selectEarningsByMonths()
+    {
+        $this->db->select('MONTH(date_order) AS month, YEAR(date_order) AS years, COUNT(*) AS how_much_order , SUM(price_order) AS total_order');
+        $this->db->from($this->table);
+        $this->db->group_by("years");
+        $this->db->group_by("month");
+        $query = $this->db->get();
+
+        return $query->result_array();
+        
+    } 
+
+
+
 
 // =======================================================================//
 // !                     Method for insert one order                     //

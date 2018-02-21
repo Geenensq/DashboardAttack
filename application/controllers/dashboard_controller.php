@@ -18,6 +18,7 @@ Class Dashboard_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Orders_model', 'modelOrders');
     }
 
 // =======================================================================//
@@ -26,8 +27,32 @@ Class Dashboard_controller extends CI_Controller
 
     public function index()
     {
-        $this->load->view('dashboard/dashboard.html');
+    	$orders = $this->modelOrders->lastOrders();
+    	$array = [];
+    	$array['orders'] = $orders;
+        $this->load->view('dashboard/dashboard.html' , $array);	
     }
+// =======================================================================//
+// !                Method for stats of status orders                    //
+// ======================================================================//
+
+    public function getStatusOrders()
+    {
+    	$resultStats = $this->modelOrders->OrdersStatusStats();
+    	echo json_encode($resultStats);
+    }
+
+
+// =======================================================================//
+// !                Method for stats earnings by months                  //
+// ======================================================================//
+    public function getEarnings()
+    {
+    	$earnings = $this->modelOrders->selectEarningsByMonths();
+    	echo json_encode($earnings);
+    }
+
+
 
 
 }
