@@ -55,12 +55,7 @@ stats = {
 
 
         for (var i = 0; i < 24; i++) {
-            
-            if(typeof EarningsReturned[i]  === 'undefined' ){
-              console.log("alert");
-            } else if (EarningsReturned[i]["years"] == 2018){
-              alert("2018");
-            }
+          
 
           
         }

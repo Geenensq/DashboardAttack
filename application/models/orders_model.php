@@ -168,11 +168,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function selectEarningsByMonths()
     {
+
         $this->db->select('MONTH(date_order) AS month, YEAR(date_order) AS years, COUNT(*) AS how_much_order , SUM(price_order) AS total_order');
         $this->db->from($this->table);
-        $this->db->group_by("years");
         $this->db->group_by("month");
+        $this->db->group_by("years");
+        $this->db->order_by("years");
         $query = $this->db->get();
+
 
         return $query->result_array();
         
