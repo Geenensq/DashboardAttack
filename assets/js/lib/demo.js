@@ -49,7 +49,7 @@ stats = {
         url = "getEarnings.html";
         var form = {};
         var data = send_post(form, url);
-   
+
         var aOfDatasOrders= [];
         var iMainIndice= 0;
         var iIndice= 0;
@@ -62,6 +62,7 @@ stats = {
           }
           iMainIndice++;
         }
+
         if(iMainIndice == 1) {
             aOfDatasOrders[1]= [];
             aOfDatasOrders[1]= [0,0,0,0,0,0,0,0,0,0,0,0];
