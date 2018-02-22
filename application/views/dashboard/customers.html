@@ -2,7 +2,7 @@
 <html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
    <meta charset="utf-8"/>
-   <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+   <link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
    <title>Administration de votre compte utilisateur</title>
    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
@@ -226,12 +226,7 @@
                         </li>
                      </ul>
                   </li>
-                  <li>
-                     <a href="">
-                        <i class="fa fa-search"></i>
-                        <p class="hidden-lg hidden-md">Search</p>
-                     </a>
-                  </li>
+
                </ul>
                <ul class="nav navbar-nav navbar-right">
                   <li>
@@ -504,6 +499,4 @@
 <script src="<?php echo js_url('changeInfosCustomers');?>"></script>
 <!--Request AJax for change informations of customers -->
 <script src="<?php echo js_url('changeStatus');?>"></script>
-
-
 </html>

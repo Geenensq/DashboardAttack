@@ -119,10 +119,12 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $name = $model->getName();
         $price = $model->getPrice();
         $group_size = $model->getIdGroupSize();
+        $actif = 1;
 
         $this->db->set('size_name', $name)
                     ->set('price', $price)
                     ->set('id_group_size' , $group_size)
+                    ->set('actif' , $actif)
                     ->insert($this->table);
     }
 

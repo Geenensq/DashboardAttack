@@ -230,6 +230,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $zipCodeCustomer = $model->getZipCode();
             $cityCustomer = $model->getCity();
             $groupForCustomer = $model->getIdGroupCustomer();
+            $actif = 1;
 
             $this->db->set('firstname', $firstNameCustomer)
                         ->set('lastname', $lastNameCustomer)
@@ -239,6 +240,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                         ->set('address', $addressCustomer)
                         ->set('zip_code',$zipCodeCustomer )
                         ->set('city', $cityCustomer)
+                        ->set('actif' , $actif)
                         ->set('id_group_customer', $groupForCustomer)
                         ->insert($this->table);
         }

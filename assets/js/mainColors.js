@@ -1,3 +1,25 @@
+
+$( document ).ready(function() {
+    var colpick = $('.color_pick').each( function() {
+  $(this).minicolors({
+    control: $(this).attr('data-control') || 'hue',
+    inline: $(this).attr('data-inline') === 'true',
+    letterCase: 'lowercase',
+    opacity: false,
+    change: function(hex, opacity) {
+      if(!hex) return;
+      if(opacity) hex += ', ' + opacity;
+      try {
+
+      } catch(e) {}
+      $(this).select();
+    },
+    theme: 'bootstrap'
+  });
+});
+
+});
+
   //-------------------------At the user's click-------------------------------------------//
   $("#btn_edit_groups_colors").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//

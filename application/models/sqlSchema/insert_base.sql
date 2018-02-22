@@ -22,7 +22,7 @@ INSERT INTO `sizes` (`id_size`, `size_name`, `price`, `actif`, `id_group_size`) 
 #Insertion dans la table groups_products les groupes obligatoires par defaut
 #--------------------------------------------------------------------------
 INSERT INTO `groups_products` (`id_group_product`, `name_group_product`, `description`, `actif`) VALUES (NULL, 'defaut', 'defaut', '1');
-INSERT INTO `products` (`id_product`, `product_name`, `reference`, `description`, `base_price`, `img_url`, `actif`, `id_group_product`, `id_color`, `id_size`) VALUES (NULL, 'defaut', 'defaut', 'defaut', 'default.jpg', '0.00', '1', '1', '1', '1');
+INSERT INTO `products` (`id_product`, `product_name`, `reference`, `description`, `base_price`, `img_url`, `actif`, `id_group_product`, `id_color`, `id_size`) VALUES (NULL, 'defaut', 'defaut', 'defaut', '0.00', 'default.jpg', '1', '1', '1', '1');
 #Insertion dans la table groups_colors des méthodes de paiements par defaut
 #--------------------------------------------------------------------------
 INSERT INTO `methods_payments` (`id_method_payment`, `name_method`) VALUES (NULL, 'Espèces');
@@ -50,7 +50,3 @@ INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'En attente de pai
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Annulé');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Acompte versé');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Expédié');
-
-
-
-

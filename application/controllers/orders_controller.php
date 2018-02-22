@@ -136,7 +136,7 @@ Class Orders_controller extends CI_Controller
     public function getInfosProductsOrdersForEdit()
     {
         $this->id_order = $this->input->post('id');
-        $return = $this->modelProductOrder->selectAllProductsOrders($this->id_order);
+        $return = $this->modelProductsOrders->selectAllProductsOrders($this->id_order);
         echo json_encode($return);
     }
 
@@ -211,12 +211,12 @@ Class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product_order');
         $this->qte_product = $this->input->post('quantity_product_order');
         $this->id_order = $this->input->post('id_order');
-        $this->modelProductOrder->setIdProduct($this->id_product);
-        $this->modelProductOrder->setQuantityProduct($this->qte_product);
-        $this->modelProductOrder->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdProduct($this->id_product);
+        $this->modelProductsOrders->setQuantityProduct($this->qte_product);
+        $this->modelProductsOrders->setIdOrder($this->id_order);
        
-        $modelProductOrder = $this->modelProductOrder;
-        $this->modelProductOrder->insertOneProductOrder($modelProductOrder);
+        $modelProductsOrders = $this->modelProductsOrders;
+        $this->modelProductsOrders->insertOneProductOrder($modelProductsOrders);
         $callBack["confirm"] = "success";
         echo json_encode($callBack);
         
@@ -230,10 +230,10 @@ Class Orders_controller extends CI_Controller
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product');
 
-        $this->modelProductOrder->setIdOrder($this->id_order);
-        $this->modelProductOrder->setIdProduct($this->id_product);
-        $modelProductOrder = $this->modelProductOrder;
-        $this->modelProductOrder->deleteProductOrder($modelProductOrder);
+        $this->modelProductsOrders->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdProduct($this->id_product);
+        $modelProductsOrders = $this->modelProductsOrders;
+        $this->modelProductsOrders->deleteProductOrder($modelProductsOrders);
         $callback["confirm"] = "success";
         echo json_encode($callback);
     }
@@ -263,11 +263,11 @@ Class Orders_controller extends CI_Controller
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product_check');
 
-        $this->modelProductOrder->setIdOrder($this->id_order);
-        $this->modelProductOrder->setIdProduct($this->id_product);
-        $modelProductOrder = $this->modelProductOrder;
+        $this->modelProductsOrders->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdProduct($this->id_product);
+        $modelProductsOrders = $this->modelProductsOrders;
         
-        $return = $this->modelProductOrder->selectCheckProductInOrder($modelProductOrder);
+        $return = $this->modelProductsOrders->selectCheckProductInOrder($modelProductsOrders);
 
         echo json_encode($return);
     }
@@ -282,12 +282,12 @@ Class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product');
         $this->qte_product = $this->input->post('new_quantity');
 
-        $this->modelProductOrder->setIdOrder($this->id_order);
-        $this->modelProductOrder->setIdProduct($this->id_product);
-        $this->modelProductOrder->setQuantityProduct($this->qte_product);
-        $modelProductOrder = $this->modelProductOrder;
+        $this->modelProductsOrders->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdProduct($this->id_product);
+        $this->modelProductsOrders->setQuantityProduct($this->qte_product);
+        $modelProductsOrders = $this->modelProductsOrders;
         
-        $this->modelProductOrder->updateQuantityProduct($modelProductOrder);
+        $this->modelProductsOrders->updateQuantityProduct($modelProductsOrders);
     }
 
 
