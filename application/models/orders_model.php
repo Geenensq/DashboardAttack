@@ -137,6 +137,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->from($this->table);
         $this->db->join('states', 'orders.id_state = states.id_state');
         $this->db->group_by("id_state");
+        $this->db->order_by("id_state");
         $query = $this->db->get();
 
         return $query->result_array();

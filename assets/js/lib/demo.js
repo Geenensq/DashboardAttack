@@ -1,6 +1,4 @@
-/*CALL AJAX EACH 5 MINUTES*/
-const status_number = 7;
-/********************************************************************/
+
 
 
 stats = {
@@ -48,11 +46,11 @@ stats = {
 /**************************STATS turnover********************************/
         url = "getEarnings.html";
         var form = {};
-        var data = send_post(form, url);
-
+        var data = send_post(form, url);  
         var aOfDatasOrders= [];
         var iMainIndice= 0;
         var iIndice= 0;
+
         for(var iYear in data) { 
           iIndice= 0;
           aOfDatasOrders[iMainIndice]= [];
@@ -68,7 +66,7 @@ stats = {
             aOfDatasOrders[1]= [0,0,0,0,0,0,0,0,0,0,0,0];
         } 
        
-
+    
         var data = {
           labels: ['Jan', 'Fevr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juill', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
           series: [
@@ -106,32 +104,18 @@ stats = {
     url = "getStatusOrders.html";
     var form = {};
     var statsReturned = send_post(form, url);
-   
-    statsStatus = [];
-
-    /************************************************************************************************************/
-    /************************************Creation of the object**************************************************/
-    /************************************************************************************************************/
-    for (var i = 0; i < statsReturned.length; i++) 
+    if(statsReturned.length < 7)
     {
-         statsStatus[i] = { how_much : statsReturned[i]["how_much"] , name_state : statsReturned[i]["name_state"]}; 
-    }
 
-    /******************************************/
-    /*filling the object if it is not complete*/
-    /******************************************/
-
-    if(statsStatus.length < 7){
-
-      for (var i = 0; i < 7; i++) {
-
-        if(typeof statsStatus[i] === 'undefined') {
-          statsStatus[i] = { how_much : 0 , name_state : 0 };
-
+      for (var i = 0; i <= 6; i++) 
+      {
+        if(typeof statsReturned[i] === 'undefined') 
+        {
+          statsReturned[i] = { how_much : 0 , name_state : 0 };
         }
-
       }
     }
+
 
         var dataPreferences = {series: [[25, 30, 20, 25]]};
         var optionsPreferences = {
@@ -149,8 +133,9 @@ stats = {
 
         Chartist.Pie('#chartPreferences', {
           
-        labels: [ statsStatus[0]["how_much"],statsStatus[1]["how_much"],statsStatus[2]["how_much"] ,statsStatus[3]["how_much"] ,statsStatus[4]["how_much"] , statsStatus[5]["how_much"] , statsStatus[6]["how_much"]],
-        series: [ statsStatus[0]["how_much"],statsStatus[1]["how_much"],statsStatus[2]["how_much"] ,statsStatus[3]["how_much"] ,statsStatus[4]["how_much"] , statsStatus[5]["how_much"] , statsStatus[6]["how_much"]]
+        labels: [ statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"] ,statsReturned[3]["how_much"] ,statsReturned[4]["how_much"] , statsReturned[5]["how_much"] , statsReturned[6]["how_much"]],
+        
+        series: [ statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"] ,statsReturned[3]["how_much"] ,statsReturned[4]["how_much"] , statsReturned[5]["how_much"] , statsReturned[6]["how_much"]]
         });   
 
        

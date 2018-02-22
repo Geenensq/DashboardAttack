@@ -39,6 +39,13 @@ Class Dashboard_controller extends CI_Controller
     public function getStatusOrders()
     {
     	$resultStats = $this->modelOrders->OrdersStatusStats();
+     
+        if(count($resultStats) == 0){
+            for ($i=0; $i == 6; $i++){
+                $resultStats[$i] = array("how_much"=> 0, "id_state" =>$i,"name_state" => 0);
+            }
+        }
+
     	echo json_encode($resultStats);
     }
 
@@ -52,24 +59,25 @@ Class Dashboard_controller extends CI_Controller
         //declare un array vide qui combleras les trous
         $completeResult = array();
 
-/*      IMPROVMENT:
-        Faire une fonction externe qui transforme un nombre en mois , exemple 1 -> janvier 
-        Faire une fonction externe qui transforme un mois en nombre , exemple janvier -> 1
-        TODO : 
-        Transformer $i en mois exemple : $i = 1 => janvier;
-*/
-        $aOfYears= [];
-        foreach ($earnings as $key => $month)       {
-            $aOfYears[$month['years']]= 1;
+
+       if(count($earnings) == 0){
+            for ($i=1; $i <= 12; $i++){
+                $earnings[$i] = array('month'=> $i, 'years' =>2018,'total_order' => 0, 'how_much_order' => 0);
+            }
         }
-        foreach ($aOfYears as $key => $value)       {
+
+        $aOfYears= [];
+
+        foreach ($earnings as $month) {
+            $aOfYears[$month['years']] = 1;
+        }
+
+        foreach ($aOfYears as $key => $value){
             for ($i=1; $i <= 12; $i++){
                 $completeResult[$key][$i-1] = array('month'=> $i, 'years' => $key,'total_order' => 0, 'how_much_order' => 0);
             }
         }
-
             foreach ($earnings as $key => $month){
-                //$month['month' , 'years' , 'total_order' , 'how_much_order']/
                 
                 $monthNumber = $i;
                 $yearNumber = $month['years'];
@@ -78,7 +86,6 @@ Class Dashboard_controller extends CI_Controller
                 $newResult = array('month'=> $month['month'], 'years' => $month['years'],'total_order' => $month['total_order'], 'how_much_order' => $month['how_much_order']);          
                 $completeResult[$yearNumber][$month['month']-1] = $newResult;
             }
-
         echo json_encode($completeResult);
     }
 

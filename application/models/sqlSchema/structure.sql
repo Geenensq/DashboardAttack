@@ -153,7 +153,6 @@ CREATE TABLE groups_colors(
 CREATE TABLE orders(
         id_order           int (11) Auto_increment  NOT NULL ,
         date_order         Date NOT NULL ,
-        status_order       Varchar (255) NOT NULL ,
         comment_order      Text NOT NULL ,
         price_order        Float NOT NULL ,
         id_customer        Int NOT NULL ,
