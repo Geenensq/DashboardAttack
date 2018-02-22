@@ -48,23 +48,33 @@ stats = {
 /**************************STATS turnover********************************/
         url = "getEarnings.html";
         var form = {};
-        var EarningsReturned = send_post(form, url);
-
-        var EarningsThisYear = [];
-        var EarningsLastYear = [];
-
-
-        for (var i = 0; i < 24; i++) {
-          
-
-          
+        var data = send_post(form, url);
+   
+        var aOfDatasOrders= [];
+        var iMainIndice= 0;
+        var iIndice= 0;
+        for(var iYear in data) { 
+          iIndice= 0;
+          aOfDatasOrders[iMainIndice]= [];
+          for(var iRow in data[iYear])    {
+            aOfDatasOrders[iMainIndice][iIndice]= data[iYear][iRow]["total_order"];
+            iIndice++;
+          }
+          iMainIndice++;
         }
+        if(iMainIndice == 1) {
+            aOfDatasOrders[1]= [];
+            aOfDatasOrders[1]= [0,0,0,0,0,0,0,0,0,0,0,0];
+        } 
+       
 
         var data = {
           labels: ['Jan', 'Fevr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juill', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
           series: [
-            [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-            [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
+            /*THIS YEARS*/  
+            [aOfDatasOrders[0][0],aOfDatasOrders[0][1],aOfDatasOrders[0][2],aOfDatasOrders[0][3],aOfDatasOrders[0][4],aOfDatasOrders[0][5],aOfDatasOrders[0][6],aOfDatasOrders[0][7],aOfDatasOrders[0][8],aOfDatasOrders[0][9],aOfDatasOrders[0][10],aOfDatasOrders[0][11]],
+            /*NEXTYEARS*/
+            [aOfDatasOrders[1][0],aOfDatasOrders[1][1],aOfDatasOrders[1][2],aOfDatasOrders[1][3],aOfDatasOrders[1][4],aOfDatasOrders[1][5],aOfDatasOrders[1][6],aOfDatasOrders[1][7],aOfDatasOrders[1][8],aOfDatasOrders[1][9],aOfDatasOrders[1][10],aOfDatasOrders[1][11]]
           ]
         };
         
@@ -105,8 +115,6 @@ stats = {
     {
          statsStatus[i] = { how_much : statsReturned[i]["how_much"] , name_state : statsReturned[i]["name_state"]}; 
     }
-
-
 
     /******************************************/
     /*filling the object if it is not complete*/

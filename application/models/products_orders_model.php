@@ -1,7 +1,7 @@
 <?php
 /**
  * Dashboard Attack, command manager
- * product_order_model.php
+ * products_orders_model.php
  * Coded with Codeigniter 3
  * @author Geenens Quentin <geenensq@gmail.com>
  * @version 1.0
@@ -9,7 +9,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class product_order_model extends CI_Model
+    Class products_orders_model extends CI_Model
     {
 
 // =======================================================================//
@@ -18,7 +18,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     private $quantity_product;
     private $id_product;
     private $id_order; 	
-    protected $table = "product_order";
+    protected $table = "products_orders";
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
@@ -115,11 +115,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     public function selectAllProductsOrders($id)
     {
         $id_order = $id;
-        $this->db->select('product_order.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url , colors.color_name AS color_name , sizes.size_name AS size_name');
+        $this->db->select('products_orders.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url , colors.color_name AS color_name , sizes.size_name AS size_name');
 
         $this->db->from($this->table);
-        $this->db->join('products', 'products.id_product = product_order.id_product');
-        $this->db->join('orders', 'orders.id_order = product_order.id_order');
+        $this->db->join('products', 'products.id_product = products_orders.id_product');
+        $this->db->join('orders', 'orders.id_order = products_orders.id_order');
         $this->db->join('colors', 'products.id_color = colors.id_color');
         $this->db->join('sizes', 'products.id_size = sizes.id_size');
         $this->db->where('orders.id_order', $id_order);

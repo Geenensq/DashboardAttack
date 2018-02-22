@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  * @param  [boolean] $die , true by default
  * @return void
  */
-function debug($data, $die=true) {
+function debug($data, $die=false) {
     echo'<pre>';
     	var_dump($data);
     echo '</pre>';

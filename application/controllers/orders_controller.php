@@ -36,7 +36,7 @@ Class Orders_controller extends CI_Controller
         $this->load->model('Payments_model', 'modelPayments');
         $this->load->model('Products_model', 'modelProducts');
         $this->load->model('Orders_model', 'modelOrders');
-        $this->load->model('Product_order_model', 'modelProductOrder');
+        $this->load->model('Products_orders_model', 'modelProductsOrders');
     }
 
 // =======================================================================//

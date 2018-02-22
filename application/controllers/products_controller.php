@@ -315,8 +315,6 @@ Class Products_controller extends CI_Controller
         }
 
         echo json_encode($callBack);
-
-
     }
 
 // =======================================================================//

@@ -174,6 +174,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->group_by("month");
         $this->db->group_by("years");
         $this->db->order_by("years");
+        $this->db->order_by("month");
         $query = $this->db->get();
 
 
