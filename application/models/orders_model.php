@@ -155,7 +155,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->join('states', 'orders.id_state = states.id_state');
         $this->db->join('customers', 'orders.id_customer = customers.id_customer');
         $this->db->order_by("id_order");
-        $this->db->limit('6');
         $query = $this->db->get();
 
         return $query->result_array();

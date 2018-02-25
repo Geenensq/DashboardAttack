@@ -11,14 +11,22 @@
 Class Dashboard_controller extends CI_Controller
 {
 
+//----Attributes messages----//
+    private $id_message;
+    private $text_message;
+    private $date_message;
+    private $id_member;
+
 // =======================================================================//
 // !                  Constructor of my Class                            //
 // ======================================================================//
+
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Orders_model', 'modelOrders');
+        $this->load->model('Messages_model', 'modelMessages');
     }
 
 // =======================================================================//
@@ -27,10 +35,54 @@ Class Dashboard_controller extends CI_Controller
 
     public function index()
     {
-    	$orders = $this->modelOrders->lastOrders();
-    	$array = [];
-    	$array['orders'] = $orders;
-        $this->load->view('dashboard/dashboard.html' , $array);	
+        $this->load->view('dashboard/dashboard.html');	
+
+    }
+
+
+// =======================================================================//
+// !              Method for display selected messages on chat           //
+// ======================================================================//
+    public function getMessages(){
+        $messages = $this->modelMessages->selectMessagesTchat();
+        echo json_encode($messages);
+    }
+
+// =======================================================================//
+// !                   Method for send an messages on chat               //
+// ======================================================================//
+    public function SendMessages(){
+        
+        $this->form_validation->set_rules('text_message' , '"text_message"' , required);
+        $this->form_validation->set_rules('id_member' , '"id_member"' , required);
+
+        $callBack = array();
+
+        if($this->form_validation->run()){
+            $this->id_member = $this->input->post('name_group_for_color');
+            $this->text_message = $this->input->post('name_group_for_color');
+            $this->
+
+        }
+
+
+    }
+
+
+// =======================================================================//
+// !          Method for send orders details in dashboard datatable      //
+// ======================================================================//
+
+    public function encodeGridLastOrders()
+    {
+        $orders = $this->modelOrders->lastOrders();
+        $data = array();
+
+        foreach ($orders as $result) {
+            $data[] = array($result['id_order'], $result['name_state'], $result['firstname'] , $result['lastname']);
+        }
+
+        echo json_encode(array('data' => $data));
     }
 // =======================================================================//
 // !                Method for stats of status orders                    //

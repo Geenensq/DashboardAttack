@@ -25,7 +25,7 @@ $(document).ready(function() {
             var myTable = $('#tab_orders').DataTable({
                 ajax: "encodeGridOrders.html",
                 order: [
-                    [0, "asc"]
+                [0, "asc"]
                 ],
                 "columns": [
                     //target 0 = collone 0 Datatable
@@ -70,37 +70,37 @@ $(document).ready(function() {
 
 
 
-                ],
+                    ],
 
                 //L'afficharge par defaut des collones de Datatable
                 //Data represente dans ce cas les data de chaque ligne
 
                 columnDefs: [
 
-                    {
-                        "targets": 1,
-                        render: function(data, full) {
-                            return '<p>' + data[5] + ' ' + data[4] + '<p>'
-                        }
-                    },
-                    {
-                        "targets": 3,
-                        render: function(data, full) {
-                            return '<p>' + data[3] + '€' + '</p>'
-                        }
-                    },
-                    {
-                        "targets": 3,
-                        render: function(data, full) {
-                            return '<p>' + data[3] + '€' + '</p>'
-                        }
-                    },
-                    {
-                        "targets": 8,
-                        render: function(data, full) {
-                            return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'
-                        }
-                    },
+                {
+                    "targets": 1,
+                    render: function(data, full) {
+                        return '<p>' + data[5] + ' ' + data[4] + '<p>'
+                    }
+                },
+                {
+                    "targets": 3,
+                    render: function(data, full) {
+                        return '<p>' + data[3] + '€' + '</p>'
+                    }
+                },
+                {
+                    "targets": 3,
+                    render: function(data, full) {
+                        return '<p>' + data[3] + '€' + '</p>'
+                    }
+                },
+                {
+                    "targets": 8,
+                    render: function(data, full) {
+                        return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'
+                    }
+                },
                 ]
             });
 
@@ -214,7 +214,7 @@ $(document).ready(function() {
 
             if (edit_mode === 0) {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
-                 $('#tab_orders').DataTable().ajax.reload();
+                $('#tab_orders').DataTable().ajax.reload();
             }
 
             $("#title_order").css("font-weight", "300");
@@ -247,40 +247,40 @@ $(document).ready(function() {
                 product_added = $('#select_product_order').val();
                 qte_product = $('#qte_product_order').val();
                 return_product_exist = addRowProduct(product_added);
-                 if (return_product_exist === "ok") {
-                     /*call function javascript for add products in the order*/
+                if (return_product_exist === "ok") {
+                   /*call function javascript for add products in the order*/
+                   addProductsOrder($("#current_id_order").val());
+                   priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+
+               }
+               
+           } else {
+            lockInputOrder();
+            product_added = $('#select_product_order').val();
+            qte_product = $('#qte_product_order').val();
+
+            /*Call function fo add an row in table*/
+            return_product_exist = addRowProduct(product_added);
+
+            if (return_product_exist === "ok") {
+
+                if (counterProducts < 1) {
+                    addOrders();
+                    counterProducts++;
+                } else {
+                    /*call function javascript for add products in the order*/
                     addProductsOrder($("#current_id_order").val());
+
                     priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
 
-                 }
-                   
-            } else {
-                lockInputOrder();
-                product_added = $('#select_product_order').val();
-                qte_product = $('#qte_product_order').val();
-
-                /*Call function fo add an row in table*/
-                return_product_exist = addRowProduct(product_added);
-
-                if (return_product_exist === "ok") {
-
-                    if (counterProducts < 1) {
-                        addOrders();
-                        counterProducts++;
-                    } else {
-                        /*call function javascript for add products in the order*/
-                        addProductsOrder($("#current_id_order").val());
-
-                        priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
-
-                    }
                 }
             }
-
-        } else {
-            notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez renseignez tous les champs de la commande avant d'ajouter un produit", "danger");
         }
-    });
+
+    } else {
+        notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez renseignez tous les champs de la commande avant d'ajouter un produit", "danger");
+    }
+});
     /*-----------------------------------------------*/
     function lockInputOrder() {
 
@@ -480,20 +480,20 @@ function RemoveQuantity($id_product, $row, $price_product) {
 function updateQuantityProduct($id_order, $id_product, $new_quantity) {
     url = "EditQuantityProduct.html"
     $.post(url, {
-            id_order: $id_order,
-            id_product: $id_product,
-            new_quantity: $new_quantity
-        },
+        id_order: $id_order,
+        id_product: $id_product,
+        new_quantity: $new_quantity
+    },
 
-        function(data) {
+    function(data) {
 
-            if (data.confirm == "success") {
+        if (data.confirm == "success") {
 
 
-            } else if (data.confirm == "error") {
+        } else if (data.confirm == "error") {
 
-            }
-        }, "json");
+        }
+    }, "json");
 }
 
 

@@ -17,12 +17,14 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+    <!--  Datatable CSS    -->
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
 
 </head>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
-         <div class="sidebar-wrapper">
+           <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="" class="simple-text">
                     STICK ATTACK
@@ -124,23 +126,23 @@
                     </ul>
                 </li>
 
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                 <a href="<?php echo base_url();?>profil_controller/index.html">
+                     <p>Mon compte</p>
+                 </a>
+             </li>
+
+             <li>
+                <a href="<?php echo base_url();?>session_controller/index.html">
+                    <p>Se deconnecter</p>
+                </a>
+            </li>
+            <li class="separator hidden-lg hidden-md"></li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-               <a href="<?php echo base_url();?>profil_controller/index.html">
-                   <p>Mon compte</p>
-               </a>
-           </li>
-
-    <li>
-        <a href="<?php echo base_url();?>session_controller/index.html">
-            <p>Se deconnecter</p>
-        </a>
-    </li>
-    <li class="separator hidden-lg hidden-md"></li>
-</ul>
-</div>
+    </div>
 </div>
 </nav>
 
@@ -155,7 +157,7 @@
                         <p class="category">Récapitulatif des status des commandes</p>
                     </div>
                     <div class="content">
-                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                        <div style="margin-top:15px!important; margin-bottom: 15px!important;" id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
                         <div class="footer">
                             <div class="legend">
@@ -179,33 +181,6 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Statistique des commandes</h4>
-                        <p class="category">Statisqtiques du chiffre d'affaire</p>
-                    </div>
-                    <div class="content">
-                        <div id="chartHours" class="ct-chart"></div>
-                        <div class="footer">
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Mois en cours
-                                <i class="fa fa-circle text-danger"></i> Mois dernier
-                                <i class="fa fa-circle text-warning"></i> Avant dernier mois
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card ">
-                    <div class="header">
                         <h4 class="title">Statistiques des ventes en €</h4>
                         <p class="category">Récapitulatif des ventes en € pour chaques mois de l'année et de l'année derniere</p>
                     </div>
@@ -216,41 +191,37 @@
                             <div class="legend">
                                 <i class="fa fa-circle text-info"></i> Année en cours
                                 <i class="fa fa-circle text-danger"></i> Année dernière
+
                             </div>
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6">
+
+
+        <div class="row">
+            <div class="col-md-5">
                 <div class="card ">
                     <div class="header">
                         <h4 class="title">Commandes</h4>
-                        <p class="category">Récapitulatif des 6 dernieres commandes</p>
+                        <p class="category">Récapitulatif des 10 dernieres commandes</p>
                     </div>
                     <div class="content">
-                        <div class="table-full-width">
-                            <table class="table">
+                        <div class="content table-responsive">
+                            <table style="width:100% !important;" id="tab_rapid_orders" class="col-md-12 table table-hover table-striped">
+                                <thead>
+                                    <th>Numéro de commande</th>
+                                    <th>Propriétaire</th>
+                                    <th>Status</th>
+                                </thead>
                                 <tbody>
-                            <?php
-                            foreach($orders as $value)
-                            {
-                               
-                                echo '<tr>';
-                                echo '<td>';
-                                echo '<label class="checkbox">';
-                                echo '<i class="fa fa-clock-o"> </i>';
-                                echo '</label>';
-                                echo '</td>';
-                                echo '<td>La commande N°' . $value["id_order"] . " " . "De Mr/Mme" . " " . $value["firstname"] . " " . $value["lastname"] . " " . "à le statut : " .  $value["name_state"] . '</td>';
-                                echo '</tr>';
-                                }
-                                ?>
-       
                                 </tbody>
                             </table>
                         </div>
@@ -264,14 +235,57 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <div class="col-md-7">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">STICK A'TCHAT</h4>
+                        <p class="category">Tchat et pense-bêtes interne</p>
+                    </div>
+                    <div style="padding-top: 1px!important;" class="content">
+                        <div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
+                            <div class="messages">
+                                <div class="message">
+                                 <span class="date">23:22</span> 
+                                 <span class="author">Quentin</span> :
+                                 <span class="content-message">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</span>
+                             </div>
+
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                        <form action="">
+                            <input hidden id="id_member" type="text">
+                                
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Votre message :</label>
+                                    <input id="text_message" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                   <label></label>
+                                   <button style="margin-top: 20px;" id="" name="" type="submit" class="btn btn-info btn-fill">Envoyer</button>
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
 </div>
 
 <footer class="footer">
     <div class="container-fluid">
-       
-       <p class="copyright pull-right">
+
+     <p class="copyright pull-right">
         &copy; <script>document.write(new Date().getFullYear())</script>  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
     </p>
 </div>
@@ -294,6 +308,10 @@
 <script src="<?php echo js_url_lib('bootstrap-notify');?>"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
+<!--Plugin datatable -->
+<script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
+<!--Main javascript dashboard -->
+<script type="text/javascript" src="<?php echo js_url('MainDashboard');?>"></script>
 <!-- Function for send data in ajax -->
 <script src="<?php echo js_url('sendPost');?>"></script>
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->

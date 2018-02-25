@@ -51,7 +51,7 @@ $( document ).ready(function() {
 
 
 
-    $('#tab_groups_colors').DataTable({
+    $('#tab_rapid_orders').DataTable({
         ajax: "encodeGridGroupsColors.html",
         order: [[ 0, "asc" ]],
         "columns": [

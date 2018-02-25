@@ -204,7 +204,7 @@ Class Colors_controller extends CI_Controller
         {
             $this->modelGroupsColors->setIdGroupColor($this->input->post('new_id_group_color'));
             $this->modelGroupsColors->setNameGroupColors($this->input->post('new_name_group_colors'));
-        
+            
             $groupColors = $this->modelGroupsColors;
 
             $this->modelGroupsColors->updateNameGroupColors($groupColors);
@@ -235,7 +235,7 @@ Class Colors_controller extends CI_Controller
             $this->modelColors->setColorName($this->input->post('new_name_color'));
             $this->modelColors->setColorCode($this->input->post('new_code_color'));
             $this->modelColors->setIdGroupColor($this->input->post('new_group_color'));
-          
+            
             $color = $this->modelColors;
 
             $this->modelColors->updateNameColors($color);
