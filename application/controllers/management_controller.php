@@ -42,7 +42,7 @@ Class Management_controller extends CI_Controller
             $this->load->view('dashboard/management.html' , $array);
 
             } else {
-                $this->load->view('errors/custom/HTTP403.html');
+                $this->load->view('errors/html/error_403.php');
             }
 
         }else{
