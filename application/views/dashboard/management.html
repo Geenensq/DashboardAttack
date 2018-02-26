@@ -29,167 +29,167 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-                    <h5 class="modal-title" id="modalLabel">Edition du membre</h5>
-                </div>
-                <form id="" method="POST" action="">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="id_member" id="id_member">
-                        </div>
-                        <div class="form-group">
-                            <label for="login_member" class="form-control-label">Nouveau login du compte:</label>
-                            <input required placeholder="Nouveau nom" name="login_member" id="login_member" type="text" class="form-control">
-                        </div>
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+                 <h5 class="modal-title" id="modalLabel">Edition du membre</h5>
+             </div>
+             <form id="" method="POST" action="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="id_member" id="id_member">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_member" class="form-control-label">Nouveau login du compte:</label>
+                        <input required placeholder="Nouveau nom" name="login_member" id="login_member" type="text" class="form-control">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="email_member" class="form-control-label">Nouvelle addresse e-mail du compte:</label>
-                            <input required placeholder="Nouveau nom" name="email_member" id="email_member" type="text" class="form-control">
-                        </div>
+                    <div class="form-group">
+                        <label for="email_member" class="form-control-label">Nouvelle addresse e-mail du compte:</label>
+                        <input required placeholder="Nouveau nom" name="email_member" id="email_member" type="text" class="form-control">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="new_group_member" class="form-control-label">Editer le type du compte:</label>
-                            <select id="new_group_member" name="new_group_member" class="form-control" name="state">
-                      <?php
+                    <div class="form-group">
+                        <label for="new_group_member" class="form-control-label">Editer le type du compte:</label>
+                        <select id="new_group_member" name="new_group_member" class="form-control" name="state">
+                          <?php
                           foreach($groups_members as $value)
                           {
                             echo '<option value=' . '"' . $value->getIdGroupMember() . '">' . $value->getName() . '</option>';
-                          }
-                      ?>
-                  </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-                        <button class="btn btn-info btn-fill">Enregistrer</button>
-                    </div>
-                </form>
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+                <button class="btn btn-info btn-fill">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
+<!-- //////////////////////////////////////Modal password //////////////////////////////////////////// -->
+<div class="modal fade" data-backdrop="true" id="modal_update_members_password" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+             <h5 class="modal-title" id="modalLabel">Edition du mot de passe</h5>
+         </div>
+         <form id="changePasswordMembers" method="POST" action="">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="id_member_password" id="id_member_password">
+                </div>
+                <div class="form-group">
+                    <label for="password_member" class="form-control-label">Nouveau mot de passe:</label>
+                    <input required placeholder="*************" name="password_member" id="password_member" type="password" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="password_member_confirmation" class="form-control-label">Confirmation du mot de passe:</label>
+                    <input required placeholder="*************" name="password_member_confirmation" id="password_member_confirmation" type="password" class="form-control">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+                <button class="btn btn-info btn-fill">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
+<div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg "); ?> ">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    STICK ATTACK
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="<?php echo base_url();?>dashboard_controller/index.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo base_url();?>profil_controller/index.html">
+                        <i class="pe-7s-user"></i>
+                        <p>Votre profil</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo base_url();?>customers_controller/index.html">
+                        <i class="pe-7s-user"></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>orders_controller/index.html">
+                        <i class="pe-7s-note2"></i>
+                        <p>Commandes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>products_controller/index.html">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Produits</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>colors_controller/index.html">
+                        <i class="pe-7s-science"></i>
+                        <p>Coloris</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>size_controller/index.html">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>Tailles</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="<?php echo base_url();?>management_controller/index.html">
+                        <i class="pe-7s-bell"></i>
+                        <p>Gestion</p>
+                    </a>
+                </li>
+
+            </ul>
         </div>
     </div>
-    <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
-
-    <!-- //////////////////////////////////////Modal password //////////////////////////////////////////// -->
-    <div class="modal fade" data-backdrop="true" id="modal_update_members_password" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-                    <h5 class="modal-title" id="modalLabel">Edition du mot de passe</h5>
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Gestion du dashboard</a>
                 </div>
-                <form id="changePasswordMembers" method="POST" action="">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="id_member_password" id="id_member_password">
-                        </div>
-                        <div class="form-group">
-                            <label for="password_member" class="form-control-label">Nouveau mot de passe:</label>
-                            <input required placeholder="*************" name="password_member" id="password_member" type="password" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password_member_confirmation" class="form-control-label">Confirmation du mot de passe:</label>
-                            <input required placeholder="*************" name="password_member_confirmation" id="password_member_confirmation" type="password" class="form-control">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-                        <button class="btn btn-info btn-fill">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
-
-    <div class="wrapper">
-        <div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg "); ?> ">
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="" class="simple-text">
-                STICK ATTACK
-            </a>
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a href="<?php echo base_url();?>dashboard_controller/index.html">
-                    <i class="pe-7s-graph"></i>
-                    <p>Dashboard</p>
-                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                          <a href="<?php echo base_url();?>dashboard_controller/index.html" >
+                            <i class="fa fa-dashboard"></i>
+                        </a>
                     </li>
-
-                    <li>
-                        <a href="<?php echo base_url();?>profil_controller/index.html">
-                    <i class="pe-7s-user"></i>
-                    <p>Votre profil</p>
-                </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo base_url();?>customers_controller/index.html">
-                    <i class="pe-7s-user"></i>
-                    <p>Clients</p>
-                </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url();?>orders_controller/index.html">
-                    <i class="pe-7s-note2"></i>
-                    <p>Commandes</p>
-                </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url();?>products_controller/index.html">
-                    <i class="pe-7s-news-paper"></i>
-                    <p>Produits</p>
-                </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url();?>colors_controller/index.html">
-                    <i class="pe-7s-science"></i>
-                    <p>Coloris</p>
-                </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url();?>size_controller/index.html">
-                    <i class="pe-7s-map-marker"></i>
-                    <p>Tailles</p>
-                </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo base_url();?>management_controller/index.html">
-                    <i class="pe-7s-bell"></i>
-                    <p>Gestion</p>
-                </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                        <a class="navbar-brand" href="#">Gestion du dashboard</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                              <a href="<?php echo base_url();?>dashboard_controller/index.html" >
-                                <i class="fa fa-dashboard"></i>
-                              </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
                             <b class="caret hidden-sm hidden-xs"></b>
                             <span class="notification hidden-sm hidden-xs">5</span>
@@ -198,66 +198,64 @@
                                 <b class="caret"></b>
                             </p>
                         </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li>
-                                </ul>
-                            </li>
-
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Notification 1</a></li>
+                            <li><a href="#">Notification 2</a></li>
+                            <li><a href="#">Notification 3</a></li>
+                            <li><a href="#">Notification 4</a></li>
+                            <li><a href="#">Another notification</a></li>
                         </ul>
+                    </li>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="<?php echo base_url();?>profil_controller/index.html">
-                                    <p>Mon compte</p>
-                                </a>
-                            </li>
+                </ul>
 
-                            <li>
-                                <a href="<?php echo base_url();?>session_controller/index.html">
-                                    <p>Se deconnecter</p>
-                                </a>
-                            </li>
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="<?php echo base_url();?>profil_controller/index.html">
+                            <p>Mon compte</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url();?>session_controller/index.html">
+                            <p>Se deconnecter</p>
+                        </a>
+                    </li>
+                    <li class="separator hidden-lg hidden-md"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Gestion des comptes utilisateurs</h4>
-                                </div>
-                                <div class="content">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Gestion des comptes utilisateurs</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="content table-responsive">
-                                                        <table style="width:100% !important;" id="tab_management" class="col-md-12 table table-hover table-striped">
-                                                            <thead>
-                                                                <th>ID</th>
-                                                                <th>Pseudo</th>
-                                                                <th>Adresse e-mail</th>
-                                                                <th>Type du compte</th>
-                                                                <th>Edition du compte utilisateur</th>
-                                                                <th>Edition du mot de passe</th>
-                                                                <th>Désactivation / Activation</th>
-                                                                <th>Status</th>
-                                                            </thead>
-                                                            <tbody>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                            <div class="content table-responsive">
+                                                <table style="width:100% !important;" id="tab_management" class="col-md-12 table table-hover table-striped">
+                                                    <thead>
+                                                        <th>ID</th>
+                                                        <th>Pseudo</th>
+                                                        <th>Adresse e-mail</th>
+                                                        <th>Type du compte</th>
+                                                        <th>Edition du compte utilisateur</th>
+                                                        <th>Edition du mot de passe</th>
+                                                        <th>Désactivation / Activation</th>
+                                                        <th>Status</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -267,21 +265,23 @@
                     </div>
                 </div>
             </div>
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
-                    </p>
-                </div>
-            </footer>
-
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="copyright pull-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+            </p>
+        </div>
+    </footer>
+
+</div>
+</div>
 
 </body>
 <!--   Core JS Files   -->

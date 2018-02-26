@@ -69,7 +69,7 @@
        </div>
        <form id="modal_update_name_sizes" method="POST" action="changeNameSizes.html">
          <div class="modal-body">
-           
+
            <div class="form-group">
              <input type="hidden" class="form-control" name="new_id_sizes" id="new_id_sizes">
            </div>
@@ -87,25 +87,24 @@
            <div class="form-group">
              <label for="new_group_sizes" class="form-control-label">Nouveau groupe de la taille:</label>
              <select required name="new_group_sizes" id="new_group_sizes" class="form-control">
-                  <?php
-                    foreach($groups as $value){
-                    echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
-                    }
-                  ?>
-            </select>
-           </div>
+              <?php
+              foreach($groups as $value){
+              echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
+            }
+            ?>
+          </select>
+        </div>
 
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-           <button class="btn btn-info btn-fill">Enregistrer</button>
-         </div>
-       </form>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+       <button class="btn btn-info btn-fill">Enregistrer</button>
      </div>
-   </div>
+   </form>
  </div>
- 
- <!-- /////////////////////////////////////////// END Modal////////////////////////////////////////////// -->
+</div>
+</div>
+<!-- /////////////////////////////////////////// END Modal////////////////////////////////////////////// -->
 
 
 <div class="wrapper">
@@ -208,50 +207,50 @@
                 <li><a href="#">Another notification</a></li>
               </ul>
             </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+             <a href="<?php echo base_url();?>profil_controller/index.html">
+               <p>Mon compte</p>
+             </a>
+           </li>
+
+           <li>
+            <a href="<?php echo base_url();?>session_controller/index.html">
+              <p>Se deconnecter</p>
+            </a>
+          </li>
+          <li class="separator hidden-lg hidden-md"></li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-           <a href="<?php echo base_url();?>profil_controller/index.html">
-             <p>Mon compte</p>
-           </a>
-         </li>
-
-        <li>
-          <a href="<?php echo base_url();?>session_controller/index.html">
-            <p>Se deconnecter</p>
-          </a>
-        </li>
-        <li class="separator hidden-lg hidden-md"></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="content">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-12">
-    <div class="card">
-     <div class="header">
-      <h4 class="title">Ajout de groupes de tailles</h4>
-    </div>
-    <div class="content">
-      <form id="form_add_groups_sizes" method="POST" action="addGroupSizes.html">
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group">
-          <label for="name_group_sizes">Nom du groupe de tailles</label>
-          <input id="name_group_sizes" name="name_group_sizes" type="text" class="form-control" placeholder="Exemple : Tailles des t-shirts">
-        </div>
       </div>
     </div>
-    <button id="btn_add_group_sizes" class="btn btn-info btn-fill pull-right">Ajouter le groupe de tailles</button>
-    <button id="btn_edit_groups_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_sizes" 
-    class="btn btn-danger btn-fill pull-right">Editer les groupes de tailles
-  </button>
-  <div class="clearfix"></div>
-</form>
+  </nav>
+
+  <div class="content">
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <div class="card">
+       <div class="header">
+        <h4 class="title">Ajout de groupes de tailles</h4>
+      </div>
+      <div class="content">
+        <form id="form_add_groups_sizes" method="POST" action="addGroupSizes.html">
+         <div class="row">
+          <div class="col-md-12">
+           <div class="form-group">
+            <label for="name_group_sizes">Nom du groupe de tailles</label>
+            <input id="name_group_sizes" name="name_group_sizes" type="text" class="form-control" placeholder="Exemple : Tailles des t-shirts">
+          </div>
+        </div>
+      </div>
+      <button id="btn_add_group_sizes" class="btn btn-info btn-fill pull-right">Ajouter le groupe de tailles</button>
+      <button id="btn_edit_groups_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_sizes" 
+      class="btn btn-danger btn-fill pull-right">Editer les groupes de tailles
+    </button>
+    <div class="clearfix"></div>
+  </form>
 </div>
 </div>
 </div>
@@ -318,12 +317,12 @@
     <label for="name_group_for_size">Groupe de la taille</label>
     <select id="name_group_for_size" name="name_group_for_size" type="text" class="form-control" >
 
-    <?php
+      <?php
       foreach($groups as $value){
       echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
-      }
+    }
     ?>
-    </select>
+  </select>
 </div>
 </div>
 
@@ -419,7 +418,7 @@ class="btn btn-danger btn-fill pull-right">Editer les tailles
 <script src="<?php echo js_url('editSizesModal');?>"></script>
 <!--Request Ajax for send new informations of groups sizes-->
 <script src="<?php echo js_url('changeInfosGroupsSizes');?>"></script>
-<!--Request Ajax for send new informations of  sizes-->
+<!--Request Ajax for send new informations of sizes-->
 <script src="<?php echo js_url('changeInfosSizes');?>"></script>
 </html>
 
