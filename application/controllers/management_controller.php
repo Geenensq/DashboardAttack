@@ -33,10 +33,15 @@ Class Management_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        $data = $this->modelGroupsMembers->selectAll();
-        $array = [];
-        $array['groups_members'] = $data;
-        $this->load->view('dashboard/management.html' , $array);
+        if($this->session->userdata('id_member')){
+            $data = $this->modelGroupsMembers->selectAll();
+            $array = [];
+            $array['groups_members'] = $data;
+            $this->load->view('dashboard/management.html' , $array);
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+        
     }
 
  // =======================================================================//
@@ -99,7 +104,7 @@ Class Management_controller extends CI_Controller
 
         } else {
             $this->index();
-       }
+        }
 
 
     }

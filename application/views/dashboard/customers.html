@@ -13,16 +13,19 @@
    <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
    <!--  Light Bootstrap Table core CSS    -->
    <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-   <!--     Fonts and icons     -->
+   <!-- Fonts and icons     -->
    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+   <!-- Fonts Roboto -->
+   <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
+   <!--Datatable css-->
    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
+   <!-- icon font pack -->
    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
+    <!--  My global CSS    -->
    <link href="<?php echo css_url('globalCustomers'); ?>" rel="stylesheet"/>
 </head>
 <body>
 
-  
    <!-- //////////////////////////////////////Modal GROUPS CUSTOMERS//////////////////////////////////////////// -->
    <div class="modal fade" data-backdrop="true" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -197,218 +200,217 @@
             </div>
             <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-left">
-                  <li>
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-dashboard"></i>
-                        <p class="hidden-lg hidden-md">Dashboard</p>
-                     </a>
+                <li>
+                 <a href="<?php echo base_url();?>dashboard_controller/index.html" >
+                  <i class="fa fa-dashboard"></i>
+               </a>
+            </li>
+            <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-globe"></i>
+                  <b class="caret hidden-sm hidden-xs"></b>
+                  <span class="notification hidden-sm hidden-xs">5</span>
+                  <p class="hidden-lg hidden-md">
+                     5 Notifications
+                     <b class="caret"></b>
+                  </p>
+               </a>
+               <ul class="dropdown-menu">
+                  <li><a href="#">Notification 1</a>
                   </li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-globe"></i>
-                        <b class="caret hidden-sm hidden-xs"></b>
-                        <span class="notification hidden-sm hidden-xs">5</span>
-                        <p class="hidden-lg hidden-md">
-                           5 Notifications
-                           <b class="caret"></b>
-                        </p>
-                     </a>
-                     <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a>
-                        </li>
-                        <li><a href="#">Notification 2</a>
-                        </li>
-                        <li><a href="#">Notification 3</a>
-                        </li>
-                        <li><a href="#">Notification 4</a>
-                        </li>
-                        <li><a href="#">Another notification</a>
-                        </li>
-                     </ul>
+                  <li><a href="#">Notification 2</a>
                   </li>
-
+                  <li><a href="#">Notification 3</a>
+                  </li>
+                  <li><a href="#">Notification 4</a>
+                  </li>
+                  <li><a href="#">Another notification</a>
+                  </li>
                </ul>
-               <ul class="nav navbar-nav navbar-right">
-                  <li>
-                     <a href="<?php echo base_url();?>profil_controller/index.html">
-                        <p>Mon compte</p>
-                     </a>
-                  </li>
+            </li>
 
-                  <li>
-                     <a href="<?php echo base_url();?>session_controller/index.html">
-                        <p>Se deconnecter</p>
-                     </a>
-                  </li>
-                  <li class="separator hidden-lg hidden-md"></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
-      <div class="content">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="card">
-                     <div class="header">
-                        <h4 class="title">Ajout de groupes de clients</h4>
-                     </div>
-                     <div class="content">
-                        <form id="form_add_group_customers" method="POST" action="addGroupCustomers.html">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group">
-                                    <label for="name_group_customers">Nom du groupe client</label>
-                                    <input id="name_group_customers" name="name_group_customers" type="text"
-                                    class="form-control" placeholder="Exemple : particuliers">
-                                    <?php echo form_error( 'name_group_customers'); ?>
-                                 </div>
-                              </div>
-                           </div>
-                           <button id="btn_add_group_customers" class="btn btn-info btn-fill pull-right">Ajouter le
-                              groupe de clients
-                           </button>
-                           <button id="btn_edit_groups_customers" style="margin-right: 20px;" type="button"
-                           data-toggle="collapse" data-target="#collapse_edit_groups_customers"
-                           class="btn btn-danger btn-fill pull-right">Editer les groupes clients
-                        </button>
-                        <div class="clearfix"></div>
-                     </form>
-                  </div>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li>
+               <a href="<?php echo base_url();?>profil_controller/index.html">
+                  <p>Mon compte</p>
+               </a>
+            </li>
+
+            <li>
+               <a href="<?php echo base_url();?>session_controller/index.html">
+                  <p>Se deconnecter</p>
+               </a>
+            </li>
+            <li class="separator hidden-lg hidden-md"></li>
+         </ul>
+      </div>
+   </div>
+</nav>
+<div class="content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+               <div class="header">
+                  <h4 class="title">Ajout de groupes de clients</h4>
                </div>
-            </div>
-         </div>
-
-
-
-         <div class="row">
-            <div class="col-md-12">
-               <div class="collapse" id="collapse_edit_groups_customers">
-                  <div class="card card-body">
+               <div class="content">
+                  <form id="form_add_group_customers" method="POST" action="addGroupCustomers.html">
                      <div class="row">
                         <div class="col-md-12">
-                           <div class="card">
-                              <div class="header">
-                                 <h4 class="title">Gestion des groupes de clients</h4>
-                                 <p class="category">Liste des groupes de clients</p>
-                              </div>
-                              <div class="content table-responsive">
-                                 <table style="width:100% !important;" id="tab_groups_customers"
-                                 class="col-md-12 table table-hover table-striped">
-                                 <thead>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Edition du nom</th>
-                                    <th>Désactivation / Activation</th>
-                                    <th>Status</th>
-                                 </thead>
-                                 <tbody>
-                                 </tbody>
-                              </table>
+                           <div class="form-group">
+                              <label for="name_group_customers">Nom du groupe client</label>
+                              <input id="name_group_customers" name="name_group_customers" type="text"
+                              class="form-control" placeholder="Exemple : particuliers">
+                              <?php echo form_error( 'name_group_customers'); ?>
                            </div>
                         </div>
+                     </div>
+                     <button id="btn_add_group_customers" class="btn btn-info btn-fill pull-right">Ajouter le
+                        groupe de clients
+                     </button>
+                     <button id="btn_edit_groups_customers" style="margin-right: 20px;" type="button"
+                     data-toggle="collapse" data-target="#collapse_edit_groups_customers"
+                     class="btn btn-danger btn-fill pull-right">Editer les groupes clients
+                  </button>
+                  <div class="clearfix"></div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+   <div class="row">
+      <div class="col-md-12">
+         <div class="collapse" id="collapse_edit_groups_customers">
+            <div class="card card-body">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="card">
+                        <div class="header">
+                           <h4 class="title">Gestion des groupes de clients</h4>
+                           <p class="category">Liste des groupes de clients</p>
+                        </div>
+                        <div class="content table-responsive">
+                           <table style="width:100% !important;" id="tab_groups_customers"
+                           class="col-md-12 table table-hover table-striped">
+                           <thead>
+                              <th>ID</th>
+                              <th>Nom</th>
+                              <th>Edition du nom</th>
+                              <th>Désactivation / Activation</th>
+                              <th>Status</th>
+                           </thead>
+                           <tbody>
+                           </tbody>
+                        </table>
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
+   </div>
+</div>
 
-      <div class="row">
-         <div class="col-md-12">
-            <div class="card">
-               <div class="header">
-                  <h4 class="title">Ajout de clients</h4>
+<div class="row">
+   <div class="col-md-12">
+      <div class="card">
+         <div class="header">
+            <h4 class="title">Ajout de clients</h4>
+         </div>
+         <div class="content">
+            <form id="form_add_customers" method="POST" action="addCustomers.html">
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="name_customers">Nom</label>
+                        <input id="name_customers" name="name_customers" type="text"
+                        class="form-control" placeholder="Nom">
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="first_name_customers">Prénom</label>
+                        <input id="first_name_customers" name="first_name_customers" type="text"
+                        class="form-control" placeholder="Prenom">
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="mobil_phone_number_customers">Tel port</label>
+                        <input id="mobil_phone_number_customers" name="mobil_phone_number_customers"
+                        type="text" class="form-control" placeholder="Tel port">
+                     </div>
+                  </div>
                </div>
-               <div class="content">
-                  <form id="form_add_customers" method="POST" action="addCustomers.html">
-                     <div class="row">
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="name_customers">Nom</label>
-                              <input id="name_customers" name="name_customers" type="text"
-                              class="form-control" placeholder="Nom">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="first_name_customers">Prénom</label>
-                              <input id="first_name_customers" name="first_name_customers" type="text"
-                              class="form-control" placeholder="Prenom">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="mobil_phone_number_customers">Tel port</label>
-                              <input id="mobil_phone_number_customers" name="mobil_phone_number_customers"
-                              type="text" class="form-control" placeholder="Tel port">
-                           </div>
-                        </div>
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="phone_number_customers">Tel fixe</label>
+                        <input id="phone_number_customers" name="phone_number_customers" type="text"
+                        class="form-control" placeholder="Tel fixe">
                      </div>
-                     <div class="row">
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="phone_number_customers">Tel fixe</label>
-                              <input id="phone_number_customers" name="phone_number_customers" type="text"
-                              class="form-control" placeholder="Tel fixe">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="email_customers">Adresse email</label>
-                              <input id="email_customers" name="email_customers" type="text"
-                              class="form-control" placeholder="Adresse email">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="address_customers">Adresse postale</label>
-                              <input id="address_customers" name="address_customers" type="text"
-                              class="form-control" placeholder="Adresse">
-                           </div>
-                        </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="email_customers">Adresse email</label>
+                        <input id="email_customers" name="email_customers" type="text"
+                        class="form-control" placeholder="Adresse email">
                      </div>
-                     <div class="row">
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="code_postal_customers">Code postal</label>
-                              <input id="code_postal_customers" name="code_postal_customers" type="text"
-                              class="form-control" placeholder="Code postal">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="city_customers">Ville</label>
-                              <input id="city_customers" name="city_customers" type="text"
-                              class="form-control" placeholder="Ville">
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="name_group_for_customers">Groupe de l'utilisateur</label>
-                              <select type="text" name="name_group_for_customers" class="form-control js-example-basic-single" id="name_group_for_customers">
-                                <?php
-                                foreach($groups as $value){
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="address_customers">Adresse postale</label>
+                        <input id="address_customers" name="address_customers" type="text"
+                        class="form-control" placeholder="Adresse">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="code_postal_customers">Code postal</label>
+                        <input id="code_postal_customers" name="code_postal_customers" type="text"
+                        class="form-control" placeholder="Code postal">
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="city_customers">Ville</label>
+                        <input id="city_customers" name="city_customers" type="text"
+                        class="form-control" placeholder="Ville">
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for="name_group_for_customers">Groupe de l'utilisateur</label>
+                        <select type="text" name="name_group_for_customers" class="form-control js-example-basic-single" id="name_group_for_customers">
+                         <?php
+                         foreach($groups as $value){
 
-                                echo '<option value=' . '"' . $value->getIdGroupCustomer() . '">' . $value->getNameGroupCustomer() .'</option>';
+                         echo '<option value=' . '"' . $value->getIdGroupCustomer() . '">' . $value->getNameGroupCustomer() .'</option>';
 
-                             }
-                             ?>
-                          </select>
-                       </div>
-                    </div>
-                 </div>
-                 <button id="btn_add_customers" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
+                      }
+                      ?>
+                   </select>
+                </div>
+             </div>
+          </div>
+          <button id="btn_add_customers" class="btn btn-info btn-fill pull-right">Ajouter le client</button>
 
-                 <button id="btn_edit_customers" style="margin-right: 20px;" type="button"
-                 data-toggle="collapse" data-target="#collapse_edit_customers"
-                 class="btn btn-danger btn-fill pull-right">Editer les clients
-              </button>
-              <div class="clearfix"></div>
-           </form>
-        </div>
-     </div>
-  </div>
+          <button id="btn_edit_customers" style="margin-right: 20px;" type="button"
+          data-toggle="collapse" data-target="#collapse_edit_customers"
+          class="btn btn-danger btn-fill pull-right">Editer les clients
+       </button>
+       <div class="clearfix"></div>
+    </form>
+ </div>
+</div>
+</div>
 </div>
 
 <div class="row">
@@ -461,7 +463,7 @@
          <script>
             document.write(new Date().getFullYear())
          </script>
-          <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+         <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
       </p>
    </div>
 </footer>

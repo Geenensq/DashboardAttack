@@ -38,11 +38,15 @@ Class Colors_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        $data = $this->modelGroupsColors->selectAll();
-        //---------------------------------------------------------//
-        $array = [];
-        $array['groups'] = $data;
-        $this->load->view('dashboard/colors.html' , $array);
+        if($this->session->userdata('id_member')){
+            $data = $this->modelGroupsColors->selectAll();
+            $array = [];
+            $array['groups'] = $data;
+            $this->load->view('dashboard/colors.html' , $array);
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+        
 
     }
 

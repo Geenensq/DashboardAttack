@@ -15,9 +15,11 @@
     <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
     <!--  My global CSS    -->
     <link href="<?php echo css_url('globalProfil'); ?>" rel="stylesheet"/>
-    <!--     Fonts and icons     -->
+    <!-- Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <!-- Fonts Roboto -->
+    <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
+      <!-- icon font pack -->
     <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
 </head>
 <body>
@@ -100,10 +102,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-dashboard"></i>
-                            <p class="hidden-lg hidden-md">Dashboard</p>
-                        </a>
+                      <a href="<?php echo base_url();?>dashboard_controller/index.html" >
+                        <i class="fa fa-dashboard"></i>
+                      </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

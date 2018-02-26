@@ -46,12 +46,18 @@ Class Customers_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        //-----object array that contains the customers groups-----//
-        $data = $this->modelGroupCustomers->selectAll();
-        //---------------------------------------------------------//
-        $array = [];
-        $array['groups'] = $data;
-        $this->load->view('dashboard/customers.html' , $array);
+        if($this->session->userdata('id_member')){
+            //-----object array that contains the customers groups-----//
+            $data = $this->modelGroupCustomers->selectAll();
+            //---------------------------------------------------------//
+            $array = [];
+            $array['groups'] = $data;
+            $this->load->view('dashboard/customers.html' , $array);
+
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+        
     }
 
 
@@ -102,7 +108,7 @@ Class Customers_controller extends CI_Controller
 
         foreach ($results as $result) {
             $data[] = array($result['id_customer'], $result['lastname'], $result['firstname'], $result['mobil_phone_number'],
-            $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['group_name'], $result['actif']);
+                $result['phone_number'], $result['mail'], $result['address'], $result['zip_code'], $result['city'], $result['group_name'], $result['actif']);
         }
 
         echo json_encode(array('data' => $data));

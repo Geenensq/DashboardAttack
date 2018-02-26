@@ -44,11 +44,15 @@ Class Size_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        $data = $this->modelGroupSizes->selectAll();
-        //---------------------------------------------------------//
-        $array = [];
-        $array['groups'] = $data;
-        $this->load->view('dashboard/size.html' , $array);
+        if($this->session->userdata('id_member')){
+            $data = $this->modelGroupSizes->selectAll();
+            //---------------------------------------------------------//
+            $array = [];
+            $array['groups'] = $data;
+            $this->load->view('dashboard/size.html' , $array);
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
     }
 
 
@@ -94,138 +98,138 @@ Class Size_controller extends CI_Controller
 
     public function addGroupSizes()
     {
-    	 /*Declaration of the rules of my form*/
-        $this->form_validation->set_rules('name_group_sizes', '"name_group_sizes"', 'required|min_length[3]');
+      /*Declaration of the rules of my form*/
+      $this->form_validation->set_rules('name_group_sizes', '"name_group_sizes"', 'required|min_length[3]');
 
-        if ($this->form_validation->run()) {
-            $callBack = array();
-            $this->modelGroupSizes->setNameGroupSize($this->name_group_size);
-            $this->modelGroupSizes->insertOneGroupSizes($this->modelGroupSizes);
+      if ($this->form_validation->run()) {
+        $callBack = array();
+        $this->modelGroupSizes->setNameGroupSize($this->name_group_size);
+        $this->modelGroupSizes->insertOneGroupSizes($this->modelGroupSizes);
 
-            $callBack["confirm"] = "success";
+        $callBack["confirm"] = "success";
 
-        } else {
-            $callBack["confirm"] = "error";
-        }
-        echo json_encode($callBack);
-
+    } else {
+        $callBack["confirm"] = "error";
     }
+    echo json_encode($callBack);
+
+}
 
 
  // =======================================================================//
 // !              Method for send groups sizes on datatable               //
 // ======================================================================//
-    public function encodeGridGroupsSizes()
-    {
-        $results = $this->modelGroupSizes->loadDataGroupsSizesDataTable();
-        $data = array();
+public function encodeGridGroupsSizes()
+{
+    $results = $this->modelGroupSizes->loadDataGroupsSizesDataTable();
+    $data = array();
 
-        foreach ($results as $result) {
-            $data[] = array($result['id_group_size'], $result['name_group_size'], $result['actif']);
-        }
-
-        echo json_encode(array('data' => $data));
+    foreach ($results as $result) {
+        $data[] = array($result['id_group_size'], $result['name_group_size'], $result['actif']);
     }
+
+    echo json_encode(array('data' => $data));
+}
 
 
 
 // =======================================================================//
 // !                 Method for send colors on datatable                 //
 // ======================================================================//
-    public function encodeGridSizes()
-    {
-        $results = $this->modelSizes->loadDataSizesDataTable();
-        $data = array();
+public function encodeGridSizes()
+{
+    $results = $this->modelSizes->loadDataSizesDataTable();
+    $data = array();
 
-        foreach ($results as $result) {
-            $data[] = array($result['id_size'], $result['size_name'], $result['price'],$result['actif'],$result['name_groups_sizes']);
-        }
-
-        echo json_encode(array('data' => $data));
+    foreach ($results as $result) {
+        $data[] = array($result['id_size'], $result['size_name'], $result['price'],$result['actif'],$result['name_groups_sizes']);
     }
+
+    echo json_encode(array('data' => $data));
+}
 
 
 
 // =======================================================================//
 // !          Method for activate or desactivate group of sizes          //
 // ======================================================================//
-    public function changeStatusGroupSizes()
-    {
-        $this->id_group_size = $this->input->post('id');
-        $this->modelGroupSizes->disableEnableOneGroupSize($this->id_group_size);
-    }
+public function changeStatusGroupSizes()
+{
+    $this->id_group_size = $this->input->post('id');
+    $this->modelGroupSizes->disableEnableOneGroupSize($this->id_group_size);
+}
 
 
 // =======================================================================//
 // !          Method for activate or desactivate group of colors         //
 // ======================================================================//
-    public function changeStatusSizes()
-    {
-        $this->id_size = $this->input->post('id');
-        $this->modelSizes->disableEnableOneSize($this->id_size);
-    }
+public function changeStatusSizes()
+{
+    $this->id_size = $this->input->post('id');
+    $this->modelSizes->disableEnableOneSize($this->id_size);
+}
 
 
 // ==========================================================================================//
 // !                    Method for change informations of size for modal                     //
 // ==========================================================================================//
 
-    public function changeNameGroupSizes()
+public function changeNameGroupSizes()
+{
+
+    $this->form_validation->set_rules('new_name_group_sizes', '" "', 'required|min_length[1]');
+    $callBack = array();
+
+    if ($this->form_validation->run())
     {
-
-        $this->form_validation->set_rules('new_name_group_sizes', '" "', 'required|min_length[1]');
-        $callBack = array();
-
-        if ($this->form_validation->run())
-        {
-            $this->modelGroupSizes->setIdGroupSize($this->input->post('new_id_group_sizes'));
-            $this->modelGroupSizes->setNameGroupSize($this->input->post('new_name_group_sizes'));
+        $this->modelGroupSizes->setIdGroupSize($this->input->post('new_id_group_sizes'));
+        $this->modelGroupSizes->setNameGroupSize($this->input->post('new_name_group_sizes'));
         
-            $groupSizes = $this->modelGroupSizes;
+        $groupSizes = $this->modelGroupSizes;
 
-            $this->modelGroupSizes->updateNameGroupSizes($groupSizes);
-            $callBack["confirm"] = "success";
+        $this->modelGroupSizes->updateNameGroupSizes($groupSizes);
+        $callBack["confirm"] = "success";
 
-        } else{
+    } else{
 
-            $callBack["errorNewNameGroup"] = "error";
-        }
-
-        echo json_encode($callBack);
+        $callBack["errorNewNameGroup"] = "error";
     }
+
+    echo json_encode($callBack);
+}
 
 
 
  // ==========================================================================================//
 // !                    Method for change informations of sizes for modal                    //
 // ==========================================================================================//
-    public function changeNameSizes()
+public function changeNameSizes()
+{
+    $this->form_validation->set_rules('new_id_sizes', '" "', 'required|min_length[1]');
+    $this->form_validation->set_rules('new_name_sizes',  '" "', 'required|min_length[1]');
+    $this->form_validation->set_rules('new_price_sizes', '" "', 'required|min_length[1]');
+
+    $callBack = array();
+
+    if ($this->form_validation->run())
     {
-        $this->form_validation->set_rules('new_id_sizes', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_name_sizes',  '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_price_sizes', '" "', 'required|min_length[1]');
+        $this->modelSizes->setIdSize($this->input->post('new_id_sizes'));
+        $this->modelSizes->setName($this->input->post('new_name_sizes'));
+        $this->modelSizes->setPrice($this->input->post('new_price_sizes'));
+        $this->modelSizes->setIdGroupSize($this->input->post('new_group_sizes'));
+        
+        $size = $this->modelSizes;
 
-        $callBack = array();
+        $this->modelSizes->updateNameSizes($size);
+        $callBack["confirm"] = "success";
 
-        if ($this->form_validation->run())
-        {
-            $this->modelSizes->setIdSize($this->input->post('new_id_sizes'));
-            $this->modelSizes->setName($this->input->post('new_name_sizes'));
-            $this->modelSizes->setPrice($this->input->post('new_price_sizes'));
-            $this->modelSizes->setIdGroupSize($this->input->post('new_group_sizes'));
-          
-            $size = $this->modelSizes;
+    } else{
 
-            $this->modelSizes->updateNameSizes($size);
-            $callBack["confirm"] = "success";
-
-        } else{
-
-            $callBack["errorNewNameSize"] = "error";
-        }
-
-        echo json_encode($callBack);
+        $callBack["errorNewNameSize"] = "error";
     }
+
+    echo json_encode($callBack);
+}
 
 
 
@@ -234,24 +238,24 @@ Class Size_controller extends CI_Controller
 // !                Method get all informations of groups size for modal                    //
 // ==========================================================================================//
 
-    public function getInfosGroupsSizesModal()
-    {
-        $this->id_group_size = $this->input->post('id');
+public function getInfosGroupsSizesModal()
+{
+    $this->id_group_size = $this->input->post('id');
 
-        $return = $this->modelGroupSizes->selectAllGroupsSizeForModal($this->id_group_size);
-        echo json_encode($return);
-    }
+    $return = $this->modelGroupSizes->selectAllGroupsSizeForModal($this->id_group_size);
+    echo json_encode($return);
+}
 
 // ==========================================================================================//
 // !                   Method get all informations of sizes for modal                        //
 // ==========================================================================================//
 
-    public function getInfosSizesModal()
-    {
-        $this->id_size = $this->input->post('id');
-        $return = $this->modelSizes->selectAllSizesForModal($this->id_size);
-        echo json_encode($return);
-    }
+public function getInfosSizesModal()
+{
+    $this->id_size = $this->input->post('id');
+    $return = $this->modelSizes->selectAllSizesForModal($this->id_size);
+    echo json_encode($return);
+}
 
 
 }

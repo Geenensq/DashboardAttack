@@ -36,8 +36,15 @@ Class Dashboard_controller extends CI_Controller
 
     public function index()
     {
-        $id_member = $this->id_member;
-        $this->load->view('dashboard/dashboard.html' , array('id_member' => $id_member));	
+        if($this->session->userdata('id_member')){
+            
+            $id_member = $this->id_member;
+            $this->load->view('dashboard/dashboard.html' , array('id_member' => $id_member));   
+       
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+        
     }
 
 // =======================================================================//

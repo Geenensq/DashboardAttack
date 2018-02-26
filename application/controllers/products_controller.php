@@ -45,16 +45,23 @@ Class Products_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {
-        $groupsProducts = $this->modelGroupsProducts->selectAll();
-        $groupsColors = $this->modelGroupsColors->selectAll();
-        $groupsSizes = $this->modelGroupSizes->selectAll();
-        
-        $array = [];
-        $array['groupsProducts'] = $groupsProducts;
-        $array['groupsColors'] = $groupsColors;
-        $array['groupsSizes'] = $groupsSizes;
+        if($this->session->userdata('id_member')){
+            $groupsProducts = $this->modelGroupsProducts->selectAll();
+            $groupsColors = $this->modelGroupsColors->selectAll();
+            $groupsSizes = $this->modelGroupSizes->selectAll();
+            
+            $array = [];
+            $array['groupsProducts'] = $groupsProducts;
+            $array['groupsColors'] = $groupsColors;
+            $array['groupsSizes'] = $groupsSizes;
 
-        $this->load->view('dashboard/products.html' , $array);
+            $this->load->view('dashboard/products.html' , $array);
+         
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+
+       
 
     }
 

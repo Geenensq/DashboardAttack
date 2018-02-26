@@ -44,6 +44,7 @@ Class Orders_controller extends CI_Controller
 // ======================================================================//
     public function index()
     {	
+        if($this->session->userdata('id_member')){
         $customers = $this->modelCustomers->selectAll();
         $states = $this->modelStates->selectAll();
         $shipping = $this->modelShipping->selectAll();
@@ -58,8 +59,12 @@ Class Orders_controller extends CI_Controller
         $array['payments'] = $payments;
         $array['products'] = $products;
 
-    
+
         $this->load->view('dashboard/orders.html', $array);
+        }else{
+            redirect(array('login_controller', 'index'));
+        }
+       
     }
 
 // ==========================================================================================//
@@ -177,7 +182,7 @@ Class Orders_controller extends CI_Controller
         $callBack = array();
 
         if ($this->form_validation->run()) {
-            
+
             $this->modelOrders->setIdOrder($this->input->post('id_order'));
             $this->modelOrders->setIdCustomer($this->input->post('new_customer_order'));
             $this->modelOrders->setDateOrder($this->input->post('new_date_order'));
@@ -206,15 +211,15 @@ Class Orders_controller extends CI_Controller
 // !                     INSERT ONE PRODUCT ORDER                        //
 // ======================================================================//
 
-     public function addProductOrder()
-     {
+    public function addProductOrder()
+    {
         $this->id_product = $this->input->post('id_product_order');
         $this->qte_product = $this->input->post('quantity_product_order');
         $this->id_order = $this->input->post('id_order');
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
-       
+
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->insertOneProductOrder($modelProductsOrders);
         $callBack["confirm"] = "success";

@@ -13,6 +13,7 @@ $(document).ready(function() {
     let Quantity;
     let actualQuantity;
 
+
     $("#edit_orders").click(function() {
         counter_datatable++
         if (counter_datatable <= 1) {
