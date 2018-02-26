@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="cover"><h1>Page introuvable <small>Erreur 404</small></h1>
-        <p class="lead">Cette page n'existe pas merci de contacter votre webmaster.</p></div>
+        <p class="lead">Cette page n'existe pas merci de contacter le support.</p></div>
         
     
 </body>

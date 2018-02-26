@@ -217,6 +217,30 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                     return $arrayCustomers;
         }
 
+// ======================================================================//
+// !          Method for select customers for autocompletion             //
+// ======================================================================//
+
+        public function getCustomersComplete($search){
+            $this->db->select('`customers.firstname`, `customers.lastname AS text` , `customers.id_customer AS id`');
+            $this->db->from($this->table);
+            $this->db->like('firstname', $search);
+            $this->db->limit(10);
+            $query = $this->db->get();
+  
+            $json = [];
+
+            foreach ($query->result_object() as $row){
+
+                $json[] = ['id'=> $row->id, 'text'=> $row->text ];
+            }
+            
+            return $json;
+
+        }
+
+
+
 // =======================================================================//
 // !                Method for insert on customers                       //
 // ======================================================================//

@@ -21,6 +21,8 @@
       <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
       <!-- icon font pack -->
       <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+      <!-- icon font pack -->
+      <link href="<?php echo css_url('globalOrders'); ?>" rel="stylesheet" />
    </head>
    <body>
       <div class="wrapper">
@@ -160,13 +162,13 @@
                                        <div class="form-group">
                                           <label for="customer_order">Client</label>
                                           <select id="customer_order" name="customer_order" class="form-control" name="state">
-                                             <option value="0" disabled selected="selected">Sélectionner un client</option>
+                             <!--                 <option value="0" disabled selected="selected">Sélectionner un client</option>
                                           <?php
                                              foreach($customers as $value)
                                              {
                                               echo '<option value=' . '"' . $value->getIdCustomer() . '">' . $value->getLastName() . ' ' . $value->getFirstName(). '</option>';
                                              }
-                                             ?>
+                                             ?> -->
                                           </select>
                                        </div>
                                     </div>
@@ -398,4 +400,26 @@
    <script src="<?php echo js_url('mainOrder');?>"></script>
    <!-- Functions for delete an product on table-->
    <script src="<?php echo js_url('deleteRow');?>"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+   
+
+<script type="text/javascript">
+      $('#customer_order').select2({
+        placeholder: 'Select an item',
+        ajax: {
+          url: 'ajaxpro.html',
+          dataType: 'json',
+          delay: 250,
+
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+
+   </script>
 </html>

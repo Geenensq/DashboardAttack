@@ -67,6 +67,20 @@ Class Orders_controller extends CI_Controller
        
     }
 
+// =======================================================================//
+// !                    autocompletion customers                         //
+// ======================================================================//
+
+    public function ajaxpro(){
+
+        $search = $this->input->get('q', FALSE);
+        $results = $this->modelCustomers->getCustomersComplete($search);
+
+        echo json_encode($results);
+
+    }
+
+
 // ==========================================================================================//
 // !                               Method for add an order                                   //
 // ==========================================================================================//
