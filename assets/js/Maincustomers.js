@@ -4,28 +4,28 @@ $(document).ready(function() {
     $("#btn_edit_groups_customers").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_groups_customers").is(":visible") == true ){
-             $("#btn_edit_groups_customers").text( "Editer les groupes clients" );
-             $("#btn_add_group_customers").attr("disabled", false);
-        } else {
-             $("#btn_edit_groups_customers").text( "Annuler l'édition" );
-             $("#btn_add_group_customers").attr("disabled", true);
-        }
-    });
+           $("#btn_edit_groups_customers").text( "Editer les groupes clients" );
+           $("#btn_add_group_customers").attr("disabled", false);
+       } else {
+           $("#btn_edit_groups_customers").text( "Annuler l'édition" );
+           $("#btn_add_group_customers").attr("disabled", true);
+       }
+   });
     //-------------------------------------------------------------------------------------//
     //
     
         //-------------------------At the user's click-------------------------------------------//
-    $("#btn_edit_customers").click(function(){
+        $("#btn_edit_customers").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_customers").is(":visible") == true ){
-             $("#btn_edit_customers").text( "Editer les clients" );
-             $("#btn_add_customers").attr("disabled", false);
-        } else {
-             $("#btn_edit_customers").text( "Annuler l'édition" );
-             $("#btn_add_customers").attr("disabled", true);
+           $("#btn_edit_customers").text( "Editer les clients" );
+           $("#btn_add_customers").attr("disabled", false);
+       } else {
+           $("#btn_edit_customers").text( "Annuler l'édition" );
+           $("#btn_add_customers").attr("disabled", true);
 
-        }
-    });
+       }
+   });
     //-------------------------------------------------------------------------------------//
 
 
@@ -43,29 +43,29 @@ $(document).ready(function() {
                     {"targets": 2, data: null},
                     {"targets": 3, data: null},
                     {"targets": 4, data: null}
-            ],
+                    ],
             //L'afficharge par defaut des collones de Datatable
             //Data represente dans ce cas les data de chaque ligne
             columnDefs:[
 
             {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update">Edition </button>';}},
-        
+            
             {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupCustomer.html" + '\'' + ',' + '\'' + "#tab_groups_customers" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
 
             {"targets": 4,render: function(data,full) { 
 
                 if (data[2] == 1) 
                 {
-                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
-                
+                    return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+                    
                 } else if(data[2] == 0) 
                 
                 {
-                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+                    return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
                 }
                 
             }}
-           
+            
             ]
 
         });
@@ -91,28 +91,28 @@ $(document).ready(function() {
                     {"targets": 10, data: null},
                     {"targets": 11, data: null},
                     {"targets": 12, data: null}
-        ],
+                    ],
 
             //L'afficharge par defaut des collones de Datatable
             //Data represente dans ce cas les data de chaque ligne
 
             columnDefs:[
 
-                {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
-                {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusCustomer.html" + '\'' + ',' + '\'' + "#tab_customers" + '\'' + ')' + '"' +'class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
-                {"targets": 12,render: function(data,full) { 
+            {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
+            {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusCustomer.html" + '\'' + ',' + '\'' + "#tab_customers" + '\'' + ')' + '"' +'class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
+            {"targets": 12,render: function(data,full) { 
                 if (data[10] == 1) 
                 {
-                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
-                
+                    return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+                    
                 } else if(data[10] == 0) 
                 
                 {
-                return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+                    return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
                 }
                 
             }}
-    
+            
 
             ]
 

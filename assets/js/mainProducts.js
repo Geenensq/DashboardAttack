@@ -2,13 +2,13 @@
   $("#btn_edit_groups_products").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_groups_products").is(":visible") == true ){
-           $("#btn_edit_groups_products").text( "Editer les groupes de couleurs" );
-           $("#btn_add_group_products").attr("disabled", false);
-       } else {
-           $("#btn_edit_groups_products").text( "Annuler l'édition" );
-           $("#btn_add_group_products").attr("disabled", true);
-       }
-   });
+         $("#btn_edit_groups_products").text( "Editer les groupes de couleurs" );
+         $("#btn_add_group_products").attr("disabled", false);
+     } else {
+         $("#btn_edit_groups_products").text( "Annuler l'édition" );
+         $("#btn_add_group_products").attr("disabled", true);
+     }
+ });
     //-------------------------------------------------------------------------------------//
     //
     
@@ -17,14 +17,14 @@
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_products").is(":visible") == true ){
             
-           $("#btn_edit_products").text( "Editer les couleurs" );
-           $("#btn_add_products").attr("disabled", false);
-       } else {
-           $("#btn_edit_products").text( "Annuler l'édition" );
-           $("#btn_add_products").attr("disabled", true);
+         $("#btn_edit_products").text( "Editer les couleurs" );
+         $("#btn_add_products").attr("disabled", false);
+     } else {
+         $("#btn_edit_products").text( "Annuler l'édition" );
+         $("#btn_add_products").attr("disabled", true);
 
-       }
-   });
+     }
+ });
     //-------------------------------------------------------------------------------------//
 
 

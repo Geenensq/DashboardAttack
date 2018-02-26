@@ -169,12 +169,12 @@ Chartist.Pie('#chartPreferences', {
 
 
 function getMessages(){
-    const requeteAjax = new XMLHttpRequest();
-    requeteAjax.open("GET" , "getMessages.html");
+    const requestAjax = new XMLHttpRequest();
+    requestAjax.open("GET" , "getMessages.html");
 
-    requeteAjax.onload = function(){
-        const resultat = JSON.parse(requeteAjax.responseText);
-        const html = resultat.reverse().map(function(message){
+    requestAjax.onload = function(){
+        const result = JSON.parse(requestAjax.responseText);
+        const html = result.reverse().map(function(message){
             return `<div class="message">
             <span class="date">${message.date_message}</span> 
             <span class="author">${message.member}</span> :
@@ -187,7 +187,7 @@ function getMessages(){
         messages.innerHTML = html;
         messages.scrollTop = messages.scrollHeight;
     }
-    requeteAjax.send();
+    requestAjax.send();
 }
 
 

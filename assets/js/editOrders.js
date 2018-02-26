@@ -1,17 +1,17 @@
 let array = document.getElementById('tab_products_order');
-
-
-
-
-
-
 function editOrders($id) {
-  
+
+    if ($('h4:contains("Edition de la commande existante")').length > 0) {
+       notify("pe-7s-refresh-2", "<b>Informations : </b>Une commande est déja en cours d'édition !", "danger");
+   } else{
+    /*Disable the datatable buttons that allow the editing of the command*/
+    $("a.editOrder").attr("disabled", true);
+
     url = "getInfosOrdersForEdit.html";
     var form = {id:$id};
     var order = send_post(form, url);
     /*change id of submit form*/
-     $("#form_add_order").attr("id", "form_edit_order");
+    $("#form_add_order").attr("id", "form_edit_order");
     /***************************/    
     $("#title_order").text("Edition de la commande existante n°" + order.id_order);
     $("#valid_order").text("Valider la modification de la commande n°" + order.id_order);
@@ -34,7 +34,7 @@ function editOrders($id) {
     var order_product = send_post(form, url);
     $("#collapse_products").show("slow");
 
-    
+
     for (var i = 0; i < order_product.length; i++){
         let row = array.insertRow(1);
         row.id = "ligne" + i;
@@ -62,9 +62,11 @@ function editOrders($id) {
         cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
         cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';   
 
-    }
+    }        
+}
 
 
-    
+
+
 
 }

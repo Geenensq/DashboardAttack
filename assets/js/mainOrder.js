@@ -13,12 +13,6 @@ $(document).ready(function() {
     let Quantity;
     let actualQuantity;
 
-    /*------------------------------------------------*/
-    /*call an secret function*/
-    /*secret();*/
-    /***************************************************/
-
-
     $("#edit_orders").click(function() {
         counter_datatable++
         if (counter_datatable <= 1) {
@@ -98,7 +92,7 @@ $(document).ready(function() {
                 {
                     "targets": 8,
                     render: function(data, full) {
-                        return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill"><i class="fa fa-edit"></i></a>'
+                        return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill editOrder"><i class="fa fa-edit"></i></a>'
                     }
                 },
                 ]
@@ -137,6 +131,7 @@ $(document).ready(function() {
         //*IF IS IN EDITION MODE UPDATE THE ORDER WITH REQUEST AJAX*/
         ////////////////////////////////////////////////////////////
         if ($('h4:contains("Edition de la commande existante")').length > 0) {
+            $('#valid_order').text("Valider la commande");
             edit_mode = 1;
             id_order = $("#current_id_order").val();
             new_customer_order = $("#customer_order").val();
@@ -162,7 +157,7 @@ $(document).ready(function() {
 
                 if (data.confirm == "success") {
                     notify("pe-7s-refresh-2", "<b>Informations : </b> Votre commande à été modifier avec succès !", "info");
-                    $('#tab_orders').DataTable().ajax.reload();
+                    
                 } else {
                     notify("pe-7s-refresh-2", "<b>Erreur !", "danger");
                 }
@@ -175,6 +170,11 @@ $(document).ready(function() {
         ///////////////////////////////////////////////////////////
 
         if ($('#valid_order').prop("disabled") == false) {
+
+            /*Enable the datatable buttons that allow the editing of the command*/
+            $("a.editOrder").attr("disabled", false);
+
+
             unlockInputOrder();
             $("#title_order").text("Ajouter une commande");
 
@@ -214,7 +214,7 @@ $(document).ready(function() {
 
             if (edit_mode === 0) {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
-                $('#tab_orders').DataTable().ajax.reload();
+
             }
 
             $("#title_order").css("font-weight", "300");
@@ -248,13 +248,13 @@ $(document).ready(function() {
                 qte_product = $('#qte_product_order').val();
                 return_product_exist = addRowProduct(product_added);
                 if (return_product_exist === "ok") {
-                   /*call function javascript for add products in the order*/
-                   addProductsOrder($("#current_id_order").val());
-                   priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+                 /*call function javascript for add products in the order*/
+                 addProductsOrder($("#current_id_order").val());
+                 priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
 
-               }
-               
-           } else {
+             }
+             
+         } else {
             lockInputOrder();
             product_added = $('#select_product_order').val();
             qte_product = $('#qte_product_order').val();
@@ -410,9 +410,17 @@ function constructViewTable($product, $count, $array, $qte_product) {
     $("#valid_order").removeAttr("disabled");
     
     if ($('h4:contains("Edition de la commande existante")').length > 0) {
+        if ($('#tab_products_order tr').length <= 1){
+          $count =+  0;
+          
+      } else {
         $count =+ $("#tab_products_order tr:nth-child(2)").attr('id').replace("ligne" , "") + 1;
-    } 
-    let row = $array.insertRow(1);
+    }
+    
+} 
+
+
+let row = $array.insertRow(1);
     row.id = "ligne" + $count; /// Pour chaques ligne on lui affecte un id "ligne" + la letiable count*/
     
     /*Insert an row in my table*/
