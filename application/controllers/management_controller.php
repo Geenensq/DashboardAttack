@@ -34,10 +34,17 @@ Class Management_controller extends CI_Controller
     public function index()
     {
         if($this->session->userdata('id_member')){
+
+            if($this->session->userdata('id_member') === 1){
             $data = $this->modelGroupsMembers->selectAll();
             $array = [];
             $array['groups_members'] = $data;
             $this->load->view('dashboard/management.html' , $array);
+
+            } else {
+                $this->load->view('errors/custom/HTTP403.html');
+            }
+
         }else{
             redirect(array('login_controller', 'index'));
         }
