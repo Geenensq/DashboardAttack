@@ -239,30 +239,26 @@
             <div class="col-md-7">
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">STICK A'TCHAT</h4>
+                        <h4 class="title">Stick @'tchat</h4>
                         <p class="category">Tchat et pense-bêtes interne</p>
                     </div>
                     <div style="padding-top: 1px!important;" class="content">
                         <div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
-                            <div class="messages">
-                                <div class="message">
-                                 <span class="date">23:22</span> 
-                                 <span class="author">Quentin</span> :
-                                 <span class="content-message">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</span>
-                             </div>
+                            <div class="messages pre-scrollable">
+  
+                    
 
                          </div>
                      </div>
                      <hr>
                      <div class="row">
-                        <form action="">
-                            <input hidden id="id_member" type="text">
+                        <form id="form_add_messages" action="sendMessages.html">
+                            <input hidden id="id_member" name="id_member" value="<?php echo $id_member ?>" type="text">
                                 
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <label>Votre message :</label>
-                                    <input id="text_message" type="text" class="form-control" value="">
+                                    <input id="text_message" name="text_message" type="text" class="form-control" value="">
                                 </div>
                             </div>
 
@@ -314,8 +310,7 @@
 <script type="text/javascript" src="<?php echo js_url('MainDashboard');?>"></script>
 <!-- Function for send data in ajax -->
 <script src="<?php echo js_url('sendPost');?>"></script>
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="<?php echo js_url_lib('demo');?>"></script>
+
 
 
 <script type="text/javascript">

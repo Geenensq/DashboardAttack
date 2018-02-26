@@ -9,8 +9,8 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Messages_model extends CI_Model
-    {
+Class Messages_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
@@ -93,11 +93,25 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->from($this->table);
         $this->db->join('members' , 'messages.id_member = members.id_member');
         $this->db->order_by('messages.id_message', 'DESC');
-        $this->db->limit('10');
+        $this->db->limit('20');
         $query = $this->db->get();
 
-
         return $query->result_array();
+    }
+
+// =======================================================================//
+// !                  Method for insert one message in chat              //
+// ======================================================================//
+
+    public function insertOneMessage($model){
+        $id_member = $model->getIdMember();
+        $text_message = $model->getTextMessage();
+
+        $this->db->set('date_message', 'NOW()', FALSE)
+        ->set('id_member', $id_member)
+        ->set('text_message' , $text_message)
+        ->insert($this->table);
+
     }
 
 

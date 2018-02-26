@@ -27,6 +27,7 @@ Class Dashboard_controller extends CI_Controller
         parent::__construct();
         $this->load->model('Orders_model', 'modelOrders');
         $this->load->model('Messages_model', 'modelMessages');
+        $this->id_member = $this->session->userdata('id_member');
     }
 
 // =======================================================================//
@@ -35,10 +36,9 @@ Class Dashboard_controller extends CI_Controller
 
     public function index()
     {
-        $this->load->view('dashboard/dashboard.html');	
-
+        $id_member = $this->id_member;
+        $this->load->view('dashboard/dashboard.html' , array('id_member' => $id_member));	
     }
-
 
 // =======================================================================//
 // !              Method for display selected messages on chat           //
@@ -51,20 +51,23 @@ Class Dashboard_controller extends CI_Controller
 // =======================================================================//
 // !                   Method for send an messages on chat               //
 // ======================================================================//
-    public function SendMessages(){
+    public function sendMessages(){
         
-        $this->form_validation->set_rules('text_message' , '"text_message"' , required);
-        $this->form_validation->set_rules('id_member' , '"id_member"' , required);
+        $this->form_validation->set_rules('text_message' , '"text_message"' , 'required');
+        $this->form_validation->set_rules('id_member' , '"id_member"' , 'required');
 
         $callBack = array();
 
         if($this->form_validation->run()){
-            $this->id_member = $this->input->post('name_group_for_color');
-            $this->text_message = $this->input->post('name_group_for_color');
-            $this->
-
+            $this->modelMessages->setIdMember($this->input->post('id_member'));
+            $this->modelMessages->setTextMessage($this->input->post('text_message'));
+            $messagesModel = $this->modelMessages;
+            $this->modelMessages->insertOneMessage($messagesModel);
+             $callBack["confirm"] = "success";
+        } else {
+            $callBack["confirm"] = "error";
         }
-
+            echo json_encode($callBack);
 
     }
 
