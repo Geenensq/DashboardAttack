@@ -1,4 +1,43 @@
 $(document).ready(function() {
+
+
+      $('#customer_order').select2({
+         minimumInputLength: 2,
+         placeholder: 'Chercher un client',
+        ajax: {
+          url: 'getCustomersAutoComplete.html',
+          dataType: 'json',
+          delay: 250,
+
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+
+
+      $('#select_product_order').select2({
+         minimumInputLength: 2,
+         placeholder: 'Chercher un produit',
+        ajax: {
+          url: 'getProductsAutoComplete.html',
+          dataType: 'json',
+          delay: 250,
+
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+
+
+
     /*-----Declare my lets for acces to the DOM------*/
     let array = document.getElementById('tab_products_order');
     let count = 1;

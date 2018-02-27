@@ -350,6 +350,33 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
+// ======================================================================//
+// !          Method for select products for autocompletion             //
+// ======================================================================//
+
+        public function selectALLAutoComplete($search){
+     
+        $this->db->select('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name) AS text, id_product AS id');
+            $this->db->from($this->table);
+            $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
+            $this->db->join('colors' , 'products.id_color = colors.id_color');
+            $this->db->join('sizes' , 'products.id_size = sizes.id_size');
+            $this->db->like('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name)', $search);
+
+            $query = $this->db->get();
+
+            $json = [];
+
+            foreach ($query->result_object() as $row){
+
+                $json[] = ['id'=> $row->id, 'text'=> $row->text ];
+            }
+            
+            return $json;
+
+        }
+
+
 // =======================================================================//
 // !                                                                     //
 // ======================================================================//

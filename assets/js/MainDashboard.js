@@ -135,14 +135,17 @@ if(statsReturned.length < 7)
 }
 }
 
+console.log(statsReturned);
+
 
 var dataPreferences = {series: [[25, 30, 20, 25]]};
 var optionsPreferences = {
-    donut: true,
+    donut: false,
     donutWidth: 40,
     startAngle: 0,
     total: 100,
-    showLabel: true,
+    showLabel: false,
+    
     axisX: {
         showGrid: false
     }

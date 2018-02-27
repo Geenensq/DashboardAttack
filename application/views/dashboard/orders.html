@@ -242,13 +242,13 @@
                                        <div class="form-group">
                                           <label for="select_product_order">Rechercher un produit à ajouter : </label>
                                           <select name="select_product_order" id="select_product_order" class="form-control">
-                                             <option value="0" disabled selected="selected">Ajouter un produit à la commande :</option>
-                                          <?php
+                                           <!--   <option value="0" disabled selected="selected">Ajouter un produit à la commande :</option> -->
+ <!--                                          <?php
                                              foreach($products as $value)
                                              {
                                                 echo '<option  value=' .'"' .$value->getIdProduct() . '">'. " <span style=\"font-weight: bold;\">Référence :</span> " . " " . $value->getReference(). " " . "Nom du produit : " . $value->getName(). " Mesure / Taille : " . $value->getSize()->getName() . " Couleur : " . $value->getColor()->getColorName() . '</option>';
                                              }
-                                             ?>
+                                             ?> -->
                                           </select>
                                        </div>
                                     </div>
@@ -404,22 +404,5 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
    
 
-<script type="text/javascript">
-      $('#customer_order').select2({
-        placeholder: 'Select an item',
-        ajax: {
-          url: 'ajaxpro.html',
-          dataType: 'json',
-          delay: 250,
 
-          processResults: function (data) {
-            return {
-              results: data
-            };
-          },
-          cache: true
-        }
-      });
-
-   </script>
 </html>

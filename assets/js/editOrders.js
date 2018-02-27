@@ -1,6 +1,10 @@
 let array = document.getElementById('tab_products_order');
-function editOrders($id) {
 
+function editOrders($id) {
+$( "#customer_order" ).click(function() {
+    $customer = $("#customer_order");
+    console.log($customer);
+});
     if ($('h4:contains("Edition de la commande existante")').length > 0) {
        notify("pe-7s-refresh-2", "<b>Informations : </b>Une commande est déja en cours d'édition !", "danger");
    } else{
@@ -21,7 +25,11 @@ function editOrders($id) {
     $("#title_order").css("color", "#1DC7EA");
 
     $('#current_id_order').val(order.id_order);
-    $("#customer_order").val(order.id_customer);
+
+    var data = {id: order.id_order,text: order.firstname + " " + order.lastname};
+    var newOption = new Option(data.text, data.id, true, false);
+    $('#customer_order').append(newOption).trigger('change');
+
     $('#date_order').val(order.date_order);
     $('#current_order_price').val(order.price_order);
     $('#comment_order').val(order.comment_order);
