@@ -16,6 +16,7 @@ Class Dashboard_controller extends CI_Controller
     private $text_message;
     private $date_message;
     private $id_member;
+    private $id_method_shipping;
 
 // =======================================================================//
 // !                  Constructor of my Class                            //
@@ -37,10 +38,9 @@ Class Dashboard_controller extends CI_Controller
     public function index()
     {
         if($this->session->userdata('id_member')){
-            
             $id_member = $this->id_member;
             $this->load->view('dashboard/dashboard.html' , array('id_member' => $id_member));   
-       
+
         }else{
             redirect(array('login_controller', 'index'));
         }
@@ -59,7 +59,7 @@ Class Dashboard_controller extends CI_Controller
 // !                   Method for send an messages on chat               //
 // ======================================================================//
     public function sendMessages(){
-        
+
         $this->form_validation->set_rules('text_message' , '"text_message"' , 'required');
         $this->form_validation->set_rules('id_member' , '"id_member"' , 'required');
 
@@ -70,11 +70,11 @@ Class Dashboard_controller extends CI_Controller
             $this->modelMessages->setTextMessage($this->input->post('text_message'));
             $messagesModel = $this->modelMessages;
             $this->modelMessages->insertOneMessage($messagesModel);
-             $callBack["confirm"] = "success";
+            $callBack["confirm"] = "success";
         } else {
             $callBack["confirm"] = "error";
         }
-            echo json_encode($callBack);
+        echo json_encode($callBack);
 
     }
 
@@ -94,6 +94,8 @@ Class Dashboard_controller extends CI_Controller
 
         echo json_encode(array('data' => $data));
     }
+
+
 // =======================================================================//
 // !                Method for stats of status orders                    //
 // ======================================================================//
@@ -101,59 +103,60 @@ Class Dashboard_controller extends CI_Controller
     public function getStatusOrders()
     {
     	$resultStats = $this->modelOrders->OrdersStatusStats();
-     
-        if(count($resultStats) == 0){
-            for ($i=0; $i == 6; $i++){
-                $resultStats[$i] = array("how_much"=> 0, "id_state" =>$i,"name_state" => 0);
-            }
-        }
+        if(count($resultStats) < 8){
+            for ($i=0; $i < 8; $i++){
 
-    	echo json_encode($resultStats);
-    }
+                if(!isset($resultStats[$i])){
+                 $resultStats[$i]  = array("how_much"=> 0, "id_state" =>$i,"name_state" => 0);
+             }    
+         }
+     }
+
+     echo json_encode($resultStats);
+ }
 
 
 // =======================================================================//
 // !                Method for stats earnings by months                  //
 // ======================================================================//
  public function getEarnings()
-    {
-        $earnings = $this->modelOrders->selectEarningsByMonths();
-        //declare un array vide qui combleras les trous
-        $completeResult = array();
+ {
+    $earnings = $this->modelOrders->selectEarningsByMonths();
+    $actualYears = date("Y");
 
-
-       if(count($earnings) == 0){
-            for ($i=1; $i <= 12; $i++){
-                $earnings[$i] = array('month'=> $i, 'years' =>2018,'total_order' => 0, 'how_much_order' => 0);
-            }
+    if(count($earnings) == 0){
+        for ($i=1; $i <= 12; $i++){
+            $earnings[0] = array('month'=> $i, 'years' => $actualYears,'total_order' => 0, 'how_much_order' => 0);
         }
-
-        $aOfYears= [];
-
-        foreach ($earnings as $month) {
-            $aOfYears[$month['years']] = 1;
-        }
-
-        foreach ($aOfYears as $key => $value){
-            for ($i=1; $i <= 12; $i++){
-                $completeResult[$key][$i-1] = array('month'=> $i, 'years' => $key,'total_order' => 0, 'how_much_order' => 0);
-            }
-        }
-            foreach ($earnings as $key => $month){
-                
-                $monthNumber = $i;
-                $yearNumber = $month['years'];
-                
-                //le mois est egale a i, donc c'est qu'il y'avait des resultat, on pousse le resultat a l'index de $i
-                $newResult = array('month'=> $month['month'], 'years' => $month['years'],'total_order' => $month['total_order'], 'how_much_order' => $month['how_much_order']);          
-                $completeResult[$yearNumber][$month['month']-1] = $newResult;
-            }
-        echo json_encode($completeResult);
     }
+
+    $aOfYears= [];
+
+    foreach ($earnings as $month) {
+        $aOfYears[$month['years']] = 1;
+    }
+
+
+    foreach ($aOfYears as $key => $value){
+        for ($i=1; $i <= 12; $i++){
+            $completeResult[$key][$i-1] = array('month'=> $i, 'years' => $key,'total_order' => 0, 'how_much_order' => 0);
+        } 
+    }
+
+    foreach ($earnings as $key => $month){
+        $monthNumber = $i;
+        $yearNumber = $month['years'];
+        $newResult = array('month'=> $month['month'], 'years' => $month['years'],'total_order' => $month['total_order'], 'how_much_order' => $month['how_much_order']);
+        $completeResult[$yearNumber][$month['month']-1] = $newResult;
+    }
+
+
+    echo json_encode($completeResult);
+}
 
 
 
 
 
 }
- ?>
+?>

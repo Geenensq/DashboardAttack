@@ -26,7 +26,7 @@
                 /*call function javascript for add products in the order*/
                 addProductsOrder($("#current_id_order").val());
                 $("#title_order").text("Création de la commande n°" + $("#current_id_order").val());
-              
+                
             } else if (data.confirm == "error") {
                 
             }

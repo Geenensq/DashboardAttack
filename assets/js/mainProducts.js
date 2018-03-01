@@ -2,7 +2,7 @@
   $("#btn_edit_groups_products").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_groups_products").is(":visible") == true ){
-         $("#btn_edit_groups_products").text( "Editer les groupes de couleurs" );
+         $("#btn_edit_groups_products").text( "Editer les groupes de produits" );
          $("#btn_add_group_products").attr("disabled", false);
      } else {
          $("#btn_edit_groups_products").text( "Annuler l'édition" );
@@ -17,7 +17,7 @@
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_products").is(":visible") == true ){
             
-         $("#btn_edit_products").text( "Editer les couleurs" );
+         $("#btn_edit_products").text( "Editer les produits" );
          $("#btn_add_products").attr("disabled", false);
      } else {
          $("#btn_edit_products").text( "Annuler l'édition" );
@@ -26,8 +26,6 @@
      }
  });
     //-------------------------------------------------------------------------------------//
-
-
 
     $('#tab_groups_products').DataTable({
         ajax: "encodeGridGroupsProducts.html",

@@ -9,8 +9,8 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Orders_model extends CI_Model
-    {
+Class Orders_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
@@ -29,7 +29,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-   
+
     public function getIdOrder()
     {
         return $this->id_order;
@@ -74,7 +74,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-     
+
     public function setIdOrder($id_order)
     {
         $this->id_order = $id_order;
@@ -86,7 +86,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->date_order = $date_order;
         return $this;
     }
-   
+
     public function setStatusOrder($status_order)
     {
         $this->status_order = $status_order;
@@ -110,7 +110,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->id_customer = $id_customer;
         return $this;
     }
-   
+
     public function setIdMethodPayment($id_method_payment)
     {
         $this->id_method_payment = $id_method_payment;
@@ -142,12 +142,34 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         return $query->result_array();
         
-    }   
+    } 
+
+// =======================================================================//
+// !             Method for get price of shipping by order               //
+// ======================================================================//
+    public function selectShippingPriceOrders($model)
+    {
+        $id_order = $model->getIdOrder();
+        $this->db->select('id_order , orders.id_method_shipping , methods_shippings.name_method_shipping , methods_shippings.price_method_shipping');
+        $this->db->from($this->table);
+        $this->db->join('methods_shippings', 'orders.id_method_shipping = methods_shippings.id_method_shipping');
+        $this->db->where('id_order', $id_order);
+        $query = $this->db->get();
+        
+        foreach ($query->result() as $row)
+        {
+            $result["id_method_shipping"] =  $row->id_method_shipping;
+            $result["id_order"] =  $row->id_order;
+            $result["name_method_shipping"] =  $row->name_method_shipping;
+            $result["price_method_shipping"] =  $row->price_method_shipping;
+        }
+        
+        return $result;
+    }  
 
 // =======================================================================//
 // !                method to get the last 6 orders                     //
 // ======================================================================//
-
     public function lastOrders()
     {
         $this->db->select('orders.id_order , states.name_state , customers.firstname , customers.lastname');
@@ -160,12 +182,20 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         return $query->result_array();
         
     }  
-
+// =======================================================================//
+// !         Method for delete an order after delete product order       //
+// ======================================================================//
+    public function deleteOrder($model)
+    {
+        $id_order = $model->getIdOrder();
+        $this->db->where('id_order', $id_order);
+        $this->db->delete($this->table);
+        
+    }
 
 // =======================================================================//
 // !           Method to calculate the earnings on every month           //
 // ======================================================================//
-
     public function selectEarningsByMonths()
     {
 
@@ -176,19 +206,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->order_by("years");
         $this->db->order_by("month");
         $query = $this->db->get();
-
-
         return $query->result_array();
         
     } 
 
-
-
-
 // =======================================================================//
 // !                     Method for insert one order                     //
 // ======================================================================//
-
     public function insertOneOrder($model){
         $id_customer = $model->getIdCustomer();
         $date_order = $model->getDateOrder();
@@ -199,14 +223,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $method_shipping = $model->getIdMethodShipping();
 
         $this->db->set('id_customer', $id_customer)
-            ->set('date_order', $date_order)
-            ->set('id_state' , $status_order)
-            ->set('comment_order' , $comment_order)
-            ->set('price_order' , $price_order)
-            ->set('id_method_payment' , $method_payment)
-            ->set('id_method_shipping' , $method_shipping)
-            ->insert($this->table);
-            return $this->db->insert_id();
+        ->set('date_order', $date_order)
+        ->set('id_state' , $status_order)
+        ->set('comment_order' , $comment_order)
+        ->set('price_order' , $price_order)
+        ->set('id_method_payment' , $method_payment)
+        ->set('id_method_shipping' , $method_shipping)
+        ->insert($this->table);
+        return $this->db->insert_id();
 
     }
 // =======================================================================//
@@ -246,7 +270,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                    Method update an order with id                    //
 // ======================================================================//
-
     public function updateOrder($model){
        $id_order = $model->getIdOrder();
        $id_customer = $model->getIdCustomer();
@@ -257,47 +280,62 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
        $method_shipping = $model->getIdMethodShipping();
        $state_order = $model->getStatusOrder();
 
-
-        $this->db->set('date_order', $date_order);
-        $this->db->set('comment_order', $comment_order);
-        $this->db->set('price_order', $price_order);
-        $this->db->set('id_customer', $id_customer);
-        $this->db->set('id_method_payment', $method_payment);
-        $this->db->set('id_method_shipping', $method_shipping);
-        $this->db->set('id_state', $state_order);
-
-
+       $this->db->set('date_order', $date_order);
+       $this->db->set('comment_order', $comment_order);
+       $this->db->set('price_order', $price_order);
+       $this->db->set('id_customer', $id_customer);
+       $this->db->set('id_method_payment', $method_payment);
+       $this->db->set('id_method_shipping', $method_shipping);
+       $this->db->set('id_state', $state_order);
        $this->db->where('id_order' , $id_order);
        $this->db->update($this->table);
-    }
-
-
+   }
 
 // =======================================================================//
 // !               Method for update the price of the order              //
 // ======================================================================//
-    public function updatePriceOrder($model)
-    {
-        $id_order = $model->getIdOrder();
-        $price_order = $model->getPriceOrder();
-        $this->db->set('price_order', $price_order);
-        $this->db->where('id_order', $id_order);
-        $this->db->update($this->table); 
-    }
+   public function updatePriceOrder($model)
+   {
+    $id_order = $model->getIdOrder();
+    $price_order = $model->getPriceOrder();
+    $this->db->set('price_order', $price_order);
+    $this->db->where('id_order', $id_order);
+    $this->db->update($this->table); 
+}
+// =======================================================================//
+// !    Method to retrieve order information and send it to datatables    //
+// ======================================================================//
+public function loadDataOrdersDataTable()
+{
+    $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , methods_payments.name_method AS method_payment , methods_shippings.name_method_shipping AS method_shipping , states.name_state AS name_state ');
+    $this->db->from($this->table);
+    $this->db->join('customers', 'orders.id_customer = customers.id_customer');
+    $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
+    $this->db->join('methods_shippings', 'orders.id_method_shipping = methods_shippings.id_method_shipping');
+    $this->db->join('states', 'orders.id_state = states.id_state');
+    $query = $this->db->get();
+    $sql = $this->db->last_query();
+    return $query->result_array();
+}
 
 
-    public function loadDataOrdersDataTable()
-    {
-        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , methods_payments.name_method AS method_payment , methods_shippings.name_method_shipping AS method_shipping , states.name_state AS name_state ');
-        $this->db->from($this->table);
-        $this->db->join('customers', 'orders.id_customer = customers.id_customer');
-        $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
-        $this->db->join('methods_shippings', 'orders.id_method_shipping = methods_shippings.id_method_shipping');
-        $this->db->join('states', 'orders.id_state = states.id_state');
-        $query = $this->db->get();
-        $sql = $this->db->last_query();
-        return $query->result_array();
-    }
+// =======================================================================//
+// !                  Method to update the delivery method                //
+// ======================================================================//
+public function updateShippingOrder($model)
+{
+    $id_order = $model->getIdOrder();
+    $method_shipping = $model->getIdMethodShipping();
+    $this->db->set('id_method_shipping', $method_shipping);
+    $this->db->where('id_order', $id_order);
+    $this->db->update($this->table); 
+
+}
+
+
+
+
+
 
 
 }

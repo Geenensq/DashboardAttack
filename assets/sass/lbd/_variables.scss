@@ -35,8 +35,8 @@ $success-color:              #87CB16 !default;
 $success-bg:                 #87CB16 !default;
 $success-states-color:       #049F0C !default; 
 
-$info-color:                 #1DC7EA !default;
-$info-bg:                    #1DC7EA !default;
+$info-color:                 #337ab7 !default;
+$info-bg:                    #337ab7 !default;
 $info-states-color:          lighten($info-color, 8%) !default;
 
 $warning-color:              #FF9500 !default;
@@ -240,7 +240,7 @@ $filter-orange:       darken($warning-color, 10%);
 $filter-red:          darken($danger-color, 10%);  
 
 
-$new-blue:            #1DC7EA;
+$new-blue:            #337ab7;
 $new-purple:          #9368E9;
 $new-red:             #FB404B;
 $new-green:           #87CB16;

@@ -30,9 +30,6 @@ Class Colors_controller extends CI_Controller
         $this->load->model('colors_model', 'modelColors');
         $this->load->model('groups_colors_model', 'modelGroupsColors');
     }
-
-
-
 // =======================================================================//
 // !                         Default method                              //
 // ======================================================================//
@@ -49,7 +46,6 @@ Class Colors_controller extends CI_Controller
         
 
     }
-
 
 // =======================================================================//
 // !                   Method for add colors                             //
@@ -85,10 +81,6 @@ Class Colors_controller extends CI_Controller
         echo json_encode($callBack);
 
     }
-
-
-
-
 // =======================================================================//
 // !                   Method for add groups colors                      //
 // ======================================================================//
@@ -116,9 +108,7 @@ Class Colors_controller extends CI_Controller
         }
 
         echo json_encode($callBack);
-
     }
-
 
 // =======================================================================//
 // !            Method for send groups colors on datatable               //
@@ -150,7 +140,6 @@ Class Colors_controller extends CI_Controller
         echo json_encode(array('data' => $data));
     }
 
-
 // =======================================================================//
 // !          Method for activate or desactivate group of colors         //
 // ======================================================================//
@@ -169,7 +158,6 @@ Class Colors_controller extends CI_Controller
         $this->id_color = $this->input->post('id');
         $this->modelColors->disableEnableOneColor($this->id_color);
     }
-
 
 // ==========================================================================================//
 // !                Method get all informations of groups color for modal                    //
@@ -252,10 +240,6 @@ Class Colors_controller extends CI_Controller
 
         echo json_encode($callBack);
     }
-
-
-
-
 
 }
 

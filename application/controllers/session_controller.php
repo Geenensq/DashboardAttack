@@ -18,7 +18,6 @@ Class Session_controller extends CI_Controller
        $this->session->sess_destroy();
        redirect(array('login_controller', 'index')); 
     }
-
 }
 
  ?>

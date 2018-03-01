@@ -28,7 +28,6 @@ Class Profil_controller extends CI_Controller
         $this->load->model('members_model', 'modelMembers');
         $this->load->model('Groups_members_model', 'GroupsMembersModel');
         $this->id_member = $this->session->userdata('id_member');
-
     }
 
 // =======================================================================//

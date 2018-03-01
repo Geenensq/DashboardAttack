@@ -36,7 +36,7 @@ $(document).ready(function() {
             if (data.confirm == "success") {
                 $("#text_message").val('');
                 $("#text_message").focus();
-                 getMessages();
+                getMessages();
 
 
             } else if (data.confirm == "error") {
@@ -48,125 +48,60 @@ $(document).ready(function() {
         return false;
     });
 
-    stats = {
-        initChartist: function(){    
 
-            var responsiveSales = [
-            ['screen and (max-width: 640px)', {
-                axisX: {
-                  labelInterpolationFnc: function (value) {
-                    return value[0];
-                }
+    url = "getEarnings.html";
+    var form = {};
+    var earningsReturned = send_post(form, url); 
+
+    url = "getStatusOrders.html";
+    var form = {};
+    var statsReturned = send_post(form, url);
+
+
+
+    /**************************STATUS ORDERS********************************/
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'doughnut',
+        data: {
+            labels: [statsReturned[0]["name_state"], statsReturned[1]["name_state"], statsReturned[2]["name_state"], statsReturned[3]["name_state"], statsReturned[4]["name_state"], statsReturned[5]["name_state"], statsReturned[6]["name_state"], statsReturned[7]["name_state"]],
+            datasets: [{
+
+                backgroundColor: ["#64cdff", "#14b694", "#337ab7", "#3E6977", "#FF4A55", "#EEA852", '#7C71C5'],
+                data: [statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"],statsReturned[3]["how_much"],statsReturned[4]["how_much"],statsReturned[5]["how_much"],statsReturned[6]["how_much"],statsReturned[7]["how_much"]]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Statitiques des statuts des commandes'
             }
-        }]
-        ];
-
-
-        /**************************STATS turnover********************************/
-        url = "getEarnings.html";
-        var form = {};
-        var data = send_post(form, url);  
-        var aOfDatasOrders= [];
-        var iMainIndice= 0;
-        var iIndice= 0;
-
-        for(var iYear in data) { 
-          iIndice= 0;
-          aOfDatasOrders[iMainIndice]= [];
-          for(var iRow in data[iYear])    {
-            aOfDatasOrders[iMainIndice][iIndice]= data[iYear][iRow]["total_order"];
-            iIndice++;
         }
-        iMainIndice++;
-    }
-
-    if(iMainIndice == 1) {
-        aOfDatasOrders[1]= [];
-        aOfDatasOrders[1]= [0,0,0,0,0,0,0,0,0,0,0,0];
-    } 
+    });
 
 
-    var data = {
-      labels: ['Jan', 'Fevr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juill', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
-      series: [
-      /*THIS YEARS*/  
-      [aOfDatasOrders[0][0],aOfDatasOrders[0][1],aOfDatasOrders[0][2],aOfDatasOrders[0][3],aOfDatasOrders[0][4],aOfDatasOrders[0][5],aOfDatasOrders[0][6],aOfDatasOrders[0][7],aOfDatasOrders[0][8],aOfDatasOrders[0][9],aOfDatasOrders[0][10],aOfDatasOrders[0][11]],
-      /*NEXTYEARS*/
-      [aOfDatasOrders[1][0],aOfDatasOrders[1][1],aOfDatasOrders[1][2],aOfDatasOrders[1][3],aOfDatasOrders[1][4],aOfDatasOrders[1][5],aOfDatasOrders[1][6],aOfDatasOrders[1][7],aOfDatasOrders[1][8],aOfDatasOrders[1][9],aOfDatasOrders[1][10],aOfDatasOrders[1][11]]
-      ]
-  };
+    new Chart(document.getElementById("pie-chart2"), {
+        type: 'line',
+        data: {
+            labels: ["janvier", "Février" , "Mars" , "Avril" , "Mai" , "Juin" , "Juillet" ,"Août" , "Septembre" , "Octobre" , "Novembre" , "Décembre"],
+            datasets: [{
+                label: "2018",
+                backgroundColor: ["#00000000"],
+                borderColor: ["#FF4A55"],
+                data:[earningsReturned[2018][0]["total_order"], earningsReturned[2018][1]["total_order"],earningsReturned[2018][2]["total_order"],earningsReturned[2018][3]["total_order"],
+                earningsReturned[2018][4]["total_order"],earningsReturned[2018][5]["total_order"],earningsReturned[2018][6]["total_order"],earningsReturned[2018][7]["total_order"],earningsReturned[2018][8]["total_order"],
+                earningsReturned[2018][9]["total_order"],earningsReturned[2018][10]["total_order"],earningsReturned[2018][11]["total_order"]]
+            },
 
-  var options = {
-    seriesBarDistance: 10,
-    axisX: {
-        showGrid: false
-    },
-    height: "245px"
-};
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Chiffre mensuel HT'
+            }
+        }
+    });
 
-var responsiveOptions = [
-['screen and (max-width: 640px)', {
-    seriesBarDistance: 5,
-    axisX: {
-      labelInterpolationFnc: function (value) {
-        return value[0];
-    }
-}
-}]
-];
-
-Chartist.Bar('#chartActivity', data, options, responsiveOptions);
-
-
-
-/**************************STATUS ORDERS********************************/
-url = "getStatusOrders.html";
-var form = {};
-var statsReturned = send_post(form, url);
-if(statsReturned.length < 7)
-{
-
-  for (var i = 0; i <= 6; i++) 
-  {
-    if(typeof statsReturned[i] === 'undefined') 
-    {
-      statsReturned[i] = { how_much : 0 , name_state : 0 };
-  }
-}
-}
-
-console.log(statsReturned);
-
-
-var dataPreferences = {series: [[25, 30, 20, 25]]};
-var optionsPreferences = {
-    donut: false,
-    donutWidth: 40,
-    startAngle: 0,
-    total: 100,
-    showLabel: false,
-    
-    axisX: {
-        showGrid: false
-    }
-};
-
-Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
-
-Chartist.Pie('#chartPreferences', {
-
-    labels: [ statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"] ,statsReturned[3]["how_much"] ,statsReturned[4]["how_much"] , statsReturned[5]["how_much"] , statsReturned[6]["how_much"]],
-
-    series: [ statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"] ,statsReturned[3]["how_much"] ,statsReturned[4]["how_much"] , statsReturned[5]["how_much"] , statsReturned[6]["how_much"]]
-});   
-
-
-/***********************************************************************/
-
-
-},
-
-};
 
 });
 

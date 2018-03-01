@@ -45,6 +45,7 @@ INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`) V
 
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Prêt');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Livré');
+INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Réglé');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'En cours de production');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'En attente de paiement');
 INSERT INTO `states` (`id_state`, `name_state`) VALUES (NULL, 'Annulé');

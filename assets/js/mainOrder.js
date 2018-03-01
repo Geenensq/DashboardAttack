@@ -1,43 +1,4 @@
 $(document).ready(function() {
-
-
-      $('#customer_order').select2({
-         minimumInputLength: 2,
-         placeholder: 'Chercher un client',
-        ajax: {
-          url: 'getCustomersAutoComplete.html',
-          dataType: 'json',
-          delay: 250,
-
-          processResults: function (data) {
-            return {
-              results: data
-            };
-          },
-          cache: true
-        }
-      });
-
-
-      $('#select_product_order').select2({
-         minimumInputLength: 2,
-         placeholder: 'Chercher un produit',
-        ajax: {
-          url: 'getProductsAutoComplete.html',
-          dataType: 'json',
-          delay: 250,
-
-          processResults: function (data) {
-            return {
-              results: data
-            };
-          },
-          cache: true
-        }
-      });
-
-
-
     /*-----Declare my lets for acces to the DOM------*/
     let array = document.getElementById('tab_products_order');
     let count = 1;
@@ -53,6 +14,63 @@ $(document).ready(function() {
     let actualQuantity;
 
 
+    /*******************************************************************************/
+    /***********ON CLICK FOR UPDATE THE PRICE FOR SHIPPING METHOD*******************/
+    /******************************************************************************/
+    $( "#shipping_order" ).change(function() {
+        if ($('h4:contains("Edition de la commande existante")').length > 0) { 
+
+            /******************************************************/
+            /*Retrieving the current price of the delivery method*/
+            /****************************************************/
+            var id_order = $("#current_id_order").val();
+            var url = "getShippingPriceOrders.html";
+            var form = {id: id_order};
+            var shipping_price_order = send_post(form, url);
+            
+            /******************************************************************/
+            /* Update price to subtract current price and basic delivery price*/
+            /******************************************************************/
+            var shipping_price_order = shipping_price_order["price_method_shipping"];
+            var actualPrice = $("#current_order_price").val();
+            var new_price_order = (parseFloat(actualPrice) - parseFloat(shipping_price_order));
+            $("#current_order_price").val(new_price_order);
+            
+            /************************************************************/
+            /***************Updating the price in database***************/
+            /************************************************************/
+            var id_method_shipping = $( this ).val();
+            var url = "getShippingInfos.html";
+            var form = {id: id_method_shipping};
+            var shipping_price = send_post(form, url);
+            var actualPrice = $("#current_order_price").val();
+            var new_price_order = (parseFloat(actualPrice) + parseFloat(shipping_price["price_method_shipping"]));
+            $("#current_order_price").val(new_price_order);
+            priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+
+            /************************************************************/
+            /******************Update method of delivery*****************/
+            /************************************************************/
+            var url = "changeShippingMethod.html";
+            var form = {id_method_shipping:id_method_shipping, id_order:id_order};
+            send_post(form, url);
+            
+
+        } else {
+
+            var id_method_shipping = $( this ).val();
+            var url = "getShippingInfos.html";
+            var form = {id: id_method_shipping};
+            var shipping_price = send_post(form, url);
+            $("#current_order_price").val(parseFloat(shipping_price["price_method_shipping"]));
+            
+        }
+        
+    });
+
+    /***************************************************/
+    /**************************************************/
+
     $("#edit_orders").click(function() {
         counter_datatable++
         if (counter_datatable <= 1) {
@@ -62,81 +80,93 @@ $(document).ready(function() {
                 [0, "asc"]
                 ],
                 "columns": [
-                    //target 0 = collone 0 Datatable
-                    //data 0 = le tableaux php à l'index 0
-                    {
-                        "targets": 0,
-                        data: 0
-                    },
-                    {
-                        "targets": 1,
-                        data: null
-                    },
-                    {
-                        "targets": 2,
-                        data: 1
-                    },
-                    {
-                        "targets": 3,
-                        data: null
-                    },
-                    {
-                        "targets": 4,
-                        data: 2
-                    },
-                    {
-                        "targets": 5,
-                        data: 6
-                    },
-                    {
-                        "targets": 6,
-                        data: 7
-                    },
-                    {
-                        "targets": 7,
-                        data: 8
-                    },
 
-                    {
-                        "targets": 8,
-                        data: null
-                    },
-
-
-
-                    ],
-
-                //L'afficharge par defaut des collones de Datatable
-                //Data represente dans ce cas les data de chaque ligne
-
-                columnDefs: [
-
+                {
+                    "targets": 0,
+                    data: 0
+                },
                 {
                     "targets": 1,
-                    render: function(data, full) {
-                        return '<p>' + data[5] + ' ' + data[4] + '<p>'
-                    }
+                    data: null
+                },
+                {
+                    "targets": 2,
+                    data: 1
                 },
                 {
                     "targets": 3,
-                    render: function(data, full) {
-                        return '<p>' + data[3] + '€' + '</p>'
-                    }
+                    data: null
                 },
                 {
-                    "targets": 3,
-                    render: function(data, full) {
-                        return '<p>' + data[3] + '€' + '</p>'
-                    }
+                    "targets": 4,
+                    data: null
                 },
+                {
+                    "targets": 5,
+                    data: 2
+                },
+                {
+                    "targets": 6,
+                    data: 6
+                },
+                {
+                    "targets": 7,
+                    data: 7
+                },
+
                 {
                     "targets": 8,
-                    render: function(data, full) {
-                        return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill editOrder"><i class="fa fa-edit"></i></a>'
-                    }
+                    data: 8
                 },
-                ]
-            });
+                {
+                    "target": 9,
+                    data:null
+                },
+                {
+                 "target": 10,
+                 data:null
+             }
+
+
+
+             ],
+
+
+             columnDefs: [
+
+             {
+                "targets": 1,
+                render: function(data, full) {
+                    return '<p>' + data[5] + ' ' + data[4] + '<p>'
+                }
+            },
+            {
+                "targets": 3,
+                render: function(data, full) {
+                    return '<p>' + data[3] + '€' + '</p>'
+                }
+            },
+            {
+                "targets": 4,
+                render: function(data, full) {
+                    return '<p>' + parseFloat(data[3] *1.2).toFixed(2)  + '€' + '</p>'
+                }
+            },
+            {
+                "targets": 9,
+                render: function(data, full) {
+                    return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill editOrder"><i class="fa fa-edit"></i></a>'
+                }
+            },
+
+            {
+                "targets": 10,
+                render: function(data, full) {
+                    return '<a id="btn_state" onclick="deleteOrders(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
+                }
+            },
+            ]
+        });
 
         } else {
             return;
@@ -293,7 +323,7 @@ $(document).ready(function() {
                  priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
 
              }
-             
+
          } else {
             lockInputOrder();
             product_added = $('#select_product_order').val();
@@ -306,6 +336,7 @@ $(document).ready(function() {
 
                 if (counterProducts < 1) {
                     addOrders();
+
                     counterProducts++;
                 } else {
                     /*call function javascript for add products in the order*/
@@ -487,7 +518,7 @@ let row = $array.insertRow(1);
     cell9.innerHTML = $product.sizes_names;
     cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
 
-    cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';
+    cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
 
 
     notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
@@ -553,3 +584,44 @@ function priceUpdate($id_order, $price) {
     };
     let result_price_update = send_post(form, url);
 }
+
+
+/******************************************************************/
+/**************DECLARATION SELECT 2 AUTOCOMPLETE*******************/
+/******************************************************************/
+$('#customer_order').select2({
+ minimumInputLength: 2,
+ placeholder: 'Chercher un client',
+ ajax: {
+  url: 'getCustomersAutoComplete.html',
+  dataType: 'json',
+  delay: 250,
+
+  processResults: function (data) {
+    return {
+      results: data
+  };
+},
+cache: true
+}
+});
+
+
+$('#select_product_order').select2({
+ minimumInputLength: 2,
+ placeholder: 'Chercher un produit',
+ ajax: {
+  url: 'getProductsAutoComplete.html',
+  dataType: 'json',
+  delay: 250,
+
+  processResults: function (data) {
+    return {
+      results: data
+  };
+},
+cache: true
+}
+});
+/************************************************************************/    
+/************************************************************************/

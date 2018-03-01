@@ -36,10 +36,10 @@ Class Management_controller extends CI_Controller
         if($this->session->userdata('id_member')){
 
             if($this->session->userdata('id_member') === 1){
-            $data = $this->modelGroupsMembers->selectAll();
-            $array = [];
-            $array['groups_members'] = $data;
-            $this->load->view('dashboard/management.html' , $array);
+                $data = $this->modelGroupsMembers->selectAll();
+                $array = [];
+                $array['groups_members'] = $data;
+                $this->load->view('dashboard/management.html' , $array);
 
             } else {
                 $this->load->view('errors/html/error_403.php');
@@ -116,37 +116,6 @@ Class Management_controller extends CI_Controller
 
     }
 
-
-// =======================================================================//
-// !                        Method edit an members                       //
-// ======================================================================//
-
-    public function changeMembers()
-    {
-/*        $this->form_validation->set_rules('id_member', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('login_member', '" "', 'required|min_length[3]');
-        $this->form_validation->set_rules('email_member', '" "', 'required|min_length[1]');
-        
-        $callBack = array();
-
-        if ($this->form_validation->run()) {
-            $this->modelMembers->setId($this->input->post('new_id_group_products'));
-            $this->modelMembers->setLogin($this->input->post('new_name_group_products'));
-            $this->modelMembers->setEmail($this->input->post('new_desc_group_products'));
-
-            $groupProducts = $this->modelGroupsProducts;
-
-            $this->modelGroupsProducts->updateNameGroupProducts($groupProducts);
-            $callBack["confirm"] = "success";
-
-        } else {
-
-            $callBack["errorNewNameGroup"] = "error";
-        }
-
-        echo json_encode($callBack);*/
-    }
-
 // =======================================================================//
 // !          Method for activate or desactivate group of colors         //
 // ======================================================================//
@@ -155,10 +124,6 @@ Class Management_controller extends CI_Controller
         $this->id_member = $this->input->post('id');
         $this->modelMembers->disableEnableOneMember($this->id_member);
     }
-
-
-
-
 
 
 }

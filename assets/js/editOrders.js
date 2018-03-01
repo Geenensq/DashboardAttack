@@ -22,11 +22,11 @@ $( "#customer_order" ).click(function() {
     $("#valid_order").removeAttr("disabled");
 
     $("#title_order").css("font-weight", "bold");
-    $("#title_order").css("color", "#1DC7EA");
+    $("#title_order").css("color", "#337ab7");
 
     $('#current_id_order').val(order.id_order);
 
-    var data = {id: order.id_order,text: order.firstname + " " + order.lastname};
+    var data = {id: order.id_customer , text: order.firstname + " " + order.lastname};
     var newOption = new Option(data.text, data.id, true, false);
     $('#customer_order').append(newOption).trigger('change');
 
@@ -68,7 +68,7 @@ $( "#customer_order" ).click(function() {
         cell8.innerHTML = order_product[i]["color_name"];
         cell9.innerHTML = order_product[i]["size_name"];
         cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-        cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#1DC7EA;" class="fa">&#xf147;</i>';   
+        cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';   
 
     }        
 }

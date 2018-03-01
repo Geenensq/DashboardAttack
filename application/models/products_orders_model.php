@@ -93,6 +93,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->delete($this->table);
     }
 // =======================================================================//
+// !         DELETE ALL PRODUCTS FROM ORDER FOR DELETE ORDER             //
+// ======================================================================//
+    public function deleteProcuctsOrder($model)
+    {
+        $id_order = $model->getIdOrder();
+        $this->db->where('id_order', $id_order);
+        $this->db->delete($this->table);
+    }
+        
+    
+// =======================================================================//
 // !                  DELETING A PRODUCT FROM AN ORDER                    //
 // ======================================================================//
 

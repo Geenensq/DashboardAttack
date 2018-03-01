@@ -99,7 +99,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Gestion des statistiques</a>
+                    <a class="navbar-brand" href="#">APERÇU DE VOTRE ACTIVITÉ</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -108,25 +108,6 @@
                             <i class="fa fa-dashboard"></i>
                           </a>
                         </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-globe"></i>
-                            <b class="caret hidden-sm hidden-xs"></b>
-                            <span class="notification hidden-sm hidden-xs">5</span>
-                            <p class="hidden-lg hidden-md">
-                              5 Notifications
-                              <b class="caret"></b>
-                          </p>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a></li>
-                        <li><a href="#">Notification 2</a></li>
-                        <li><a href="#">Notification 3</a></li>
-                        <li><a href="#">Notification 4</a></li>
-                        <li><a href="#">Another notification</a></li>
-                    </ul>
-                </li>
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -158,18 +139,10 @@
                         <p class="category">Récapitulatif des status des commandes</p>
                     </div>
                     <div class="content">
-                        <div style="margin-top:15px!important; margin-bottom: 15px!important;" id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                    <canvas id="pie-chart"></canvas>
 
                         <div class="footer">
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i>Prêt
-                                <i class="fa fa-circle text-danger"></i>Livré
-                                <i class="fa fa-circle text-warning"></i>En cours de production
-                                <i style="color:#9368E9;" class="fa fa-circle"></i>Paiement en attente
-                                <i style="color:#87CB16;" class="fa fa-circle"></i>Annulé
-                                <i style="color:#1F77D0;" class="fa fa-circle"></i>Acompte versé
-                                <i style="color:#5e5e5e;" class="fa fa-circle"></i>Expédié
-                            </div>
+
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
@@ -183,17 +156,12 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Statistiques des ventes en €</h4>
-                        <p class="category">Récapitulatif des ventes en € pour chaques mois de l'année et de l'année derniere</p>
+                        <p class="category">Récapitulatif des ventes en € pour chaques mois de l'année</p>
                     </div>
                     <div class="content">
-                        <div id="chartActivity" class="ct-chart"></div>
+                         <canvas id="pie-chart2"></canvas>
 
                         <div class="footer">
-                            <div class="legend">
-                                <i class="fa fa-circle text-info"></i> Année dernière
-                                <i class="fa fa-circle text-danger"></i> Année en cours
-
-                            </div>
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
@@ -307,6 +275,8 @@
 <script src="<?php echo js_url_lib('light-bootstrap-dashboard');?>"></script>
 <!--Plugin datatable -->
 <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <!--Main javascript dashboard -->
 <script type="text/javascript" src="<?php echo js_url('MainDashboard');?>"></script>
 <!-- Function for send data in ajax -->
@@ -314,10 +284,5 @@
 
 
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        stats.initChartist();
-    });
-</script>
 
 </html>

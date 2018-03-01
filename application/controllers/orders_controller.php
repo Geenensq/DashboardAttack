@@ -45,30 +45,30 @@ Class Orders_controller extends CI_Controller
     public function index()
     {	
         if($this->session->userdata('id_member')){
-        $customers = $this->modelCustomers->selectAll();
-        $states = $this->modelStates->selectAll();
-        $shipping = $this->modelShipping->selectAll();
-        $payments = $this->modelPayments->selectAll();
-        $products = $this->modelProducts->selectAll();
+            $customers = $this->modelCustomers->selectAll();
+            $states = $this->modelStates->selectAll();
+            $shipping = $this->modelShipping->selectAll();
+            $payments = $this->modelPayments->selectAll();
+            $products = $this->modelProducts->selectAll();
 
-        $array = [];
-        
-        $array['customers'] = $customers;
-        $array['states'] = $states;
-        $array['shipping'] = $shipping;
-        $array['payments'] = $payments;
-        $array['products'] = $products;
+            $array = [];
+            
+            $array['customers'] = $customers;
+            $array['states'] = $states;
+            $array['shipping'] = $shipping;
+            $array['payments'] = $payments;
+            $array['products'] = $products;
 
 
-        $this->load->view('dashboard/orders.html', $array);
+            $this->load->view('dashboard/orders.html', $array);
         }else{
             redirect(array('login_controller', 'index'));
         }
-       
+        
     }
 
 // =======================================================================//
-// !                    autocompletion customers                         //
+// !                    Autocompletion customers                         //
 // ======================================================================//
 
     public function getCustomersAutoComplete(){
@@ -81,41 +81,102 @@ Class Orders_controller extends CI_Controller
 
 
 // =======================================================================//
-// !                     autocompletion products                         //
+// !            Method for get the price of shipping method               //
+// ======================================================================//
+    public function getShippingInfos()
+    {
+        $this->id_method_shipping = $this->input->post('id');
+        $this->modelShipping->setIdMethodShipping($this->id_method_shipping);
+        $modelShipping = $this->modelShipping;
+        $infosMethodShipping = $this->modelShipping->selectShippingInfos($modelShipping);
+        
+        echo json_encode($infosMethodShipping);
+    }
+
+
+// =======================================================================//
+// !         Method for get the price of shipping of the order            //
+// ======================================================================//
+    public function getShippingPriceOrders()
+    {
+        $this->id_order = $this->input->post('id');
+        $this->modelOrders->setIdOrder($this->id_order);
+        $modelOrders = $this->modelOrders;
+
+        $infosPriceShipping = $this->modelOrders->selectShippingPriceOrders($modelOrders);
+        
+        echo json_encode($infosPriceShipping);
+    }
+
+
+// =======================================================================//
+// !                  Method to change the delivery method                //
+// ======================================================================//
+    public function changeShippingMethod()
+    {
+        $this->id_order = $this->input->post('id_order');
+        $this->id_method_shipping = $this->input->post('id_method_shipping');
+
+        $this->modelOrders->setIdOrder($this->id_order);
+        $this->modelOrders->setIdMethodShipping($this->id_method_shipping);
+        $modelOrders = $this->modelOrders;
+        $this->modelOrders->updateShippingOrder($modelOrders);
+    }
+
+
+// =======================================================================//
+// !                     Autocompletion products                         //
 // ======================================================================//
 
     public function getProductsAutoComplete(){
 
         $search = $this->input->get('q', FALSE);
         $results = $this->modelProducts->selectALLAutoComplete($search);
-
         echo json_encode($results);
 
     }
-   
+
+// =======================================================================//
+// !                     Function for delete an order                    //
+// ======================================================================//
+    public function removeOrders(){
+     $this->id_order = $this->input->post('id');
+
+     /********************Firts delete products of my orders***********************/
+     $this->modelProductsOrders->setIdOrder($this->id_order);
+     $modelProductsOrders = $this->modelProductsOrders;
+     $this->modelProductsOrders->deleteProcuctsOrder($modelProductsOrders);
+     /*****************************************************************************/
+
+     /*****************************Delete orders**********************************/
+     $this->modelOrders->setIdOrder($this->id_order);
+     $modelOrders = $this->modelOrders;
+     $this->modelOrders->deleteOrder($modelOrders);
+ }
+ 
 
 
 // ==========================================================================================//
 // !                               Method for add an order                                   //
 // ==========================================================================================//
-    public function addOrders()
-    {
-        $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
-        $this->form_validation->set_rules('date_order', '"date_order"', 'required');
-        $this->form_validation->set_rules('state_order', '"state_order"', 'required');
-        $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
-        $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
-        $this->form_validation->set_rules('comment_order', '"comment_order"', 'required');
+ public function addOrders()
+ {
+    $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
+    $this->form_validation->set_rules('date_order', '"date_order"', 'required');
+    $this->form_validation->set_rules('state_order', '"state_order"', 'required');
+    $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
+    $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
+    $this->form_validation->set_rules('comment_order', '"comment_order"', 'required');
 
-        $callBack = array();
+    $callBack = array();
 
-        if ($this->form_validation->run()) {
+    if ($this->form_validation->run()) {
 
-            /************** Receipt of data posted by javascript ***********************/
-            $this->id_customer = $this->input->post('customer_order');
-            $this->date_order = $this->input->post('date_order');
-            $this->status_order = $this->input->post('state_order');
-            $this->comment_order = $this->input->post('comment_order');
+        /************** Receipt of data posted by javascript ***********************/
+        $this->id_customer = $this->input->post('customer_order');
+        $this->date_order = $this->input->post('date_order');
+        $this->status_order = $this->input->post('state_order');
+        $this->comment_order = $this->input->post('comment_order');
 
             /*For the moment we define the price of the order to 0
             we attribute to him the final price at the end of the treatment*/
@@ -148,8 +209,6 @@ Class Orders_controller extends CI_Controller
         
     }
 
-
-
 // ==========================================================================================//
 // !                      Method get all informations of an order                            //
 // ==========================================================================================//
@@ -161,7 +220,6 @@ Class Orders_controller extends CI_Controller
         echo json_encode($return);
     }
 
-
 // ==========================================================================================//
 // !                Method get all informations of product order                             //
 // ==========================================================================================//
@@ -172,8 +230,6 @@ Class Orders_controller extends CI_Controller
         $return = $this->modelProductsOrders->selectAllProductsOrders($this->id_order);
         echo json_encode($return);
     }
-
-
 
 // =======================================================================//
 // !                Method for send orders on datatable                  //
@@ -319,7 +375,6 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $modelProductsOrders = $this->modelProductsOrders;
-        
         $this->modelProductsOrders->updateQuantityProduct($modelProductsOrders);
     }
 
