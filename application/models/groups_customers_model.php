@@ -9,41 +9,41 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Groups_customers_model extends CI_Model
-    {
+Class Groups_customers_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-    	private $id_group_customer;
-    	private $name;
-    	protected $table = "groups_customers";
+   private $id_group_customer;
+   private $name;
+   protected $table = "groups_customers";
 
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-        public function getIdGroupCustomer()
-        {
-            return $this->id_group_customer;
-        }
+public function getIdGroupCustomer()
+{
+    return $this->id_group_customer;
+}
 
-         public function getNameGroupCustomer()
-        {
-            return $this->name;
-        }
+public function getNameGroupCustomer()
+{
+    return $this->name;
+}
 
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-         public function setIdGroupCustomer($id)
-        {
-            return $this->id_group_customer = $id;
-        }
+public function setIdGroupCustomer($id)
+{
+    return $this->id_group_customer = $id;
+}
 
-         public function setNameGroupCustomer($name)
-        {
-            return $this->name = $name;
-        }
+public function setNameGroupCustomer($name)
+{
+    return $this->name = $name;
+}
 
 // =======================================================================//
 // !                     Start CRUD methods                              //
@@ -54,80 +54,80 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                Method for insert an group customers                 //
 // ======================================================================//
-       	public function insertGroupCustomer($model)
-        {
-            $name_group_customer = $model->getNameGroupCustomer();
+public function insertGroupCustomer($model)
+{
+    $name_group_customer = $model->getNameGroupCustomer();
 
-            $this->db->set('name', $name_group_customer)
-                     ->set('actif', "1")
-                     ->insert($this->table);
-        }
+    $this->db->set('name', $name_group_customer)
+    ->set('actif', "1")
+    ->insert($this->table);
+}
 // =======================================================================//
 // !                 Method SELECT * groupscustomers                      //
 // ======================================================================//
 
-        public function selectAll()
-        {
-        	$arrayGroupsCustomers = [];
-            $this->db->select('*');
-            $this->db->from($this->table);
-            $this->db->where('actif', 1 );
-            $query = $this->db->get();
+public function selectAll()
+{
+   $arrayGroupsCustomers = [];
+   $this->db->select('*');
+   $this->db->from($this->table);
+   $this->db->where('actif', 1 );
+   $query = $this->db->get();
 
-            foreach ($query->result_object() as $ligne)
-            {
-                    $groupsCustomers = new Groups_customers_model();
-                    $groupsCustomers->setIdGroupCustomer($ligne->id_group_customer);
-                    $groupsCustomers->setNameGroupCustomer($ligne->name);
-                    $arrayGroupsCustomers[] = $groupsCustomers;
-            }
-                    return $arrayGroupsCustomers;
-        }
+   foreach ($query->result_object() as $ligne)
+   {
+    $groupsCustomers = new Groups_customers_model();
+    $groupsCustomers->setIdGroupCustomer($ligne->id_group_customer);
+    $groupsCustomers->setNameGroupCustomer($ligne->name);
+    $arrayGroupsCustomers[] = $groupsCustomers;
+}
+    return $arrayGroupsCustomers;
+}
 // =======================================================================//
 // !               Method SELECT * customers for datatable               //
 // ======================================================================//
 
-        public function loadDataGroupsCustomersDataTable()
-        {
-        $query = $this->db->get($this->table);
-        return $query->result_array();
-        }
+public function loadDataGroupsCustomersDataTable()
+{
+    $query = $this->db->get($this->table);
+    return $query->result_array();
+}
 // =======================================================================//
 // !        Method for disable and enable the groups customers           //
 // ======================================================================//
 
-        public function disableEnableOneGroupCustomer($id)
-        {
-            $this->db->select('actif');
-            $this->db->from($this->table);
-            $this->db->where('id_group_customer', $id );
-            $query = $this->db->get();
-            $result = $query->result_array();
+public function disableEnableOneGroupCustomer($id)
+{
+    $this->db->select('actif');
+    $this->db->from($this->table);
+    $this->db->where('id_group_customer', $id );
+    $query = $this->db->get();
+    $result = $query->result_array();
 
-            if($result[0]['actif'] == 0){
+    if($result[0]['actif'] == 0){
 
-                $data = array ('actif' => 1 );
-                $this->db->where('id_group_customer' , $id);
-                $this->db->update($this->table , $data);
-            } else {
+        $data = array ('actif' => 1 );
+        $this->db->where('id_group_customer' , $id);
+        $this->db->update($this->table , $data);
+    } else {
 
-                $data = array ('actif' => 0 );
-                $this->db->where('id_group_customer' , $id);
-                $this->db->update($this->table , $data);
-            }
-        }
+        $data = array ('actif' => 0 );
+        $this->db->where('id_group_customer' , $id);
+        $this->db->update($this->table , $data);
+    }
+}
 
 // =======================================================================//
 // !                 Method update a group by its id                     //
 // ======================================================================//
 
-        public function updateNameGroupById($model){
-            $data = array ('name' =>$model->getNameGroupCustomer());
-            $this->db->where('id_group_customer' , $model->getIdGroupCustomer());
-            $this->db->update($this->table , $data);
-        }
+public function updateNameGroupById($model){
+    $data = array ('name' =>$model->getNameGroupCustomer());
+    $this->db->where('id_group_customer' , $model->getIdGroupCustomer());
+    $this->db->update($this->table , $data);
+}
 
 
 
 
-    }
+}

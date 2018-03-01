@@ -9,22 +9,22 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Payments_model extends CI_Model
-    {
+Class Payments_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $id_method_payment;
-        private $name_method;
-        public $table = "methods_payments";
+    private $id_method_payment;
+    private $name_method;
+    public $table = "methods_payments";
 
 // =======================================================================//
 // !                  Constructor of my Class                            //
 // ======================================================================//
-        public function __construct()
-        {
+    public function __construct()
+    {
 
-        }
+    }
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -68,14 +68,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->from($this->table);
         $query = $this->db->get();
 
-            foreach ($query->result_object() as $ligne)
-            {
-                    $payments = new payments_model();
-                    $payments->setIdMethodPayment($ligne->id_method_payment);
-                    $payments->setNameMethod($ligne->name_method);
-                    $arrayPayments[] = $payments;
-            }
-                    return $arrayPayments;
+        foreach ($query->result_object() as $ligne)
+        {
+            $payments = new payments_model();
+            $payments->setIdMethodPayment($ligne->id_method_payment);
+            $payments->setNameMethod($ligne->name_method);
+            $arrayPayments[] = $payments;
+        }
+        return $arrayPayments;
     }
 
 

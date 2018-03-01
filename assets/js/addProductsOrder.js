@@ -14,7 +14,7 @@ function addProductsOrder($id_order) {
     }, function(data) {
 
         if (data.confirm == "success") {
-         
+           
 
         } else if (data.confirm == "error") {
 

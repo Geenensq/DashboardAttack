@@ -4,8 +4,8 @@
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	 <title>Dashboard Attack | Créer et éditer des groupes de coloris et des coloris</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <title>Dashboard Attack | Créer et éditer des groupes de coloris et des coloris</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->
   <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
@@ -90,8 +90,8 @@
              <select required name="new_group_color" id="new_group_color" class="form-control">
               <?php
               foreach($groups as $value){
-                echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
-              }
+              echo '<option value=' . '"' . $value->getIdGroupColor() . '">' . $value->getNameGroupColors() .'</option>';
+            }
             ?>
           </select>
 
@@ -193,50 +193,50 @@
               </a>
             </li>
 
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+             <a href="<?php echo base_url();?>profil_controller/index.html">
+               <p>Mon compte</p>
+             </a>
+           </li>
+
+           <li>
+            <a href="<?php echo base_url();?>session_controller/index.html">
+              <p>Se deconnecter</p>
+            </a>
+          </li>
+          <li class="separator hidden-lg hidden-md"></li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-           <a href="<?php echo base_url();?>profil_controller/index.html">
-             <p>Mon compte</p>
-           </a>
-         </li>
-
-        <li>
-          <a href="<?php echo base_url();?>session_controller/index.html">
-            <p>Se deconnecter</p>
-          </a>
-        </li>
-        <li class="separator hidden-lg hidden-md"></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="content">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-12">
-    <div class="card">
-     <div class="header">
-      <h4 class="title">Ajout de groupes de coloris</h4>
-    </div>
-    <div class="content">
-      <form id="form_add_groups_colors" method="POST" action="addGroupColors.html">
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group">
-          <label for="name_group_colors">Nom du groupe de coloris</label>
-          <input id="name_group_colors" name="name_group_colors" type="text" class="form-control" placeholder="Exemple : Couleurs stickers">
-        </div>
       </div>
     </div>
-    <button id="btn_add_group_colors" class="btn btn-info btn-fill pull-right">Ajouter le groupe de coloris</button>
-    <button id="btn_edit_groups_colors" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_colors" 
-    class="btn btn-danger btn-fill pull-right">Editer les groupes de coloris
-  </button>
-  <div class="clearfix"></div>
-</form>
+  </nav>
+
+  <div class="content">
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <div class="card">
+       <div class="header">
+        <h4 class="title">Ajout de groupes de coloris</h4>
+      </div>
+      <div class="content">
+        <form id="form_add_groups_colors" method="POST" action="addGroupColors.html">
+         <div class="row">
+          <div class="col-md-12">
+           <div class="form-group">
+            <label for="name_group_colors">Nom du groupe de coloris</label>
+            <input id="name_group_colors" name="name_group_colors" type="text" class="form-control" placeholder="Exemple : Couleurs stickers">
+          </div>
+        </div>
+      </div>
+      <button id="btn_add_group_colors" class="btn btn-info btn-fill pull-right">Ajouter le groupe de coloris</button>
+      <button id="btn_edit_groups_colors" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_colors" 
+      class="btn btn-danger btn-fill pull-right">Editer les groupes de coloris
+    </button>
+    <div class="clearfix"></div>
+  </form>
 </div>
 </div>
 </div>

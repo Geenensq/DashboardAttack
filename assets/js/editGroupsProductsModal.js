@@ -1,5 +1,3 @@
-
-
 function editGroupsProductsModal($id) {
     url = "getInfosGroupsProductsModal.html";
     // on declare un formulaire

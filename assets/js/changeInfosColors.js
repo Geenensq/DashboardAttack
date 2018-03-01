@@ -5,7 +5,7 @@ $(document).ready(function() {
         new_code_color = $(this).find("input[name=new_code_color]").val();
         new_group_color = $("#new_group_color").val();
 
-       /* url = $(this).attr("action");*/
+        /* url = $(this).attr("action");*/
         url = "changeNameColors.html";
         $.post(url, {
             id_color:id_color,
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         }, function(data) {
             console.log(data);
-                       
+            
             if (data.confirm == "success") {
 
                 notify("pe-7s-refresh-2", "<b>Informations</b> : Le coloris à été modifier avec succès ", "info");

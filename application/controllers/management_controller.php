@@ -14,8 +14,11 @@ Class Management_controller extends CI_Controller
 // !                  Declaration of my attributes                       //
 // ======================================================================//
     private $id_member;
-    private $newPassword;
-    private $newPasswordConfirm;
+    private $login;
+    private $password;
+    private $password_confirm;
+    private $email;
+    private $id_group_member;
 
 // =======================================================================//
 // !                  Constructor of my Class                            //
@@ -35,7 +38,7 @@ Class Management_controller extends CI_Controller
     {
         if($this->session->userdata('id_member')){
 
-            if($this->session->userdata('id_member') === 1){
+            if($this->session->userdata('id_member') !== 1){
                 $data = $this->modelGroupsMembers->selectAll();
                 $array = [];
                 $array['groups_members'] = $data;
@@ -81,6 +84,44 @@ Class Management_controller extends CI_Controller
 
 
 // ==========================================================================================//
+// !                   Method get all informations of members for modal                      //
+// ==========================================================================================//
+
+    public function changeInfosMembersModal()
+    {   
+        $this->form_validation->set_rules('id_member', '" "', 'required');
+        $this->form_validation->set_rules('login_member', '" "', 'required|min_length[3]');
+        $this->form_validation->set_rules('email_member', '" "', 'required|valid_email|min_length[3]');
+        $this->form_validation->set_rules('new_group_member', '" "', 'required');
+        
+        if ($this->form_validation->run()) 
+        {
+            $this->id_member = $this->input->post('id_member');
+            $this->login = $this->input->post('login_member');
+            $this->email = $this->input->post('email_member');
+            $this->id_group_member = $this->input->post('new_group_member');
+
+            $this->modelMembers->setId($this->id_member);
+            $this->modelMembers->setLogin($this->login);
+            $this->modelMembers->setEmail($this->email);
+            $this->modelMembers->SetIdGroupMember($this->id_group_member);
+            $this->modelMembers->setActif(1);
+            $membersModel = $this->modelMembers;
+            $this->modelMembers->updateMemberModal($membersModel);
+
+            $callBack["confirm"] = "success";
+            echo json_encode($callBack);
+        } else{
+
+            $callBack["confirm"] = "error";
+            echo json_encode($callBack);
+
+        }
+
+    }
+
+
+// ==========================================================================================//
 // !                         Method for change password in the modal                         //
 // ==========================================================================================//
 
@@ -93,12 +134,12 @@ Class Management_controller extends CI_Controller
         if ($this->form_validation->run()) 
         {      
             $this->id_member = $this->input->post('id_member_password');
-            $this->newPassword = $this->input->post('password_member');
-            $this->newPasswordConfirm = $this->input->post('password_member_confirmation');
-            if($this->newPassword ===  $this->newPasswordConfirm)
+            $this->password = $this->input->post('password_member');
+            $this->password_confirm = $this->input->post('password_member_confirmation');
+            if($this->password ===  $this->password_confirm)
             {
                 $this->modelMembers->setId($this->id_member);
-                $this->modelMembers->setPassword($this->newPassword);
+                $this->modelMembers->setPassword($this->password);
                 $membersModel = $this->modelMembers;
                 $this->modelMembers->updatePasswordMember($membersModel);
 

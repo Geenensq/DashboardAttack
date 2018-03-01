@@ -43,7 +43,7 @@
              <input required placeholder="Nouveau nom" name="new_name_group_products" id="new_name_group_products" type="text" class="form-control">
            </div>
 
-          <div class="form-group">
+           <div class="form-group">
              <label for="new_desc_group_product" class="form-control-label">Nouvelle description du group de produits:</label>
              <input required placeholder="Nouveau nom" name="new_desc_group_products" id="new_desc_group_products" type="text" class="form-control">
            </div>
@@ -59,7 +59,7 @@
 
  <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
-  <!-- //////////////////////////////////////Modal products//////////////////////////////////////////// -->
+ <!-- //////////////////////////////////////Modal products//////////////////////////////////////////// -->
  <div class="modal fade" data-backdrop="true" id="modal_update_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -79,12 +79,12 @@
              <input required placeholder="Nouveau nom" name="new_name_product" id="new_name_product" type="text" class="form-control">
            </div>
 
-          <div class="form-group">
+           <div class="form-group">
              <label for="new_ref_products" class="form-control-label">Nouvelle référence du produit:</label>
              <input required placeholder="Nouveau nom" name="new_ref_products" id="new_ref_products" type="text" class="form-control">
            </div>
 
-            <div class="form-group">
+           <div class="form-group">
              <label for="new_desc_product" class="form-control-label"> Nouvelle description du produit:</label>
              <input required placeholder="Nouveau nom" name="new_desc_product" id="new_desc_product" type="text" class="form-control">
            </div>
@@ -94,71 +94,71 @@
              <input required placeholder="Nouveau nom" name="new_price_product" id="new_price_product" type="text" class="form-control">
            </div>
 
-          <div class="form-group">
-             <label for="image" class="form-control-label">Nouvelle image du produit:</label>
-              <input id="image" name="image" type="file" class="form-control" data-control="hue">
-              <input  id="image_hidden" name="image_hidden" type="hidden" class="form-control" data-control="hue">
-           </div>
-
-            <div class="form-group">
-             <label for="new_group_product" class="form-control-label">Nouveau groupe du produit:</label>
-          <select  name="new_group_product" id="new_group_product" class="form-control">
-             <?php
-              foreach($groupsProducts as $value){
-                echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
-              }
-            ?> 
-          </select>
-           </div>
-         
            <div class="form-group">
-             <label for="new_color_product" class="form-control-label">Nouvelle couleur du produit:</label>
-                 <select required name="new_color_product" id="new_color_product" class="form-control">
-                 
-                 <?php foreach($groupsColors as $group) { ?>
-                      <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
-
-                          <?php foreach($group->colors_list as $color){ ?>
-                              <?= '<option id="new_color_product" name="new_color_product" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
-                          <?php } ?>
-                      <?= '</optgroup>'; ?> 
-                  <?php } ?>
-              </select>
+             <label for="image" class="form-control-label">Nouvelle image du produit:</label>
+             <input id="image" name="image" type="file" class="form-control" data-control="hue">
+             <input  id="image_hidden" name="image_hidden" type="hidden" class="form-control" data-control="hue">
            </div>
 
+           <div class="form-group">
+             <label for="new_group_product" class="form-control-label">Nouveau groupe du produit:</label>
+             <select  name="new_group_product" id="new_group_product" class="form-control">
+               <?php
+               foreach($groupsProducts as $value){
+               echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
+             }
+             ?> 
+           </select>
+         </div>
+         
+         <div class="form-group">
+           <label for="new_color_product" class="form-control-label">Nouvelle couleur du produit:</label>
+           <select required name="new_color_product" id="new_color_product" class="form-control">
+             
+             <?php foreach($groupsColors as $group) { ?>
+             <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
+
+              <?php foreach($group->colors_list as $color){ ?>
+              <?= '<option id="new_color_product" name="new_color_product" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
+              <?php } ?>
+              <?= '</optgroup>'; ?> 
+              <?php } ?>
+            </select>
+          </div>
+
           <div class="form-group">
-             <label for="new_size_product class="form-control-label">Nouvelle taille du produit:</label>
-               <select required name="new_size_product" id="new_size_product" class="form-control">
-                 
-              <?php foreach($groupsSizes as $group) { ?>
+           <label for="new_size_product class="form-control-label">Nouvelle taille du produit:</label>
+           <select required name="new_size_product" id="new_size_product" class="form-control">
+             
+            <?php foreach($groupsSizes as $group) { ?>
             <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
 
-                <?php foreach($group->sizes_list as $size){ ?>
-                    <?= '<option id="new_size_product" name="new_size_product" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
-                <?php } ?>
-            <?= '</optgroup>'; ?> 
-        <?php } ?>
+              <?php foreach($group->sizes_list as $size){ ?>
+              <?= '<option id="new_size_product" name="new_size_product" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
+              <?php } ?>
+              <?= '</optgroup>'; ?> 
+              <?php } ?>
 
-    </select>
-           </div>
-
-
-
-         </div>
+            </select>
+          </div>
 
 
 
+        </div>
 
-         <div class="modal-footer">
-           <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-           <button class="btn btn-info btn-fill">Enregistrer</button>
-         </div>
-       </form>
-     </div>
+
+
+
+        <div class="modal-footer">
+         <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+         <button class="btn btn-info btn-fill">Enregistrer</button>
+       </div>
+     </form>
    </div>
  </div>
+</div>
 
- <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
 <div class="wrapper">
   <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">
@@ -242,43 +242,43 @@
                 <i class="fa fa-dashboard"></i>
               </a>
             </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+             <a href="<?php echo base_url();?>profil_controller/index.html">
+               <p>Mon compte</p>
+             </a>
+           </li>
+
+           <li>
+            <a href="<?php echo base_url();?>session_controller/index.html">
+              <p>Se deconnecter</p>
+            </a>
+          </li>
+          <li class="separator hidden-lg hidden-md"></li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-           <a href="<?php echo base_url();?>profil_controller/index.html">
-             <p>Mon compte</p>
-           </a>
-         </li>
-
-        <li>
-          <a href="<?php echo base_url();?>session_controller/index.html">
-            <p>Se deconnecter</p>
-          </a>
-        </li>
-        <li class="separator hidden-lg hidden-md"></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="content">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-12">
-    <div class="card">
-     <div class="header">
-      <h4 class="title">Ajout de groupes de produits</h4>
-    </div>
-    <div class="content">
-      <form id="form_add_groups_products" method="POST" action="addGroupProducts.html">
-       <div class="row">
-        <div class="col-md-6">
-         <div class="form-group">
-          <label for="name_group_products">Nom du groupe de produits</label>
-          <input id="name_group_products" name="name_group_products" type="text" class="form-control" placeholder="Exemple : T-shirts">
-        </div>
       </div>
+    </div>
+  </nav>
+
+  <div class="content">
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <div class="card">
+       <div class="header">
+        <h4 class="title">Ajout de groupes de produits</h4>
+      </div>
+      <div class="content">
+        <form id="form_add_groups_products" method="POST" action="addGroupProducts.html">
+         <div class="row">
+          <div class="col-md-6">
+           <div class="form-group">
+            <label for="name_group_products">Nom du groupe de produits</label>
+            <input id="name_group_products" name="name_group_products" type="text" class="form-control" placeholder="Exemple : T-shirts">
+          </div>
+        </div>
 
         <div class="col-md-6">
          <div class="form-group">
@@ -290,8 +290,8 @@
     <button id="btn_add_group_products" class="btn btn-info btn-fill pull-right">Ajouter le groupe de produits</button>
     <button id="btn_edit_groups_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_products"
     class="btn btn-danger btn-fill pull-right">Editer les groupes de produits</button>
-  <div class="clearfix"></div>
-</form>
+    <div class="clearfix"></div>
+  </form>
 </div>
 </div>
 </div>
@@ -358,76 +358,76 @@
    <div class="form-group">
     <label for="product_desc">Description du produit</label>
     <input id="product_desc" name="product_desc" type="text" class="form-control" data-control="hue" placeholder="Exemple : Débardeur de haute qualité">
-</div>
-</div>
-
-</div>
-
-     <div class="row">
-      <div class="col-md-4">
-       <div class="form-group">
-        <label for="product_price">Prix de vente H.T</label>
-        <input id="product_price" name="product_price" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-     <div class="form-group">
-      <label for="product_color">Coloris</label>
-    <select name="product_color" id="product_color" class="form-control">
-
-       <?php foreach($groupsColors as $group) { ?>
-            <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
-
-                <?php foreach($group->colors_list as $color){ ?>
-                    <?= '<option id="product_color" name="product_color" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
-                <?php } ?>
-            <?= '</optgroup>'; ?> 
-        <?php } ?>
-    </select>
-    </div>
   </div>
+</div>
 
+</div>
+
+<div class="row">
   <div class="col-md-4">
    <div class="form-group">
-    <label for="product_group">Groupe du produit</label>
-             <select required name="product_group" id="product_group" class="form-control">
-             <?php
-              foreach($groupsProducts as $value){
-                echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
-              }
-            ?> 
-          </select>
+    <label for="product_price">Prix de vente H.T</label>
+    <input id="product_price" name="product_price" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
   </div>
 </div>
 
+<div class="col-md-4">
+ <div class="form-group">
+  <label for="product_color">Coloris</label>
+  <select name="product_color" id="product_color" class="form-control">
+
+   <?php foreach($groupsColors as $group) { ?>
+   <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
+
+    <?php foreach($group->colors_list as $color){ ?>
+    <?= '<option id="product_color" name="product_color" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
+    <?php } ?>
+    <?= '</optgroup>'; ?> 
+    <?php } ?>
+  </select>
+</div>
 </div>
 
-     <div class="row">
-      <div class="col-md-4">
-       <div class="form-group">
-        <label for="product_size">Taille du produit</label>
-            <select name="product_size" id="product_size" class="form-control">
+<div class="col-md-4">
+ <div class="form-group">
+  <label for="product_group">Groupe du produit</label>
+  <select required name="product_group" id="product_group" class="form-control">
+   <?php
+   foreach($groupsProducts as $value){
+   echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
+ }
+ ?> 
+</select>
+</div>
+</div>
 
-              <?php foreach($groupsSizes as $group) { ?>
-            <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
+</div>
 
-                <?php foreach($group->sizes_list as $size){ ?>
-                    <?= '<option id="product_size" name="product_size" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
-                <?php } ?>
-            <?= '</optgroup>'; ?> 
+<div class="row">
+  <div class="col-md-4">
+   <div class="form-group">
+    <label for="product_size">Taille du produit</label>
+    <select name="product_size" id="product_size" class="form-control">
+
+      <?php foreach($groupsSizes as $group) { ?>
+      <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
+
+        <?php foreach($group->sizes_list as $size){ ?>
+        <?= '<option id="product_size" name="product_size" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
+        <?php } ?>
+        <?= '</optgroup>'; ?> 
         <?php } ?>
 
-    </select>
-      </div>
-    </div>
-
-    <div class="col-md-8">
-     <div class="form-group">
-      <label for="image">Choose a file</label>
-      <input id="image" name="image" type="file" class="form-control" data-control="hue">
+      </select>
     </div>
   </div>
+
+  <div class="col-md-8">
+   <div class="form-group">
+    <label for="image">Choose a file</label>
+    <input id="image" name="image" type="file" class="form-control" data-control="hue">
+  </div>
+</div>
 
 
 </div>

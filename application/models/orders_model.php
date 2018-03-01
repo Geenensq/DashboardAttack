@@ -271,31 +271,31 @@ Class Orders_model extends CI_Model
 // !                    Method update an order with id                    //
 // ======================================================================//
     public function updateOrder($model){
-       $id_order = $model->getIdOrder();
-       $id_customer = $model->getIdCustomer();
-       $date_order = $model->getDateOrder();
-       $price_order = $model->getPriceOrder();
-       $comment_order = $model->getCommentOrder();
-       $method_payment = $model->getIdMethodPayment();
-       $method_shipping = $model->getIdMethodShipping();
-       $state_order = $model->getStatusOrder();
+     $id_order = $model->getIdOrder();
+     $id_customer = $model->getIdCustomer();
+     $date_order = $model->getDateOrder();
+     $price_order = $model->getPriceOrder();
+     $comment_order = $model->getCommentOrder();
+     $method_payment = $model->getIdMethodPayment();
+     $method_shipping = $model->getIdMethodShipping();
+     $state_order = $model->getStatusOrder();
 
-       $this->db->set('date_order', $date_order);
-       $this->db->set('comment_order', $comment_order);
-       $this->db->set('price_order', $price_order);
-       $this->db->set('id_customer', $id_customer);
-       $this->db->set('id_method_payment', $method_payment);
-       $this->db->set('id_method_shipping', $method_shipping);
-       $this->db->set('id_state', $state_order);
-       $this->db->where('id_order' , $id_order);
-       $this->db->update($this->table);
-   }
+     $this->db->set('date_order', $date_order);
+     $this->db->set('comment_order', $comment_order);
+     $this->db->set('price_order', $price_order);
+     $this->db->set('id_customer', $id_customer);
+     $this->db->set('id_method_payment', $method_payment);
+     $this->db->set('id_method_shipping', $method_shipping);
+     $this->db->set('id_state', $state_order);
+     $this->db->where('id_order' , $id_order);
+     $this->db->update($this->table);
+ }
 
 // =======================================================================//
 // !               Method for update the price of the order              //
 // ======================================================================//
-   public function updatePriceOrder($model)
-   {
+ public function updatePriceOrder($model)
+ {
     $id_order = $model->getIdOrder();
     $price_order = $model->getPriceOrder();
     $this->db->set('price_order', $price_order);

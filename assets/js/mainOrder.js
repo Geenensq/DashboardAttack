@@ -123,18 +123,18 @@ $(document).ready(function() {
                     data:null
                 },
                 {
-                 "target": 10,
-                 data:null
-             }
+                   "target": 10,
+                   data:null
+               }
 
 
 
-             ],
+               ],
 
 
-             columnDefs: [
+               columnDefs: [
 
-             {
+               {
                 "targets": 1,
                 render: function(data, full) {
                     return '<p>' + data[5] + ' ' + data[4] + '<p>'
@@ -318,13 +318,13 @@ $(document).ready(function() {
                 qte_product = $('#qte_product_order').val();
                 return_product_exist = addRowProduct(product_added);
                 if (return_product_exist === "ok") {
-                 /*call function javascript for add products in the order*/
-                 addProductsOrder($("#current_id_order").val());
-                 priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+                   /*call function javascript for add products in the order*/
+                   addProductsOrder($("#current_id_order").val());
+                   priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
 
-             }
+               }
 
-         } else {
+           } else {
             lockInputOrder();
             product_added = $('#select_product_order').val();
             qte_product = $('#qte_product_order').val();
@@ -590,37 +590,37 @@ function priceUpdate($id_order, $price) {
 /**************DECLARATION SELECT 2 AUTOCOMPLETE*******************/
 /******************************************************************/
 $('#customer_order').select2({
- minimumInputLength: 2,
- placeholder: 'Chercher un client',
- ajax: {
-  url: 'getCustomersAutoComplete.html',
-  dataType: 'json',
-  delay: 250,
+   minimumInputLength: 2,
+   placeholder: 'Chercher un client',
+   ajax: {
+      url: 'getCustomersAutoComplete.html',
+      dataType: 'json',
+      delay: 250,
 
-  processResults: function (data) {
-    return {
-      results: data
-  };
-},
-cache: true
+      processResults: function (data) {
+        return {
+          results: data
+      };
+  },
+  cache: true
 }
 });
 
 
 $('#select_product_order').select2({
- minimumInputLength: 2,
- placeholder: 'Chercher un produit',
- ajax: {
-  url: 'getProductsAutoComplete.html',
-  dataType: 'json',
-  delay: 250,
+   minimumInputLength: 2,
+   placeholder: 'Chercher un produit',
+   ajax: {
+      url: 'getProductsAutoComplete.html',
+      dataType: 'json',
+      delay: 250,
 
-  processResults: function (data) {
-    return {
-      results: data
-  };
-},
-cache: true
+      processResults: function (data) {
+        return {
+          results: data
+      };
+  },
+  cache: true
 }
 });
 /************************************************************************/    

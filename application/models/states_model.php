@@ -9,15 +9,15 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class states_model extends CI_Model
-    {
+Class states_model extends CI_Model
+{
 
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $id_state;
-        private $name_state;
-        public $table = "states";
+    private $id_state;
+    private $name_state;
+    public $table = "states";
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
@@ -62,25 +62,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->from($this->table);
         $query = $this->db->get();
 
-            foreach ($query->result_object() as $ligne)
-            {
-                    $states = new States_model();
-                    $states->setIdState($ligne->id_state);
-                    $states->setNameState($ligne->name_state);
-                    $arrayStates[] = $states;
-            }
-                    return $arrayStates;
+        foreach ($query->result_object() as $ligne)
+        {
+            $states = new States_model();
+            $states->setIdState($ligne->id_state);
+            $states->setNameState($ligne->name_state);
+            $arrayStates[] = $states;
+        }
+        return $arrayStates;
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 

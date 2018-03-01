@@ -140,27 +140,27 @@ Class Orders_controller extends CI_Controller
 // !                     Function for delete an order                    //
 // ======================================================================//
     public function removeOrders(){
-     $this->id_order = $this->input->post('id');
+       $this->id_order = $this->input->post('id');
 
-     /********************Firts delete products of my orders***********************/
-     $this->modelProductsOrders->setIdOrder($this->id_order);
-     $modelProductsOrders = $this->modelProductsOrders;
-     $this->modelProductsOrders->deleteProcuctsOrder($modelProductsOrders);
-     /*****************************************************************************/
+       /********************Firts delete products of my orders***********************/
+       $this->modelProductsOrders->setIdOrder($this->id_order);
+       $modelProductsOrders = $this->modelProductsOrders;
+       $this->modelProductsOrders->deleteProcuctsOrder($modelProductsOrders);
+       /*****************************************************************************/
 
-     /*****************************Delete orders**********************************/
-     $this->modelOrders->setIdOrder($this->id_order);
-     $modelOrders = $this->modelOrders;
-     $this->modelOrders->deleteOrder($modelOrders);
- }
- 
+       /*****************************Delete orders**********************************/
+       $this->modelOrders->setIdOrder($this->id_order);
+       $modelOrders = $this->modelOrders;
+       $this->modelOrders->deleteOrder($modelOrders);
+   }
+   
 
 
 // ==========================================================================================//
 // !                               Method for add an order                                   //
 // ==========================================================================================//
- public function addOrders()
- {
+   public function addOrders()
+   {
     $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
     $this->form_validation->set_rules('date_order', '"date_order"', 'required');
     $this->form_validation->set_rules('state_order', '"state_order"', 'required');

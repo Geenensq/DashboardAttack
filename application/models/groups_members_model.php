@@ -9,40 +9,40 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Groups_members_model extends CI_Model
-    {
+Class Groups_members_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $id_group_member;
-        private $name;
-        protected $table = "groups_members";
+    private $id_group_member;
+    private $name;
+    protected $table = "groups_members";
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-        public function getIdGroupMember()
-        {
-            return $this->id_group_member;
-        }
+    public function getIdGroupMember()
+    {
+        return $this->id_group_member;
+    }
 
-        public function getName()
-        {
-            return $this->name;
-        }
+    public function getName()
+    {
+        return $this->name;
+    }
 
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-        public function setIdGroupMember($id_group_member)
-        {
-            return $this->id_group_member = $id_group_member;
-        }
-        
-        public function setName($name)
-        {
-            return $this->name = $name;
-        }
+    public function setIdGroupMember($id_group_member)
+    {
+        return $this->id_group_member = $id_group_member;
+    }
+    
+    public function setName($name)
+    {
+        return $this->name = $name;
+    }
 // =======================================================================//
 // !                     Start CRUD methods                              //
 // ======================================================================//
@@ -52,41 +52,41 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                Method SELECT one group members                      //
 // ======================================================================//
-        public function getOneGroupMember($id_group_member)
+    public function getOneGroupMember($id_group_member)
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('id_group_member', $id_group_member);
+        $query = $this->db->get();
+        foreach ($query->result_object() as $ligne)
         {
-            $this->db->select('*');
-            $this->db->from($this->table);
-            $this->db->where('id_group_member', $id_group_member);
-            $query = $this->db->get();
-            foreach ($query->result_object() as $ligne)
-            {
-                $myMembers = new Groups_members_model();
-                $myMembers->setIdGroupMember($ligne->id_group_member);
-                $myMembers->setName($ligne->name);
-                
-            }
-                return $myMembers;
+            $myMembers = new Groups_members_model();
+            $myMembers->setIdGroupMember($ligne->id_group_member);
+            $myMembers->setName($ligne->name);
+            
         }
+        return $myMembers;
+    }
 // =======================================================================//
 // !                Method SELECT all group members                      //
 // ======================================================================//
 
-        public function selectAll()
-        {
-            $arrayGroupsMembers = [];
-            $this->db->select('*');
-            $this->db->from($this->table);
-            $query = $this->db->get();
+    public function selectAll()
+    {
+        $arrayGroupsMembers = [];
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $query = $this->db->get();
 
-            foreach ($query->result_object() as $ligne)
-            {
-                    $groupsMembers = new Groups_members_model();
-                    $groupsMembers->setIdGroupMember($ligne->id_group_member);
-                    $groupsMembers->setName($ligne->name);
-                    $arrayGroupsMembers[] = $groupsMembers;
-            }
-                    return $arrayGroupsMembers;
+        foreach ($query->result_object() as $ligne)
+        {
+            $groupsMembers = new Groups_members_model();
+            $groupsMembers->setIdGroupMember($ligne->id_group_member);
+            $groupsMembers->setName($ligne->name);
+            $arrayGroupsMembers[] = $groupsMembers;
         }
+        return $arrayGroupsMembers;
+    }
 
 
 

@@ -29,11 +29,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-                 <h5 class="modal-title" id="modalLabel">Edition du membre</h5>
-             </div>
-             <form id="" method="POST" action="">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <h5 class="modal-title" id="modalLabel">Edition du membre</h5>
+               </div>
+               <form id="changeInfosMembersModal" method="POST" action="">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="id_member" id="id_member">
@@ -76,11 +76,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-             <h5 class="modal-title" id="modalLabel">Edition du mot de passe</h5>
-         </div>
-         <form id="changePasswordMembers" method="POST" action="">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+               <h5 class="modal-title" id="modalLabel">Edition du mot de passe</h5>
+           </div>
+           <form id="changePasswordMembers" method="POST" action="">
             <div class="modal-body">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id_member_password" id="id_member_password">
@@ -188,25 +188,6 @@
                             <i class="fa fa-dashboard"></i>
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-globe"></i>
-                            <b class="caret hidden-sm hidden-xs"></b>
-                            <span class="notification hidden-sm hidden-xs">5</span>
-                            <p class="hidden-lg hidden-md">
-                                5 Notifications
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Notification 1</a></li>
-                            <li><a href="#">Notification 2</a></li>
-                            <li><a href="#">Notification 3</a></li>
-                            <li><a href="#">Notification 4</a></li>
-                            <li><a href="#">Another notification</a></li>
-                        </ul>
-                    </li>
-
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -301,7 +282,8 @@
 <script src="<?php echo js_url('notifications');?>"></script>
 <!--Main management js -->
 <script type="text/javascript" src="<?php echo js_url('mainManagement');?>"></script>
-<!--Request Ajax for change informations of members-->
+<!--Request Ajax for load informations of members-->
 <script type="text/javascript" src="<?php echo js_url('editMembersModal');?>"></script>
-
+<!--Request Ajax for change informations of members-->
+<script type="text/javascript" src="<?php echo js_url('changeInfosMembers');?>"></script>
 </html>

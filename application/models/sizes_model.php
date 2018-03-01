@@ -9,25 +9,25 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Sizes_model extends CI_Model
-    {
+Class Sizes_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $id_size;
-        private $name;
-        private $price;
-        private $actif;
-        private $id_group_size; 
-        protected $table = "sizes";
+    private $id_size;
+    private $name;
+    private $price;
+    private $actif;
+    private $id_group_size; 
+    protected $table = "sizes";
 
 // =======================================================================//
 // !                  Constructor of my Class                            //
 // ======================================================================//
-        public function __construct()
-        {
+    public function __construct()
+    {
 
-        }
+    }
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -122,10 +122,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $actif = 1;
 
         $this->db->set('size_name', $name)
-                    ->set('price', $price)
-                    ->set('id_group_size' , $group_size)
-                    ->set('actif' , $actif)
-                    ->insert($this->table);
+        ->set('price', $price)
+        ->set('id_group_size' , $group_size)
+        ->set('actif' , $actif)
+        ->insert($this->table);
     }
 
 
@@ -202,15 +202,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function updateNameSizes($model){
         $data = array ('id_size' =>$model->getIdSize(),
-                        'size_name' =>$model->getName(),
-                        'price' =>$model->getPrice(),
-                        'id_group_size' =>$model->getIdGroupSize()
-                        );
+            'size_name' =>$model->getName(),
+            'price' =>$model->getPrice(),
+            'id_group_size' =>$model->getIdGroupSize()
+        );
 
         $this->db->where('id_size' , $model->getIdSize());
         $this->db->update($this->table , $data);
         
-        }
+    }
 
 
 }

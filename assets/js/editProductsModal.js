@@ -1,5 +1,4 @@
 function editProductsModal($id) {
-
     url = "getInfosProductsModal.html";
     // on declare un formulaire
     var form = {id:$id};

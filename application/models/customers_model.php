@@ -9,184 +9,184 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Customers_model extends CI_Model
-    {
+Class Customers_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $table="customers";
-        private $id_customer;
-        private $firstName;
-        private $lastName;
-        private $mobil_phone_number;
-        private $phone_number;
-        private $mail;
-        private $address;
-        private $zip_code;
-        private $city;
-        private $id_group_customer;
-        private $name_group_customer;
-        private $actif;
+    private $table="customers";
+    private $id_customer;
+    private $firstName;
+    private $lastName;
+    private $mobil_phone_number;
+    private $phone_number;
+    private $mail;
+    private $address;
+    private $zip_code;
+    private $city;
+    private $id_group_customer;
+    private $name_group_customer;
+    private $actif;
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-        public function getTable()
-        {
+    public function getTable()
+    {
         return $this->table;
-        }
+    }
 
-        public function getIdCustomer()
-        {
-            return $this->id_customer;
-        }
-        public function getFirstName()
-        {
-            return $this->firstName;
-        }
-        public function getLastName()
-        {
-            return $this->lastName;
-        }
+    public function getIdCustomer()
+    {
+        return $this->id_customer;
+    }
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
 
-        public function getMobilPhoneNumber()
-        {
-            return $this->mobil_phone_number;
-        }
+    public function getMobilPhoneNumber()
+    {
+        return $this->mobil_phone_number;
+    }
 
-        public function getPhoneNumber()
-        {
-            return $this->phone_number;
-        }
-        public function getMail()
-        {
-            return $this->mail;
-        }
-        public function getAddress()
-        {
-            return $this->address;
-        }
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+    public function getMail()
+    {
+        return $this->mail;
+    }
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
-        public function getZipCode()
-        {
-            return $this->zip_code;
-        }
-        public function getCity()
-        {
-            return $this->city;
-        }
-        public function getIdGroupCustomer()
-        {
-            return $this->id_group_customer;
-        }
+    public function getZipCode()
+    {
+        return $this->zip_code;
+    }
+    public function getCity()
+    {
+        return $this->city;
+    }
+    public function getIdGroupCustomer()
+    {
+        return $this->id_group_customer;
+    }
 
-        public function getActif()
-        {
-            return $this->actif;
-        }
+    public function getActif()
+    {
+        return $this->actif;
+    }
 
-        public function getNameGroupCustomer()
-        {
-            return $this->name_group_customer;
-        }
+    public function getNameGroupCustomer()
+    {
+        return $this->name_group_customer;
+    }
 
 
 
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-        public function setTable($table)
-        {
-            $this->table = $table;
+    public function setTable($table)
+    {
+        $this->table = $table;
 
-            return $this;
-        }
+        return $this;
+    }
 
-        public function setIdCustomer($id_customer)
-        {
-            $this->id_customer = $id_customer;
+    public function setIdCustomer($id_customer)
+    {
+        $this->id_customer = $id_customer;
 
-            return $this;
-        }
+        return $this;
+    }
 
-        public function setFirstName($firstName)
-        {
-            $this->firstName = $firstName;
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
 
-            return $this;
-        }
-
-
-        public function setLastName($lastName)
-        {
-            $this->lastName = $lastName;
-
-            return $this;
-        }
+        return $this;
+    }
 
 
-        public function setMobilPhoneNumber($mobil_phone_number)
-        {
-            $this->mobil_phone_number = $mobil_phone_number;
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
 
-            return $this;
-        }
-
-
-        public function setPhoneNumber($phone_number)
-        {
-            $this->phone_number = $phone_number;
-
-            return $this;
-        }
+        return $this;
+    }
 
 
-        public function setMail($mail)
-        {
-            $this->mail = $mail;
+    public function setMobilPhoneNumber($mobil_phone_number)
+    {
+        $this->mobil_phone_number = $mobil_phone_number;
 
-            return $this;
-        }
+        return $this;
+    }
 
-        public function setAddress($address)
-        {
-            $this->address = $address;
 
-            return $this;
-        }
+    public function setPhoneNumber($phone_number)
+    {
+        $this->phone_number = $phone_number;
 
-        public function setZipCode($zip_code)
-        {
-            $this->zip_code = $zip_code;
+        return $this;
+    }
 
-            return $this;
-        }
 
-        public function setCity($city)
-        {
-            $this->city = $city;
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
 
-            return $this;
-        }
+        return $this;
+    }
 
-        public function setIdGroupCustomer($id_group_customer)
-        {
-            $this->id_group_customer = $id_group_customer;
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
-            return $this;
-        }
+        return $this;
+    }
 
-        public function setActif($actif)
-        {
-            $this->actif = $actif;
-            return $this;
-        }
+    public function setZipCode($zip_code)
+    {
+        $this->zip_code = $zip_code;
 
-        public function setNameGroupCustomer($name_group_customer)
-        {
-            $this->name_group_customer = $name_group_customer;
-            return $this;
-        }
+        return $this;
+    }
+
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function setIdGroupCustomer($id_group_customer)
+    {
+        $this->id_group_customer = $id_group_customer;
+
+        return $this;
+    }
+
+    public function setActif($actif)
+    {
+        $this->actif = $actif;
+        return $this;
+    }
+
+    public function setNameGroupCustomer($name_group_customer)
+    {
+        $this->name_group_customer = $name_group_customer;
+        return $this;
+    }
 
 
 
@@ -194,82 +194,82 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !                     Start CRUD methods                              //
 // ======================================================================//
 
-        
+    
 // =======================================================================//
 // !                 Method SELECT * groupscustomers                      //
 // ======================================================================//
 
-        public function selectAll()
-        {
-            $arrayCustomers = [];
-            $this->db->select('*');
-            $this->db->from($this->table);
-            $query = $this->db->get();
+    public function selectAll()
+    {
+        $arrayCustomers = [];
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $query = $this->db->get();
 
-            foreach ($query->result_object() as $ligne)
-            {
-                    $customers = new Customers_model();
-                    $customers->setIdCustomer($ligne->id_customer);
-                    $customers->setFirstName($ligne->firstname);
-                    $customers->setLastName($ligne->lastname);
-                    $arrayCustomers[] = $customers;
-            }
-                    return $arrayCustomers;
+        foreach ($query->result_object() as $ligne)
+        {
+            $customers = new Customers_model();
+            $customers->setIdCustomer($ligne->id_customer);
+            $customers->setFirstName($ligne->firstname);
+            $customers->setLastName($ligne->lastname);
+            $arrayCustomers[] = $customers;
         }
+        return $arrayCustomers;
+    }
 
 // ======================================================================//
 // !          Method for select customers for autocompletion             //
 // ======================================================================//
 
-        public function selectALLAutoComplete($search){
-     
-            $this->db->select('CONCAT(firstname," ",lastname) AS text, customers.id_customer AS id');
-            $this->db->from($this->table);
-            $this->db->like('CONCAT(firstname," ",lastname)', $search);
-            $this->db->limit(10);
+    public function selectALLAutoComplete($search){
+       
+        $this->db->select('CONCAT(firstname," ",lastname) AS text, customers.id_customer AS id');
+        $this->db->from($this->table);
+        $this->db->like('CONCAT(firstname," ",lastname)', $search);
+        $this->db->limit(10);
 
-            $query = $this->db->get();
+        $query = $this->db->get();
 
-            $json = [];
+        $json = [];
 
-            foreach ($query->result_object() as $row){
+        foreach ($query->result_object() as $row){
 
-                $json[] = ['id'=> $row->id, 'text'=> $row->text ];
-            }
-            
-            return $json;
-
+            $json[] = ['id'=> $row->id, 'text'=> $row->text ];
         }
+        
+        return $json;
+
+    }
 
 
 // =======================================================================//
 // !                Method for insert on customers                       //
 // ======================================================================//
-        public function insertOneCustomers($model){
+    public function insertOneCustomers($model){
 
-            $firstNameCustomer = $model->getFirstName();
-            $lastNameCustomer = $model->getLastname();
-            $mobilPhoneCustomer = $model->getMobilPhoneNumber();
-            $phoneNumberCustomer = $model ->getPhoneNumber();
-            $mailCustomer = $model->getMail();
-            $addressCustomer = $model->getAddress();
-            $zipCodeCustomer = $model->getZipCode();
-            $cityCustomer = $model->getCity();
-            $groupForCustomer = $model->getIdGroupCustomer();
-            $actif = 1;
+        $firstNameCustomer = $model->getFirstName();
+        $lastNameCustomer = $model->getLastname();
+        $mobilPhoneCustomer = $model->getMobilPhoneNumber();
+        $phoneNumberCustomer = $model ->getPhoneNumber();
+        $mailCustomer = $model->getMail();
+        $addressCustomer = $model->getAddress();
+        $zipCodeCustomer = $model->getZipCode();
+        $cityCustomer = $model->getCity();
+        $groupForCustomer = $model->getIdGroupCustomer();
+        $actif = 1;
 
-            $this->db->set('firstname', $firstNameCustomer)
-                        ->set('lastname', $lastNameCustomer)
-                        ->set('mobil_phone_number', $mobilPhoneCustomer)
-                        ->set('phone_number', $phoneNumberCustomer)
-                        ->set('mail', $mailCustomer)
-                        ->set('address', $addressCustomer)
-                        ->set('zip_code',$zipCodeCustomer )
-                        ->set('city', $cityCustomer)
-                        ->set('actif' , $actif)
-                        ->set('id_group_customer', $groupForCustomer)
-                        ->insert($this->table);
-        }
+        $this->db->set('firstname', $firstNameCustomer)
+        ->set('lastname', $lastNameCustomer)
+        ->set('mobil_phone_number', $mobilPhoneCustomer)
+        ->set('phone_number', $phoneNumberCustomer)
+        ->set('mail', $mailCustomer)
+        ->set('address', $addressCustomer)
+        ->set('zip_code',$zipCodeCustomer )
+        ->set('city', $cityCustomer)
+        ->set('actif' , $actif)
+        ->set('id_group_customer', $groupForCustomer)
+        ->insert($this->table);
+    }
 
 
 // =======================================================================//
@@ -291,23 +291,23 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
     public function disableEnableOneCustomer($id)
     {
-            $this->db->select('actif');
-            $this->db->from($this->table);
-            $this->db->where('id_customer', $id );
-            $query = $this->db->get();
-            $result = $query->result_array();
+        $this->db->select('actif');
+        $this->db->from($this->table);
+        $this->db->where('id_customer', $id );
+        $query = $this->db->get();
+        $result = $query->result_array();
 
-            if($result[0]['actif'] == 0){
+        if($result[0]['actif'] == 0){
 
-                $data = array ('actif' => 1 );
-                $this->db->where('id_customer' , $id);
-                $this->db->update($this->table , $data);
-            } else {
+            $data = array ('actif' => 1 );
+            $this->db->where('id_customer' , $id);
+            $this->db->update($this->table , $data);
+        } else {
 
-                $data = array ('actif' => 0 );
-                $this->db->where('id_customer' , $id);
-                $this->db->update($this->table , $data);
-            }
+            $data = array ('actif' => 0 );
+            $this->db->where('id_customer' , $id);
+            $this->db->update($this->table , $data);
+        }
 
 
     }
@@ -368,6 +368,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
-/*-----------End CRUD methods-----------*/
+    /*-----------End CRUD methods-----------*/
     
 }

@@ -103,24 +103,24 @@ Class Dashboard_controller extends CI_Controller
     public function getStatusOrders()
     {
     	$resultStats = $this->modelOrders->OrdersStatusStats();
-        if(count($resultStats) < 8){
-            for ($i=0; $i < 8; $i++){
+        if(count($resultStats) < 12){
+            for ($i=0; $i < 12; $i++){
 
                 if(!isset($resultStats[$i])){
-                 $resultStats[$i]  = array("how_much"=> 0, "id_state" =>$i,"name_state" => 0);
-             }    
-         }
-     }
+                   $resultStats[$i]  = array("how_much"=> 0, "id_state" =>$i,"name_state" => 0);
+               }    
+           }
+       }
 
-     echo json_encode($resultStats);
- }
+       echo json_encode($resultStats);
+   }
 
 
 // =======================================================================//
 // !                Method for stats earnings by months                  //
 // ======================================================================//
- public function getEarnings()
- {
+   public function getEarnings()
+   {
     $earnings = $this->modelOrders->selectEarningsByMonths();
     $actualYears = date("Y");
 

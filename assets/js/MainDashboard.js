@@ -63,11 +63,13 @@ $(document).ready(function() {
     new Chart(document.getElementById("pie-chart"), {
         type: 'doughnut',
         data: {
-            labels: [statsReturned[0]["name_state"], statsReturned[1]["name_state"], statsReturned[2]["name_state"], statsReturned[3]["name_state"], statsReturned[4]["name_state"], statsReturned[5]["name_state"], statsReturned[6]["name_state"], statsReturned[7]["name_state"]],
+            labels: [statsReturned[0]["name_state"], statsReturned[1]["name_state"], statsReturned[2]["name_state"], statsReturned[3]["name_state"], statsReturned[4]["name_state"], statsReturned[5]["name_state"], statsReturned[6]["name_state"], statsReturned[7]["name_state"]
+            , statsReturned[8]["name_state"], statsReturned[9]["name_state"], statsReturned[10]["name_state"], statsReturned[11]["name_state"]],
             datasets: [{
 
                 backgroundColor: ["#64cdff", "#14b694", "#337ab7", "#3E6977", "#FF4A55", "#EEA852", '#7C71C5'],
-                data: [statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"],statsReturned[3]["how_much"],statsReturned[4]["how_much"],statsReturned[5]["how_much"],statsReturned[6]["how_much"],statsReturned[7]["how_much"]]
+                data: [statsReturned[0]["how_much"],statsReturned[1]["how_much"],statsReturned[2]["how_much"],statsReturned[3]["how_much"],statsReturned[4]["how_much"],statsReturned[5]["how_much"],statsReturned[6]["how_much"],statsReturned[7]["how_much"]
+                ,statsReturned[8]["how_much"],statsReturned[9]["how_much"],statsReturned[10]["how_much"],statsReturned[11]["how_much"]]
             }]
         },
         options: {

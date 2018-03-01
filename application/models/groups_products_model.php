@@ -9,16 +9,16 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Groups_products_model extends CI_Model
-    {
+Class Groups_products_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        protected $table = "groups_products";
-        private $id_group_product;
-        private $name_group_product;
-        private $description;
-        private $actif;
+    protected $table = "groups_products";
+    private $id_group_product;
+    private $name_group_product;
+    private $description;
+    private $actif;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -54,7 +54,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
         return $this;
     }
-      
+    
     public function setDescription($description)
     {
         $this->description = $description;
@@ -87,34 +87,34 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $description = $model->getDescription();
 
         $this->db->set('name_group_product', $name)
-                 ->set('description' , $description)
-                 ->set('actif' , 1)
-                 ->insert($this->table);
+        ->set('description' , $description)
+        ->set('actif' , 1)
+        ->insert($this->table);
     }
 // =======================================================================//
 // !                Method for select all groups products                //
 // ======================================================================//
 
-        public function selectAll()
+    public function selectAll()
+    {
+        $arrayGroupsProducts = [];
+        $this->db->select('*');
+        $this->db->from($this->table);
+        
+        $this->db->where('actif', 1 );
+        $query = $this->db->get();
+        
+        foreach ($query->result_object() as $ligne)
         {
-            $arrayGroupsProducts = [];
-            $this->db->select('*');
-            $this->db->from($this->table);
-          
-            $this->db->where('actif', 1 );
-            $query = $this->db->get();
- 
-            foreach ($query->result_object() as $ligne)
-            {
 
-                    $groupsProducts = new Groups_products_model();
-                    $groupsProducts->setIdGroupProduct($ligne->id_group_product);
-                    $groupsProducts->setName($ligne->name_group_product);
-                    $arrayGroupsProducts[] = $groupsProducts;
-            }
-                    /// osef de ici wesh
-                    return $arrayGroupsProducts;
+            $groupsProducts = new Groups_products_model();
+            $groupsProducts->setIdGroupProduct($ligne->id_group_product);
+            $groupsProducts->setName($ligne->name_group_product);
+            $arrayGroupsProducts[] = $groupsProducts;
         }
+                    /// osef de ici wesh
+        return $arrayGroupsProducts;
+    }
 
 
 // =======================================================================//
@@ -179,13 +179,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !            Method update a group of products by its id                //
 // ======================================================================//
 
-        public function updateNameGroupProducts($model){
-            $data = array ('name_group_product' =>$model->getName() ,
-                           'description' =>$model->getDescription());
+    public function updateNameGroupProducts($model){
+        $data = array ('name_group_product' =>$model->getName() ,
+         'description' =>$model->getDescription());
 
-            $this->db->where('id_group_product' , $model->getIdGroupProduct());
-            $this->db->update($this->table , $data);
-        }
+        $this->db->where('id_group_product' , $model->getIdGroupProduct());
+        $this->db->update($this->table , $data);
+    }
 
 
 

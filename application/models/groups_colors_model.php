@@ -19,7 +19,7 @@ Class groups_colors_model extends CI_Model
 	private $table = "groups_colors"; 
 	private $id_group_color;
 	private $name_group_colors;
-   
+ 
     public $colors_list;
 
 // =======================================================================//
@@ -90,92 +90,92 @@ Class groups_colors_model extends CI_Model
         }
         
         foreach ($arrayGroupsColors as $key => $groupsColors) {
-           $arrayGroupsColors[$key]->getColorsList();  
-        }
+         $arrayGroupsColors[$key]->getColorsList();  
+     }
      
-        return $arrayGroupsColors;
+     return $arrayGroupsColors;
 
-    }
+ }
 
 // =======================================================================//
 // !              Method for insert an group of colors                   //
 // ======================================================================//
 
-    public function insertOneGroupColors($model)
-    {
-        $name = $model->getNameGroupColors();
-        $this->db->set('name_group_color', $name)
-                 ->set('actif' , 1)
-        ->insert($this->table);
-    }
+ public function insertOneGroupColors($model)
+ {
+    $name = $model->getNameGroupColors();
+    $this->db->set('name_group_color', $name)
+    ->set('actif' , 1)
+    ->insert($this->table);
+}
 
 // =======================================================================//
 // !           Method SELECT * groups colors for datatable               //
 // ======================================================================//
 
-    public function loadDataGroupsColorsDataTable()
-    {
-        $query = $this->db->get($this->table);
-        return $query->result_array();
-    }
+public function loadDataGroupsColorsDataTable()
+{
+    $query = $this->db->get($this->table);
+    return $query->result_array();
+}
 
 
 // =======================================================================//
 // !           Method for disable and enable the groups colors           //
 // ======================================================================//
 
-    public function disableEnableOneGroupColor($id)
-    {
-        $this->db->select('actif');
-        $this->db->from($this->table);
-        $this->db->where('id_group_color', $id );
-        $query = $this->db->get();
-        $result = $query->result_array();
+public function disableEnableOneGroupColor($id)
+{
+    $this->db->select('actif');
+    $this->db->from($this->table);
+    $this->db->where('id_group_color', $id );
+    $query = $this->db->get();
+    $result = $query->result_array();
 
-        if($result[0]['actif'] == 0){
+    if($result[0]['actif'] == 0){
 
-            $data = array ('actif' => 1 );
-            $this->db->where('id_group_color' , $id);
-            $this->db->update($this->table , $data);
-        } else {
+        $data = array ('actif' => 1 );
+        $this->db->where('id_group_color' , $id);
+        $this->db->update($this->table , $data);
+    } else {
 
-            $data = array ('actif' => 0 );
-            $this->db->where('id_group_color' , $id);
-            $this->db->update($this->table , $data);
-        }
+        $data = array ('actif' => 0 );
+        $this->db->where('id_group_color' , $id);
+        $this->db->update($this->table , $data);
     }
+}
 
 
 
 // =======================================================================//
 // !           Method SELECT ALL colors informations FOR MODAL           //
 // ======================================================================//
-    public function selectAllGroupsColorForModal($id)
+public function selectAllGroupsColorForModal($id)
+{
+
+    $this->db->select('*')->from('groups_colors')->where('id_group_color', $id);
+    $query = $this->db->get();
+    foreach ($query->result() as $row)
     {
-
-        $this->db->select('*')->from('groups_colors')->where('id_group_color', $id);
-        $query = $this->db->get();
-        foreach ($query->result() as $row)
-        {
-            $groupsColors["id_group_color"] =  $row->id_group_color;
-            $groupsColors["name_group_color"] = $row->name_group_color;
-            $groupsColors["actif"] = $row->actif;
-        }
-
-        return $groupsColors;
-
+        $groupsColors["id_group_color"] =  $row->id_group_color;
+        $groupsColors["name_group_color"] = $row->name_group_color;
+        $groupsColors["actif"] = $row->actif;
     }
+
+    return $groupsColors;
+
+}
 
 
 // =======================================================================//
 // !            Method update a group of colors by its id                //
 // ======================================================================//
 
-        public function updateNameGroupColors($model){
-            $data = array ('name_group_color' =>$model->getNameGroupColors());
-            $this->db->where('id_group_color' , $model->getIdGroupColor());
-            $this->db->update($this->table , $data);
-        }
+public function updateNameGroupColors($model){
+    $data = array ('name_group_color' =>$model->getNameGroupColors());
+    $this->db->where('id_group_color' , $model->getIdGroupColor());
+    $this->db->update($this->table , $data);
+}
 
 
 
@@ -183,32 +183,32 @@ Class groups_colors_model extends CI_Model
 // !                   Start methods collections                         //
 // ======================================================================//
 
-    public function getColorsList()
-    {
+public function getColorsList()
+{
 
         /// chargement du modele et on selectionne toute les couleur du groupe passé en params
-        $this->load->model('colors_model', 'modelColors');
-        $this->db->select('*');
-        $this->db->from('colors');;
-        $this->db->where('id_group_color', $this->id_group_color);
-        $query = $this->db->get();
+    $this->load->model('colors_model', 'modelColors');
+    $this->db->select('*');
+    $this->db->from('colors');;
+    $this->db->where('id_group_color', $this->id_group_color);
+    $query = $this->db->get();
         //On boucle sur le retour MYSQL
-        $colorsCollection = array();
-        
-        foreach ($query->result_object() as $ligne)
-        {
-            $colorsModel = new colors_model();
-            $colorsModel->setIdColor($ligne->id_color);
-            $colorsModel->setColorName($ligne->color_name);
-            $colorsModel->setColorCode($ligne->color_code);
-            $colorsModel->setIdGroupColor($ligne->id_group_color);
-            $colorsCollection[] = $colorsModel;
-        }
-
-        $this->colors_list = $colorsCollection; 
-
-        
+    $colorsCollection = array();
+    
+    foreach ($query->result_object() as $ligne)
+    {
+        $colorsModel = new colors_model();
+        $colorsModel->setIdColor($ligne->id_color);
+        $colorsModel->setColorName($ligne->color_name);
+        $colorsModel->setColorCode($ligne->color_code);
+        $colorsModel->setIdGroupColor($ligne->id_group_color);
+        $colorsCollection[] = $colorsModel;
     }
+
+    $this->colors_list = $colorsCollection; 
+
+    
+}
 
 
 

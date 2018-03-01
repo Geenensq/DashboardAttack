@@ -1,5 +1,3 @@
-
-
 function editGroupsColorsModal($id) {
     url = "getInfosGroupsColorsModal.html";
     // on declare un formulaire

@@ -286,7 +286,7 @@ Class Products_controller extends CI_Controller
             $callBack = array();
 
             if ($this->form_validation->run()) {
-             
+               
 
                 /*Retrieving my POST values ​​to store them in my attributes*/
                 $this->product_name = $this->input->post('product_name');

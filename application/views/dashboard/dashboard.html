@@ -26,7 +26,7 @@
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
-           <div class="sidebar-wrapper">
+         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="" class="simple-text">
                     Dashboard Attack
@@ -106,26 +106,26 @@
                         <li>
                           <a href="<?php echo base_url();?>dashboard_controller/index.html" >
                             <i class="fa fa-dashboard"></i>
-                          </a>
-                        </li>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <a href="<?php echo base_url();?>profil_controller/index.html">
+                           <p>Mon compte</p>
+                       </a>
+                   </li>
+
+                   <li>
+                    <a href="<?php echo base_url();?>session_controller/index.html">
+                        <p>Se deconnecter</p>
+                    </a>
+                </li>
+                <li class="separator hidden-lg hidden-md"></li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                 <a href="<?php echo base_url();?>profil_controller/index.html">
-                     <p>Mon compte</p>
-                 </a>
-             </li>
-
-             <li>
-                <a href="<?php echo base_url();?>session_controller/index.html">
-                    <p>Se deconnecter</p>
-                </a>
-            </li>
-            <li class="separator hidden-lg hidden-md"></li>
-        </ul>
+        </div>
     </div>
-</div>
 </nav>
 
 
@@ -139,7 +139,7 @@
                         <p class="category">Récapitulatif des status des commandes</p>
                     </div>
                     <div class="content">
-                    <canvas id="pie-chart"></canvas>
+                        <canvas id="pie-chart"></canvas>
 
                         <div class="footer">
 
@@ -159,71 +159,71 @@
                         <p class="category">Récapitulatif des ventes en € pour chaques mois de l'année</p>
                     </div>
                     <div class="content">
-                         <canvas id="pie-chart2"></canvas>
+                       <canvas id="pie-chart2"></canvas>
 
-                        <div class="footer">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
-                            </div>
+                       <div class="footer">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
                         </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card ">
+                <div class="header">
+                    <h4 class="title">Commandes</h4>
+                    <p class="category">Récapitulatif des 10 dernieres commandes</p>
+                </div>
+                <div class="content">
+                    <div class="content table-responsive">
+                        <table style="width:100% !important;" id="tab_rapid_orders" class="col-md-12 table table-hover table-striped">
+                            <thead>
+                                <th>Numéro de commande</th>
+                                <th>Propriétaire</th>
+                                <th>Status</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="footer">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-history"></i> Statistiques mis à jour toutes les 2 minutes
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-        <div class="row">
-            <div class="col-md-5">
-                <div class="card ">
-                    <div class="header">
-                        <h4 class="title">Commandes</h4>
-                        <p class="category">Récapitulatif des 10 dernieres commandes</p>
-                    </div>
-                    <div class="content">
-                        <div class="content table-responsive">
-                            <table style="width:100% !important;" id="tab_rapid_orders" class="col-md-12 table table-hover table-striped">
-                                <thead>
-                                    <th>Numéro de commande</th>
-                                    <th>Propriétaire</th>
-                                    <th>Status</th>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="footer">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Statistiques mis à jour toutes les 2 minutes
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-md-7">
+            <div class="card ">
+                <div class="header">
+                    <h4 class="title">Stick @'tchat</h4>
+                    <p class="category">Tchat et pense-bêtes interne</p>
                 </div>
-            </div>
+                <div style="padding-top: 1px!important;" class="content">
+                    <div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
+                        <div class="messages pre-scrollable">
+                          
+                            
 
-            <div class="col-md-7">
-                <div class="card ">
-                    <div class="header">
-                        <h4 class="title">Stick @'tchat</h4>
-                        <p class="category">Tchat et pense-bêtes interne</p>
+                        </div>
                     </div>
-                    <div style="padding-top: 1px!important;" class="content">
-                        <div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
-                            <div class="messages pre-scrollable">
-  
-                    
-
-                         </div>
-                     </div>
-                     <hr>
-                     <div class="row">
+                    <hr>
+                    <div class="row">
                         <form id="form_add_messages" action="sendMessages.html">
                             <input hidden id="id_member" name="id_member" value="<?php echo $id_member ?>" type="text">
-                                
+                            
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <label>Votre message :</label>
@@ -233,24 +233,24 @@
 
                             <div class="col-md-2">
                                 <div class="form-group">
-                                   <label></label>
-                                   <button style="margin-top: 20px;" id="" name="" type="submit" class="btn btn-info btn-fill">Envoyer</button>
-                               </div>
-                           </div>
-                       </form>
-                   </div>
+                                 <label></label>
+                                 <button style="margin-top: 20px;" id="" name="" type="submit" class="btn btn-info btn-fill">Envoyer</button>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
 
-               </div>
-           </div>
-       </div>
-   </div>
+             </div>
+         </div>
+     </div>
+ </div>
 </div>
 </div>
 
 <footer class="footer">
     <div class="container-fluid">
 
-     <p class="copyright pull-right">
+       <p class="copyright pull-right">
         &copy; <script>document.write(new Date().getFullYear())</script>  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
     </p>
 </div>
@@ -276,7 +276,7 @@
 <!--Plugin datatable -->
 <script type="text/javascript" src="<?php echo js_url_lib('datatables.min');?>"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <!--Main javascript dashboard -->
 <script type="text/javascript" src="<?php echo js_url('MainDashboard');?>"></script>
 <!-- Function for send data in ajax -->

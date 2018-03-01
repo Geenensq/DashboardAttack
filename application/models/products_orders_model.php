@@ -9,8 +9,8 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class products_orders_model extends CI_Model
-    {
+Class products_orders_model extends CI_Model
+{
 
 // =======================================================================//
 // !                  Declaration of my attributes                       //
@@ -74,9 +74,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $qte_product = $model->getQuantityProduct();
         $id_order = $model->getIdOrder();
         $this->db->set('id_product', $id_product)
-                 ->set('quantity_product', $qte_product)
-                 ->set('id_order' ,$id_order )
-                 ->insert($this->table);
+        ->set('quantity_product', $qte_product)
+        ->set('id_order' ,$id_order )
+        ->insert($this->table);
     }
 
 
@@ -101,7 +101,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->db->where('id_order', $id_order);
         $this->db->delete($this->table);
     }
-        
+    
     
 // =======================================================================//
 // !                  DELETING A PRODUCT FROM AN ORDER                    //

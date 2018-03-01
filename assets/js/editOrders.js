@@ -1,13 +1,12 @@
 let array = document.getElementById('tab_products_order');
 
 function editOrders($id) {
-$( "#customer_order" ).click(function() {
-    $customer = $("#customer_order");
-    console.log($customer);
-});
+    $( "#customer_order" ).click(function() {
+        $customer = $("#customer_order");
+    });
     if ($('h4:contains("Edition de la commande existante")').length > 0) {
-       notify("pe-7s-refresh-2", "<b>Informations : </b>Une commande est déja en cours d'édition !", "danger");
-   } else{
+     notify("pe-7s-refresh-2", "<b>Informations : </b>Une commande est déja en cours d'édition !", "danger");
+ } else{
     /*Disable the datatable buttons that allow the editing of the command*/
     $("a.editOrder").attr("disabled", true);
 

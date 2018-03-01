@@ -1,22 +1,22 @@
 
 $( document ).ready(function() {
-    var colpick = $('.color_pick').each( function() {
-  $(this).minicolors({
-    control: $(this).attr('data-control') || 'hue',
-    inline: $(this).attr('data-inline') === 'true',
-    letterCase: 'lowercase',
-    opacity: false,
-    change: function(hex, opacity) {
-      if(!hex) return;
-      if(opacity) hex += ', ' + opacity;
-      try {
+  var colpick = $('.color_pick').each( function() {
+    $(this).minicolors({
+      control: $(this).attr('data-control') || 'hue',
+      inline: $(this).attr('data-inline') === 'true',
+      letterCase: 'lowercase',
+      opacity: false,
+      change: function(hex, opacity) {
+        if(!hex) return;
+        if(opacity) hex += ', ' + opacity;
+        try {
 
-      } catch(e) {}
-      $(this).select();
-    },
-    theme: 'bootstrap'
+        } catch(e) {}
+        $(this).select();
+      },
+      theme: 'bootstrap'
+    });
   });
-});
 
 });
 
@@ -24,13 +24,13 @@ $( document ).ready(function() {
   $("#btn_edit_groups_colors").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_groups_colors").is(":visible") == true ){
-           $("#btn_edit_groups_colors").text( "Editer les groupes de couleurs" );
-           $("#btn_add_group_colors").attr("disabled", false);
+         $("#btn_edit_groups_colors").text( "Editer les groupes de couleurs" );
+         $("#btn_add_group_colors").attr("disabled", false);
        } else {
-           $("#btn_edit_groups_colors").text( "Annuler l'édition" );
-           $("#btn_add_group_colors").attr("disabled", true);
+         $("#btn_edit_groups_colors").text( "Annuler l'édition" );
+         $("#btn_add_group_colors").attr("disabled", true);
        }
-   });
+     });
     //-------------------------------------------------------------------------------------//
     //
     
@@ -38,23 +38,23 @@ $( document ).ready(function() {
         $("#btn_edit_colors").click(function(){
         //---if the div of the edition is open or closed we change the text of the button---//
         if ($("#collapse_edit_colors").is(":visible") == true ){
-            
-           $("#btn_edit_colors").text( "Editer les couleurs" );
-           $("#btn_add_colors").attr("disabled", false);
+          
+         $("#btn_edit_colors").text( "Editer les couleurs" );
+         $("#btn_add_colors").attr("disabled", false);
        } else {
-           $("#btn_edit_colors").text( "Annuler l'édition" );
-           $("#btn_add_colors").attr("disabled", true);
+         $("#btn_edit_colors").text( "Annuler l'édition" );
+         $("#btn_add_colors").attr("disabled", true);
 
        }
-   });
+     });
     //-------------------------------------------------------------------------------------//
 
 
 
     $('#tab_groups_colors').DataTable({
-        ajax: "encodeGridGroupsColors.html",
-        order: [[ 0, "asc" ]],
-        "columns": [
+      ajax: "encodeGridGroupsColors.html",
+      order: [[ 0, "asc" ]],
+      "columns": [
         //target 0 = collone 0 Datatable
         //data 0 = le tableaux php à l'index 0
         {"targets": 0, data: 0},
@@ -74,29 +74,29 @@ $( document ).ready(function() {
     {"targets": 3,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupColors.html" + '\'' + ',' + '\'' + "#tab_groups_colors" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
     {"targets": 4,render: function(data,full) { 
 
-        if (data[2] == 1) 
-        {
-            return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+      if (data[2] == 1) 
+      {
+        return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
 
-        } else if(data[2] == 0) 
+      } else if(data[2] == 0) 
 
-        {
-            return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
-        }
+      {
+        return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+      }
 
     }}
 
 
     ]
 
-});
+  });
 
 
 
     $('#tab_colors').DataTable({
-        ajax: "encodeGridColors.html",
-        order: [[ 0, "asc" ]],
-        "columns": [
+      ajax: "encodeGridColors.html",
+      order: [[ 0, "asc" ]],
+      "columns": [
         //target 0 = collone 0 Datatable
         //data 0 = le tableaux php à l'index 0
         {"targets": 0, data: 0},
@@ -118,18 +118,18 @@ $( document ).ready(function() {
     {"targets": 5,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusColors.html" + '\'' + ',' + '\'' + "#tab_colors" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
     {"targets": 6,render: function(data,full) { 
 
-        if (data[3] == 1) 
-        {
-            return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
+      if (data[3] == 1) 
+      {
+        return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
 
-        } else if(data[3] == 0) 
+      } else if(data[3] == 0) 
 
-        {
-            return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
-        }
+      {
+        return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'
+      }
 
     }}
 
     ]
 
-});
+  });

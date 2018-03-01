@@ -37,11 +37,11 @@ Class Profil_controller extends CI_Controller
     {
         if($this->session->userdata('id_member')){
             //-----Get all informations of my user and group user-----//
-         $infosUser = $this->modelMembers->getOne($this->id_member);
+           $infosUser = $this->modelMembers->getOne($this->id_member);
             //---Load my view profil and give an array associativ with my variable infouser---//
-         $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
+           $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
 
-     }else{
+       }else{
         redirect(array('login_controller', 'index'));
     }
 

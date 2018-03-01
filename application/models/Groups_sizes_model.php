@@ -9,17 +9,17 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class Groups_sizes_model extends CI_Model
-    {
+Class Groups_sizes_model extends CI_Model
+{
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        private $id_group_size;
-        private $name_group_size;
-        private $actif;
-        private $table = "groups_sizes";
+    private $id_group_size;
+    private $name_group_size;
+    private $actif;
+    private $table = "groups_sizes";
 
-        public $sizes_list;
+    public $sizes_list;
 // =======================================================================//
 // !                   Start methods collections                         //
 // ======================================================================//
@@ -71,7 +71,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
- 
+    
 
     public function setIdGroupSize($id_group_size)
     {
@@ -94,7 +94,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
     }
 
 
-   
+    
 
 // =======================================================================//
 // !                 Method SELECT * groups sizes                       //
@@ -118,82 +118,82 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         }
 
         foreach ($arrayGroupsSizes as $key => $groupsSizes) {
-           $arrayGroupsSizes[$key]->getSizesList();  
-        }
+         $arrayGroupsSizes[$key]->getSizesList();  
+     }
 
-        return $arrayGroupsSizes;
-    }
+     return $arrayGroupsSizes;
+ }
 
 // =======================================================================//
 // !               Method  for insert one groups sizes                    //
 // ======================================================================//
 
-    public function insertOneGroupSizes($model)
-    {
-        $name_group_size = $model->getNameGroupSize();
+ public function insertOneGroupSizes($model)
+ {
+    $name_group_size = $model->getNameGroupSize();
 
-        $this->db->set('name_group_size', $name_group_size)
-                 ->set('actif', "1")
-                 ->insert($this->table);
-    }
+    $this->db->set('name_group_size', $name_group_size)
+    ->set('actif', "1")
+    ->insert($this->table);
+}
 
 
 // =======================================================================//
 // !           Method SELECT * groups sizes for datatable               //
 // ======================================================================//
 
-    public function loadDataGroupsSizesDataTable()
-    {
-        $query = $this->db->get($this->table);
-        return $query->result_array();
-    }
+public function loadDataGroupsSizesDataTable()
+{
+    $query = $this->db->get($this->table);
+    return $query->result_array();
+}
 
 
 // =======================================================================//
 // !           Method for disable and enable the groups sizes           //
 // ======================================================================//
 
-    public function disableEnableOneGroupSize($id)
-    {
-        $this->db->select('actif');
-        $this->db->from($this->table);
-        $this->db->where('id_group_size', $id );
-        $query = $this->db->get();
-        $result = $query->result_array();
+public function disableEnableOneGroupSize($id)
+{
+    $this->db->select('actif');
+    $this->db->from($this->table);
+    $this->db->where('id_group_size', $id );
+    $query = $this->db->get();
+    $result = $query->result_array();
 
-        if($result[0]['actif'] == 0){
+    if($result[0]['actif'] == 0){
 
-            $data = array ('actif' => 1 );
-            $this->db->where('id_group_size' , $id);
-            $this->db->update($this->table , $data);
-        } else {
+        $data = array ('actif' => 1 );
+        $this->db->where('id_group_size' , $id);
+        $this->db->update($this->table , $data);
+    } else {
 
-            $data = array ('actif' => 0 );
-            $this->db->where('id_group_size' , $id);
-            $this->db->update($this->table , $data);
-        }
+        $data = array ('actif' => 0 );
+        $this->db->where('id_group_size' , $id);
+        $this->db->update($this->table , $data);
     }
+}
 
 
 
 // =======================================================================//
 // !           Method SELECT ALL sizes informations FOR MODAL           //
 // ======================================================================//
-    public function selectAllGroupsSizeForModal($id)
+public function selectAllGroupsSizeForModal($id)
+{
+
+    $this->db->select('*')->from('groups_sizes')->where('id_group_size', $id);
+    $query = $this->db->get();
+    foreach ($query->result() as $row)
     {
-
-        $this->db->select('*')->from('groups_sizes')->where('id_group_size', $id);
-        $query = $this->db->get();
-        foreach ($query->result() as $row)
-        {
-            $groupsSizes["id_group_size"] =  $row->id_group_size;
-            $groupsSizes["name_group_size"] = $row->name_group_size;
-            $groupsSizes["actif"] = $row->actif;
-        }
-
-        return $groupsSizes;
-
+        $groupsSizes["id_group_size"] =  $row->id_group_size;
+        $groupsSizes["name_group_size"] = $row->name_group_size;
+        $groupsSizes["actif"] = $row->actif;
     }
+
+    return $groupsSizes;
+
+}
 
 
 
@@ -202,11 +202,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !            Method update a group of sizes by its id                //
 // ======================================================================//
 
-        public function updateNameGroupSizes($model){
-            $data = array ('name_group_size' =>$model->getNameGroupSize());
-            $this->db->where('id_group_size' , $model->getIdGroupSize());
-            $this->db->update($this->table , $data);
-        }
+public function updateNameGroupSizes($model){
+    $data = array ('name_group_size' =>$model->getNameGroupSize());
+    $this->db->where('id_group_size' , $model->getIdGroupSize());
+    $this->db->update($this->table , $data);
+}
 
 
 

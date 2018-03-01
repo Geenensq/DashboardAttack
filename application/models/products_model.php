@@ -9,26 +9,26 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    Class products_model extends CI_Model
-    {
+Class products_model extends CI_Model
+{
 
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-        protected $table = "products";
-        private $id_product;
-        private $name;
-        private $reference;
-        private $description;
-        private $base_price;
-        private $id_group_color;
-        private $id_group_product;
-        private $id_group_size;
-        private $img_url;
-        
-        private $color;
-        private $size;
-        private $group_product;
+    protected $table = "products";
+    private $id_product;
+    private $name;
+    private $reference;
+    private $description;
+    private $base_price;
+    private $id_group_color;
+    private $id_group_product;
+    private $id_group_size;
+    private $img_url;
+    
+    private $color;
+    private $size;
+    private $group_product;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -201,15 +201,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $img_url = $model->getImgUrl();
 
         $this->db->set('product_name' , $name)
-            ->set('reference' , $reference)
-            ->set('description' , $description)
-            ->set('base_price' , $base_price)
-            ->set('img_url' , $img_url)
-            ->set('id_color' , $id_color)
-            ->set('id_group_product' , $id_group_product)
-            ->set('id_size' , $id_size)
-            ->set('actif' , 1)
-            ->insert($this->table);
+        ->set('reference' , $reference)
+        ->set('description' , $description)
+        ->set('base_price' , $base_price)
+        ->set('img_url' , $img_url)
+        ->set('id_color' , $id_color)
+        ->set('id_group_product' , $id_group_product)
+        ->set('id_size' , $id_size)
+        ->set('actif' , 1)
+        ->insert($this->table);
     }
 
 // =======================================================================//
@@ -354,27 +354,27 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 // !          Method for select products for autocompletion             //
 // ======================================================================//
 
-        public function selectALLAutoComplete($search){
-     
+    public function selectALLAutoComplete($search){
+       
         $this->db->select('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name) AS text, id_product AS id');
-            $this->db->from($this->table);
-            $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
-            $this->db->join('colors' , 'products.id_color = colors.id_color');
-            $this->db->join('sizes' , 'products.id_size = sizes.id_size');
-            $this->db->like('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name)', $search);
+        $this->db->from($this->table);
+        $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
+        $this->db->join('colors' , 'products.id_color = colors.id_color');
+        $this->db->join('sizes' , 'products.id_size = sizes.id_size');
+        $this->db->like('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name)', $search);
 
-            $query = $this->db->get();
+        $query = $this->db->get();
 
-            $json = [];
+        $json = [];
 
-            foreach ($query->result_object() as $row){
+        foreach ($query->result_object() as $row){
 
-                $json[] = ['id'=> $row->id, 'text'=> $row->text ];
-            }
-            
-            return $json;
-
+            $json[] = ['id'=> $row->id, 'text'=> $row->text ];
         }
+        
+        return $json;
+
+    }
 
 
 // =======================================================================//
@@ -387,10 +387,10 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         $this->load->model('groups_products_model' , 'modelGroupsProducts');
 
         $this->db->select('id_product , product_name , reference , products.description AS product_description , base_price , img_url , products.actif AS product_actif ,
-        products.id_group_product AS id_group_product  , groups_products.id_group_product AS group_product_id_group_product , groups_products.name_group_product AS name_group_product , groups_products.description AS group_product_description ,
-        groups_products.actif AS group_product_actif , colors.id_color AS id_color , colors.color_name AS color_name , colors.color_code AS color_code , colors.actif AS
-        color_actif , colors.id_group_color AS id_group_color , sizes.id_size AS id_size , sizes.size_name AS size_name , sizes.price AS price , sizes.actif AS size_actif , 
-        sizes.id_group_size AS id_group_size');
+            products.id_group_product AS id_group_product  , groups_products.id_group_product AS group_product_id_group_product , groups_products.name_group_product AS name_group_product , groups_products.description AS group_product_description ,
+            groups_products.actif AS group_product_actif , colors.id_color AS id_color , colors.color_name AS color_name , colors.color_code AS color_code , colors.actif AS
+            color_actif , colors.id_group_color AS id_group_color , sizes.id_size AS id_size , sizes.size_name AS size_name , sizes.price AS price , sizes.actif AS size_actif , 
+            sizes.id_group_size AS id_group_size');
 
         $this->db->from($this->table);
         $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
@@ -439,7 +439,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
             $products[] = $product;
 
             
-        
+            
         }
         
         return $products;
