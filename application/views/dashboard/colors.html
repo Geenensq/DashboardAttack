@@ -17,8 +17,6 @@
   <link href="<?php echo css_url_lib('jquery.minicolors'); ?>" rel="stylesheet"/>
   <!--Datatable css-->
   <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
-  <!--  My global colors CSS    -->
-  <link href="<?php echo css_url('globalColors'); ?>" rel="stylesheet"/>
   <!-- Fonts and icons     -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Fonts Roboto -->
@@ -38,7 +36,7 @@
          </button>
          <h5 class="modal-title" id="modalLabel">Edition du groupe de couleurs</h5>
        </div>
-       <form id="modal_update_name_group_colors" method="POST" action="changeNameGroupColors.html">
+       <form id="modal_update_name_group_colors" method="POST" action="changeNameGroupsColors.html">
          <div class="modal-body">
            <div class="form-group">
              <input type="hidden" class="form-control" name="new_id_group_color" id="new_id_group_color">
@@ -222,7 +220,7 @@
         <h4 class="title">Ajout de groupes de coloris</h4>
       </div>
       <div class="content">
-        <form id="form_add_groups_colors" method="POST" action="addGroupColors.html">
+        <form id="form_add_groups_colors" method="POST" action="addGroupsColors.html">
          <div class="row">
           <div class="col-md-12">
            <div class="form-group">

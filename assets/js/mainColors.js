@@ -71,7 +71,7 @@ $( document ).ready(function() {
     columnDefs:[
 
     {"targets": 2,render: function(data,full) {return '<button type="button" onclick="editGroupsColorsModal('+ data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_groups_colors">Edition </button>'}},
-    {"targets": 3,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupColors.html" + '\'' + ',' + '\'' + "#tab_groups_colors" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+    {"targets": 3,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupsColors.html" + '\'' + ',' + '\'' + "#tab_groups_colors" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
     {"targets": 4,render: function(data,full) { 
 
       if (data[2] == 1) 

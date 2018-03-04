@@ -52,7 +52,7 @@ Class Groups_members_model extends CI_Model
 // =======================================================================//
 // !                Method SELECT one group members                      //
 // ======================================================================//
-    public function getOneGroupMember($id_group_member)
+    public function SelectOneGroupMembers($id_group_member)
     {
         $this->db->select('*');
         $this->db->from($this->table);
@@ -87,8 +87,6 @@ Class Groups_members_model extends CI_Model
         }
         return $arrayGroupsMembers;
     }
-
-
 
 
 

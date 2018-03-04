@@ -47,7 +47,7 @@
     columnDefs:[
 
     {"targets": 3,render: function(data,full) {return '<button type="button" onclick="editGroupsProductsModal('+ data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_groups_products">Edition </button>'}},
-    {"targets": 4,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupProducts.html" + '\'' + ',' + '\'' + "#tab_groups_products" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+    {"targets": 4,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupsProducts.html" + '\'' + ',' + '\'' + "#tab_groups_products" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
     {"targets": 5,render: function(data,full) { 
 
         if (data[3] == 1) 
@@ -81,12 +81,10 @@
         {"targets": 3, data: 3},
         {"targets": 4, data: 4},
         {"targets": 5, data: null},
-        {"targets": 6, data: 7},
-        {"targets": 7, data: 8},
-        {"targets": 8, data: 9},
+        {"targets": 6, data: 6},
+        {"targets": 7, data: null},
+        {"targets": 8, data: null},
         {"targets": 9, data: null},
-        {"targets": 10, data: null},
-        {"targets": 11, data: null},
 
         ],
 
@@ -96,15 +94,15 @@
     columnDefs:[
 
     {"targets": 5,render: function(data,full) {return '<img src="../assets/img/uploaded/' +data[5] +' " height="80" width="80">'}},
-    {"targets": 9,render: function(data,full) {return '<button type="button" onclick="editProductsModal('+ data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_products">Edition </button>'}},
-    {"targets": 10,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusProducts.html" + '\'' + ',' + '\'' + "#tab_products" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
-    {"targets": 11,render: function(data,full) { 
+    {"targets": 7,render: function(data,full) {return '<button type="button" onclick="editProductsModal('+ data[0] + ')" class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_products">Edition </button>'}},
+    {"targets": 8,render: function(data,full) {return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusProducts.html" + '\'' + ',' + '\'' + "#tab_products" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'}},
+    {"targets": 9,render: function(data,full) { 
 
-        if (data[6] == 1) 
+        if (data[7] == 1) 
         {
             return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:green;" class="fa fa-check"></a>'
 
-        } else if(data[6] == 0) 
+        } else if(data[7] == 0) 
 
         {
             return '<a style="border-color:transparent;" disabled class="btn btn-info"><i style="color:red;" class="fa fa-times"></a>'

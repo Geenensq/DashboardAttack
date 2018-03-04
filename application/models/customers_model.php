@@ -221,13 +221,12 @@ Class Customers_model extends CI_Model
 // !          Method for select customers for autocompletion             //
 // ======================================================================//
 
-    public function selectALLAutoComplete($search){
+    public function selectAllCustomersAutoComplete($search){
        
         $this->db->select('CONCAT(firstname," ",lastname) AS text, customers.id_customer AS id');
         $this->db->from($this->table);
         $this->db->like('CONCAT(firstname," ",lastname)', $search);
         $this->db->limit(10);
-
         $query = $this->db->get();
 
         $json = [];
@@ -236,16 +235,15 @@ Class Customers_model extends CI_Model
 
             $json[] = ['id'=> $row->id, 'text'=> $row->text ];
         }
-        
-        return $json;
 
+        return $json;
     }
 
 
 // =======================================================================//
 // !                Method for insert on customers                       //
 // ======================================================================//
-    public function insertOneCustomers($model){
+    public function insertOneCustomer($model){
 
         $firstNameCustomer = $model->getFirstName();
         $lastNameCustomer = $model->getLastname();
@@ -275,7 +273,6 @@ Class Customers_model extends CI_Model
 // =======================================================================//
 // !               Method SELECT * customers for datatable               //
 // ======================================================================//
-
     public function loadDataCustomersDataTable()
     {
         $this->db->select('`id_customer`, `lastname`, `firstname`, `mobil_phone_number`, `phone_number`, `mail`, `address`, `zip_code`, `city`, `groups_customers.name` AS `group_name`, `customers.actif` AS `actif`');
@@ -288,7 +285,6 @@ Class Customers_model extends CI_Model
 // =======================================================================//
 // !               Method UPDATE customers status                        //
 // ======================================================================//
-
     public function disableEnableOneCustomer($id)
     {
         $this->db->select('actif');
@@ -313,10 +309,9 @@ Class Customers_model extends CI_Model
     }
 
 // =======================================================================//
-// !             Method UPDATE ALL customers informations                //
+// !               Method UPDATE customers informations                  //
 // ======================================================================//
-
-    public function updateOneCustomers($model)
+    public function updateOneCustomer($model)
     {
         $data = array (
             'firstname' =>$model->getFirstName(),

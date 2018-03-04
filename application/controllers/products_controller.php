@@ -20,8 +20,6 @@ Class Products_controller extends CI_Controller
     private $reference;
     private $description;
     private $base_price;
-    private $id_color;
-    private $id_size;
     private $img_url;
 
 // =======================================================================//
@@ -61,8 +59,6 @@ Class Products_controller extends CI_Controller
             redirect(array('login_controller', 'index'));
         }
 
-        
-
     }
 
 
@@ -70,7 +66,7 @@ Class Products_controller extends CI_Controller
 // !                  Method for add an group of products                 //
 // ======================================================================//
 
-    public function addGroupProducts()
+    public function addGroupsProducts()
     {
         $this->form_validation->set_rules('name_group_products', '"name_group_products"', 'required');
         $this->form_validation->set_rules('description_group_products', '"description_group_products"', 'required');
@@ -111,46 +107,52 @@ Class Products_controller extends CI_Controller
         $this->form_validation->set_rules('new_desc_product', '" "', 'required|min_length[1]');
         $this->form_validation->set_rules('new_price_product',  '" "', 'required|min_length[1]');
         $this->form_validation->set_rules('new_group_product', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_color_product', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_size_product',  '" "', 'required|min_length[1]');
+
 
         $callBack = array();
 
         if ($this->form_validation->run()) {
 
-
             $this->img_url = $this->uploadImage();
-            
-            
-            $this->modelProducts->setIdProduct($this->input->post('new_id_product'));
-            $this->modelProducts->setName($this->input->post('new_name_product'));
-            $this->modelProducts->setReference($this->input->post('new_ref_products'));
-            $this->modelProducts->setDescription($this->input->post('new_desc_product'));
-            $this->modelProducts->setBasePrice($this->input->post('new_price_product'));
-            
-            if ($this->img_url == "errorImageFormat") {
-                
-                $this->img_url = $this->input->post('image_hidden');
+
+            if ($this->img_url != "errorImageFormat") {
+
                 $this->modelProducts->setImgUrl($this->img_url);
-                
+                $this->modelProducts->setIdProduct($this->input->post('new_id_product'));
+                $this->modelProducts->setName($this->input->post('new_name_product'));
+                $this->modelProducts->setReference($this->input->post('new_ref_products'));
+                $this->modelProducts->setDescription($this->input->post('new_desc_product'));
+                $this->modelProducts->setBasePrice($this->input->post('new_price_product'));
+                $this->modelProducts->setIdGroupProduct($this->input->post('new_group_product'));
+
+
+                $products = $this->modelProducts;
+                $this->modelProducts->updateNameProduct($products);
+                $callBack["confirm"] = "success";
+
+
             } else {
 
+                $this->img_url = $this->input->post('image_hidden');
                 $this->modelProducts->setImgUrl($this->img_url);
+                $this->modelProducts->setIdProduct($this->input->post('new_id_product'));
+                $this->modelProducts->setName($this->input->post('new_name_product'));
+                $this->modelProducts->setReference($this->input->post('new_ref_products'));
+                $this->modelProducts->setDescription($this->input->post('new_desc_product'));
+                $this->modelProducts->setBasePrice($this->input->post('new_price_product'));
+                $this->modelProducts->setIdGroupProduct($this->input->post('new_group_product'));
+
+
+                $products = $this->modelProducts;
+                $this->modelProducts->updateNameProduct($products);
+                $callBack["confirm"] = "errorformat";
+
             }
-
-
-            $this->modelProducts->setIdGroupProduct($this->input->post('new_group_product'));
-            $this->modelProducts->setIdGroupColor($this->input->post('new_color_product'));
-            $this->modelProducts->setIdGroupSize($this->input->post('new_size_product'));
-
-            $products = $this->modelProducts;
-            $this->modelProducts->updateNameProducts($products);
-            $callBack["confirm"] = "success";
 
         } else {
 
 
-            $callBack["errorNewNameColor"] = "error";
+            $callBack["confirm"] = "error";
         }
 
         echo json_encode($callBack);
@@ -190,12 +192,12 @@ Class Products_controller extends CI_Controller
 // ======================================================================//
     public function encodeGridProducts()
     {
-        $results = $this->modelProducts->loadDataProducts();
+        $results = $this->modelProducts->loadDatasProducts();
         $data = array();
 
         foreach ($results as $result) {
             $data[] = array($result['id_product'], $result['product_name'], 
-                $result['reference'],$result['description'],$result['base_price'], $result['img_url'],$result['actif'],$result['name_groups_products'],$result['colors_names'],$result['sizes_names']);
+                $result['reference'],$result['description'],$result['base_price'], $result['img_url'],$result['name_groups_products'],$result['actif']);
         }
 
         echo json_encode(array('data' => $data));
@@ -209,7 +211,7 @@ Class Products_controller extends CI_Controller
     {
         $this->id_group_product = $this->input->post('id');
 
-        $return = $this->modelGroupsProducts->selectAllGroupsProductForModal($this->id_group_product);
+        $return = $this->modelGroupsProducts->selectAllGroupsProductsForModal($this->id_group_product);
         echo json_encode($return);
     }
 
@@ -218,7 +220,7 @@ Class Products_controller extends CI_Controller
 // !               Method get all informations of groups products for modal                  //
 // ==========================================================================================//
 
-    public function changeStatusGroupProducts()
+    public function changeStatusGroupsProducts()
     {
         $this->id_group_product = $this->input->post('id');
         $this->modelGroupsProducts->disableEnableOneGroupProducts($this->id_group_product);
@@ -230,7 +232,7 @@ Class Products_controller extends CI_Controller
 // !                  Method for EDIT AN GROUPS OF PRODUCTS               //
 // ======================================================================//
 
-    public function changeNameGroupProducts()
+    public function changeNameGroupsProducts()
     {
 
         $this->form_validation->set_rules('new_name_group_products', '" "', 'required|min_length[3]');
@@ -286,42 +288,36 @@ Class Products_controller extends CI_Controller
             $callBack = array();
 
             if ($this->form_validation->run()) {
-               
+
 
                 /*Retrieving my POST values ​​to store them in my attributes*/
                 $this->product_name = $this->input->post('product_name');
                 $this->reference = $this->input->post('product_ref');
                 $this->description = $this->input->post('product_desc');
                 $this->base_price = $this->input->post('product_price');
-                $this->id_color = $this->input->post('product_color');
                 $this->id_group_product = $this->input->post('product_group');
-                $this->id_size = $this->input->post('product_size');
 
-
-
-                /* ----------------------------Create my object----------------------------------*/
                 $this->modelProducts->setName($this->product_name);
                 $this->modelProducts->setReference($this->reference);
                 $this->modelProducts->setDescription($this->description);
                 $this->modelProducts->setBasePrice($this->base_price);
                 $this->modelProducts->setIdGroupProduct($this->id_group_product);
                 $this->modelProducts->setImgUrl($this->img_url);
-                /*---------------------------------------*/
-                $this->modelSizes->setIdSize($this->id_size);
-                $this->modelColors->setIdColor($this->id_color);
-                /*---------------------------------------*/
-                
+
                 $modelProducts = $this->modelProducts;
                 
-                $this->modelProducts->insertOneProducts($modelProducts);
+                $this->modelProducts->insertOneProduct($modelProducts);
                 $callBack["confirm"] = "success";
 
+            } else {
+
+                $callBack["confirm"] = "error";
             }
 
 
         } else {
 
-            $callBack["confirm"] = "error";
+            $callBack["confirm"] = "errorformat";
         }
 
         echo json_encode($callBack);
@@ -337,6 +333,7 @@ Class Products_controller extends CI_Controller
         $config['upload_path'] = './assets/img/uploaded';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 1024;
+
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('image')) {

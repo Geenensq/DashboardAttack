@@ -147,7 +147,7 @@ Class Orders_model extends CI_Model
 // =======================================================================//
 // !             Method for get price of shipping by order               //
 // ======================================================================//
-    public function selectShippingPriceOrders($model)
+    public function selectPriceShippingOrders($model)
     {
         $id_order = $model->getIdOrder();
         $this->db->select('id_order , orders.id_method_shipping , methods_shippings.name_method_shipping , methods_shippings.price_method_shipping');
@@ -185,7 +185,7 @@ Class Orders_model extends CI_Model
 // =======================================================================//
 // !         Method for delete an order after delete product order       //
 // ======================================================================//
-    public function deleteOrder($model)
+    public function deleteOrders($model)
     {
         $id_order = $model->getIdOrder();
         $this->db->where('id_order', $id_order);
@@ -270,7 +270,7 @@ Class Orders_model extends CI_Model
 // =======================================================================//
 // !                    Method update an order with id                    //
 // ======================================================================//
-    public function updateOrder($model){
+    public function updateOneOrder($model){
      $id_order = $model->getIdOrder();
      $id_customer = $model->getIdCustomer();
      $date_order = $model->getDateOrder();

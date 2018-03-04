@@ -69,7 +69,7 @@
           {
             "targets": 3,
             render: function(data, full) {
-              return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' + '\'' + "changeStatusGroupSizes.html" + '\'' + ',' + '\'' + "#tab_groups_sizes" + '\'' + ')' + '"' + ' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'
+              return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' + '\'' + "changeStatusGroupsSizes.html" + '\'' + ',' + '\'' + "#tab_groups_sizes" + '\'' + ')' + '"' + ' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>'
             }
           },
           {

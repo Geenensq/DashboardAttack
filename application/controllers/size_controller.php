@@ -96,7 +96,7 @@ Class Size_controller extends CI_Controller
 // !                    Method for add groups sizes                      //
 // ======================================================================//
 
-    public function addGroupSizes()
+    public function addGroupsSizes()
     {
       /*Declaration of the rules of my form*/
       $this->form_validation->set_rules('name_group_sizes', '"name_group_sizes"', 'required|min_length[3]');
@@ -153,10 +153,10 @@ public function encodeGridSizes()
 // =======================================================================//
 // !          Method for activate or desactivate group of sizes          //
 // ======================================================================//
-public function changeStatusGroupSizes()
+public function changeStatusGroupsSizes()
 {
     $this->id_group_size = $this->input->post('id');
-    $this->modelGroupSizes->disableEnableOneGroupSize($this->id_group_size);
+    $this->modelGroupSizes->disableEnableOneGroupSizes($this->id_group_size);
 }
 
 
@@ -174,7 +174,7 @@ public function changeStatusSizes()
 // !                    Method for change informations of size for modal                     //
 // ==========================================================================================//
 
-public function changeNameGroupSizes()
+public function changeNameGroupsSizes()
 {
 
     $this->form_validation->set_rules('new_name_group_sizes', '" "', 'required|min_length[1]');
@@ -220,7 +220,7 @@ public function changeNameSizes()
         
         $size = $this->modelSizes;
 
-        $this->modelSizes->updateNameSizes($size);
+        $this->modelSizes->updateNameSize($size);
         $callBack["confirm"] = "success";
 
     } else{
@@ -242,7 +242,7 @@ public function getInfosGroupsSizesModal()
 {
     $this->id_group_size = $this->input->post('id');
 
-    $return = $this->modelGroupSizes->selectAllGroupsSizeForModal($this->id_group_size);
+    $return = $this->modelGroupSizes->selectAllGroupsSizesForModal($this->id_group_size);
     echo json_encode($return);
 }
 

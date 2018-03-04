@@ -19,7 +19,7 @@ Class groups_colors_model extends CI_Model
 	private $table = "groups_colors"; 
 	private $id_group_color;
 	private $name_group_colors;
- 
+
     public $colors_list;
 
 // =======================================================================//
@@ -90,19 +90,19 @@ Class groups_colors_model extends CI_Model
         }
         
         foreach ($arrayGroupsColors as $key => $groupsColors) {
-         $arrayGroupsColors[$key]->getColorsList();  
-     }
-     
-     return $arrayGroupsColors;
+           $arrayGroupsColors[$key]->getColorsList();  
+       }
 
- }
+       return $arrayGroupsColors;
+
+   }
 
 // =======================================================================//
 // !              Method for insert an group of colors                   //
 // ======================================================================//
 
- public function insertOneGroupColors($model)
- {
+public function insertOneGroupColors($model)
+{
     $name = $model->getNameGroupColors();
     $this->db->set('name_group_color', $name)
     ->set('actif' , 1)
@@ -124,7 +124,7 @@ public function loadDataGroupsColorsDataTable()
 // !           Method for disable and enable the groups colors           //
 // ======================================================================//
 
-public function disableEnableOneGroupColor($id)
+public function disableEnableOneGroupColors($id)
 {
     $this->db->select('actif');
     $this->db->from($this->table);
@@ -150,11 +150,12 @@ public function disableEnableOneGroupColor($id)
 // =======================================================================//
 // !           Method SELECT ALL colors informations FOR MODAL           //
 // ======================================================================//
-public function selectAllGroupsColorForModal($id)
+public function selectAllGroupsColorsForModal($id)
 {
 
     $this->db->select('*')->from('groups_colors')->where('id_group_color', $id);
     $query = $this->db->get();
+
     foreach ($query->result() as $row)
     {
         $groupsColors["id_group_color"] =  $row->id_group_color;
@@ -166,7 +167,6 @@ public function selectAllGroupsColorForModal($id)
 
 }
 
-
 // =======================================================================//
 // !            Method update a group of colors by its id                //
 // ======================================================================//
@@ -177,22 +177,18 @@ public function updateNameGroupColors($model){
     $this->db->update($this->table , $data);
 }
 
-
-
 // =======================================================================//
 // !                   Start methods collections                         //
 // ======================================================================//
 
 public function getColorsList()
 {
-
-        /// chargement du modele et on selectionne toute les couleur du groupe passé en params
+    //Loading the module and we select all the colors of the group passed in parameters//
     $this->load->model('colors_model', 'modelColors');
     $this->db->select('*');
     $this->db->from('colors');;
     $this->db->where('id_group_color', $this->id_group_color);
     $query = $this->db->get();
-        //On boucle sur le retour MYSQL
     $colorsCollection = array();
     
     foreach ($query->result_object() as $ligne)
@@ -209,8 +205,6 @@ public function getColorsList()
 
     
 }
-
-
 
 
 }

@@ -21,8 +21,6 @@
    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
    <!-- icon font pack -->
    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet"/>
-   <!--  My global CSS    -->
-   <link href="<?php echo css_url('globalCustomers'); ?>" rel="stylesheet"/>
 </head>
 <body>
 
@@ -36,7 +34,7 @@
                </button>
                <h5 class="modal-title" id="modalLabel">Edition du groupe client</h5>
             </div>
-            <form id="modal_update_name_group_customer" method="POST" action="changeNameGroupCustomer.html">
+            <form id="modal_update_name_group_customer" method="POST" action="changeNameGroupsCustomers.html">
                <div class="modal-body">
                   <div class="form-group">
                      <input type="hidden" class="form-control" name="id_group_customer" id="id_group_customer">
@@ -67,7 +65,7 @@
                </button>
                <h5 class="modal-title" id="modalLabel">Edition du client</h5>
             </div>
-            <form id="modal_update_customer" method="POST" action="changeInfosCustomer.html">
+            <form id="modal_update_customer" method="POST" action="changeInfosCustomers.html">
                <div class="modal-body">
                   <div class="form-group">
                      <input required type="hidden" class="form-control" name="id_customer" id="id_customer">
@@ -233,7 +231,7 @@
                      <h4 class="title">Ajout de groupes de clients</h4>
                   </div>
                   <div class="content">
-                     <form id="form_add_group_customers" method="POST" action="addGroupCustomers.html">
+                     <form id="form_add_group_customers" method="POST" action="addGroupsCustomers.html">
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group">

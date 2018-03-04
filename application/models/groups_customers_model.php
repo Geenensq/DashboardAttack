@@ -54,7 +54,7 @@ public function setNameGroupCustomer($name)
 // =======================================================================//
 // !                Method for insert an group customers                 //
 // ======================================================================//
-public function insertGroupCustomer($model)
+public function insertOneGroupCustomers($model)
 {
     $name_group_customer = $model->getNameGroupCustomer();
 
@@ -96,7 +96,7 @@ public function loadDataGroupsCustomersDataTable()
 // !        Method for disable and enable the groups customers           //
 // ======================================================================//
 
-public function disableEnableOneGroupCustomer($id)
+public function disableEnableOneGroupCustomers($id)
 {
     $this->db->select('actif');
     $this->db->from($this->table);

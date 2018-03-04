@@ -1,4 +1,5 @@
 let array = document.getElementById('tab_products_order');
+var clicked = false;
 
 function editOrders($id) {
     $( "#customer_order" ).click(function() {
@@ -56,6 +57,8 @@ function editOrders($id) {
         let cell9 = row.insertCell(8);
         let cell10 = row.insertCell(9);
         let cell11 = row.insertCell(10);
+        let cell12 = row.insertCell(11);
+
 
         cell1.innerHTML = order_product[i]["id_product"];
         cell2.innerHTML = order_product[i]["quantity_product"];
@@ -68,11 +71,49 @@ function editOrders($id) {
         cell9.innerHTML = order_product[i]["size_name"];
         cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
         cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';   
-
+        cell12.innerHTML = '<a id="editRow" onClick="editRowOrder('+row.id+')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
     }        
 }
 
 
+
+}
+
+
+function editRowOrder(rowTableau){
+
+        if (clicked === false) { /// si le boutton n'à pas été cliqué on entre dans la condition
+            clicked = true; 
+            $("#editRow").css("color", "#FF4A55"); 
+            
+            rowTableau.childNodes[5].setAttribute("contenteditable", "true"); 
+            rowTableau.childNodes[7].setAttribute("contenteditable", "true"); 
+            rowTableau.childNodes[8].setAttribute("contenteditable", "true"); 
+           
+            rowTableau.childNodes[5].style.color = "#FF4A55";
+            rowTableau.childNodes[5].style.fontWeight = "600"; 
+            rowTableau.childNodes[7].style.color = "#FF4A55";
+            rowTableau.childNodes[7].style.fontWeight = "600"; 
+            rowTableau.childNodes[8].style.color = "#FF4A55";
+            rowTableau.childNodes[8].style.fontWeight = "600"; 
+
+        } else if (clicked === true) {
+            clicked = false;
+            
+            $("#editRow").css("color", "#337ab7"); 
+
+            rowTableau.childNodes[5].setAttribute("contenteditable", "false"); 
+            rowTableau.childNodes[7].setAttribute("contenteditable", "false"); 
+            rowTableau.childNodes[8].setAttribute("contenteditable", "false"); 
+
+            rowTableau.childNodes[5].style.color = "#333";
+            rowTableau.childNodes[5].style.fontWeight = ""; 
+            rowTableau.childNodes[7].style.color = "#333";
+            rowTableau.childNodes[7].style.fontWeight = ""; 
+            rowTableau.childNodes[8].style.color = "#333";
+            rowTableau.childNodes[8].style.fontWeight = ""; 
+
+        }
 
 
 

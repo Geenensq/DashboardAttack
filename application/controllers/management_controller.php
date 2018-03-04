@@ -38,7 +38,7 @@ Class Management_controller extends CI_Controller
     {
         if($this->session->userdata('id_member')){
 
-            if($this->session->userdata('id_member') !== 1){
+            if($this->session->userdata('id_member') != 1){
                 $data = $this->modelGroupsMembers->selectAll();
                 $array = [];
                 $array['groups_members'] = $data;
@@ -107,7 +107,7 @@ Class Management_controller extends CI_Controller
             $this->modelMembers->SetIdGroupMember($this->id_group_member);
             $this->modelMembers->setActif(1);
             $membersModel = $this->modelMembers;
-            $this->modelMembers->updateMemberModal($membersModel);
+            $this->modelMembers->updateMembersModal($membersModel);
 
             $callBack["confirm"] = "success";
             echo json_encode($callBack);
@@ -141,7 +141,7 @@ Class Management_controller extends CI_Controller
                 $this->modelMembers->setId($this->id_member);
                 $this->modelMembers->setPassword($this->password);
                 $membersModel = $this->modelMembers;
-                $this->modelMembers->updatePasswordMember($membersModel);
+                $this->modelMembers->updatePasswordMembers($membersModel);
 
                 $callBack["confirm"] = "success";
                 echo json_encode($callBack);

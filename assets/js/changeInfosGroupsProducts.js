@@ -4,7 +4,7 @@ $(document).ready(function() {
         new_name_group_products = $(this).find("input[name=new_name_group_products]").val();
         new_desc_group_products = $(this).find("input[name=new_desc_group_products]").val();
        /* url = $(this).attr("action");*/
-        url = "changeNameGroupProducts.html";
+        url = "changeNameGroupsProducts.html";
         $.post(url, {
             new_id_group_products: new_id_group_products,
             new_name_group_products: new_name_group_products,

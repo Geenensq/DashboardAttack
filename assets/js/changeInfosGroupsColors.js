@@ -3,7 +3,7 @@ $(document).ready(function() {
         new_id_group_color = $(this).find("input[name=new_id_group_color]").val();
         new_name_group_colors = $(this).find("input[name=new_name_group_colors]").val();
        /* url = $(this).attr("action");*/
-        url = "changeNameGroupColors.html";
+        url = "changeNameGroupsColors.html";
         $.post(url, {
             new_id_group_color: new_id_group_color,
             new_name_group_colors: new_name_group_colors

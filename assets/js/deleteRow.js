@@ -30,7 +30,7 @@ function deleteRow($row, $id, $qte) {
 }
 
 function deleteProductBase($id_product , $id_order){
-    let url = "removeProductOrder.html";
+    let url = "removeProductsOrders.html";
     let form = {id_product : $id_product , id_order:$id_order};
     let result_delete = send_post(form , url);
     

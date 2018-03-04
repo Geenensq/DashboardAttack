@@ -21,14 +21,8 @@ Class products_model extends CI_Model
     private $reference;
     private $description;
     private $base_price;
-    private $id_group_color;
     private $id_group_product;
-    private $id_group_size;
     private $img_url;
-    
-    private $color;
-    private $size;
-    private $group_product;
 
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -54,19 +48,9 @@ Class products_model extends CI_Model
         return $this->img_url;
     }
 
-    public function getIdGroupColor()
-    {
-        return $this->id_group_color;
-    }
-
     public function getIdGroupProduct()
     {
         return $this->id_group_product;
-    }
-
-    public function getIdGroupSize()
-    {
-        return $this->id_group_size;
     }
 
     public function getReference()
@@ -78,24 +62,6 @@ Class products_model extends CI_Model
     {
         return $this->description;
     }
-
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    public function getGroupProduct()
-    {
-        return $this->group_product;
-    }
-
-
-
 
 // =======================================================================//
 // !                     Start methods setters                           //
@@ -138,45 +104,9 @@ Class products_model extends CI_Model
         return $this;
     }
 
-    public function setIdGroupColor($id_group_color)
-    {
-        $this->id_group_color = $id_group_color;
-
-        return $this;
-    }
-
     public function setIdGroupProduct($id_group_product)
     {
         $this->id_group_product = $id_group_product;
-
-        return $this;
-    }
-
-    public function setIdGroupSize($id_group_size)
-    {
-        $this->id_group_size = $id_group_size;
-
-        return $this;
-    }
-
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    public function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-
-    public function setGroupProduct($group_product)
-    {
-        $this->group_product = $group_product;
 
         return $this;
     }
@@ -186,18 +116,14 @@ Class products_model extends CI_Model
 // !                    Method for insert an products                    //
 // ======================================================================//
 
-    public function insertOneProducts($model)
+    public function insertOneProduct($model)
     {
-        $this->load->model('sizes_model', 'modelSizes');
-        $this->load->model('colors_model', 'modelColors');
 
         $name = $model->getName();
         $reference = $model->getReference();
         $description = $model->getDescription();
         $base_price = $model->getBasePrice();
         $id_group_product = $model->getIdGroupProduct();
-        $id_color = $model->modelColors->getIdColor();
-        $id_size = $model->modelSizes->getIdSize();
         $img_url = $model->getImgUrl();
 
         $this->db->set('product_name' , $name)
@@ -205,9 +131,7 @@ Class products_model extends CI_Model
         ->set('description' , $description)
         ->set('base_price' , $base_price)
         ->set('img_url' , $img_url)
-        ->set('id_color' , $id_color)
         ->set('id_group_product' , $id_group_product)
-        ->set('id_size' , $id_size)
         ->set('actif' , 1)
         ->insert($this->table);
     }
@@ -273,7 +197,7 @@ Class products_model extends CI_Model
 // !                  Method update a products by its id                  //
 // ======================================================================//
 
-    public function updateNameProducts($model)
+    public function updateNameProduct($model)
     {
         $data = array ('id_product' =>$model->getIdProduct(),
             'product_name' =>$model->getName(),
@@ -281,9 +205,7 @@ Class products_model extends CI_Model
             'description' =>$model->getDescription(),
             'base_price' =>$model->getBasePrice(),
             'img_url' =>$model->getImgUrl(),
-            'id_group_product' =>$model->getIdGroupProduct(),
-            'id_color' =>$model->getIdGroupColor(),
-            'id_size' =>$model->getIdGroupSize()
+            'id_group_product' =>$model->getIdGroupProduct()
         );
 
         $this->db->where('id_product' , $model->getIdProduct());
@@ -292,37 +214,28 @@ Class products_model extends CI_Model
 
 
 // =======================================================================//
-// !           Method SELECT *  colors for datatable                     //
+// !           Method SELECT * products for datatable                     //
 // ======================================================================//
 
-    public function loadDataProducts()
+    public function loadDatasProducts()
     {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , colors.color_name AS colors_names , sizes.size_name AS sizes_names');
-
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products');
         $this->db->from($this->table);
         $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
-        $this->db->join('colors', 'products.id_color = colors.id_color');
-        $this->db->join('sizes', 'products.id_size = sizes.id_size');
-
         $query = $this->db->get();
-        
+    
         return $query->result_array();
     }
-
-
 
 // =======================================================================//
 // !           Method SELECT ALL products informations FOR MODAL           //
 // ======================================================================//
     public function selectAllProductsForModal($id)
     {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products , colors.color_name AS colors_names , colors.id_color AS id_color , sizes.size_name AS sizes_names , sizes.id_size AS id_size , sizes.price AS size_price');
+        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products');
 
         $this->db->from($this->table);
         $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
-        $this->db->join('colors', 'products.id_color = colors.id_color');
-        $this->db->join('sizes', 'products.id_size = sizes.id_size');
-
         $this->db->where('id_product' , $id);
         $query = $this->db->get();
 
@@ -337,12 +250,7 @@ Class products_model extends CI_Model
             $products["img_url"] = $row->img_url;
             $products["name_groups_products"] = $row->name_groups_products;
             $products["id_groups_products"] = $row->id_groups_products;
-            $products["colors_names"] = $row->colors_names;
-            $products["id_color"] = $row->id_color;
-            $products["sizes_names"] = $row->sizes_names;
-            $products["id_size"] = $row->id_size;
             $products["actif"] = $row->actif;
-            $products["sizes_price"] = $row->size_price;
         }
 
         return $products;
@@ -354,21 +262,17 @@ Class products_model extends CI_Model
 // !          Method for select products for autocompletion             //
 // ======================================================================//
 
-    public function selectALLAutoComplete($search){
-       
-        $this->db->select('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name) AS text, id_product AS id');
+    public function selectAllProductsAutoComplete($search){
+
+        $this->db->select('CONCAT(reference, " " ,product_name) AS text, id_product AS id');
         $this->db->from($this->table);
         $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
-        $this->db->join('colors' , 'products.id_color = colors.id_color');
-        $this->db->join('sizes' , 'products.id_size = sizes.id_size');
-        $this->db->like('CONCAT(reference, " " ,product_name, " " ,color_name, " ",size_name)', $search);
+        $this->db->like('CONCAT(reference, " " ,product_name)', $search);
 
         $query = $this->db->get();
-
         $json = [];
 
         foreach ($query->result_object() as $row){
-
             $json[] = ['id'=> $row->id, 'text'=> $row->text ];
         }
         
@@ -377,84 +281,7 @@ Class products_model extends CI_Model
     }
 
 
-// =======================================================================//
-// !                                                                     //
-// ======================================================================//
-    public function selectAll()
-    {
-        $this->load->model('colors_model' , 'modelColors');
-        $this->load->model('sizes_model' , 'modelSizes');
-        $this->load->model('groups_products_model' , 'modelGroupsProducts');
-
-        $this->db->select('id_product , product_name , reference , products.description AS product_description , base_price , img_url , products.actif AS product_actif ,
-            products.id_group_product AS id_group_product  , groups_products.id_group_product AS group_product_id_group_product , groups_products.name_group_product AS name_group_product , groups_products.description AS group_product_description ,
-            groups_products.actif AS group_product_actif , colors.id_color AS id_color , colors.color_name AS color_name , colors.color_code AS color_code , colors.actif AS
-            color_actif , colors.id_group_color AS id_group_color , sizes.id_size AS id_size , sizes.size_name AS size_name , sizes.price AS price , sizes.actif AS size_actif , 
-            sizes.id_group_size AS id_group_size');
-
-        $this->db->from($this->table);
-        $this->db->join('groups_products' , 'products.id_group_product = groups_products.id_group_product');
-        $this->db->join('colors' , 'products.id_color = colors.id_color');
-        $this->db->join('sizes' , 'products.id_size = sizes.id_size');
-
-        $query = $this->db->get();
-
-        $products = array();
-
-        foreach ($query->result_object() as $ligne) {
-
-            $product = new products_model();
-            $product->setIdProduct($ligne->id_product);
-            $product->setName($ligne->product_name);
-            $product->setReference($ligne->reference);
-            $product->setDescription($ligne->product_description);
-            $product->setBasePrice($ligne->base_price);
-            $product->setImgUrl($ligne->img_url);
-            $product->setIdGroupProduct($ligne->id_group_product);
-
-            $color = new colors_model();
-            $color->setIdColor($ligne->id_color);
-            $color->setColorName($ligne->color_name);
-            $color->setColorCode($ligne->color_code);
-            $color->setActif($ligne->color_actif);
-
-            $size = new sizes_model();
-            $size->setIdSize($ligne->id_size);
-            $size->setName($ligne->size_name);
-            $size->setPrice($ligne->price);
-            $size->setActif($ligne->size_actif);
-            $size->setIdGroupSize($ligne->id_group_size);
-
-            $group_product = new groups_products_model();
-            $group_product->setIdGroupProduct($ligne->group_product_id_group_product);
-            $group_product->setName($ligne->name_group_product);
-            $group_product->setDescription($ligne->group_product_description);
-            $group_product->setActif($ligne->group_product_actif);
-
-
-            $product->setColor($color);
-            $product->setSize($size);
-            $product->setGroupProduct($group_product);
-
-            $products[] = $product;
-
-            
-            
-        }
-        
-        return $products;
-
-
-    }
-
-
-
-
 }
-
-
-
-
 
 
 

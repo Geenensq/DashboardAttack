@@ -26,8 +26,8 @@ Class colors_model extends CI_Model
 // !                     Start methods getters                           //
 // ======================================================================//
 
-   public function getIdColor()
-   {
+public function getIdColor()
+{
     return $this->id_color;
 }
 
@@ -202,8 +202,7 @@ public function selectAllColorsForModal($id)
  // =======================================================================//
 // !                  Method update a colors by its id                    //
 // ======================================================================//
-
-public function updateNameColors($model)
+public function updateNameColor($model)
 {
     $data = array ('id_color' =>$model->getIdColor(),
      'color_name' =>$model->getColorName(),

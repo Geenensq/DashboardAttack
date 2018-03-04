@@ -200,7 +200,7 @@ Class Sizes_model extends CI_Model
 // !                  Method update a size by its id                    //
 // ======================================================================//
 
-    public function updateNameSizes($model){
+    public function updateNameSize($model){
         $data = array ('id_size' =>$model->getIdSize(),
             'size_name' =>$model->getName(),
             'price' =>$model->getPrice(),

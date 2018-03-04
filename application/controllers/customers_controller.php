@@ -64,7 +64,7 @@ Class Customers_controller extends CI_Controller
 // =======================================================================//
 // !                  Method for add an group of customers                //
 // ======================================================================//
-    public function addGroupCustomers()
+    public function addGroupsCustomers()
     {
         /*Declaration of the rules of my form*/
         $this->form_validation->set_rules('name_group_customers', '"name_group_customers"', 'required|min_length[3]');
@@ -72,7 +72,7 @@ Class Customers_controller extends CI_Controller
         if ($this->form_validation->run()) {
             $callBack = array();
             $this->modelGroupCustomers->setNameGroupCustomer($this->nameGroupCustomers);
-            $this->modelGroupCustomers->insertGroupCustomer($this->modelGroupCustomers);
+            $this->modelGroupCustomers->insertOneGroupCustomers($this->modelGroupCustomers);
 
             $callBack["confirm"] = "success";
 
@@ -117,16 +117,16 @@ Class Customers_controller extends CI_Controller
 // =======================================================================//
 // !      Method for activate or desactivate and group of customers      //
 // ======================================================================//
-    public function changeStatusGroupCustomer()
+    public function changeStatusGroupsCustomers()
     {
         $this->id_group_customer = $this->input->post('id');
-        $this->modelGroupCustomers->disableEnableOneGroupCustomer($this->id_group_customer);
+        $this->modelGroupCustomers->disableEnableOneGroupCustomers($this->id_group_customer);
     }
 
 // =======================================================================//
 // !      Method for activate or desactivate customers                   //
 // ======================================================================//
-    public function changeStatusCustomer()
+    public function changeStatusCustomers()
     {
         $this->id_customer = $this->input->post('id');
         $this->modelCustomers->disableEnableOneCustomer($this->id_customer);
@@ -136,7 +136,7 @@ Class Customers_controller extends CI_Controller
 // =======================================================================//
 // !            Method UPDATE an group of customers on modal             //
 // ======================================================================//
-    public function changeNameGroupCustomer()
+    public function changeNameGroupsCustomers()
     {
         $this->form_validation->set_rules('new_name_group_customer', '" "', 'required|min_length[3]');
         $callBack = array();
@@ -159,7 +159,7 @@ Class Customers_controller extends CI_Controller
 // =======================================================================//
 // !                 Method UPDATE an customers on modal                 //
 // ======================================================================//
-    public function changeInfosCustomer()
+    public function changeInfosCustomers()
     {
         $this->form_validation->set_rules('id_customer', '"id_customer"', 'required|min_length[1]');
         $this->form_validation->set_rules('new_name_customer', '"new_name_customer"', 'required|min_length[1]');
@@ -189,7 +189,7 @@ Class Customers_controller extends CI_Controller
             $this->modelCustomers->setIdGroupCustomer($this->input->post('new_group_customer'));
             $MembersModel = $this->modelCustomers;
             
-            $this->modelCustomers->updateOneCustomers($MembersModel);
+            $this->modelCustomers->updateOneCustomer($MembersModel);
 
             $callBack["confirm"] = "success";
             
@@ -247,7 +247,7 @@ Class Customers_controller extends CI_Controller
             /*-------------------------------------------------------------------------------*/
 
             $customerModel = $this->modelCustomers;
-            $this->modelCustomers->insertOneCustomers($customerModel);
+            $this->modelCustomers->insertOneCustomer($customerModel);
             $callBack["confirm"] = "success";
 
         } else {

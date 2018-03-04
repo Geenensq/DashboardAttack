@@ -132,7 +132,7 @@ Class Groups_products_model extends CI_Model
 // =======================================================================//
 // !           Method SELECT ALL colors informations FOR MODAL           //
 // ======================================================================//
-    public function selectAllGroupsProductForModal($id)
+    public function selectAllGroupsProductsForModal($id)
     {
 
         $this->db->select('*')->from('groups_products')->where('id_group_product', $id);
@@ -186,7 +186,6 @@ Class Groups_products_model extends CI_Model
         $this->db->where('id_group_product' , $model->getIdGroupProduct());
         $this->db->update($this->table , $data);
     }
-
 
 
 }

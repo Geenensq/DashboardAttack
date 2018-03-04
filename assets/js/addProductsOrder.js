@@ -5,7 +5,7 @@ function addProductsOrder($id_order) {
     let id_order = $id_order;
     /*END DEFINES VARIABLES*/
 
-    url = "addProductOrder.html"
+    url = "addProductsOrders.html"
     $.post(url, {
         id_product_order: id_product_order,
         quantity_product_order: quantity_product_order,

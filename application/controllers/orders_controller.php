@@ -49,15 +49,13 @@ Class Orders_controller extends CI_Controller
             $states = $this->modelStates->selectAll();
             $shipping = $this->modelShipping->selectAll();
             $payments = $this->modelPayments->selectAll();
-            $products = $this->modelProducts->selectAll();
-
-            $array = [];
             
+            $array = [];
             $array['customers'] = $customers;
             $array['states'] = $states;
             $array['shipping'] = $shipping;
             $array['payments'] = $payments;
-            $array['products'] = $products;
+         
 
 
             $this->load->view('dashboard/orders.html', $array);
@@ -74,7 +72,7 @@ Class Orders_controller extends CI_Controller
     public function getCustomersAutoComplete(){
 
         $search = $this->input->get('q', FALSE);
-        $results = $this->modelCustomers->selectALLAutoComplete($search);
+        $results = $this->modelCustomers->selectAllCustomersAutoComplete($search);
 
         echo json_encode($results);
     }
@@ -83,12 +81,12 @@ Class Orders_controller extends CI_Controller
 // =======================================================================//
 // !            Method for get the price of shipping method               //
 // ======================================================================//
-    public function getShippingInfos()
+    public function getShippingsInfos()
     {
         $this->id_method_shipping = $this->input->post('id');
         $this->modelShipping->setIdMethodShipping($this->id_method_shipping);
         $modelShipping = $this->modelShipping;
-        $infosMethodShipping = $this->modelShipping->selectShippingInfos($modelShipping);
+        $infosMethodShipping = $this->modelShipping->selectShippingsInfos($modelShipping);
         
         echo json_encode($infosMethodShipping);
     }
@@ -97,13 +95,13 @@ Class Orders_controller extends CI_Controller
 // =======================================================================//
 // !         Method for get the price of shipping of the order            //
 // ======================================================================//
-    public function getShippingPriceOrders()
+    public function getShippingsPriceOrders()
     {
         $this->id_order = $this->input->post('id');
         $this->modelOrders->setIdOrder($this->id_order);
         $modelOrders = $this->modelOrders;
 
-        $infosPriceShipping = $this->modelOrders->selectShippingPriceOrders($modelOrders);
+        $infosPriceShipping = $this->modelOrders->selectPriceShippingOrders($modelOrders);
         
         echo json_encode($infosPriceShipping);
     }
@@ -112,7 +110,7 @@ Class Orders_controller extends CI_Controller
 // =======================================================================//
 // !                  Method to change the delivery method                //
 // ======================================================================//
-    public function changeShippingMethod()
+    public function changeShippingsMethod()
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_method_shipping = $this->input->post('id_method_shipping');
@@ -131,7 +129,7 @@ Class Orders_controller extends CI_Controller
     public function getProductsAutoComplete(){
 
         $search = $this->input->get('q', FALSE);
-        $results = $this->modelProducts->selectALLAutoComplete($search);
+        $results = $this->modelProducts->selectAllProductsAutoComplete($search);
         echo json_encode($results);
 
     }
@@ -151,7 +149,7 @@ Class Orders_controller extends CI_Controller
        /*****************************Delete orders**********************************/
        $this->modelOrders->setIdOrder($this->id_order);
        $modelOrders = $this->modelOrders;
-       $this->modelOrders->deleteOrder($modelOrders);
+       $this->modelOrders->deleteOrders($modelOrders);
    }
    
 
@@ -278,7 +276,7 @@ Class Orders_controller extends CI_Controller
 
             $order = $this->modelOrders;
 
-            $this->modelOrders->updateOrder($order);
+            $this->modelOrders->updateOneOrder($order);
             $callBack["confirm"] = "success";
 
         } else {
@@ -295,7 +293,7 @@ Class Orders_controller extends CI_Controller
 // !                     INSERT ONE PRODUCT ORDER                        //
 // ======================================================================//
 
-    public function addProductOrder()
+    public function addProductsOrders()
     {
         $this->id_product = $this->input->post('id_product_order');
         $this->qte_product = $this->input->post('quantity_product_order');
@@ -314,7 +312,7 @@ Class Orders_controller extends CI_Controller
 // ==========================================================================================//
 // !                       Method to remove a product from a order                           //
 // ==========================================================================================//
-    public function removeProductOrder()
+    public function removeProductsOrders()
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product');
@@ -330,7 +328,7 @@ Class Orders_controller extends CI_Controller
 // ==========================================================================================//
 // !                        Method to UPDATE the price of an order                           //
 // ==========================================================================================//
-    public function editPriceOrder()
+    public function editPriceOrders()
     {
         $this->id_order = $this->input->post('id_order');
         $this->price_order = $this->input->post('price');
@@ -347,7 +345,7 @@ Class Orders_controller extends CI_Controller
 // !              Method to find out if a product is already in a order                      //
 // ==========================================================================================//
 
-    public function checkProductInOrder()
+    public function checkProductInOrders()
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product_check');
@@ -365,7 +363,7 @@ Class Orders_controller extends CI_Controller
 // !                 method to update the number of the product in the order                 //
 // ==========================================================================================//
 
-    public function EditQuantityProduct()
+    public function EditQuantityProducts()
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product');

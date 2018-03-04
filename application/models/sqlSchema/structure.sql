@@ -73,10 +73,10 @@ CREATE TABLE products(
         description      Text ,
         base_price       Float NOT NULL ,
         img_url          Varchar (255) NOT NULL ,
+        actif            Bool NOT NULL ,
         id_group_product Int NOT NULL ,
         id_color         Int NOT NULL ,
         id_size          Int NOT NULL ,
-        actif              Bool NOT NULL ,
         PRIMARY KEY (id_product )
 )ENGINE=InnoDB;
 
@@ -153,6 +153,7 @@ CREATE TABLE groups_colors(
 CREATE TABLE orders(
         id_order           int (11) Auto_increment  NOT NULL ,
         date_order         Date NOT NULL ,
+        status_order       Varchar (255) NOT NULL ,
         comment_order      Text NOT NULL ,
         price_order        Float NOT NULL ,
         id_customer        Int NOT NULL ,
@@ -190,8 +191,9 @@ CREATE TABLE methods_payments(
 #------------------------------------------------------------
 
 CREATE TABLE methods_shippings(
-        id_method_shipping   int (11) Auto_increment  NOT NULL ,
-        name_method_shipping Varchar (25) NOT NULL ,
+        id_method_shipping    int (11) Auto_increment  NOT NULL ,
+        name_method_shipping  Varchar (25) NOT NULL ,
+        price_method_shipping Float NOT NULL ,
         PRIMARY KEY (id_method_shipping )
 )ENGINE=InnoDB;
 
@@ -215,6 +217,9 @@ CREATE TABLE messages(
 
 CREATE TABLE products_orders(
         quantity_product Varchar (25) NOT NULL ,
+        final_price      Float NOT NULL ,
+        final_sizes      Varchar (25) ,
+        final_colors     Varchar (25) ,
         id_product       Int NOT NULL ,
         id_order         Int NOT NULL ,
         PRIMARY KEY (id_product ,id_order )

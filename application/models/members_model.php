@@ -165,7 +165,7 @@ Class Members_model extends CI_Model
 // ==================================================================================//
 // !                        Method SELECT ONE user by his id                        //
 // =================================================================================//
-    public function getOne($id)
+    public function selectOne($id)
     {
         $this->db->select('*');
         $this->db->from($this->table);
@@ -180,13 +180,13 @@ Class Members_model extends CI_Model
         $myMembers->setPassword($result->password);
         $myMembers->setActif($result->actif);
         $myMembers->setEmail($result->email);
-        $myMembers->group_member = $myMembers->group_member->getOneGroupMember($result->id_group_member);
+        $myMembers->group_member = $myMembers->group_member->SelectOneGroupMembers($result->id_group_member);
         return $myMembers;
     }
 // ==================================================================================//
 // !                        Method SELECT ONE * members                             //
 // =================================================================================//
-    public function getAll()
+    public function selectAll()
     {
         $query = $this->db->get($this->table);
         foreach ($query->result_object() as $ligne)
@@ -206,7 +206,7 @@ Class Members_model extends CI_Model
 // ==================================================================================//
 // !                        Method for INSERT an members                            //
 // =================================================================================//
-    public function insertMember($model)
+    public function insertOneMember($model)
     {
         $login  = $model->getLogin();
         $password = $model->getPassword();
@@ -233,7 +233,7 @@ Class Members_model extends CI_Model
 // ==================================================================================//
 // !                        Method for UPDATE an members                            //
 // =================================================================================//
- public function updateMember($model)
+ public function updateMembers($model)
  {
     $data = array (
         'login' => $model->getLogin(),
@@ -251,7 +251,7 @@ Class Members_model extends CI_Model
 // ==================================================================================//
 // !                Method for UPDATE an members in management                       //
 // =================================================================================//
-public function updateMemberModal($model)
+public function updateMembersModal($model)
 {
     $data = array (
         'login' => $model->getLogin(),
@@ -288,7 +288,7 @@ public function updatePasswordMember($model)
 // !      Method to set the active field to 0 and therefore disabled the member     //
 // =================================================================================//
 
-public function disableMember($model)
+public function disableOneMember($model)
 {
     $data = array ('actif' => 0 );
     $this->db->where('id_member' ,$model->getId());

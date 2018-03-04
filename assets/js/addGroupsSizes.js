@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#form_add_groups_sizes").submit(function() {
         name_group_sizes = $(this).find("input[name=name_group_sizes]").val();
 
-        url = "addGroupSizes.html"
+        url = "addGroupsSizes.html"
         $.post(url, {
             name_group_sizes:name_group_sizes,
 

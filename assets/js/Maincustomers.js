@@ -50,7 +50,7 @@ $(document).ready(function() {
 
             {"targets": 2,render: function(data,full){return '<button onclick = "takeIdForChangeName('+data[0]+')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update">Edition </button>';}},
             
-            {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupCustomer.html" + '\'' + ',' + '\'' + "#tab_groups_customers" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
+            {"targets": 3,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusGroupsCustomers.html" + '\'' + ',' + '\'' + "#tab_groups_customers" + '\'' + ')' + '"' +' class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
 
             {"targets": 4,render: function(data,full) { 
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
             columnDefs:[
 
             {"targets": 10,render: function(data,full){return '<button onclick="editCustomersModal('+ data[0] + ')" type="button"  class="btn btn-info btn-fill" data-toggle="modal" data-target="#modal_update_customers">Edition </button>';}},
-            {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusCustomer.html" + '\'' + ',' + '\'' + "#tab_customers" + '\'' + ')' + '"' +'class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
+            {"targets": 11,render: function(data,full){return '<a id="btn_state" onclick="ajaxChangeStatus(' + data[0] + ',' +'\''+"changeStatusCustomers.html" + '\'' + ',' + '\'' + "#tab_customers" + '\'' + ')' + '"' +'class="btn btn-danger btn-fill"><i class="fa fa-edit"></a>';}},
             {"targets": 12,render: function(data,full) { 
                 if (data[10] == 1) 
                 {

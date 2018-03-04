@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#modal_update_groups_sizes").submit(function() {
         new_id_group_sizes = $(this).find("input[name=new_id_group_sizes]").val();
         new_name_group_sizes = $(this).find("input[name=new_name_group_sizes]").val();
-        url = "changeNameGroupSizes.html";
+        url = "changeNameGroupsSizes.html";
         $.post(url, {
             new_id_group_sizes: new_id_group_sizes,
             new_name_group_sizes: new_name_group_sizes

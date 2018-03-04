@@ -15,8 +15,6 @@
   <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
   <!--Datatable css-->
   <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
-  <!--  My global CSS    -->
-  <link href="<?php echo css_url('globalSizes'); ?>" rel="stylesheet"/>
   <!-- Fonts and icons     -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Fonts Roboto -->
@@ -36,7 +34,7 @@
          </button>
          <h5 class="modal-title" id="modalLabel">Edition du groupe de tailles</h5>
        </div>
-       <form id="modal_update_name_group_sizes" method="POST" action="changeNameGroupSizes.html">
+       <form id="modal_update_name_group_sizes" method="POST" action="changeNameGroupsSizes.html">
          <div class="modal-body">
            <div class="form-group">
              <input type="hidden" class="form-control" name="new_id_group_sizes" id="new_id_group_sizes">
@@ -219,7 +217,7 @@
         <h4 class="title">Ajout de groupes de tailles</h4>
       </div>
       <div class="content">
-        <form id="form_add_groups_sizes" method="POST" action="addGroupSizes.html">
+        <form id="form_add_groups_sizes" method="POST" action="addGroupsSizes.html">
          <div class="row">
           <div class="col-md-12">
            <div class="form-group">

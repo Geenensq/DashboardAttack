@@ -93,7 +93,7 @@ Class Shipping_model extends CI_Model
  // =======================================================================//
 // !                      Method SELECT * shipping by id                  //
 // ======================================================================//   
-    public function selectShippingInfos($model)
+    public function selectShippingsInfos($model)
     {
         $id_method_shipping = $model->getIdMethodShipping();
         $this->db->select('*');
@@ -110,8 +110,6 @@ Class Shipping_model extends CI_Model
         
         return $result;
     }
-
-
 
 
 

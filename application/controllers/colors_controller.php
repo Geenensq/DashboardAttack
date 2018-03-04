@@ -85,7 +85,7 @@ Class Colors_controller extends CI_Controller
 // !                   Method for add groups colors                      //
 // ======================================================================//
 
-    public function addGroupColors()
+    public function addGroupsColors()
     {
         $this->form_validation->set_rules('name_group_colors', '"name_group_colors"', 'required');
         $callBack = array();
@@ -143,10 +143,10 @@ Class Colors_controller extends CI_Controller
 // =======================================================================//
 // !          Method for activate or desactivate group of colors         //
 // ======================================================================//
-    public function changeStatusGroupColors()
+    public function changeStatusGroupsColors()
     {
         $this->id_group_color = $this->input->post('id');
-        $this->modelGroupsColors->disableEnableOneGroupColor($this->id_group_color);
+        $this->modelGroupsColors->disableEnableOneGroupColors($this->id_group_color);
     }
 
 
@@ -167,7 +167,7 @@ Class Colors_controller extends CI_Controller
     {
         $this->id_group_color = $this->input->post('id');
 
-        $return = $this->modelGroupsColors->selectAllGroupsColorForModal($this->id_group_color);
+        $return = $this->modelGroupsColors->selectAllGroupsColorsForModal($this->id_group_color);
         echo json_encode($return);
     }
 
@@ -186,7 +186,7 @@ Class Colors_controller extends CI_Controller
 // !                Method for change informations of color group for modal                  //
 // ==========================================================================================//
 
-    public function changeNameGroupColors()
+    public function changeNameGroupsColors()
     {
 
         $this->form_validation->set_rules('new_name_group_colors', '" "', 'required|min_length[3]');
@@ -230,7 +230,7 @@ Class Colors_controller extends CI_Controller
             
             $color = $this->modelColors;
 
-            $this->modelColors->updateNameColors($color);
+            $this->modelColors->updateNameColor($color);
             $callBack["confirm"] = "success";
 
         } else{

@@ -205,21 +205,40 @@
                </div>
 
                <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                      <div class="form-group">
                         <label for="qte_product_order">Quantité : </label>
                         <input min="1" id="qte_product_order" name="qte_product_order" type="number" style="height:33px;" value="1" class="form-control"> 
                      </div>
                   </div>
 
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="select_product_order">Rechercher un produit à ajouter : </label>
                         <select name="select_product_order" id="select_product_order" class="form-control">
-
                         </select>
                      </div>
                   </div>
+
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label for="">Taille : </label>
+                        <select name="" id="" class="form-control">
+                          <option value="0" disabled selected="selected">Sélectionner une taille</option>
+                        </select>
+                     </div>
+                  </div>
+
+                    <div class="col-md-3">
+                     <div class="form-group">
+                        <label for="">Couleur : </label>
+                        <select name="" id="" class="form-control">
+                          <option value="0" disabled selected="selected">Sélectionner une couleur</option>
+                        </select>
+                     </div>
+                  </div>
+
+
                </div>
 
 
@@ -256,6 +275,7 @@
                                                             <th>Taille du produit</th>
                                                             <th>Suppression du produit</th>
                                                             <th>Gestion de la quantitée</th>
+                                                            <th>Personnaliser ce produit</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
@@ -368,11 +388,19 @@
 <script src="<?php echo js_url('addProductsOrder');?>"></script>
 <!--Functions for add an order-->
 <script src="<?php echo js_url('addOrders');?>"></script>
+<!--Functions for lock an unlock inputs in order-->
+<script src="<?php echo js_url('lockUnlockInputOrders');?>"></script>
+<!--Functions check if products is in order-->
+<script src="<?php echo js_url('checkProductInOrders');?>"></script>
+<!-- Functions to increment and decrease the quantity of each product and update the price in the order.-->
+<script src="<?php echo js_url('updateQuantityProductsOrders');?>"></script>
 <!-- Default js for page order -->
-<script src="<?php echo js_url('mainOrder');?>"></script>
+<script src="<?php echo js_url('mainOrders');?>"></script>
 <!-- Function for delete an orders -->
 <script src="<?php echo js_url('deleteOrders');?>"></script>
 <!-- Functions for delete an product on table-->
 <script src="<?php echo js_url('deleteRow');?>"></script>
+<!-- Function to update the price of the order according to the chosen delivery method-->
+<script src="<?php echo js_url('editShippingOrders');?>"></script>
 
 </html>

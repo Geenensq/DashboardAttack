@@ -28,7 +28,7 @@ Class Signup_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('members_model' , 'modelMembers');
-        $this->actif = 0;
+        $this->actif = 1;
         $this->id_group_member = 3;
         $this->login = $this->input->post('login');
         $this->email = $this->input->post('email');
@@ -47,7 +47,6 @@ Class Signup_controller extends CI_Controller
 
             $this->load->view('signup/index.html');
         }
-
         
     }
 
@@ -74,7 +73,7 @@ Class Signup_controller extends CI_Controller
                 //-----------------------------------------//
 
             $membersModel = $this->modelMembers;
-            $this->modelMembers->insertMember($membersModel);
+            $this->modelMembers->insertOneMember($membersModel);
             redirect(array('login_controller', 'index'));
 
         } else {

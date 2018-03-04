@@ -153,7 +153,7 @@ public function loadDataGroupsSizesDataTable()
 // !           Method for disable and enable the groups sizes           //
 // ======================================================================//
 
-public function disableEnableOneGroupSize($id)
+public function disableEnableOneGroupSizes($id)
 {
     $this->db->select('actif');
     $this->db->from($this->table);
@@ -179,7 +179,7 @@ public function disableEnableOneGroupSize($id)
 // =======================================================================//
 // !           Method SELECT ALL sizes informations FOR MODAL           //
 // ======================================================================//
-public function selectAllGroupsSizeForModal($id)
+public function selectAllGroupsSizesForModal($id)
 {
 
     $this->db->select('*')->from('groups_sizes')->where('id_group_size', $id);
