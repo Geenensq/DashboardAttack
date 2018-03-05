@@ -23,6 +23,9 @@
                 /*Affecte l'id enresitré de la commande pour ajouter les produits à la bonne commande*/
                 $("#current_id_order").val(data.id_order);
                 priceUpdate($("#current_id_order").val() , $("#current_order_price").val());
+
+                addProductsSizes($("#current_id_order").val());
+                addProductsColors($("#current_id_order").val());
                 /*call function javascript for add products in the order*/
                 addProductsOrder($("#current_id_order").val());
                 $("#title_order").text("Création de la commande n°" + $("#current_id_order").val());

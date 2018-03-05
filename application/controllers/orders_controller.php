@@ -17,12 +17,15 @@ Class Orders_controller extends CI_Controller
 	private $status_order;
 	private $comment_order;
 	private $price_order;
+
+
 	private $id_customer;
 	private $id_method_payment;
 	private $id_method_shipping;
-
     private $id_product;
     private $qte_product;
+    private $id_size;
+    private $id_color;
 
 // =======================================================================//
 // !                  Constructor of my Class                            //
@@ -37,6 +40,10 @@ Class Orders_controller extends CI_Controller
         $this->load->model('Products_model', 'modelProducts');
         $this->load->model('Orders_model', 'modelOrders');
         $this->load->model('Products_orders_model', 'modelProductsOrders');
+        $this->load->model('Groups_colors_model', 'modelGroupsColors');
+        $this->load->model('Groups_sizes_model', 'modelGroupSizes');
+        $this->load->model('Products_sizes_model' , 'modelProductsSizes');
+        $this->load->model('Products_colors_model' , 'modelProductsColors');
     }
 
 // =======================================================================//
@@ -45,17 +52,22 @@ Class Orders_controller extends CI_Controller
     public function index()
     {	
         if($this->session->userdata('id_member')){
+            
             $customers = $this->modelCustomers->selectAll();
             $states = $this->modelStates->selectAll();
             $shipping = $this->modelShipping->selectAll();
             $payments = $this->modelPayments->selectAll();
-            
+            $groupsColors = $this->modelGroupsColors->selectAll();
+            $groupsSizes = $this->modelGroupSizes->selectAll();
+
+
             $array = [];
             $array['customers'] = $customers;
             $array['states'] = $states;
             $array['shipping'] = $shipping;
             $array['payments'] = $payments;
-         
+            $array['groupsColors'] = $groupsColors;
+            $array['groupsSizes'] = $groupsSizes;
 
 
             $this->load->view('dashboard/orders.html', $array);
@@ -207,6 +219,8 @@ Class Orders_controller extends CI_Controller
         
     }
 
+
+
 // ==========================================================================================//
 // !                      Method get all informations of an order                            //
 // ==========================================================================================//
@@ -298,9 +312,14 @@ Class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product_order');
         $this->qte_product = $this->input->post('quantity_product_order');
         $this->id_order = $this->input->post('id_order');
+        $this->id_size = $this->input->post('id_size');
+        $this->id_color = $this->input->post('id_color');
+
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdSize($this->id_size);
+        $this->modelProductsOrders->setIdColor($this->id_color);
 
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->insertOneProductOrder($modelProductsOrders);
@@ -349,9 +368,14 @@ Class Orders_controller extends CI_Controller
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product_check');
+        $this->id_size = $this->input->post('id_size');
+        $this->id_color = $this->input->post('id_color');
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
+        $this->modelProductsOrders->setIdColor($this->id_color);
+        $this->modelProductsOrders->setIdSize($this->id_size);
+
         $modelProductsOrders = $this->modelProductsOrders;
         
         $return = $this->modelProductsOrders->selectCheckProductInOrder($modelProductsOrders);
@@ -376,17 +400,82 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->updateQuantityProduct($modelProductsOrders);
     }
 
-
-
 // ==========================================================================================//
 // !               Method get all informations of products for my array                      //
 // ==========================================================================================//
 
     public function getInfosProductsArray()
     {
-        $this->id_product = $this->input->post('id');
-        $return = $this->modelProducts->selectAllProductsForModal($this->id_product);
+        $this->id_product = $this->input->post('id_product');
+        $this->id_size = $this->input->post('id_size');
+        $this->id_order = $this->input->post('id_order');
+        $this->id_color = $this->input->post('id_color');
+
+        $this->modelProductsOrders->setIdOrder($this->id_order);
+        $this->modelProductsOrders->setIdSize($this->id_size);
+        $this->modelProductsOrders->setIdProduct($this->id_product);
+        $this->modelProductsOrders->setIdColor($this->id_color);
+        $modelProductsOrders = $this->modelProductsOrders;
+        
+        $return = $this->modelProductsOrders->selectAllProductsForTableView($modelProductsOrders);
         echo json_encode($return);
+    }
+
+
+// ==========================================================================================//
+// !                           Method to add size to the product                             //
+// ==========================================================================================//
+    public function addProductsSizes()
+    {
+        $this->id_product = $this->input->post('id_product');
+        $this->id_size =  $this->input->post('id_size');
+
+        /***************Creation of my object******************/
+        $this->modelProductsSizes->setIdProduct($this->id_product);
+        $this->modelProductsSizes->setIdSize($this->id_size);
+        $modelProductsSizes = $this->modelProductsSizes;
+        /****************************************************/
+
+        /*If the product size does not exist, create it*/
+        $result = $this->modelProductsSizes->selectProductsBySizes($modelProductsSizes);
+        $callBack;
+
+        if($result == "not exist"){
+              $this->modelProductsSizes->insertProductsSizes($modelProductsSizes);
+              $callBack = "products sizes created";
+        } else {
+           $callBack = "products sizes already exist";
+        }
+
+        echo json_encode($callBack);
+
+    }
+
+// ==========================================================================================//
+// !                           Method to add color to the product                             //
+// ==========================================================================================//
+    public function addProductsColors()
+    {
+        $this->id_product = $this->input->post('id_product');
+        $this->id_color =  $this->input->post('id_color');
+
+        /***************Creation of my object******************/
+        $this->modelProductsColors->setIdProduct($this->id_product);
+        $this->modelProductsColors->setIdColor($this->id_color);
+        $modelProductsColors = $this->modelProductsColors;
+        /****************************************************/
+
+        /*If the product size does not exist, create it*/
+        $result = $this->modelProductsColors->selectProductsByColors($modelProductsColors);
+        $callBack;
+        if($result == "not exist"){
+              $this->modelProductsColors->insertProductsColors($modelProductsColors);
+              $callBack = "products colors created";
+        } else{
+              $callBack = "products colors already exist";
+        }
+      
+        echo json_encode($callBack);
     }
 
 

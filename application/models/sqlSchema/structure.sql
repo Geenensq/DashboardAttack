@@ -75,8 +75,6 @@ CREATE TABLE products(
         img_url          Varchar (255) NOT NULL ,
         actif            Bool NOT NULL ,
         id_group_product Int NOT NULL ,
-        id_color         Int NOT NULL ,
-        id_size          Int NOT NULL ,
         PRIMARY KEY (id_product )
 )ENGINE=InnoDB;
 
@@ -153,7 +151,6 @@ CREATE TABLE groups_colors(
 CREATE TABLE orders(
         id_order           int (11) Auto_increment  NOT NULL ,
         date_order         Date NOT NULL ,
-        status_order       Varchar (255) NOT NULL ,
         comment_order      Text NOT NULL ,
         price_order        Float NOT NULL ,
         id_customer        Int NOT NULL ,
@@ -217,12 +214,11 @@ CREATE TABLE messages(
 
 CREATE TABLE products_orders(
         quantity_product Varchar (25) NOT NULL ,
-        final_price      Float NOT NULL ,
-        final_sizes      Varchar (25) ,
-        final_colors     Varchar (25) ,
         id_product       Int NOT NULL ,
         id_order         Int NOT NULL ,
-        PRIMARY KEY (id_product ,id_order )
+        id_size          Int NOT NULL ,
+        id_color         Int NOT NULL ,
+        PRIMARY KEY (id_product ,id_order ,id_size ,id_color )
 )ENGINE=InnoDB;
 
 
@@ -235,6 +231,28 @@ CREATE TABLE orders_members(
         id_member Int NOT NULL ,
         id_order  Int NOT NULL ,
         PRIMARY KEY (id_member ,id_order )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: products_colors
+#------------------------------------------------------------
+
+CREATE TABLE products_colors(
+        id_color   Int NOT NULL ,
+        id_product Int NOT NULL ,
+        PRIMARY KEY (id_color ,id_product )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: products_sizes
+#------------------------------------------------------------
+
+CREATE TABLE products_sizes(
+        id_product Int NOT NULL ,
+        id_size    Int NOT NULL ,
+        PRIMARY KEY (id_product ,id_size )
 )ENGINE=InnoDB;
 
 
@@ -252,8 +270,6 @@ CREATE TABLE members_messages(
 ALTER TABLE members ADD CONSTRAINT FK_members_id_group_member FOREIGN KEY (id_group_member) REFERENCES groups_members(id_group_member);
 ALTER TABLE customers ADD CONSTRAINT FK_customers_id_group_customer FOREIGN KEY (id_group_customer) REFERENCES groups_customers(id_group_customer);
 ALTER TABLE products ADD CONSTRAINT FK_products_id_group_product FOREIGN KEY (id_group_product) REFERENCES groups_products(id_group_product);
-ALTER TABLE products ADD CONSTRAINT FK_products_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
-ALTER TABLE products ADD CONSTRAINT FK_products_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE colors ADD CONSTRAINT FK_colors_id_group_color FOREIGN KEY (id_group_color) REFERENCES groups_colors(id_group_color);
 ALTER TABLE sizes ADD CONSTRAINT FK_sizes_id_group_size FOREIGN KEY (id_group_size) REFERENCES groups_sizes(id_group_size);
 ALTER TABLE orders ADD CONSTRAINT FK_orders_id_customer FOREIGN KEY (id_customer) REFERENCES customers(id_customer);
@@ -263,7 +279,13 @@ ALTER TABLE orders ADD CONSTRAINT FK_orders_id_state FOREIGN KEY (id_state) REFE
 ALTER TABLE messages ADD CONSTRAINT FK_messages_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
 ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
+ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
+ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
+ALTER TABLE products_colors ADD CONSTRAINT FK_products_colors_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
+ALTER TABLE products_colors ADD CONSTRAINT FK_products_colors_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
+ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
+ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_message FOREIGN KEY (id_message) REFERENCES messages(id_message);

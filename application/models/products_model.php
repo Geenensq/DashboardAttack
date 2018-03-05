@@ -227,35 +227,6 @@ Class products_model extends CI_Model
         return $query->result_array();
     }
 
-// =======================================================================//
-// !           Method SELECT ALL products informations FOR MODAL           //
-// ======================================================================//
-    public function selectAllProductsForModal($id)
-    {
-        $this->db->select('id_product, product_name , reference, products.description AS description , base_price , img_url, products.actif AS actif, groups_products.name_group_product AS name_groups_products , products.id_group_product AS id_groups_products');
-
-        $this->db->from($this->table);
-        $this->db->join('groups_products', 'products.id_group_product = groups_products.id_group_product');
-        $this->db->where('id_product' , $id);
-        $query = $this->db->get();
-
-        foreach ($query->result() as $row)
-        {
-            $products["id_product"] =  $row->id_product;
-            $products["product_name"] = $row->product_name;
-            $products["reference"] = $row->reference;
-            $products["description"] = $row->description;
-            $products["base_price"] = $row->base_price;
-            $products["img_url"] = $row->img_url;
-            $products["img_url"] = $row->img_url;
-            $products["name_groups_products"] = $row->name_groups_products;
-            $products["id_groups_products"] = $row->id_groups_products;
-            $products["actif"] = $row->actif;
-        }
-
-        return $products;
-
-    }
 
 
 // ======================================================================//
@@ -272,10 +243,10 @@ Class products_model extends CI_Model
         $query = $this->db->get();
         $json = [];
 
-        foreach ($query->result_object() as $row){
+        foreach ($query->result_object() as $row)
+        {
             $json[] = ['id'=> $row->id, 'text'=> $row->text ];
         }
-        
         return $json;
 
     }

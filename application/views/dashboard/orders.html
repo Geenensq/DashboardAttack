@@ -1,364 +1,379 @@
 <!doctype html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
-   <meta charset="utf-8" />
-   <link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-   <title>Dashboard Attack | Gérer et créer vos commandes clients </title>
-   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-   <meta name="viewport" content="width=device-width" />
-   <!-- Bootstrap core CSS     -->
-   <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
-   <!-- Animation library for notifications   -->
-   <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
-   <!--  Light Bootstrap Table core CSS    -->
-   <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
-   <!-- Fonts and icons     -->
-   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-   <!-- Fonts Roboto -->
-   <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
-   <!--Datatable css-->
-   <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
-   <!-- icon font pack -->
-   <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
-   <!-- icon font pack -->
-   <link href="<?php echo css_url('globalOrders'); ?>" rel="stylesheet" />
-   <!-- Select2 plugin CSS files -->
-   <link href="<?php echo css_url_lib('select2.min'); ?>" rel="stylesheet" />
-   
+ <meta charset="utf-8" />
+ <link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+ <title>Dashboard Attack | Gérer et créer vos commandes clients </title>
+ <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+ <meta name="viewport" content="width=device-width" />
+ <!-- Bootstrap core CSS     -->
+ <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+ <!-- Animation library for notifications   -->
+ <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+ <!--  Light Bootstrap Table core CSS    -->
+ <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+ <!-- Fonts and icons     -->
+ <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+ <!-- Fonts Roboto -->
+ <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
+ <!--Datatable css-->
+ <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
+ <!-- icon font pack -->
+ <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+ <!-- icon font pack -->
+ <link href="<?php echo css_url('globalOrders'); ?>" rel="stylesheet" />
+ <!-- Select2 plugin CSS files -->
+ <link href="<?php echo css_url_lib('select2.min'); ?>" rel="stylesheet" />
+
 </head>
 <body>
-   <div class="wrapper">
-      <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
-         <div class="sidebar-wrapper">
-            <div class="logo">
-               <a href="" class="simple-text">
-                  Dashboard Attack
-               </a>
-            </div>
-            <ul class="nav">
-               <li>
-                  <a href="<?php echo base_url();?>dashboard_controller/index.html">
-                     <i class="pe-7s-graph"></i>
-                     <p>Dashboard</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>profil_controller/index.html">
-                     <i class="pe-7s-user"></i>
-                     <p>Votre profil</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>customers_controller/index.html">
-                     <i class="pe-7s-user"></i>
-                     <p>Clients</p>
-                  </a>
-               </li>
-               <li class="active">
-                  <a href="<?php echo base_url();?>orders_controller/index.html">
-                     <i class="pe-7s-note2"></i>
-                     <p>Commandes</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>products_controller/index.html">
-                     <i class="pe-7s-news-paper"></i>
-                     <p>Produits</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>colors_controller/index.html">
-                     <i class="pe-7s-science"></i>
-                     <p>Coloris</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>size_controller/index.html">
-                     <i class="pe-7s-map-marker"></i>
-                     <p>Tailles</p>
-                  </a>
-               </li>
-               <li>
-                  <a href="<?php echo base_url();?>management_controller/index.html">
-                     <i class="pe-7s-bell"></i>
-                     <p>Gestion</p>
-                  </a>
-               </li>
-            </ul>
+ <div class="wrapper">
+  <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg');?>">
+   <div class="sidebar-wrapper">
+    <div class="logo">
+     <a href="" class="simple-text">
+      Dashboard Attack
+    </a>
+  </div>
+  <ul class="nav">
+   <li>
+    <a href="<?php echo base_url();?>dashboard_controller/index.html">
+     <i class="pe-7s-graph"></i>
+     <p>Dashboard</p>
+   </a>
+ </li>
+ <li>
+  <a href="<?php echo base_url();?>profil_controller/index.html">
+   <i class="pe-7s-user"></i>
+   <p>Votre profil</p>
+ </a>
+</li>
+<li>
+  <a href="<?php echo base_url();?>customers_controller/index.html">
+   <i class="pe-7s-user"></i>
+   <p>Clients</p>
+ </a>
+</li>
+<li class="active">
+  <a href="<?php echo base_url();?>orders_controller/index.html">
+   <i class="pe-7s-note2"></i>
+   <p>Commandes</p>
+ </a>
+</li>
+<li>
+  <a href="<?php echo base_url();?>products_controller/index.html">
+   <i class="pe-7s-news-paper"></i>
+   <p>Produits</p>
+ </a>
+</li>
+<li>
+  <a href="<?php echo base_url();?>colors_controller/index.html">
+   <i class="pe-7s-science"></i>
+   <p>Coloris</p>
+ </a>
+</li>
+<li>
+  <a href="<?php echo base_url();?>size_controller/index.html">
+   <i class="pe-7s-map-marker"></i>
+   <p>Tailles</p>
+ </a>
+</li>
+<li>
+  <a href="<?php echo base_url();?>management_controller/index.html">
+   <i class="pe-7s-bell"></i>
+   <p>Gestion</p>
+ </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="main-panel">
+ <nav class="navbar navbar-default navbar-fixed">
+  <div class="container-fluid">
+   <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+     <span class="sr-only">Toggle navigation</span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+   </button>
+   <a class="navbar-brand" href="#">GESTION DES COMMANDES</a>
+ </div>
+ <div class="collapse navbar-collapse">
+  <ul class="nav navbar-nav navbar-left">
+   <li>
+     <a href="<?php echo base_url();?>dashboard_controller/index.html" >
+       <i class="fa fa-dashboard"></i>
+     </a>
+   </li>
+
+ </ul>
+ <ul class="nav navbar-nav navbar-right">
+  <li>
+   <a href="<?php echo base_url();?>profil_controller/index.html">
+    <p>Mon compte</p>
+  </a>
+</li>
+<li>
+ <a href="<?php echo base_url();?>session_controller/index.html">
+  <p>Se deconnecter</p>
+</a>
+</li>
+<li class="separator hidden-lg hidden-md"></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="content">
+ <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <div class="card">
+      <div class="header">
+       <h4 id="title_order" class="title">Ajouter une commande</h4>
+     </div>
+
+     <div class="content">
+       <form id="form_add_order" method="POST" action="addOrder.html">
+        <input type="hidden" name="current_id_order" id="current_id_order" >
+        <div class="row">
+         <div class="col-md-4">
+          <div class="form-group">
+           <label for="customer_order">Client</label>
+           <select id="customer_order" name="customer_order" class="form-control" name="state">
+
+           </select>
          </div>
-      </div>
-      <div class="main-panel">
-         <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                     <span class="sr-only">Toggle navigation</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="#">GESTION DES COMMANDES</a>
-               </div>
-               <div class="collapse navbar-collapse">
-                  <ul class="nav navbar-nav navbar-left">
-                     <li>
-                       <a href="<?php echo base_url();?>dashboard_controller/index.html" >
-                         <i class="fa fa-dashboard"></i>
-                      </a>
-                   </li>
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  <li>
-                     <a href="<?php echo base_url();?>profil_controller/index.html">
-                        <p>Mon compte</p>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="<?php echo base_url();?>session_controller/index.html">
-                        <p>Se deconnecter</p>
-                     </a>
-                  </li>
-                  <li class="separator hidden-lg hidden-md"></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
-      <div class="content">
-         <div class="container-fluid">
-           <div class="row">
-            <div class="col-md-12">
-               <div class="card">
-                  <div class="header">
-                     <h4 id="title_order" class="title">Ajouter une commande</h4>
-                  </div>
-
-                  <div class="content">
-                     <form id="form_add_order" method="POST" action="addOrder.html">
-                        <input type="hidden" name="current_id_order" id="current_id_order" >
-                        <div class="row">
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label for="customer_order">Client</label>
-                                 <select id="customer_order" name="customer_order" class="form-control" name="state">
-
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label for="date_order">Date de la commande</label>
-                                 <input id="date_order" name="date_order" class="form-control" min="2018-01-01" max="2018-12-31" type="date">
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label for="state_order">Statut de la commande</label>
-                                 <select id="state_order" name="state_order" class="form-control" >
-                                    <option value="0" disabled selected="selected">Sélectionner un statut de commande</option>
-                                    <?php
-                                    foreach($states as $value)
-                                    {
-                                     echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
-                                  }
-                                  ?>
-                               </select>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="shipping_order">Mode de livraison</label>
-                              <select id="shipping_order" name="shipping_order" class="form-control">
-                                 <option value="0" disabled selected="selected">Sélectionner un mode de livraison</option>
-                                 <?php
-                                 foreach($shipping as $value)
-                                 {
-                                  echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
-                               }
-                               ?>
-                            </select>
-                         </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                           <label for="payments_order">Méthode de paiement</label>
-                           <select id="payments_order" name="payments_order" class="js-example-basic-multiple form-control" >
-                              <option value="0" disabled selected="selected">Sélectionner une méthode de paiement</option>
-                              <?php
-                              foreach($payments as $value)
-                              {
-                               echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
-                            }
-                            ?>
-                         </select>
-                      </div>
-                   </div>
-                   <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="current_order_price">Prix total de la commande HT </label>
-                        <input data-toggle="tooltip" data-html="true" title="Prix calculé en fonction du prix du produit de la taille et de la quantité" value="0" id="current_order_price" name="current_order_price" type="number" class="form-control" disabled>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="row">
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label for="qte_product_order">Quantité : </label>
-                        <input min="1" id="qte_product_order" name="qte_product_order" type="number" style="height:33px;" value="1" class="form-control"> 
-                     </div>
-                  </div>
-
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="select_product_order">Rechercher un produit à ajouter : </label>
-                        <select name="select_product_order" id="select_product_order" class="form-control">
-                        </select>
-                     </div>
-                  </div>
-
-                  <div class="col-md-3">
-                     <div class="form-group">
-                        <label for="">Taille : </label>
-                        <select name="" id="" class="form-control">
-                          <option value="0" disabled selected="selected">Sélectionner une taille</option>
-                        </select>
-                     </div>
-                  </div>
-
-                    <div class="col-md-3">
-                     <div class="form-group">
-                        <label for="">Couleur : </label>
-                        <select name="" id="" class="form-control">
-                          <option value="0" disabled selected="selected">Sélectionner une couleur</option>
-                        </select>
-                     </div>
-                  </div>
-
-
-               </div>
-
-
-               <div class="row">
-                  <a style="margin-right: 20px;" id="add_product" class="btn btn-danger btn-fill pull-right">Ajouter le produit</a>
-               </div>
-
-               <div class="collapse" id="collapse_products">
-                  <div class="content">
-                     <div class="container-fluid">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="card">
-                                 <div class="header">
-                                    <h4 class="title">Gestion des produits de la commande</h4>
-                                 </div>
-                                 <div class="content">
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="row">
-                                             <div class="col-md-12">
-                                                <div class="content table-responsive">
-                                                   <table style="width:100% !important;" id="tab_products_order" class="col-md-12 table table-hover table-striped">
-                                                      <thead>
-                                                         <tr id="header">
-                                                            <th>ID</th>
-                                                            <th>Quantité</th>
-                                                            <th>Nom du produit</th>
-                                                            <th>Référence</th>
-                                                            <th>Description du produit</th>
-                                                            <th>Prix du produit</th>
-                                                            <th>Image du produit</th>
-                                                            <th>Couleur du produit</th>
-                                                            <th>Taille du produit</th>
-                                                            <th>Suppression du produit</th>
-                                                            <th>Gestion de la quantitée</th>
-                                                            <th>Personnaliser ce produit</th>
-                                                         </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                      </tbody>
-                                                   </table>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <label for="comment_order">Commentaire de la commande : </label>
-                        <textarea value="RAS" id="comment_order" name="comment_order" class="form-control"  rows="4" cols="100">RAS</textarea>
-                     </div>
-                  </div>
-               </div>
-               <a disabled id="valid_order" name="valid_order" class="btn btn-danger btn-fill pull-right">Valider la commande</a>
-               <p id="edit_orders" style="margin-right: 20px;" data-toggle="collapse" data-target="#collapse_edit_orders" type="button" class="btn btn-info btn-fill pull-right">Commandes en cours</p>
-               <div class="clearfix"></div>
-            </form>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="collapse" id="collapse_edit_orders">
-
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="card">
-                        <div class="header">
-                           <h4 class="title">Gestion des commandes</h4>
-                           <p class="category">Liste des commandes en cours / terminés </p>
-                        </div>
-                        <div class="content table-responsive">
-                           <table style="width:100% !important;" id="tab_orders"
-                           class="col-md-12 table table-hover table-striped">
-                           <thead>
-                              <th>ID</th>
-                              <th>Propriétaire de la commande</th>
-                              <th>Date de la commande</th>
-                              <th>Prix de la commande HT</th>
-                              <th>Prix de la commande TTC</th>
-                              <th>Commentaire de la commande</th>
-                              <th>Méthode du paiment</th>
-                              <th>Méthode de livraison</th>
-                              <th>Etat actuel de la commande</th>
-                              <th>Edition de la commande</th>
-                              <th>Suppression de la commande</th>
-                           </thead>
-                           <tbody>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+       </div>
+       <div class="col-md-4">
+        <div class="form-group">
+         <label for="date_order">Date de la commande</label>
+         <input id="date_order" name="date_order" class="form-control" min="2018-01-01" max="2018-12-31" type="date">
+       </div>
+     </div>
+     <div class="col-md-4">
+      <div class="form-group">
+       <label for="state_order">Statut de la commande</label>
+       <select id="state_order" name="state_order" class="form-control" >
+        <option value="0" disabled selected="selected">Sélectionner un statut de commande</option>
+        <?php
+        foreach($states as $value)
+        {
+         echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
+       }
+       ?>
+     </select>
    </div>
+ </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+   <div class="form-group">
+    <label for="shipping_order">Mode de livraison</label>
+    <select id="shipping_order" name="shipping_order" class="form-control">
+     <option value="0" disabled selected="selected">Sélectionner un mode de livraison</option>
+     <?php
+     foreach($shipping as $value)
+     {
+      echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
+    }
+    ?>
+  </select>
+</div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+   <label for="payments_order">Méthode de paiement</label>
+   <select id="payments_order" name="payments_order" class="js-example-basic-multiple form-control" >
+    <option value="0" disabled selected="selected">Sélectionner une méthode de paiement</option>
+    <?php
+    foreach($payments as $value)
+    {
+     echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
+   }
+   ?>
+ </select>
+</div>
+</div>
+<div class="col-md-4">
+ <div class="form-group">
+  <label for="current_order_price">Prix total de la commande HT </label>
+  <input data-toggle="tooltip" data-html="true" title="Prix calculé en fonction du prix du produit de la taille et de la quantité" value="0" id="current_order_price" name="current_order_price" type="number" class="form-control" disabled>
+</div>
+</div>
+</div>
+
+<hr>
+  <h5  class="title">Produits relatifs à la commande :</h5>
+  <br>
+
+<div class="row">
+  <div class="col-md-2">
+   <div class="form-group">
+    <label for="qte_product_order">Quantité : </label>
+    <input min="1" id="qte_product_order" name="qte_product_order" type="number" style="height:33px;" value="1" class="form-control"> 
+  </div>
+</div>
+
+<div class="col-md-4">
+ <div class="form-group">
+  <label for="select_product_order">Rechercher un produit à ajouter : </label>
+  <select name="select_product_order" id="select_product_order" class="form-control">
+  </select>
+</div>
+</div>
+
+<div class="col-md-3">
+ <div class="form-group">
+  <label for="">Taille : </label>
+  <select name="select_size_product" id="select_size_product" class="form-control">
+    <?php foreach($groupsSizes as $group) { ?>
+    <?= '<optgroup label=' . '"' . $group->getNameGroupSize() . '">' ?>
+      <?php foreach($group->sizes_list as $size){ ?>
+      <?= '<option id="size_product" name="size_product" value=' . '"' . $size->getIdSize() . '">' . $size->getName() .'</option>'; ?>
+      <?php } ?>
+      <?= '</optgroup>'; ?> 
+      <?php } ?>
+
+    </select>
+  </div>
+</div>
+
+<div class="col-md-3">
+ <div class="form-group">
+  <label for="">Couleur : </label>
+  <select name="select_color_product" id="select_color_product" class="form-control">
+    <?php foreach($groupsColors as $group) { ?>
+    <?= '<optgroup label=' . '"' . $group->getNameGroupColors() . '">' ?>
+
+      <?php foreach($group->colors_list as $color){ ?>
+      <?= '<option id="color_product" name="color_product" value=' . '"' . $color->getIdColor() . '">' . $color->getColorName() .'</option>'; ?>
+      <?php } ?>
+      <?= '</optgroup>'; ?> 
+      <?php } ?>
+    </select>
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <a style="margin-right: 20px;" id="add_product" class="btn btn-danger btn-fill pull-right">Ajouter le produit</a>
+</div>
+
+<div class="collapse" id="collapse_products">
+  <div class="content">
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <div class="card">
+       <div class="header">
+        <h4 class="title">Gestion des produits de la commande</h4>
+      </div>
+      <div class="content">
+        <div class="row">
+         <div class="col-md-12">
+          <div class="row">
+           <div class="col-md-12">
+            <div class="content table-responsive">
+             <table style="width:100% !important;" id="tab_products_order" class="col-md-12 table table-hover table-striped">
+              <thead>
+               <tr id="header">
+                <th>ID</th>
+                <th>Quantité</th>
+                <th>Nom du produit</th>
+                <th>Référence</th>
+                <th>Description du produit</th>
+                <th>Prix du produit</th>
+                <th>Image du produit</th>
+                <th>Couleur du produit</th>
+                <th>Taille du produit</th>
+                <th>Suppression du produit</th>
+                <th>Gestion de la quantitée</th>
+                <th>Personnaliser ce produit</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+   <div class="form-group">
+    <label for="comment_order">Commentaire de la commande : </label>
+    <textarea value="RAS" id="comment_order" name="comment_order" class="form-control"  rows="4" cols="100">RAS</textarea>
+  </div>
+</div>
+</div>
+<a disabled id="valid_order" name="valid_order" class="btn btn-danger btn-fill pull-right">Valider la commande</a>
+<p id="edit_orders" style="margin-right: 20px;" data-toggle="collapse" data-target="#collapse_edit_orders" type="button" class="btn btn-info btn-fill pull-right">Commandes en cours</p>
+<div class="clearfix"></div>
+</form>
+</div>
+</div>
+<div class="row">
+ <div class="col-md-12">
+  <div class="collapse" id="collapse_edit_orders">
+
+   <div class="row">
+    <div class="col-md-12">
+     <div class="card">
+      <div class="header">
+       <h4 class="title">Gestion des commandes</h4>
+       <p class="category">Liste des commandes en cours / terminés </p>
+     </div>
+     <div class="content table-responsive">
+       <table style="width:100% !important;" id="tab_orders"
+       class="col-md-12 table table-hover table-striped">
+       <thead>
+        <th>ID</th>
+        <th>Propriétaire de la commande</th>
+        <th>Date de la commande</th>
+        <th>Prix de la commande HT</th>
+        <th>Prix de la commande TTC</th>
+        <th>Commentaire de la commande</th>
+        <th>Méthode du paiment</th>
+        <th>Méthode de livraison</th>
+        <th>Etat actuel de la commande</th>
+        <th>Edition de la commande</th>
+        <th>Suppression de la commande</th>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 
 <footer class="footer">
-   <div class="container-fluid">
-      <p class="copyright pull-right">
-         &copy;
-         <script>
-            document.write(new Date().getFullYear())
-         </script>
-         <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
-      </p>
-   </div>
+ <div class="container-fluid">
+  <p class="copyright pull-right">
+   &copy;
+   <script>
+    document.write(new Date().getFullYear())
+  </script>
+  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+</p>
+</div>
 </footer>
 </div>
 </div>
@@ -386,6 +401,10 @@
 <script src="<?php echo js_url('changeStatus');?>"></script>
 <!--Functions for add an product in order-->
 <script src="<?php echo js_url('addProductsOrder');?>"></script>
+<!--Functions for add products sizes-->
+<script src="<?php echo js_url('addProductsSizes');?>"></script>
+<!--Functions for add products colors-->
+<script src="<?php echo js_url('addProductsColors');?>"></script>
 <!--Functions for add an order-->
 <script src="<?php echo js_url('addOrders');?>"></script>
 <!--Functions for lock an unlock inputs in order-->

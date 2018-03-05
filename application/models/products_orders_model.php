@@ -18,6 +18,8 @@ Class products_orders_model extends CI_Model
     private $quantity_product;
     private $id_product;
     private $id_order; 	
+    private $id_size;
+    private $id_color;
     protected $table = "products_orders";
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -35,6 +37,16 @@ Class products_orders_model extends CI_Model
     public function getIdOrder()
     {
         return $this->id_order;
+    }
+
+    public function getIdSize()
+    {
+        return $this->id_size;
+    }
+
+     public function getIdColor()
+    {
+        return $this->id_color;
     }
     
 // =======================================================================//
@@ -61,6 +73,20 @@ Class products_orders_model extends CI_Model
         return $this;
     }
 
+    public function setIdColor($id_color)
+    {
+        $this->id_color = $id_color;
+
+        return $this;
+    }
+
+    public function setIdSize($id_size)
+    {
+        $this->id_size = $id_size;
+        return $this;
+    }
+
+
 // =======================================================================//
 // !                     Start CRUD methods                              //
 // ======================================================================//
@@ -73,9 +99,14 @@ Class products_orders_model extends CI_Model
         $id_product = $model->getIdProduct();
         $qte_product = $model->getQuantityProduct();
         $id_order = $model->getIdOrder();
+        $id_color = $model->getIdColor();
+        $id_size = $model->getIdSize();
+
         $this->db->set('id_product', $id_product)
         ->set('quantity_product', $qte_product)
-        ->set('id_order' ,$id_order )
+        ->set('id_order' , $id_order)
+        ->set('id_color' , $id_color)
+        ->set('id_size' , $id_size)
         ->insert($this->table);
     }
 
@@ -140,6 +171,46 @@ Class products_orders_model extends CI_Model
 
     }
 
+
+// =======================================================================//
+// !           Method SELECT ALL products informations FOR table           //
+// ======================================================================//
+    public function selectAllProductsForTableView($model)
+    {
+        $id_order = $model->getIdOrder();
+        $id_size = $model->getIdSize();
+        $id_product = $model->getIdProduct();
+        $id_color = $model->getIdColor();
+
+        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , colors.color_name , sizes.size_name');
+        $this->db->from($this->table);
+        $this->db->join('products' , 'products.id_product = products_orders.id_product');
+        $this->db->join('sizes' , 'sizes.id_size  = products_orders.id_size');
+        $this->db->join('colors' , 'colors.id_color  = products_orders.id_color');
+
+        $this->db->where('products_orders.id_product' , $id_product);
+        $this->db->where('products_orders.id_size' , $id_size);
+        $this->db->where('products_orders.id_color' , $id_color);
+        $query = $this->db->get();
+
+       foreach ($query->result() as $row)
+        {
+            $products["id_product"] = $row->id_product;
+            $products["product_name"] = $row->product_name;
+            $products["reference"] = $row->reference;
+            $products["description"] = $row->description;
+            $products["base_price"] = $row->base_price;
+            $products["img_url"] = $row->img_url;
+            $products["color_name"] = $row->color_name;
+            $products["size_name"] = $row->size_name;
+        }
+
+        return $products;
+
+    }
+
+
+
 // =======================================================================//
 // !       Select * for check if product is already in a command          //
 // ======================================================================//
@@ -147,10 +218,14 @@ Class products_orders_model extends CI_Model
     {
         $id_product = $model->getIdProduct();
         $id_order = $model->getIdOrder();
+        $id_size = $model->getIdSize();
+        $id_color = $model->getIdColor();
 
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('id_product', $id_product );
+        $this->db->where('id_product', $id_product);
+        $this->db->where('id_color', $id_color);
+        $this->db->where('id_size', $id_size);
         $this->db->where('id_order', $id_order );
         $query = $this->db->get();
         $result = $query->result_array();
