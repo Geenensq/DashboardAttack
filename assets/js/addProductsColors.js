@@ -1,15 +1,10 @@
-function addProductsColors($id_order) {
-    /*DEFINES VARIABLES */
-    let id_product = $('#select_product_order').val();
-    let id_color = $('#select_color_product').val();
-    /*    let id_order = $id_order;*/
-    /*END DEFINES VARIABLES*/
+function addProductsColors($id_product , $id_color) {
+
 
     url = "addProductsColors.html"
     $.post(url, {
-        id_product: id_product,
-        id_color: id_color,
-        id_order: $id_order
+        id_product: $id_product,
+        id_color: $id_color
 
     }, function(data) {
 

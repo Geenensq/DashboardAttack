@@ -13,6 +13,9 @@ $(document).ready(function() {
     let Quantity;
     let actualQuantity;
     var clicked = false;
+    var id_color;
+    var id_size;
+    var id_order;
 
     /******************************************************************/
     /**************DECLARATION SELECT 2 AUTOCOMPLETE*******************/
@@ -58,75 +61,75 @@ $(document).ready(function() {
     var myTable = $('#tab_orders').DataTable({
         ajax: "encodeGridOrders.html",
         order: [
-            [0, "asc"]
+        [0, "asc"]
         ],
         "columns": [
 
-            {
-                "targets": 0,
-                data: 0
-            }, {
-                "targets": 1,
-                data: null
-            }, {
-                "targets": 2,
-                data: 1
-            }, {
-                "targets": 3,
-                data: null
-            }, {
-                "targets": 4,
-                data: null
-            }, {
-                "targets": 5,
-                data: 2
-            }, {
-                "targets": 6,
-                data: 6
-            }, {
-                "targets": 7,
-                data: 7
-            }, {
-                "targets": 8,
-                data: 8
-            }, {
-                "target": 9,
-                data: null
-            }, {
-                "target": 10,
-                data: null
-            }
+        {
+            "targets": 0,
+            data: 0
+        }, {
+            "targets": 1,
+            data: null
+        }, {
+            "targets": 2,
+            data: 1
+        }, {
+            "targets": 3,
+            data: null
+        }, {
+            "targets": 4,
+            data: null
+        }, {
+            "targets": 5,
+            data: 2
+        }, {
+            "targets": 6,
+            data: 6
+        }, {
+            "targets": 7,
+            data: 7
+        }, {
+            "targets": 8,
+            data: 8
+        }, {
+            "target": 9,
+            data: null
+        }, {
+            "target": 10,
+            data: null
+        }
 
         ],
 
         columnDefs: [
 
-            {
-                "targets": 1,
-                render: function(data, full) {
-                    return '<p>' + data[5] + ' ' + data[4] + '<p>'
-                }
-            }, {
-                "targets": 3,
-                render: function(data, full) {
-                    return '<p>' + data[3] + '€' + '</p>'
-                }
-            }, {
-                "targets": 4,
-                render: function(data, full) {
-                    return '<p>' + parseFloat(data[3] * 1.2).toFixed(2) + '€' + '</p>'
-                }
-            }, {
-                "targets": 9,
-                render: function(data, full) {
-                    return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill editOrder"><i class="fa fa-edit"></i></a>'
-                }
-            }, {
-                "targets": 10,
-                render: function(data, full) {
-                    return '<a id="btn_state" onclick="deleteOrders(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
-                }
-            },
+        {
+            "targets": 1,
+            render: function(data, full) {
+                return '<p>' + data[5] + ' ' + data[4] + '<p>'
+            }
+        }, {
+            "targets": 3,
+            render: function(data, full) {
+                return '<p>' + data[3] + '€' + '</p>'
+            }
+        }, {
+            "targets": 4,
+            render: function(data, full) {
+                return '<p>' + parseFloat(data[3] * 1.2).toFixed(2) + '€' + '</p>'
+            }
+        }, {
+            "targets": 9,
+            render: function(data, full) {
+                return '<a href="#title_order" id="btn_state" onclick="editOrders(' + data[0] + ')" class="btn btn-info btn-fill editOrder"><i class="fa fa-edit"></i></a>'
+            }
+        }, {
+            "targets": 10,
+            render: function(data, full) {
+                return '<a id="btn_state" onclick="deleteOrders(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
+            }
+        },
         ]
     });
     /**********************************************************/
@@ -241,7 +244,6 @@ $(document).ready(function() {
             if (edit_mode === 0) {
                 notify("pe-7s-refresh-2", "<b>Informations : </b> La commande à été ajoutée avec succès !", "info");
                 $("#tab_orders").DataTable().ajax.reload();
-
             }
 
             $("#title_order").css("font-weight", "300");
@@ -274,92 +276,76 @@ $(document).ready(function() {
                 qte_product = $('#qte_product_order').val();
                 return_product_exist = addRowProduct(product_added);
                 if (return_product_exist === "ok") {
+
                     /*call function javascript for add products in the order*/
                     addProductsOrder($("#current_id_order").val());
                     priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
-
                 }
 
             } else {
+
+                /*Verouillage des champs de la commande*/
                 lockInputOrder();
-                product_added = $('#select_product_order').val();
-                id_color = $("#select_color_product").val();
-                id_size = $("#select_size_product").val();
+                /**************************************/
 
-                qte_product = $('#qte_product_order').val();
-
-                /*Call function fo add an row in table*/
-                return_product_exist = addRowProduct(product_added,id_color,id_size);
-
-                if (return_product_exist === "ok") {
-
-                    if (counterProducts < 1) {
-                        addOrders();
-                        counterProducts++;
-                    } else {
-
-                        addProductsSizes($("#current_id_order").val());
-                        addProductsColors($("#current_id_order").val());
-                        /*call function javascript for add products in the order*/
-                        addProductsOrder($("#current_id_order").val());
-                        priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
-
-                    }
-                }
-            }
-
-        } else {
-            notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez renseignez tous les champs de la commande avant d'ajouter un produit", "danger");
-        }
-    });
-
-
-
-    function addRowProduct($id_product  , $id_color , $id_size) {
-        if (product_added != null) {
-            if (($('#qte_product_order').val() != '') && ($('#qte_product_order').val() > 0)) {
-                /*******************************************/
+                /*On affiche la div qui cache le tableau html des produits*/
                 $("#collapse_products").show("slow");
 
-                ////////////POST AJAX FOR GET INFORMATIONS OF MY PRODUCT FOR INSERT IN MY TABLE HTML/////////////
-                let url = "getInfosProductsArray.html";
-                let form = {id_product: $id_product , 
-                            id_color: $id_color,
-                            id_size: $id_size
-                           };
-                let product = send_post(form, url);
-                /////////////////////////////////////////////////////////////////////////////////////////////////
 
+                if (counterProducts < 1) 
+                {
+                    /*On ajoute la commande et on récupere l'id de la commande pour l'affecter à l'input hidden*/
+                    var id_order = addOrders();
 
-                product_checked = checkProductInOrders($id_product);
+                    /*On modifie le texte pour voir qu'on vient de créer la commande*/
+                    $("#title_order").text("Création de la commande n°" + $("#current_id_order").val());
 
-                if (product_checked == false) {
-                    $totalPrice = (parseFloat(qte_product) * parseFloat(product.sizes_price)) + (parseFloat(product.base_price) * parseFloat(qte_product));
-                    $current_order_price = parseFloat($("body").find('#current_order_price').val());
-
-                    $("#current_order_price").val($totalPrice + $current_order_price);
-
-                    constructViewTable(product, count, array, qte_product);
-                    count++;
-                    return_product_exist = "ok"
-                    return return_product_exist;
-
-                } else {
-                    notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit est deja dans la commande dans la meme couleur et taille", "danger");
-                    return_product_exist = "error"
-                    return return_product_exist;
+                    counterProducts++;
                 }
 
-            } else {
-                notify("pe-7s-refresh-2", "<b>Informations : </b> Le champ quantité du produit n'est pas correctement renseigné ", "danger");
-            }
+                /*On crée le product_colors et le product_size*/
+                addProductsColors($('#select_product_order').val(),$('#select_color_product').val());
+                addProductsSizes($('#select_product_order').val(),$('#select_size_product').val());
+                /*********************************************/
+                
 
-        } else {
-            notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez sélectionner un produit avant de l'ajouter à la commande", "danger");
-        }
+                /*On vérifie que ce produit avec cette taille et cette couleur n'existe deja pas en BDD pour la commande*/
+                return_product_exist = checkProductInOrders($('#select_product_order').val(),$('#current_id_order').val(),$('#select_color_product').val(),$('#select_size_product').val());
+                /*******************************************************************************************************/
+
+                /*Si le retour est égal à false le produit n'est pas dans la commande alors on peut l'ajouter*/
+                if(return_product_exist == false){
+
+                    /*On ajoute le produit la taille et la couleur à products_order*/
+                    addProductsOrder($("#current_id_order").val());
+
+                    /*On récupere les infos du produits pour les passer apres à la fonction qui va créerla vue*/
+                    var product = getInfosProducts($('#select_product_order').val(),$('#select_color_product').val(),$('#select_size_product').val());
+                    constructViewTable(product , count , array , qte_product);
+                    notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
+                    
+                } else if(return_product_exist == true){
+
+                 notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit est deja dans la commande dans la meme couleur et taille", "danger");
+             }
+
+         }
+
+     } else {
+        notify("pe-7s-refresh-2", "<b>Informations : </b> Veuillez renseignez tous les champs de la commande avant d'ajouter un produit", "danger");
     }
+});
 
 });
+
+
+
+function getInfosProducts($id_product,$id_color,$id_size){
+    let url = "getInfosProductsArray.html";
+    let form = {id_product: $id_product , id_color: $id_color,id_size: $id_size};
+    let product = send_post(form, url);
+    return product;
+}
 
 
 
@@ -374,7 +360,6 @@ function constructViewTable($product, $count, $array, $qte_product) {
         } else {
             $count = +$("#tab_products_order tr:nth-child(2)").attr('id').replace("ligne", "") + 1;
         }
-
     }
 
 
@@ -407,8 +392,6 @@ function constructViewTable($product, $count, $array, $qte_product) {
     cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
     cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
     cell12.innerHTML = '<a id="editRow" onClick="editRowOrder()" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
-
-    notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
 }
 
 

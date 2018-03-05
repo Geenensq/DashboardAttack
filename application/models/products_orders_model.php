@@ -230,8 +230,8 @@ Class products_orders_model extends CI_Model
         $query = $this->db->get();
         $result = $query->result_array();
         
-        if(count($result) === 0){
-            /*returns false if the product is in command*/
+        if(count($result) <= 0){
+            /*returns false if the product is'not in command*/
             return false;
 
         } else {

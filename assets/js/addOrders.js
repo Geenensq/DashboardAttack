@@ -1,38 +1,18 @@
-    function addOrders() {
-        customer_order = $("#customer_order").val();
-        date_order = $("#date_order").val();
-        state_order = $("#state_order").val();
-        shipping_order = $("#shipping_order").val();
-        payments_order = $("#payments_order").val();
-        comment_order = $("#comment_order").val();
+function addOrders() {
 
+    var form = 
+    {
+        customer_order:$("#customer_order").val(),
+        date_order:$("#date_order").val(),
+        state_order:$("#state_order").val(),
+        shipping_order:$("#shipping_order").val(),
+        payments_order:$("#payments_order").val(),
+        comment_order:$("#comment_order").val()
+    }
 
-        url = "addOrders.html"
-        $.post(url, {
-            customer_order: customer_order,
-            date_order: date_order,
-            state_order: state_order,
-            shipping_order: shipping_order,
-            payments_order: payments_order,
-            comment_order:comment_order
-
-        }, function(data) {
-
-            if (data.confirm == "success") {
-
-                /*Affecte l'id enresitré de la commande pour ajouter les produits à la bonne commande*/
-                $("#current_id_order").val(data.id_order);
-                priceUpdate($("#current_id_order").val() , $("#current_order_price").val());
-
-                addProductsSizes($("#current_id_order").val());
-                addProductsColors($("#current_id_order").val());
-                /*call function javascript for add products in the order*/
-                addProductsOrder($("#current_id_order").val());
-                $("#title_order").text("Création de la commande n°" + $("#current_id_order").val());
-                
-            } else if (data.confirm == "error") {
-                
-            }
-        }, "json");
-        return false;
-    };
+    url = "addOrders.html"
+    
+    var orders = send_post(form,url);
+    $("#current_id_order").val(orders["id_order"]);
+    
+}

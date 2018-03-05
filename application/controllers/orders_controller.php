@@ -467,7 +467,9 @@ Class Orders_controller extends CI_Controller
 
         /*If the product size does not exist, create it*/
         $result = $this->modelProductsColors->selectProductsByColors($modelProductsColors);
+        
         $callBack;
+        
         if($result == "not exist"){
               $this->modelProductsColors->insertProductsColors($modelProductsColors);
               $callBack = "products colors created";

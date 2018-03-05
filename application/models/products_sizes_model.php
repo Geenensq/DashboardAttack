@@ -86,7 +86,7 @@ Class Products_sizes_model extends CI_Model
 
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('id_product', $id_product );
+        $this->db->where('id_product', $id_product);
         $this->db->where('id_size', $id_size );
         $query = $this->db->get();
         $result = $query->result_array();

@@ -1,15 +1,9 @@
-function addProductsSizes($id_order) {
-    /*DEFINES VARIABLES */
-    let id_product = $('#select_product_order').val();
-    let id_size = $('#select_size_product').val();
-    /*    let id_order = $id_order;*/
-    /*END DEFINES VARIABLES*/
+function addProductsSizes($id_product , $id_size) {
 
     url = "addProductsSizes.html"
     $.post(url, {
-        id_product: id_product,
-        id_size: id_size,
-        /*        id_order: id_order*/
+        id_product: $id_product,
+        id_size: $id_size
 
     }, function(data) {
 
