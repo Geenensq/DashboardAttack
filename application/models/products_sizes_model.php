@@ -73,7 +73,7 @@ Class Products_sizes_model extends CI_Model
         $this->db->set('id_product', $id_product)
                 ->set('id_size', $id_size)
                 ->insert($this->table);
-    }
+   }
 
 // =======================================================================//
 // !           Method to check the existence of the product in size       //

@@ -8,7 +8,7 @@ function AddQuantity($id_product, $row, $price_product) {
     current_order_price = parseFloat($("#current_order_price").val());
     $("#current_order_price").val(parseFloat(current_order_price + $price_product));
     /*AJAX CALL FOR UPDATE THE PRICE*/
-    priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+    priceUpdateDatabase($("#current_id_order").val(), $("#current_order_price").val());
 }
 
 
@@ -29,7 +29,7 @@ function RemoveQuantity($id_product, $row, $price_product) {
         $("#current_order_price").val(parseFloat(current_order_price - $price_product));
 
         /*AJAX CALL FOR UPDATE THE PRICE*/
-        priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+        priceUpdateDatabase($("#current_id_order").val(), $("#current_order_price").val());
     }
 }
 

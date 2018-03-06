@@ -7,9 +7,11 @@
  * @version 1.0
  */
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
-Class Sizes_model extends CI_Model
+class Sizes_model extends CI_Model
 {
 // =======================================================================//
 // !                  Declaration of my attributes                       //
@@ -18,7 +20,7 @@ Class Sizes_model extends CI_Model
     private $name;
     private $price;
     private $actif;
-    private $id_group_size; 
+    private $id_group_size;
     protected $table = "sizes";
 
 // =======================================================================//
@@ -108,11 +110,9 @@ Class Sizes_model extends CI_Model
         return $this;
     }
 
-
-
 // =======================================================================//
-// !                    Method for insert an size                        //
-// ======================================================================//
+    // !                    Method for insert an size                        //
+    // ======================================================================//
 
     public function insertOneSize($model)
     {
@@ -122,16 +122,15 @@ Class Sizes_model extends CI_Model
         $actif = 1;
 
         $this->db->set('size_name', $name)
-        ->set('price', $price)
-        ->set('id_group_size' , $group_size)
-        ->set('actif' , $actif)
-        ->insert($this->table);
+            ->set('price', $price)
+            ->set('id_group_size', $group_size)
+            ->set('actif', $actif)
+            ->insert($this->table);
     }
 
-
 // =======================================================================//
-// !           Method SELECT *  sizes for datatable                     //
-// ======================================================================//
+    // !           Method SELECT *  sizes for datatable                     //
+    // ======================================================================//
 
     public function loadDataSizesDataTable()
     {
@@ -142,48 +141,44 @@ Class Sizes_model extends CI_Model
         return $query->result_array();
     }
 
-
 // =======================================================================//
-// !                Method for disable and enable size                   //
-// ======================================================================//
+    // !                Method for disable and enable size                   //
+    // ======================================================================//
 
     public function disableEnableOneSize($id)
     {
         $this->db->select('actif');
         $this->db->from($this->table);
-        $this->db->where('id_size', $id );
+        $this->db->where('id_size', $id);
         $query = $this->db->get();
         $result = $query->result_array();
 
-        if($result[0]['actif'] == 0){
+        if ($result[0]['actif'] == 0) {
 
-            $data = array ('actif' => 1 );
-            $this->db->where('id_size' , $id);
-            $this->db->update($this->table , $data);
+            $data = array('actif' => 1);
+            $this->db->where('id_size', $id);
+            $this->db->update($this->table, $data);
         } else {
 
-            $data = array ('actif' => 0 );
-            $this->db->where('id_size' , $id);
-            $this->db->update($this->table , $data);
+            $data = array('actif' => 0);
+            $this->db->where('id_size', $id);
+            $this->db->update($this->table, $data);
         }
     }
 
-
-
- // =======================================================================//
-// !           Method SELECT ALL sizes informations FOR MODAL           //
-// ======================================================================//
+    // =======================================================================//
+    // !           Method SELECT ALL sizes informations FOR MODAL           //
+    // ======================================================================//
     public function selectAllSizesForModal($id)
     {
         $this->db->select('id_size, size_name, price, sizes.id_group_size AS size_id_group_size , sizes.actif AS size_actif, groups_sizes.name_group_size as name_group_size');
         $this->db->from($this->table);
         $this->db->join('groups_sizes', 'sizes.id_group_size  = groups_sizes.id_group_size');
-        $this->db->where('id_size' , $id);
+        $this->db->where('id_size', $id);
         $query = $this->db->get();
 
-        foreach ($query->result() as $row)
-        {
-            $sizes["id_size"] =  $row->id_size;
+        foreach ($query->result() as $row) {
+            $sizes["id_size"] = $row->id_size;
             $sizes["size_name"] = $row->size_name;
             $sizes["price"] = $row->price;
             $sizes["id_group_size"] = $row->size_id_group_size;
@@ -195,24 +190,21 @@ Class Sizes_model extends CI_Model
 
     }
 
-
 // =======================================================================//
-// !                  Method update a size by its id                    //
-// ======================================================================//
+    // !                  Method update a size by its id                    //
+    // ======================================================================//
 
-    public function updateNameSize($model){
-        $data = array ('id_size' =>$model->getIdSize(),
-            'size_name' =>$model->getName(),
-            'price' =>$model->getPrice(),
-            'id_group_size' =>$model->getIdGroupSize()
+    public function updateNameSize($model)
+    {
+        $data = array('id_size' => $model->getIdSize(),
+            'size_name' => $model->getName(),
+            'price' => $model->getPrice(),
+            'id_group_size' => $model->getIdGroupSize(),
         );
 
-        $this->db->where('id_size' , $model->getIdSize());
-        $this->db->update($this->table , $data);
-        
+        $this->db->where('id_size', $model->getIdSize());
+        $this->db->update($this->table, $data);
+
     }
 
-
 }
-
-?>

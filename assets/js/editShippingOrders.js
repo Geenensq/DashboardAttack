@@ -34,7 +34,7 @@
          var actualPrice = $("#current_order_price").val();
          var new_price_order = (parseFloat(actualPrice) + parseFloat(shipping_price["price_method_shipping"]));
          $("#current_order_price").val(new_price_order);
-         priceUpdate($("#current_id_order").val(), $("#current_order_price").val());
+         priceUpdateDatabase($("#current_id_order").val(), $("#current_order_price").val());
 
          /************************************************************/
          /******************Update method of delivery*****************/

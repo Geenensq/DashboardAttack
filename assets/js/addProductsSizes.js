@@ -1,19 +1,6 @@
 function addProductsSizes($id_product , $id_size) {
-
-    url = "addProductsSizes.html"
-    $.post(url, {
-        id_product: $id_product,
-        id_size: $id_size
-
-    }, function(data) {
-
-        if (data.confirm == "success") {
-
-
-        } else if (data.confirm == "error") {
-
-        }
-    }, "json");
-    return false;
+    let url = "addProductsSizes.html"
+    let form = {id_product: $id_product,id_size: $id_size};
+    let products_sizes = send_post(form, url);
 
 };

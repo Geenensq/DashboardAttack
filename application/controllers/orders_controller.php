@@ -318,6 +318,7 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
+        
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
 
@@ -335,9 +336,15 @@ Class Orders_controller extends CI_Controller
     {
         $this->id_order = $this->input->post('id_order');
         $this->id_product = $this->input->post('id_product');
+        $this->id_size = $this->input->post('id_size');
+        $this->id_color = $this->input->post('id_color');
+
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
+        $this->modelProductsOrders->setIdSize($this->id_size);
+        $this->modelProductsOrders->setIdColor($this->id_color);
+        
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->deleteProductOrder($modelProductsOrders);
         $callback["confirm"] = "success";
@@ -415,9 +422,11 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdColor($this->id_color);
+       
         $modelProductsOrders = $this->modelProductsOrders;
         
-        $return = $this->modelProductsOrders->selectAllProductsForTableView($modelProductsOrders);
+        $return = $this->modelProductsOrders->selectInfosProductsOrders($modelProductsOrders);
+        
         echo json_encode($return);
     }
 
