@@ -321,11 +321,25 @@ $(document).ready(function () {
 
 						/*On récupere les infos du produits pour les passer apres à la fonction qui va créerla vue*/
 						var product = getInfosProducts($('#select_product_order').val(), $('#select_color_product').val(), $('#select_size_product').val(), $("#current_id_order").val());
-						
+
+
+						// On apelle la fonction qui nous calcule prix de la commande après la l'ajout du produit
+						var new_price = incrementPrice(product);
+						var new_price = parseFloat(new_price).toFixed(2);
+						/***************************************************************************************/
+
+						//**Appel de la fonction pour mettre à jour le prix dans la vue**//
+						priceUpdateView(new_price);
+						//************************************************************//
+
+						//**Appel de la fonction pour mettre à jour le prix dans la base de donnée**//
+						priceUpdateDatabase($("#current_id_order").val(), new_price);
+						/**********************************************************************************/
+
+
 						/*On apelle la fonction qui permet de générer la vue en lui passant le produit , le counteur pour générer la ligne , l'id du tableau et la quantité de chque produit*/
 						constructViewTable(product, count, array, $("#qte_product_order").val());
-						
-						
+
 						notify("pe-7s-refresh-2", "<b>Informations : </b> Le produit à été ajouté à la commande avec succès !", "info");
 						/*On incrémente le compteur pour générer la ligne dans la fonction de génération du tableau*/
 						count++;
@@ -405,20 +419,65 @@ function constructViewTable($product, $count, $array, $qte_product) {
 	/*Pour supprimé la ligne et l'entrée en base on lui passe count pour créer la ligne*/
 	/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
 	cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-
-
-	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+	
+	/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
+	l'id de la taille et de la couleur et la commande*/
+	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
 	cell12.innerHTML = '<a id="editRow" onClick="editRowOrder()" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
 }
 
 
-function priceUpdateView($input, $new_price) {
+// Fonction qui permet d'incrémenter le prix de la commande quand on ajoute un produit
+function incrementPrice($product) {
 
+	// Une fois le produit récupérer je récupère le prix actuel de la commande je le traite en float//
+	var current_price = $("#current_order_price").val();
+	var current_price = parseFloat(current_price);
 
+	/***********************************************************************************************/
+	// Ensuite je récupère le prix du produit de la taille multiplié par le nombre de fois ou il est dans la commande et je le traite en float//
+	var product_price = (parseFloat($product.base_price) + parseFloat($product.size_price)) * parseFloat($product.quantity_product);
+	/********************************************************************************************************************************************/
+
+	//******************Calcul du nouveau prix*********************//
+	var new_price = (current_price + product_price);
+	//************************************************************//
+	return new_price;
 }
+/*************************************************************************************/
+
+
+// Fonction qui permet de décrémenter le prix de la commande quand on supprime un produit
+function decrementPrice($product) {
+
+	// Une fois le produit récupérer je récupère le prix actuel de la commande je le traite en float//
+	var current_price = $("#current_order_price").val();
+	var current_price = parseFloat(current_price);
+	/***********************************************************************************************/
+
+	// Ensuite je récupère le prix du produit de la taille multiplié par le nombre de fois ou il est dans la commande et je le traite en float//
+	var product_price = (parseFloat($product.base_price) + parseFloat($product.size_price)) * parseFloat($product.quantity_product);
+	/********************************************************************************************************************************************/
+
+	//******************Calcul du nouveau prix*********************//
+	var new_price = (current_price - product_price);
+	//************************************************************//
+
+	return new_price;
+}
+/****************************************************************************************/
 
 
 
+// Fonction qui me permet d'ajouter le nouveau prix dans la vue//
+function priceUpdateView($new_price) {
+	$("#current_order_price").val($new_price);
+}
+//*************************************************************/
+
+
+
+// Fonction qui me permet d'ajouter le nouveau prix dans la base de données//
 function priceUpdateDatabase($id_order, $price) {
 	url = "editPriceOrders.html";
 	form = {
@@ -427,3 +486,4 @@ function priceUpdateDatabase($id_order, $price) {
 	};
 	let result_price_update = send_post(form, url);
 }
+//************************************************************************/
