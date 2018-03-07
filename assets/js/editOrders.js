@@ -110,7 +110,7 @@ function editOrders($id_order) {
 			cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
 			/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	        l'id de la taille et de la couleur et la commande*/
-			cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + order_product[i]["id_size"] + order_product[i]["id_color"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+			cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
 			cell12.innerHTML = '<a id="editRow" onClick="editRowOrder(' + row.id + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
 		}
 	}

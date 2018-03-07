@@ -7,29 +7,28 @@
  * @version 1.0
  */
 
-Class Orders_controller extends CI_Controller
+class Orders_controller extends CI_Controller
 {
 // =======================================================================//
-// !                  Declaration of my attributes                       //
-// ======================================================================//
-	private $id_order;
-	private $date_order;
-	private $status_order;
-	private $comment_order;
-	private $price_order;
+    // !                  Declaration of my attributes                       //
+    // ======================================================================//
+    private $id_order;
+    private $date_order;
+    private $status_order;
+    private $comment_order;
+    private $price_order;
 
-
-	private $id_customer;
-	private $id_method_payment;
-	private $id_method_shipping;
+    private $id_customer;
+    private $id_method_payment;
+    private $id_method_shipping;
     private $id_product;
     private $qte_product;
     private $id_size;
     private $id_color;
 
 // =======================================================================//
-// !                  Constructor of my Class                            //
-// ======================================================================//
+    // !                  Constructor of my Class                            //
+    // ======================================================================//
     public function __construct()
     {
         parent::__construct();
@@ -42,24 +41,23 @@ Class Orders_controller extends CI_Controller
         $this->load->model('Products_orders_model', 'modelProductsOrders');
         $this->load->model('Groups_colors_model', 'modelGroupsColors');
         $this->load->model('Groups_sizes_model', 'modelGroupSizes');
-        $this->load->model('Products_sizes_model' , 'modelProductsSizes');
-        $this->load->model('Products_colors_model' , 'modelProductsColors');
+        $this->load->model('Products_sizes_model', 'modelProductsSizes');
+        $this->load->model('Products_colors_model', 'modelProductsColors');
     }
 
 // =======================================================================//
-// !                         Default method                              //
-// ======================================================================//
+    // !                         Default method                              //
+    // ======================================================================//
     public function index()
-    {	
-        if($this->session->userdata('id_member')){
-            
+    {
+        if ($this->session->userdata('id_member')) {
+
             $customers = $this->modelCustomers->selectAll();
             $states = $this->modelStates->selectAll();
             $shipping = $this->modelShipping->selectAll();
             $payments = $this->modelPayments->selectAll();
             $groupsColors = $this->modelGroupsColors->selectAll();
             $groupsSizes = $this->modelGroupSizes->selectAll();
-
 
             $array = [];
             $array['customers'] = $customers;
@@ -69,44 +67,42 @@ Class Orders_controller extends CI_Controller
             $array['groupsColors'] = $groupsColors;
             $array['groupsSizes'] = $groupsSizes;
 
-
             $this->load->view('dashboard/orders.html', $array);
-        }else{
+        } else {
             redirect(array('login_controller', 'index'));
         }
-        
+
     }
 
 // =======================================================================//
-// !                    Autocompletion customers                         //
-// ======================================================================//
+    // !                    Autocompletion customers                         //
+    // ======================================================================//
 
-    public function getCustomersAutoComplete(){
+    public function getCustomersAutoComplete()
+    {
 
-        $search = $this->input->get('q', FALSE);
+        $search = $this->input->get('q', false);
         $results = $this->modelCustomers->selectAllCustomersAutoComplete($search);
 
         echo json_encode($results);
     }
 
-
 // =======================================================================//
-// !            Method for get the price of shipping method               //
-// ======================================================================//
+    // !            Method for get the price of shipping method               //
+    // ======================================================================//
     public function getShippingsInfos()
     {
         $this->id_method_shipping = $this->input->post('id');
         $this->modelShipping->setIdMethodShipping($this->id_method_shipping);
         $modelShipping = $this->modelShipping;
         $infosMethodShipping = $this->modelShipping->selectShippingsInfos($modelShipping);
-        
+
         echo json_encode($infosMethodShipping);
     }
 
-
 // =======================================================================//
-// !         Method for get the price of shipping of the order            //
-// ======================================================================//
+    // !         Method for get the price of shipping of the order            //
+    // ======================================================================//
     public function getShippingsPriceOrders()
     {
         $this->id_order = $this->input->post('id');
@@ -114,14 +110,13 @@ Class Orders_controller extends CI_Controller
         $modelOrders = $this->modelOrders;
 
         $infosPriceShipping = $this->modelOrders->selectPriceShippingOrders($modelOrders);
-        
+
         echo json_encode($infosPriceShipping);
     }
 
-
 // =======================================================================//
-// !                  Method to change the delivery method                //
-// ======================================================================//
+    // !                  Method to change the delivery method                //
+    // ======================================================================//
     public function changeShippingsMethod()
     {
         $this->id_order = $this->input->post('id_order');
@@ -133,60 +128,59 @@ Class Orders_controller extends CI_Controller
         $this->modelOrders->updateShippingOrder($modelOrders);
     }
 
-
 // =======================================================================//
-// !                     Autocompletion products                         //
-// ======================================================================//
+    // !                     Autocompletion products                         //
+    // ======================================================================//
 
-    public function getProductsAutoComplete(){
+    public function getProductsAutoComplete()
+    {
 
-        $search = $this->input->get('q', FALSE);
+        $search = $this->input->get('q', false);
         $results = $this->modelProducts->selectAllProductsAutoComplete($search);
         echo json_encode($results);
 
     }
 
 // =======================================================================//
-// !                     Function for delete an order                    //
-// ======================================================================//
-    public function removeOrders(){
-       $this->id_order = $this->input->post('id');
+    // !                     Function for delete an order                    //
+    // ======================================================================//
+    public function removeOrders()
+    {
+        $this->id_order = $this->input->post('id');
 
-       /********************Firts delete products of my orders***********************/
-       $this->modelProductsOrders->setIdOrder($this->id_order);
-       $modelProductsOrders = $this->modelProductsOrders;
-       $this->modelProductsOrders->deleteProcuctsOrder($modelProductsOrders);
-       /*****************************************************************************/
+        /********************Firts delete products of my orders***********************/
+        $this->modelProductsOrders->setIdOrder($this->id_order);
+        $modelProductsOrders = $this->modelProductsOrders;
+        $this->modelProductsOrders->deleteProcuctsOrder($modelProductsOrders);
+        /*****************************************************************************/
 
-       /*****************************Delete orders**********************************/
-       $this->modelOrders->setIdOrder($this->id_order);
-       $modelOrders = $this->modelOrders;
-       $this->modelOrders->deleteOrders($modelOrders);
-   }
-   
-
+        /*****************************Delete orders**********************************/
+        $this->modelOrders->setIdOrder($this->id_order);
+        $modelOrders = $this->modelOrders;
+        $this->modelOrders->deleteOrders($modelOrders);
+    }
 
 // ==========================================================================================//
-// !                               Method for add an order                                   //
-// ==========================================================================================//
-   public function addOrders()
-   {
-    $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
-    $this->form_validation->set_rules('date_order', '"date_order"', 'required');
-    $this->form_validation->set_rules('state_order', '"state_order"', 'required');
-    $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
-    $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
-    $this->form_validation->set_rules('comment_order', '"comment_order"', 'required');
+    // !                               Method for add an order                                   //
+    // ==========================================================================================//
+    public function addOrders()
+    {
+        $this->form_validation->set_rules('customer_order', '"customer_order"', 'required');
+        $this->form_validation->set_rules('date_order', '"date_order"', 'required');
+        $this->form_validation->set_rules('state_order', '"state_order"', 'required');
+        $this->form_validation->set_rules('shipping_order', '"shipping_order"', 'required');
+        $this->form_validation->set_rules('payments_order', '"payments_order"', 'required');
+        $this->form_validation->set_rules('comment_order', '"comment_order"', 'required');
 
-    $callBack = array();
+        $callBack = array();
 
-    if ($this->form_validation->run()) {
+        if ($this->form_validation->run()) {
 
-        /************** Receipt of data posted by javascript ***********************/
-        $this->id_customer = $this->input->post('customer_order');
-        $this->date_order = $this->input->post('date_order');
-        $this->status_order = $this->input->post('state_order');
-        $this->comment_order = $this->input->post('comment_order');
+            /************** Receipt of data posted by javascript ***********************/
+            $this->id_customer = $this->input->post('customer_order');
+            $this->date_order = $this->input->post('date_order');
+            $this->status_order = $this->input->post('state_order');
+            $this->comment_order = $this->input->post('comment_order');
 
             /*For the moment we define the price of the order to 0
             we attribute to him the final price at the end of the treatment*/
@@ -216,14 +210,12 @@ Class Orders_controller extends CI_Controller
         }
 
         echo json_encode($callBack);
-        
+
     }
 
-
-
-// ==========================================================================================//
-// !                      Method get all informations of an order                            //
-// ==========================================================================================//
+    // ==========================================================================================//
+    // !                      Method get all informations of an order                            //
+    // ==========================================================================================//
 
     public function getInfosOrdersForEdit()
     {
@@ -232,9 +224,9 @@ Class Orders_controller extends CI_Controller
         echo json_encode($return);
     }
 
-// ==========================================================================================//
-// !                Method get all informations of product order                             //
-// ==========================================================================================//
+    // ==========================================================================================//
+    // !                Method get all informations of product order                             //
+    // ==========================================================================================//
 
     public function getInfosProductsOrdersForEdit()
     {
@@ -243,9 +235,9 @@ Class Orders_controller extends CI_Controller
         echo json_encode($return);
     }
 
-// =======================================================================//
-// !                Method for send orders on datatable                  //
-// ======================================================================//
+    // =======================================================================//
+    // !                Method for send orders on datatable                  //
+    // ======================================================================//
 
     public function encodeGridOrders()
     {
@@ -259,10 +251,9 @@ Class Orders_controller extends CI_Controller
         echo json_encode(array('data' => $data));
     }
 
-
 // =======================================================================//
-// !                  Method for EDIT AN GROUPS OF PRODUCTS               //
-// ======================================================================//
+    // !                  Method for EDIT AN GROUPS OF PRODUCTS               //
+    // ======================================================================//
 
     public function changeInfosOrders()
     {
@@ -274,7 +265,7 @@ Class Orders_controller extends CI_Controller
         $this->form_validation->set_rules('new_method_payment', '" "', 'required|min_length[1]');
         $this->form_validation->set_rules('shipping_order', '" "', 'required|min_length[1]');
         $this->form_validation->set_rules('new_state_order', '" "', 'required|min_length[1]');
-        
+
         $callBack = array();
 
         if ($this->form_validation->run()) {
@@ -301,11 +292,9 @@ Class Orders_controller extends CI_Controller
         echo json_encode($callBack);
     }
 
-
-
 // =======================================================================//
-// !                     INSERT ONE PRODUCT ORDER                        //
-// ======================================================================//
+    // !                     INSERT ONE PRODUCT ORDER                        //
+    // ======================================================================//
 
     public function addProductsOrders()
     {
@@ -318,7 +307,7 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
-        
+
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
 
@@ -326,12 +315,12 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->insertOneProductOrder($modelProductsOrders);
         $callBack["confirm"] = "success";
         echo json_encode($callBack);
-        
+
     }
 
 // ==========================================================================================//
-// !                       Method to remove a product from a order                           //
-// ==========================================================================================//
+    // !                       Method to remove a product from a order                           //
+    // ==========================================================================================//
     public function removeProductsOrders()
     {
         $this->id_order = $this->input->post('id_order');
@@ -339,21 +328,20 @@ Class Orders_controller extends CI_Controller
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
 
-
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
-        
+
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->deleteProductOrder($modelProductsOrders);
         $callback["confirm"] = "success";
         echo json_encode($callback);
     }
-    
+
 // ==========================================================================================//
-// !                        Method to UPDATE the price of an order                           //
-// ==========================================================================================//
+    // !                        Method to UPDATE the price of an order                           //
+    // ==========================================================================================//
     public function editPriceOrders()
     {
         $this->id_order = $this->input->post('id_order');
@@ -368,8 +356,8 @@ Class Orders_controller extends CI_Controller
     }
 
 // ==========================================================================================//
-// !              Method to find out if a product is already in a order                      //
-// ==========================================================================================//
+    // !              Method to find out if a product is already in a order                      //
+    // ==========================================================================================//
 
     public function checkProductInOrders()
     {
@@ -384,15 +372,15 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdSize($this->id_size);
 
         $modelProductsOrders = $this->modelProductsOrders;
-        
+
         $return = $this->modelProductsOrders->selectCheckProductInOrder($modelProductsOrders);
 
         echo json_encode($return);
     }
 
 // ==========================================================================================//
-// !                 method to update the number of the product in the order                 //
-// ==========================================================================================//
+    // !                 method to update the number of the product in the order                 //
+    // ==========================================================================================//
 
     public function EditQuantityProducts()
     {
@@ -402,7 +390,7 @@ Class Orders_controller extends CI_Controller
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
 
-        echo($this->id_order . $this->id_product . $this->qte_product . $this->id_size . $this->id_color);
+        echo ($this->id_order . $this->id_product . $this->qte_product . $this->id_size . $this->id_color);
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
@@ -414,8 +402,8 @@ Class Orders_controller extends CI_Controller
     }
 
 // ==========================================================================================//
-// !               Method get all informations of products for my array                      //
-// ==========================================================================================//
+    // !               Method get all informations of products for my array                      //
+    // ==========================================================================================//
 
     public function getInfosProductsArray()
     {
@@ -428,22 +416,21 @@ Class Orders_controller extends CI_Controller
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdColor($this->id_color);
-       
+
         $modelProductsOrders = $this->modelProductsOrders;
-        
+
         $return = $this->modelProductsOrders->selectInfosProductsOrders($modelProductsOrders);
-        
+
         echo json_encode($return);
     }
 
-
 // ==========================================================================================//
-// !                           Method to add size to the product                             //
-// ==========================================================================================//
+    // !                           Method to add size to the product                             //
+    // ==========================================================================================//
     public function addProductsSizes()
     {
         $this->id_product = $this->input->post('id_product');
-        $this->id_size =  $this->input->post('id_size');
+        $this->id_size = $this->input->post('id_size');
 
         /***************Creation of my object******************/
         $this->modelProductsSizes->setIdProduct($this->id_product);
@@ -455,11 +442,11 @@ Class Orders_controller extends CI_Controller
         $result = $this->modelProductsSizes->selectProductsBySizes($modelProductsSizes);
         $callBack;
 
-        if($result == "not exist"){
-              $this->modelProductsSizes->insertProductsSizes($modelProductsSizes);
-              $callBack = "products sizes created";
+        if ($result == "not exist") {
+            $this->modelProductsSizes->insertProductsSizes($modelProductsSizes);
+            $callBack = "products sizes created";
         } else {
-           $callBack = "products sizes already exist";
+            $callBack = "products sizes already exist";
         }
 
         echo json_encode($callBack);
@@ -467,12 +454,12 @@ Class Orders_controller extends CI_Controller
     }
 
 // ==========================================================================================//
-// !                           Method to add color to the product                             //
-// ==========================================================================================//
+    // !                           Method to add color to the product                             //
+    // ==========================================================================================//
     public function addProductsColors()
     {
         $this->id_product = $this->input->post('id_product');
-        $this->id_color =  $this->input->post('id_color');
+        $this->id_color = $this->input->post('id_color');
 
         /***************Creation of my object******************/
         $this->modelProductsColors->setIdProduct($this->id_product);
@@ -482,18 +469,17 @@ Class Orders_controller extends CI_Controller
 
         /*If the product size does not exist, create it*/
         $result = $this->modelProductsColors->selectProductsByColors($modelProductsColors);
-        
+
         $callBack;
-        
-        if($result == "not exist"){
-              $this->modelProductsColors->insertProductsColors($modelProductsColors);
-              $callBack = "products colors created";
-        } else{
-              $callBack = "products colors already exist";
+
+        if ($result == "not exist") {
+            $this->modelProductsColors->insertProductsColors($modelProductsColors);
+            $callBack = "products colors created";
+        } else {
+            $callBack = "products colors already exist";
         }
-      
+
         echo json_encode($callBack);
     }
-
 
 }
