@@ -148,10 +148,14 @@ Class products_orders_model extends CI_Model
         $id_order = $model->getIdOrder();
         $id_product = $model->getIdProduct();
         $new_quantity = $model->getQuantityProduct();
+        $id_size = $model->getIdSize();
+        $id_color = $model->getIdColor();
 
         $this->db->set('quantity_product', $new_quantity);
         $this->db->where('id_order', $id_order);
         $this->db->where('id_product', $id_product);
+        $this->db->where('id_size', $id_size);
+        $this->db->where('id_color', $id_color);
         $this->db->update($this->table);
 
     }
@@ -162,13 +166,12 @@ Class products_orders_model extends CI_Model
     public function selectAllProductsOrders($id)
     {
         $id_order = $id;
-        $this->db->select('products_orders.quantity_product , products.id_product , products.product_name , products.reference,products.description,products.base_price,products.img_url , colors.color_name AS color_name , sizes.size_name AS size_name');
-
+        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , products_orders.quantity_product , colors.color_name , colors.id_color , sizes.size_name , sizes.id_size , sizes.price AS size_price');
         $this->db->from($this->table);
         $this->db->join('products', 'products.id_product = products_orders.id_product');
         $this->db->join('orders', 'orders.id_order = products_orders.id_order');
-        $this->db->join('colors', 'products.id_color = colors.id_color');
-        $this->db->join('sizes', 'products.id_size = sizes.id_size');
+        $this->db->join('colors', 'colors.id_color = products_orders.id_color');
+        $this->db->join('sizes', 'sizes.id_size = products_orders.id_size');
         $this->db->where('orders.id_order', $id_order);
         $query = $this->db->get();
         $query->result_array();

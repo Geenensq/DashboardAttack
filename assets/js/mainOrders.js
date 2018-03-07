@@ -157,9 +157,8 @@ $(document).ready(function () {
 		/*Change attribute disabled to false*/
 		$('#edit_orders').attr("disabled", false);
 
-		//////////////////////////////////////////////////////////////
-		//*IF IS IN EDITION MODE UPDATE THE ORDER WITH REQUEST AJAX*/
-		////////////////////////////////////////////////////////////
+
+		// SI LA COMMANDE EST EN MODE EDITION
 		if ($('h4:contains("Edition de la commande existante")').length > 0) {
 			$('#valid_order').text("Valider la commande");
 			edit_mode = 1;
@@ -199,45 +198,30 @@ $(document).ready(function () {
 		////////////////////////////////////////////////////////////
 
 
+		// Si le boutton de validation de la commande n'est pas désactivé
 		if ($('#valid_order').prop("disabled") == false) {
 
 			/*Enable the datatable buttons that allow the editing of the command*/
 			$("a.editOrder").attr("disabled", false);
 
+			// fonction qui réactive les champs en disabled
 			unlockInputOrder();
+
+			// Changement du titre de la page
 			$("#title_order").text("Ajouter une commande");
 
-			$('input').each(function () {
-				let input = this;
-				let name_input = $(input).attr("name");
+			// Appel de la fonction qui me vide mes champs de saisies après la validation
+			resetInputsOrders();
 
-				if (name_input == "current_id_order") {
-					$(input).val(0);
-				} else if (name_input == "tab_orders_length") {
-					return;
-				} else if (name_input === "current_order_price") {
-					$(input).val(0);
-				} else {
-					$(input).val('');
-				}
-
-
-			})
-
-			$('select').each(function () {
-				let select = this;
-				let name_select = $(select).attr("name");
-				if (name_select === "tab_orders_length") {
-					return;
-				} else {
-					$(select).val(0).change();
-				}
-
-			})
-
+			// Suppréssion dans la vue des commandes dans le tableau
 			$("#tab_products_order td").parent().remove();
+
+			// Fermeture du panneau qui contient le tableau des produits de la commande
 			$("#collapse_products").hide("slow");
+
+			// On met en desactivé le bouton de validation de la commande
 			$("#valid_order").attr('disabled', 'disabled');
+
 			count = 1;
 			counterProducts = 0;
 
@@ -246,6 +230,7 @@ $(document).ready(function () {
 				$("#tab_orders").DataTable().ajax.reload();
 			}
 
+			// On remet la css de base du titre 
 			$("#title_order").css("font-weight", "300");
 			$("#title_order").css("color", "#333333");
 
@@ -255,7 +240,6 @@ $(document).ready(function () {
 			return;
 		}
 	});
-	/**************************************************/
 
 
 
@@ -293,6 +277,7 @@ $(document).ready(function () {
 					/*On affiche la div qui cache le tableau html des produits*/
 					$("#collapse_products").show("slow");
 
+					// SI c'est le premier produit ajouté à la commande alors on créer la commande
 					if (counterProducts < 1) {
 						/*On ajoute la commande et on récupere l'id de la commande pour l'affecter à l'input hidden*/
 						var id_order = addOrders();
@@ -416,13 +401,14 @@ function constructViewTable($product, $count, $array, $qte_product) {
 	cell8.innerHTML = $product.color_name;
 	cell9.innerHTML = $product.size_name;
 
-	/*Pour supprimé la ligne et l'entrée en base on lui passe count pour créer la ligne*/
+	/*Pour supprimé la ligne et l'entrée en base on lui passe count pour supprimer la ligne*/
 	/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
 	cell10.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-	
+
 	/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	l'id de la taille et de la couleur et la commande*/
-	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+	
 	cell12.innerHTML = '<a id="editRow" onClick="editRowOrder()" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
 }
 
@@ -471,7 +457,11 @@ function decrementPrice($product) {
 
 // Fonction qui me permet d'ajouter le nouveau prix dans la vue//
 function priceUpdateView($new_price) {
-	$("#current_order_price").val($new_price);
+
+	// Récupération du prix dans la variablle et conversion en foat avec 2 chiffres après la virgule
+	var new_price = parseFloat($new_price).toFixed(2);
+
+	$("#current_order_price").val(new_price);
 }
 //*************************************************************/
 

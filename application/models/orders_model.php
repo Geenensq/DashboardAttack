@@ -234,7 +234,7 @@ Class Orders_model extends CI_Model
 
     }
 // =======================================================================//
-// !                 Method SELECT * ORDERS for my modal                  //
+// !         Method for select all information from table orders         //
 // ======================================================================//
     public function selectAllOrders($id)
     {
