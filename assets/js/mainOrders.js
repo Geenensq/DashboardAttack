@@ -18,7 +18,6 @@ $(document).ready(function () {
 
 		} else {
 			$("#edit_orders").text("Fermer les commandes en cours");
-
 		}
 	})
 	/*******************************************************/
