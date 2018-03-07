@@ -1,375 +1,384 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
+	<link rel="icon" type="image/png" href="<?php img_url(" favicon.ico "); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Dashboard Attack | Créer et éditer des groupes de tailles et des tailles</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <meta name="viewport" content="width=device-width" />
-  <!-- Bootstrap core CSS     -->
-  <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
-  <!-- Animation library for notifications   -->
-  <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
-  <!--  Light Bootstrap Table core CSS    -->
-  <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-  <!--Datatable css-->
-  <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
-  <!-- Fonts and icons     -->
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Fonts Roboto -->
-  <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
-  <!-- icon font pack -->
-  <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width" />
+	<!-- Bootstrap core CSS     -->
+	<link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+	<!-- Animation library for notifications   -->
+	<link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+	<!--  Light Bootstrap Table core CSS    -->
+	<link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+	<!--Datatable css-->
+	<link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
+	<!-- Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Fonts Roboto -->
+	<link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet'>
+	<!-- icon font pack -->
+	<link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
 </head>
+
 <body>
 
- <!-- //////////////////////////////////////Modal GROUPS sizes//////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_groups_sizes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h5 class="modal-title" id="modalLabel">Edition du groupe de tailles</h5>
-       </div>
-       <form id="modal_update_name_group_sizes" method="POST" action="changeNameGroupsSizes.html">
-         <div class="modal-body">
-           <div class="form-group">
-             <input type="hidden" class="form-control" name="new_id_group_sizes" id="new_id_group_sizes">
-           </div>
-           <div class="form-group">
-             <label for="new_name_group_sizes" class="form-control-label">Nouveau nom du groupe de couleurs:</label>
-             <input required placeholder="Nouveau nom" name="new_name_group_sizes" id="new_name_group_sizes" type="text" class="form-control">
-           </div>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-           <button class="btn btn-info btn-fill">Enregistrer</button>
-         </div>
-       </form>
-     </div>
-   </div>
- </div>
- <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+	<!-- //////////////////////////////////////Modal GROUPS sizes//////////////////////////////////////////// -->
+	<div class="modal fade" data-backdrop="true" id="modal_update_groups_sizes" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition du groupe de tailles</h5>
+				</div>
+				<form id="modal_update_name_group_sizes" method="POST" action="changeNameGroupsSizes.html">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="new_id_group_sizes" id="new_id_group_sizes">
+						</div>
+						<div class="form-group">
+							<label for="new_name_group_sizes" class="form-control-label">Nouveau nom du groupe de couleurs:</label>
+							<input required placeholder="Nouveau nom" name="new_name_group_sizes" id="new_name_group_sizes" type="text" class="form-control">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
 
- <!-- //////////////////////////////////////Modal sizes//////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_sizes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h5 class="modal-title" id="modalLabel">Edition de la taille</h5>
-       </div>
-       <form id="modal_update_name_sizes" method="POST" action="changeNameSizes.html">
-         <div class="modal-body">
+	<!-- //////////////////////////////////////Modal sizes//////////////////////////////////////////// -->
+	<div class="modal fade" data-backdrop="true" id="modal_update_sizes" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition de la taille</h5>
+				</div>
+				<form id="modal_update_name_sizes" method="POST" action="changeNameSizes.html">
+					<div class="modal-body">
 
-           <div class="form-group">
-             <input type="hidden" class="form-control" name="new_id_sizes" id="new_id_sizes">
-           </div>
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="new_id_sizes" id="new_id_sizes">
+						</div>
 
-           <div class="form-group">
-             <label for="new_name_sizes" class="form-control-label">Nouveau de la taille:</label>
-             <input required placeholder="Nouveau nom" name="new_name_sizes" id="new_name_sizes" type="text" class="form-control">
-           </div>
+						<div class="form-group">
+							<label for="new_name_sizes" class="form-control-label">Nouveau de la taille:</label>
+							<input required placeholder="Nouveau nom" name="new_name_sizes" id="new_name_sizes" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_price_sizes" class="form-control-label">Nouveau prix de la taille:</label>
-             <input required placeholder="Exemple : 19.90€" name="new_price_sizes" id="new_price_sizes" type="text" class="form-control">
-           </div>
+						<div class="form-group">
+							<label for="new_price_sizes" class="form-control-label">Nouveau prix de la taille:</label>
+							<input required placeholder="Exemple : 19.90€" name="new_price_sizes" id="new_price_sizes" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_group_sizes" class="form-control-label">Nouveau groupe de la taille:</label>
-             <select required name="new_group_sizes" id="new_group_sizes" class="form-control">
-              <?php
+						<div class="form-group">
+							<label for="new_group_sizes" class="form-control-label">Nouveau groupe de la taille:</label>
+							<select required name="new_group_sizes" id="new_group_sizes" class="form-control">
+								<?php
               foreach($groups as $value){
               echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
             }
             ?>
-          </select>
-        </div>
+							</select>
+						</div>
 
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-       <button class="btn btn-info btn-fill">Enregistrer</button>
-     </div>
-   </form>
- </div>
-</div>
-</div>
-<!-- /////////////////////////////////////////// END Modal////////////////////////////////////////////// -->
-
-
-<div class="wrapper">
-  <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">    	  
-    <div class="sidebar-wrapper">
-      <div class="logo">
-        <a href="" class="simple-text">
-          Dashboard Attack
-        </a>
-      </div>
-      <ul class="nav">
-        <li>
-          <a href="<?php echo base_url();?>dashboard_controller/index.html">
-            <i class="pe-7s-graph"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url();?>profil_controller/index.html">
-            <i class="pe-7s-user"></i>
-            <p>Votre profil</p>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url();?>customers_controller/index.html">
-            <i class="pe-7s-user"></i>
-            <p>Clients</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>orders_controller/index.html">
-            <i class="pe-7s-note2"></i>
-            <p>Commandes</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>products_controller/index.html">
-            <i class="pe-7s-news-paper"></i>
-            <p>Produits</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>colors_controller/index.html">
-            <i class="pe-7s-science"></i>
-            <p>Coloris</p>
-          </a>
-        </li>
-        <li class="active">
-          <a href="<?php echo base_url();?>size_controller/index.html">
-            <i class="pe-7s-map-marker"></i>
-            <p>Tailles</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>management_controller/index.html">
-            <i class="pe-7s-bell"></i>
-            <p>Gestion</p>
-          </a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-  <div class="main-panel">
-    <nav class="navbar navbar-default navbar-fixed">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">GESTION DES TAILLES</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-left">
-            <li>
-              <a href="<?php echo base_url();?>dashboard_controller/index.html" >
-                <i class="fa fa-dashboard"></i>
-              </a>
-            </li>
-
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-             <a href="<?php echo base_url();?>profil_controller/index.html">
-               <p>Mon compte</p>
-             </a>
-           </li>
-
-           <li>
-            <a href="<?php echo base_url();?>session_controller/index.html">
-              <p>Se deconnecter</p>
-            </a>
-          </li>
-          <li class="separator hidden-lg hidden-md"></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="content">
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Ajout de groupes de tailles</h4>
-      </div>
-      <div class="content">
-        <form id="form_add_groups_sizes" method="POST" action="addGroupsSizes.html">
-         <div class="row">
-          <div class="col-md-12">
-           <div class="form-group">
-            <label for="name_group_sizes">Nom du groupe de tailles</label>
-            <input id="name_group_sizes" name="name_group_sizes" type="text" class="form-control" placeholder="Exemple : Tailles des t-shirts">
-          </div>
-        </div>
-      </div>
-      <button id="btn_add_group_sizes" class="btn btn-info btn-fill pull-right">Ajouter le groupe de tailles</button>
-      <button id="btn_edit_groups_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_sizes" 
-      class="btn btn-danger btn-fill pull-right">Editer les groupes de tailles
-    </button>
-    <div class="clearfix"></div>
-  </form>
-</div>
-</div>
-</div>
-</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- /////////////////////////////////////////// END Modal////////////////////////////////////////////// -->
 
 
-<div class="row">
- <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_groups_sizes">
-   <div class="card card-body">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Gestion des groupes de tailles</h4>
-        <p class="category">Liste des groupes de tailles</p>
-      </div>
-      <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_groups_sizes" class="col-md-12 table table-hover table-striped">
-         <thead>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Edition du nom</th>
-          <th>Désactivation / Activation</th>
-          <th>Status</th>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+	<div class="wrapper">
+		<div class="sidebar" data-color="blue" data-image="<?php img_url(" sidebar-5.jpg "); ?> ">
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="" class="simple-text">
+						Dashboard Attack
+					</a>
+				</div>
+				<ul class="nav">
+					<li>
+						<a href="<?php echo base_url();?>dashboard_controller/index.html">
+							<i class="pe-7s-graph"></i>
+							<p>Dashboard</p>
+						</a>
+					</li>
 
-<div class="row">
- <div class="col-md-12">
-  <div class="card">
-   <div class="header">
-    <h4 class="title">Ajout de tailles</h4>
-  </div>
-  <div class="content">
-    <form id="form_add_sizes" method="POST" action="addSizes.html">
-     <div class="row">
-      <div class="col-md-4">
-       <div class="form-group">
-        <label for="size_name">Nom de la taille</label>
-        <input id="size_name" name="size_name" type="text" class="form-control" placeholder="Exemple : S">
-      </div>
-    </div>
-    
-    <div class="col-md-4">
-     <div class="form-group">
-      <label for="size_price">Prix de la taille</label>
-      <input id="size_price" name="size_price" type="text" class="form-control" data-control="hue" value="0€">
-    </div>
-  </div>
+					<li>
+						<a href="<?php echo base_url();?>profil_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Votre profil</p>
+						</a>
+					</li>
 
-  <div class="col-md-4">
-   <div class="form-group">
-    <label for="name_group_for_size">Groupe de la taille</label>
-    <select id="name_group_for_size" name="name_group_for_size" type="text" class="form-control" >
+					<li>
+						<a href="<?php echo base_url();?>customers_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Clients</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>orders_controller/index.html">
+							<i class="pe-7s-note2"></i>
+							<p>Commandes</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>products_controller/index.html">
+							<i class="pe-7s-news-paper"></i>
+							<p>Produits</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>colors_controller/index.html">
+							<i class="pe-7s-science"></i>
+							<p>Coloris</p>
+						</a>
+					</li>
+					<li class="active">
+						<a href="<?php echo base_url();?>size_controller/index.html">
+							<i class="pe-7s-map-marker"></i>
+							<p>Tailles</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>management_controller/index.html">
+							<i class="pe-7s-bell"></i>
+							<p>Gestion</p>
+						</a>
+					</li>
 
-      <?php
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">GESTION DES TAILLES</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-left">
+							<li>
+								<a href="<?php echo base_url();?>dashboard_controller/index.html">
+									<i class="fa fa-dashboard"></i>
+								</a>
+							</li>
+
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="<?php echo base_url();?>profil_controller/index.html">
+									<p>Mon compte</p>
+								</a>
+							</li>
+
+							<li>
+								<a href="<?php echo base_url();?>session_controller/index.html">
+									<p>Se deconnecter</p>
+								</a>
+							</li>
+							<li class="separator hidden-lg hidden-md"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Ajout de groupes de tailles</h4>
+								</div>
+								<div class="content">
+									<form id="form_add_groups_sizes" method="POST" action="addGroupsSizes.html">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="name_group_sizes">Nom du groupe de tailles</label>
+													<input id="name_group_sizes" name="name_group_sizes" type="text" class="form-control" placeholder="Exemple : Tailles des t-shirts">
+												</div>
+											</div>
+										</div>
+										<button id="btn_add_group_sizes" class="btn btn-info btn-fill pull-right">Ajouter le groupe de tailles</button>
+										<button id="btn_edit_groups_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_sizes"
+										class="btn btn-danger btn-fill pull-right">Editer les groupes de tailles
+										</button>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapse_edit_groups_sizes">
+								<div class="card card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="header">
+													<h4 class="title">Gestion des groupes de tailles</h4>
+													<p class="category">Liste des groupes de tailles</p>
+												</div>
+												<div class="content table-responsive">
+													<table style="width:100% !important;" id="tab_groups_sizes" class="col-md-12 table table-hover table-striped">
+														<thead>
+															<th>ID</th>
+															<th>Nom</th>
+															<th>Edition du nom</th>
+															<th>Désactivation / Activation</th>
+															<th>Status</th>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Ajout de tailles</h4>
+								</div>
+								<div class="content">
+									<form id="form_add_sizes" method="POST" action="addSizes.html">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="size_name">Nom de la taille</label>
+													<input id="size_name" name="size_name" type="text" class="form-control" placeholder="Exemple : S">
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="size_price">Prix de la taille</label>
+													<input id="size_price" name="size_price" type="text" class="form-control" data-control="hue" value="0€">
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="name_group_for_size">Groupe de la taille</label>
+													<select id="name_group_for_size" name="name_group_for_size" type="text" class="form-control">
+
+														<?php
       foreach($groups as $value){
       echo '<option value=' . '"' . $value->getIdGroupSize() . '">' . $value->getNameGroupSize() .'</option>';
     }
     ?>
-  </select>
-</div>
-</div>
+													</select>
+												</div>
+											</div>
 
-</div>
-
-
-<button id="btn_add_sizes" class="btn btn-info btn-fill pull-right">Ajouter la taille</button>
-
-<button id="btn_edit_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_sizes"
-class="btn btn-danger btn-fill pull-right">Editer les tailles
-</button>
-<div class="clearfix"></div>
-</form>
-</div>
-</div>
-</div>
-</div>
-
-<div class="row">
- <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_sizes">
-   <div class="card card-body">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Gestion des tailles</h4>
-        <p class="category">Liste des tailles</p>
-      </div>
-      <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_sizes" class="col-md-12 table table-hover table-striped">
-         <thead>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Prix</th>
-          <th>Goupe associé</th>
-          <th>Edition</th>
-          <th>Des/Actv</th>
-          <th>Status</th>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+										</div>
 
 
-</div>
-</div>
+										<button id="btn_add_sizes" class="btn btn-info btn-fill pull-right">Ajouter la taille</button>
 
-<footer class="footer">
-  <div class="container-fluid">
-   <p class="copyright pull-right">
-    &copy; <script>document.write(new Date().getFullYear())</script>  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
-  </p>
-</div>
-</footer>
+										<button id="btn_edit_sizes" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_sizes"
+										class="btn btn-danger btn-fill pull-right">Editer les tailles
+										</button>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 
-</div>
-</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapse_edit_sizes">
+								<div class="card card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="header">
+													<h4 class="title">Gestion des tailles</h4>
+													<p class="category">Liste des tailles</p>
+												</div>
+												<div class="content table-responsive">
+													<table style="width:100% !important;" id="tab_sizes" class="col-md-12 table table-hover table-striped">
+														<thead>
+															<th>ID</th>
+															<th>Nom</th>
+															<th>Prix</th>
+															<th>Goupe associé</th>
+															<th>Edition</th>
+															<th>Des/Actv</th>
+															<th>Status</th>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<p class="copyright pull-right">
+						&copy;
+						<script>
+							document.write(new Date().getFullYear())
+
+						</script>
+						<a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+					</p>
+				</div>
+			</footer>
+
+		</div>
+	</div>
 
 </body>
 <!--   Core JS Files   -->
@@ -401,6 +410,5 @@ class="btn btn-danger btn-fill pull-right">Editer les tailles
 <script src="<?php echo js_url('changeInfosGroupsSizes');?>"></script>
 <!--Request Ajax for send new informations of sizes-->
 <script src="<?php echo js_url('changeInfosSizes');?>"></script>
+
 </html>
-
-

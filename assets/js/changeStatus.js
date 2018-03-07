@@ -1,8 +1,10 @@
 function ajaxChangeStatus($id, $url_controller, $data_table) {
 
-    $url = $url_controller;
+	$url = $url_controller;
 
-    $.post($url, {id: $id}, function(data) {}, "json");
+	$.post($url, {
+		id: $id
+	}, function (data) {}, "json");
 
-    $($data_table).DataTable().ajax.reload();
+	$($data_table).DataTable().ajax.reload();
 }

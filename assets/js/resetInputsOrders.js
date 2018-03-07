@@ -14,8 +14,8 @@ function resetInputsOrders() {
 
 			$(input).val('1');
 		} else {
-            $(input).val('1');
-        }
+			$(input).val('1');
+		}
 
 
 	})

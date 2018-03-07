@@ -1,431 +1,440 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
+	<link rel="icon" type="image/png" href="<?php img_url(" favicon.ico "); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Dashboard Attack | Créer et éditer des groupes de produits et des produits</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <meta name="viewport" content="width=device-width" />
-  <!-- Bootstrap core CSS     -->
-  <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
-  <!-- Animation library for notifications   -->
-  <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
-  <!--  Light Bootstrap Table core CSS    -->
-  <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-  <!--Datatable css-->
-  <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>"/>
-  <!-- Fonts and icons     -->
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Fonts Roboto -->
-  <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
-  <!-- icon font pack -->
-  <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width" />
+	<!-- Bootstrap core CSS     -->
+	<link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+	<!-- Animation library for notifications   -->
+	<link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+	<!--  Light Bootstrap Table core CSS    -->
+	<link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+	<!--Datatable css-->
+	<link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
+	<!-- Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Fonts Roboto -->
+	<link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet'>
+	<!-- icon font pack -->
+	<link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
 </head>
+
 <body>
- <!-- //////////////////////////////////////Modal GROUPS products//////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_groups_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h5 class="modal-title" id="modalLabel">Edition du groupe de produits</h5>
-       </div>
-       <form id="modal_update_name_group_products" method="POST" action="changeNameGroupsProducts.html">
-         <div class="modal-body">
-           <div class="form-group">
-             <input type="hidden" class="form-control" name="new_id_group_products" id="new_id_group_products">
-           </div>
-           <div class="form-group">
-             <label for="new_name_group_products" class="form-control-label">Nouveau nom du groupe de produits:</label>
-             <input required placeholder="Nouveau nom" name="new_name_group_products" id="new_name_group_products" type="text" class="form-control">
-           </div>
+	<!-- //////////////////////////////////////Modal GROUPS products//////////////////////////////////////////// -->
+	<div class="modal fade" data-backdrop="true" id="modal_update_groups_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition du groupe de produits</h5>
+				</div>
+				<form id="modal_update_name_group_products" method="POST" action="changeNameGroupsProducts.html">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="new_id_group_products" id="new_id_group_products">
+						</div>
+						<div class="form-group">
+							<label for="new_name_group_products" class="form-control-label">Nouveau nom du groupe de produits:</label>
+							<input required placeholder="Nouveau nom" name="new_name_group_products" id="new_name_group_products" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_desc_group_product" class="form-control-label">Nouvelle description du group de produits:</label>
-             <input required placeholder="Nouveau nom" name="new_desc_group_products" id="new_desc_group_products" type="text" class="form-control">
-           </div>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-           <button class="btn btn-info btn-fill">Enregistrer</button>
-         </div>
-       </form>
-     </div>
-   </div>
- </div>
+						<div class="form-group">
+							<label for="new_desc_group_product" class="form-control-label">Nouvelle description du group de produits:</label>
+							<input required placeholder="Nouveau nom" name="new_desc_group_products" id="new_desc_group_products" type="text" class="form-control">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
- <!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
- <!-- //////////////////////////////////////Modal products//////////////////////////////////////////// -->
- <div class="modal fade" data-backdrop="true" id="modal_update_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-         <h5 class="modal-title" id="modalLabel">Edition du produit</h5>
-       </div>
-       <form id="modal_update_name_products" method="POST" action="">
-         <div class="modal-body">
-           <div class="form-group">
-             <input type="hidden" class="form-control" name="new_id_product" id="new_id_product">
-           </div>
-           <div class="form-group">
-             <label for="new_name_product" class="form-control-label">Nouveau nom du produit:</label>
-             <input required placeholder="Nouveau nom" name="new_name_product" id="new_name_product" type="text" class="form-control">
-           </div>
+	<!-- //////////////////////////////////////Modal products//////////////////////////////////////////// -->
+	<div class="modal fade" data-backdrop="true" id="modal_update_products" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition du produit</h5>
+				</div>
+				<form id="modal_update_name_products" method="POST" action="">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="new_id_product" id="new_id_product">
+						</div>
+						<div class="form-group">
+							<label for="new_name_product" class="form-control-label">Nouveau nom du produit:</label>
+							<input required placeholder="Nouveau nom" name="new_name_product" id="new_name_product" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_ref_products" class="form-control-label">Nouvelle référence du produit:</label>
-             <input required placeholder="Nouveau nom" name="new_ref_products" id="new_ref_products" type="text" class="form-control">
-           </div>
+						<div class="form-group">
+							<label for="new_ref_products" class="form-control-label">Nouvelle référence du produit:</label>
+							<input required placeholder="Nouveau nom" name="new_ref_products" id="new_ref_products" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_desc_product" class="form-control-label"> Nouvelle description du produit:</label>
-             <input required placeholder="Nouveau nom" name="new_desc_product" id="new_desc_product" type="text" class="form-control">
-           </div>
+						<div class="form-group">
+							<label for="new_desc_product" class="form-control-label"> Nouvelle description du produit:</label>
+							<input required placeholder="Nouveau nom" name="new_desc_product" id="new_desc_product" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="new_price_product" class="form-control-label">Nouveau prix produit HT:</label>
-             <input required placeholder="Nouveau nom" name="new_price_product" id="new_price_product" type="text" class="form-control">
-           </div>
+						<div class="form-group">
+							<label for="new_price_product" class="form-control-label">Nouveau prix produit HT:</label>
+							<input required placeholder="Nouveau nom" name="new_price_product" id="new_price_product" type="text" class="form-control">
+						</div>
 
-           <div class="form-group">
-             <label for="image" class="form-control-label">Nouvelle image du produit:</label>
-             <input id="image" name="image" type="file" class="form-control" data-control="hue">
-             <input  id="image_hidden" name="image_hidden" type="hidden" class="form-control" data-control="hue">
-           </div>
+						<div class="form-group">
+							<label for="image" class="form-control-label">Nouvelle image du produit:</label>
+							<input id="image" name="image" type="file" class="form-control" data-control="hue">
+							<input id="image_hidden" name="image_hidden" type="hidden" class="form-control" data-control="hue">
+						</div>
 
-           <div class="form-group">
-             <label for="new_group_product" class="form-control-label">Nouveau groupe du produit:</label>
-             <select  name="new_group_product" id="new_group_product" class="form-control">
-               <?php
+						<div class="form-group">
+							<label for="new_group_product" class="form-control-label">Nouveau groupe du produit:</label>
+							<select name="new_group_product" id="new_group_product" class="form-control">
+								<?php
                foreach($groupsProducts as $value){
                echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
              }
-             ?> 
-           </select>
-         </div>
-         
-
-        </div>
+             ?>
+							</select>
+						</div>
 
 
-
-
-        <div class="modal-footer">
-         <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-         <button class="btn btn-info btn-fill">Enregistrer</button>
-       </div>
-     </form>
-   </div>
- </div>
-</div>
-
-<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
-
-<div class="wrapper">
-  <div class="sidebar" data-color="blue" data-image="<?php img_url("sidebar-5.jpg"); ?> ">
-    <div class="sidebar-wrapper">
-      <div class="logo">
-        <a href="" class="simple-text">
-          Dashboard Attack
-        </a>
-      </div>
-      <ul class="nav">
-        <li>
-          <a href="<?php echo base_url();?>dashboard_controller/index.html">
-            <i class="pe-7s-graph"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url();?>profil_controller/index.html">
-            <i class="pe-7s-user"></i>
-            <p>Votre profil</p>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url();?>customers_controller/index.html">
-            <i class="pe-7s-user"></i>
-            <p>Clients</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>orders_controller/index.html">
-            <i class="pe-7s-note2"></i>
-            <p>Commandes</p>
-          </a>
-        </li>
-        <li class="active">
-          <a href="<?php echo base_url();?>products_controller/index.html">
-            <i class="pe-7s-news-paper"></i>
-            <p>Produits</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>colors_controller/index.html">
-            <i class="pe-7s-science"></i>
-            <p>Coloris</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>size_controller/index.html">
-            <i class="pe-7s-map-marker"></i>
-            <p>Tailles</p>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url();?>management_controller/index.html">
-            <i class="pe-7s-bell"></i>
-            <p>Gestion</p>
-          </a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-  <div class="main-panel">
-    <nav class="navbar navbar-default navbar-fixed">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">GESTION DES PRODUITS</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-left">
-            <li>
-              <a href="<?php echo base_url();?>dashboard_controller/index.html" >
-                <i class="fa fa-dashboard"></i>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-             <a href="<?php echo base_url();?>profil_controller/index.html">
-               <p>Mon compte</p>
-             </a>
-           </li>
-
-           <li>
-            <a href="<?php echo base_url();?>session_controller/index.html">
-              <p>Se deconnecter</p>
-            </a>
-          </li>
-          <li class="separator hidden-lg hidden-md"></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="content">
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Ajout de groupes de produits</h4>
-      </div>
-      <div class="content">
-        <form id="form_add_groups_products" method="POST" action="addGroupsProducts.html">
-         <div class="row">
-          <div class="col-md-6">
-           <div class="form-group">
-            <label for="name_group_products">Nom du groupe de produits</label>
-            <input id="name_group_products" name="name_group_products" type="text" class="form-control" placeholder="Exemple : T-shirts">
-          </div>
-        </div>
-
-        <div class="col-md-6">
-         <div class="form-group">
-          <label for="description_group_products">Description du groupe de produits</label>
-          <input id="description_group_products" name="description_group_products" type="text" class="form-control">
-        </div>
-      </div>
-    </div>
-    <button id="btn_add_group_products" class="btn btn-info btn-fill pull-right">Ajouter le groupe de produits</button>
-    <button id="btn_edit_groups_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_products"
-    class="btn btn-danger btn-fill pull-right">Editer les groupes de produits</button>
-    <div class="clearfix"></div>
-  </form>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="row">
- <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_groups_products">
-   <div class="card card-body">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Gestion des groupes de produits</h4>
-        <p class="category">Liste des groupes de produits</p>
-      </div>
-      <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_groups_products" class="col-md-12 table table-hover table-striped">
-         <thead>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Description</th>
-          <th>Edition du nom</th>
-          <th>Désactivation / Activation</th>
-          <th>Status</th>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="row">
- <div class="col-md-12">
-  <div class="card">
-   <div class="header">
-    <h4 class="title">Ajout de produits</h4>
-  </div>
-  <div class="content">
-    <form id="form_add_products" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="http://127.0.0.1/local/products_controller/addProducts.html">
-     <div class="row">
-      <div class="col-md-4">
-       <div class="form-group">
-        <label for="product_name">Nom du produit</label>
-        <input id="product_name" name="product_name" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-     <div class="form-group">
-      <label for="product_ref">Référence du produit</label>
-      <input id="product_ref" name="product_ref" type="text" class="form-control" data-control="hue" placeholder="Exemple : k444">
-    </div>
-  </div>
-
-  <div class="col-md-4">
-   <div class="form-group">
-    <label for="product_desc">Description du produit</label>
-    <input id="product_desc" name="product_desc" type="text" class="form-control" data-control="hue" placeholder="Exemple : Débardeur de haute qualité">
-  </div>
-</div>
-
-</div>
-
-<div class="row">
-  <div class="col-md-4">
-   <div class="form-group">
-    <label for="product_price">Prix de vente H.T</label>
-    <input id="product_price" name="product_price" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
-  </div>
-</div>
+					</div>
 
 
 
-<div class="col-md-4">
- <div class="form-group">
-  <label for="product_group">Groupe du produit</label>
-  <select required name="product_group" id="product_group" class="form-control">
-  <?php
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
+	<div class="wrapper">
+		<div class="sidebar" data-color="blue" data-image="<?php img_url(" sidebar-5.jpg "); ?> ">
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="" class="simple-text">
+						Dashboard Attack
+					</a>
+				</div>
+				<ul class="nav">
+					<li>
+						<a href="<?php echo base_url();?>dashboard_controller/index.html">
+							<i class="pe-7s-graph"></i>
+							<p>Dashboard</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="<?php echo base_url();?>profil_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Votre profil</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="<?php echo base_url();?>customers_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Clients</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>orders_controller/index.html">
+							<i class="pe-7s-note2"></i>
+							<p>Commandes</p>
+						</a>
+					</li>
+					<li class="active">
+						<a href="<?php echo base_url();?>products_controller/index.html">
+							<i class="pe-7s-news-paper"></i>
+							<p>Produits</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>colors_controller/index.html">
+							<i class="pe-7s-science"></i>
+							<p>Coloris</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>size_controller/index.html">
+							<i class="pe-7s-map-marker"></i>
+							<p>Tailles</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>management_controller/index.html">
+							<i class="pe-7s-bell"></i>
+							<p>Gestion</p>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">GESTION DES PRODUITS</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-left">
+							<li>
+								<a href="<?php echo base_url();?>dashboard_controller/index.html">
+									<i class="fa fa-dashboard"></i>
+								</a>
+							</li>
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="<?php echo base_url();?>profil_controller/index.html">
+									<p>Mon compte</p>
+								</a>
+							</li>
+
+							<li>
+								<a href="<?php echo base_url();?>session_controller/index.html">
+									<p>Se deconnecter</p>
+								</a>
+							</li>
+							<li class="separator hidden-lg hidden-md"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Ajout de groupes de produits</h4>
+								</div>
+								<div class="content">
+									<form id="form_add_groups_products" method="POST" action="addGroupsProducts.html">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="name_group_products">Nom du groupe de produits</label>
+													<input id="name_group_products" name="name_group_products" type="text" class="form-control" placeholder="Exemple : T-shirts">
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="description_group_products">Description du groupe de produits</label>
+													<input id="description_group_products" name="description_group_products" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+										<button id="btn_add_group_products" class="btn btn-info btn-fill pull-right">Ajouter le groupe de produits</button>
+										<button id="btn_edit_groups_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_groups_products"
+										class="btn btn-danger btn-fill pull-right">Editer les groupes de produits</button>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapse_edit_groups_products">
+								<div class="card card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="header">
+													<h4 class="title">Gestion des groupes de produits</h4>
+													<p class="category">Liste des groupes de produits</p>
+												</div>
+												<div class="content table-responsive">
+													<table style="width:100% !important;" id="tab_groups_products" class="col-md-12 table table-hover table-striped">
+														<thead>
+															<th>ID</th>
+															<th>Nom</th>
+															<th>Description</th>
+															<th>Edition du nom</th>
+															<th>Désactivation / Activation</th>
+															<th>Status</th>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Ajout de produits</h4>
+								</div>
+								<div class="content">
+									<form id="form_add_products" enctype="multipart/form-data" method="post" accept-charset="utf-8" method="POST" action="http://127.0.0.1/local/products_controller/addProducts.html">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="product_name">Nom du produit</label>
+													<input id="product_name" name="product_name" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="product_ref">Référence du produit</label>
+													<input id="product_ref" name="product_ref" type="text" class="form-control" data-control="hue" placeholder="Exemple : k444">
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="product_desc">Description du produit</label>
+													<input id="product_desc" name="product_desc" type="text" class="form-control" data-control="hue" placeholder="Exemple : Débardeur de haute qualité">
+												</div>
+											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="product_price">Prix de vente H.T</label>
+													<input id="product_price" name="product_price" type="text" class="form-control" placeholder="Exemple : Débardeur homme">
+												</div>
+											</div>
+
+
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="product_group">Groupe du produit</label>
+													<select required name="product_group" id="product_group" class="form-control">
+														<?php
     foreach($groupsProducts as $value){
       echo '<option value=' . '"' . $value->getIdGroupProduct() . '">' . $value->getName() .'</option>';
     }
- ?> 
-</select>
-</div>
-</div>
+ ?>
+													</select>
+												</div>
+											</div>
 
-  <div class="col-md-4">
-   <div class="form-group">
-    <label for="image">Choisissez une image</label>
-    <input id="image" name="image" type="file" class="form-control" data-control="hue">
-  </div>
-</div>
-</div>
-
-
-<button id="btn_add_products" class="btn btn-info btn-fill pull-right">Ajouter le produit</button>
-
-<button id="btn_edit_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_products"
-class="btn btn-danger btn-fill pull-right">Editer les produits
-</button>
-<div class="clearfix"></div>
-</form>
-</div>
-</div>
-</div>
-</div>
-
-<div class="row">
- <div class="col-md-12">
-  <div class="collapse" id="collapse_edit_products">
-   <div class="card card-body">
-    <div class="row">
-     <div class="col-md-12">
-      <div class="card">
-       <div class="header">
-        <h4 class="title">Gestion des Produits</h4>
-        <p class="category">Liste des produits</p>
-      </div>
-      <div class="content table-responsive">
-        <table style="width:100% !important;" id="tab_products" class="col-md-12 table table-hover table-striped">
-         <thead>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Reference</th>
-          <th>Description</th>
-          <th>Prix HT</th>
-          <th>Photos</th>
-          <th>Groupe du produit</th>
-          <th>Edition du nom</th>
-          <th>Désactivation / Activation</th>
-          <th>Status</th>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="image">Choisissez une image</label>
+													<input id="image" name="image" type="file" class="form-control" data-control="hue">
+												</div>
+											</div>
+										</div>
 
 
-</div>
-</div>
+										<button id="btn_add_products" class="btn btn-info btn-fill pull-right">Ajouter le produit</button>
 
-<footer class="footer">
-  <div class="container-fluid">
-   <p class="copyright pull-right">
-    &copy; <script>document.write(new Date().getFullYear())</script>  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
-  </p>
-</div>
-</footer>
+										<button id="btn_edit_products" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_products"
+										class="btn btn-danger btn-fill pull-right">Editer les produits
+										</button>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 
-</div>
-</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapse_edit_products">
+								<div class="card card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="header">
+													<h4 class="title">Gestion des Produits</h4>
+													<p class="category">Liste des produits</p>
+												</div>
+												<div class="content table-responsive">
+													<table style="width:100% !important;" id="tab_products" class="col-md-12 table table-hover table-striped">
+														<thead>
+															<th>ID</th>
+															<th>Nom</th>
+															<th>Reference</th>
+															<th>Description</th>
+															<th>Prix HT</th>
+															<th>Photos</th>
+															<th>Groupe du produit</th>
+															<th>Edition du nom</th>
+															<th>Désactivation / Activation</th>
+															<th>Status</th>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<p class="copyright pull-right">
+						&copy;
+						<script>
+							document.write(new Date().getFullYear())
+
+						</script>
+						<a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+					</p>
+				</div>
+			</footer>
+
+		</div>
+	</div>
 
 </body>
 <!--   Core JS Files   -->
@@ -457,6 +466,5 @@ class="btn btn-danger btn-fill pull-right">Editer les produits
 <script src="<?php echo js_url('changeInfosProducts');?>"></script>
 <!--Request Ajax for change informations of groups products-->
 <script src="<?php echo js_url('editProductsModal');?>"></script>
+
 </html>
-
-

@@ -95,7 +95,6 @@ function editOrders($id_order) {
 			let cell11 = row.insertCell(10);
 			let cell12 = row.insertCell(11);
 
-
 			cell1.innerHTML = order_product[i]["id_product"];
 			cell2.innerHTML = order_product[i]["quantity_product"];
 			cell3.innerHTML = order_product[i]["product_name"];

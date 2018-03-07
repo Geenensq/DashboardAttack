@@ -1,5 +1,6 @@
 $(function () {
-    $('#customer_order').select2({
+	$('#customer_order').select2({
+		language: "fr",
 		minimumInputLength: 2,
 		placeholder: 'Chercher un client',
 		ajax: {
@@ -33,5 +34,5 @@ $(function () {
 			cache: true
 		}
 	});
-    
+
 });

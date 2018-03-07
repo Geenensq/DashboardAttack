@@ -29,6 +29,7 @@ class Signup_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('members_model', 'modelMembers');
+        $this->load->library('cipasswordhash');
         $this->actif = 1;
         $this->id_group_member = 3;
         $this->login = $this->input->post('login');

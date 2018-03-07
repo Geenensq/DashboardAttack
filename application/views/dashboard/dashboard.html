@@ -1,263 +1,270 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?php img_url("favicon.ico"); ?>">
+	<link rel="icon" type="image/png" href="<?php img_url(" favicon.ico "); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Dashboard Attack | Accès aux statistiques et aux informations utiles en temps réels</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-    <!-- Bootstrap core CSS     -->
-    <link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
-    <!-- Animation library for notifications   -->
-    <link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet"/>
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet"/>
-    <!-- Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Fonts Roboto -->
-    <link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet' >
-    <!-- icon font pack -->
-    <link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
-    <!--  Datatable CSS    -->
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
+	<meta name="viewport" content="width=device-width" />
+	<!-- Bootstrap core CSS     -->
+	<link href="<?php echo css_url_lib('bootstrap.min'); ?>" rel="stylesheet" />
+	<!-- Animation library for notifications   -->
+	<link href="<?php echo css_url_lib('animate.min'); ?>" rel="stylesheet" />
+	<!--  Light Bootstrap Table core CSS    -->
+	<link href="<?php echo css_url_lib('light-bootstrap-dashboard'); ?>" rel="stylesheet" />
+	<!-- Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Fonts Roboto -->
+	<link href="<?php echo css_url_lib('Roboto'); ?>" rel='stylesheet'>
+	<!-- icon font pack -->
+	<link href="<?php echo css_url_lib('pe-icon-7-stroke'); ?>" rel="stylesheet" />
+	<!--  Datatable CSS    -->
+	<link rel="stylesheet" type="text/css" href="<?php echo css_url_lib('datatables.min'); ?>" />
 
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
-         <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="" class="simple-text">
-                    Dashboard Attack
-                </a>
-            </div>
+	<div class="wrapper">
+		<div class="sidebar" data-color="blue" data-image="<?php  img_url('sidebar-5.jpg'); ?> ">
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="" class="simple-text">
+						Dashboard Attack
+					</a>
+				</div>
 
-            <ul class="nav">
-                <li class="active">
-                    <a href="<?php echo base_url();?>dashboard_controller/index.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+				<ul class="nav">
+					<li class="active">
+						<a href="<?php echo base_url();?>dashboard_controller/index.html">
+							<i class="pe-7s-graph"></i>
+							<p>Dashboard</p>
+						</a>
+					</li>
 
-                <li>
-                    <a href="<?php echo base_url();?>profil_controller/index.html">
-                        <i class="pe-7s-user"></i>
-                        <p>Votre profil</p>
-                    </a>
-                </li>
+					<li>
+						<a href="<?php echo base_url();?>profil_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Votre profil</p>
+						</a>
+					</li>
 
-                <li>
-                    <a href="<?php echo base_url();?>customers_controller/index.html">
-                        <i class="pe-7s-user"></i>
-                        <p>Clients</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>orders_controller/index.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Commandes</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>products_controller/index.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Produits</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>colors_controller/index.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Coloris</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>size_controller/index.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Tailles</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url();?>management_controller/index.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Gestion</p>
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
+					<li>
+						<a href="<?php echo base_url();?>customers_controller/index.html">
+							<i class="pe-7s-user"></i>
+							<p>Clients</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>orders_controller/index.html">
+							<i class="pe-7s-note2"></i>
+							<p>Commandes</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>products_controller/index.html">
+							<i class="pe-7s-news-paper"></i>
+							<p>Produits</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>colors_controller/index.html">
+							<i class="pe-7s-science"></i>
+							<p>Coloris</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>size_controller/index.html">
+							<i class="pe-7s-map-marker"></i>
+							<p>Tailles</p>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url();?>management_controller/index.html">
+							<i class="pe-7s-bell"></i>
+							<p>Gestion</p>
+						</a>
+					</li>
 
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">APERÇU DE VOTRE ACTIVITÉ</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                          <a href="<?php echo base_url();?>dashboard_controller/index.html" >
-                            <i class="fa fa-dashboard"></i>
-                        </a>
-                    </li>
-                </ul>
+				</ul>
+			</div>
+		</div>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                       <a href="<?php echo base_url();?>profil_controller/index.html">
-                           <p>Mon compte</p>
-                       </a>
-                   </li>
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">APERÇU DE VOTRE ACTIVITÉ</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-left">
+							<li>
+								<a href="<?php echo base_url();?>dashboard_controller/index.html">
+									<i class="fa fa-dashboard"></i>
+								</a>
+							</li>
+						</ul>
 
-                   <li>
-                    <a href="<?php echo base_url();?>session_controller/index.html">
-                        <p>Se deconnecter</p>
-                    </a>
-                </li>
-                <li class="separator hidden-lg hidden-md"></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="<?php echo base_url();?>profil_controller/index.html">
+									<p>Mon compte</p>
+								</a>
+							</li>
 
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Statistiques des status de commandes</h4>
-                        <p class="category">Récapitulatif des status des commandes</p>
-                    </div>
-                    <div class="content">
-                        <canvas id="pie-chart"></canvas>
-
-                        <div class="footer">
-
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Statistiques des ventes en €</h4>
-                        <p class="category">Récapitulatif des ventes en € pour chaques mois de l'année</p>
-                    </div>
-                    <div class="content">
-                       <canvas id="pie-chart2"></canvas>
-
-                       <div class="footer">
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+							<li>
+								<a href="<?php echo base_url();?>session_controller/index.html">
+									<p>Se deconnecter</p>
+								</a>
+							</li>
+							<li class="separator hidden-lg hidden-md"></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 
 
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Statistiques des status de commandes</h4>
+									<p class="category">Récapitulatif des status des commandes</p>
+								</div>
+								<div class="content">
+									<canvas id="pie-chart"></canvas>
 
-    <div class="row">
-        <div class="col-md-5">
-            <div class="card ">
-                <div class="header">
-                    <h4 class="title">Commandes</h4>
-                    <p class="category">Récapitulatif des 10 dernieres commandes</p>
-                </div>
-                <div class="content">
-                    <div class="content table-responsive">
-                        <table style="width:100% !important;" id="tab_rapid_orders" class="col-md-12 table table-hover table-striped">
-                            <thead>
-                                <th>Numéro de commande</th>
-                                <th>Propriétaire</th>
-                                <th>Status</th>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+									<div class="footer">
 
-                    <div class="footer">
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-history"></i> Statistiques mis à jour toutes les 2 minutes
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+										<hr>
+										<div class="stats">
+											<i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-        <div class="col-md-7">
-            <div class="card ">
-                <div class="header">
-                    <h4 class="title">Stick @'tchat</h4>
-                    <p class="category">Tchat et pense-bêtes interne</p>
-                </div>
-                <div style="padding-top: 1px!important;" class="content">
-                    <div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
-                        <div class="messages pre-scrollable">
-                          
-                            
+						<div class="col-md-8">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Statistiques des ventes en €</h4>
+									<p class="category">Récapitulatif des ventes en € pour chaques mois de l'année</p>
+								</div>
+								<div class="content">
+									<canvas id="pie-chart2"></canvas>
 
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <form id="form_add_messages" action="sendMessages.html">
-                            <input hidden id="id_member" name="id_member" value="<?php echo $id_member ?>" type="text">
-                            
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Votre message :</label>
-                                    <input id="text_message" name="text_message" type="text" class="form-control" value="">
-                                </div>
-                            </div>
+									<div class="footer">
+										<hr>
+										<div class="stats">
+											<i class="fa fa-clock-o"></i> Statistiques mis à jour toutes les 2 minutes
+										</div>
+									</div>
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                 <label></label>
-                                 <button style="margin-top: 20px;" id="" name="" type="submit" class="btn btn-info btn-fill">Envoyer</button>
-                             </div>
-                         </div>
-                     </form>
-                 </div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
 
-<footer class="footer">
-    <div class="container-fluid">
 
-       <p class="copyright pull-right">
-        &copy; <script>document.write(new Date().getFullYear())</script>  <a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
-    </p>
-</div>
-</footer>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="card ">
+								<div class="header">
+									<h4 class="title">Commandes</h4>
+									<p class="category">Récapitulatif des 10 dernieres commandes</p>
+								</div>
+								<div class="content">
+									<div class="content table-responsive">
+										<table style="width:100% !important;" id="tab_rapid_orders" class="col-md-12 table table-hover table-striped">
+											<thead>
+												<th>Numéro de commande</th>
+												<th>Propriétaire</th>
+												<th>Status</th>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
 
-</div>
-</div>
+									<div class="footer">
+										<hr>
+										<div class="stats">
+											<i class="fa fa-history"></i> Statistiques mis à jour toutes les 2 minutes
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-7">
+							<div class="card ">
+								<div class="header">
+									<h4 class="title">Stick @'tchat</h4>
+									<p class="category">Tchat et pense-bêtes interne</p>
+								</div>
+								<div style="padding-top: 1px!important;" class="content">
+									<div style="background-color:#F5F5F5; height:450px;" class="ct-chart">
+										<div class="messages pre-scrollable">
+
+
+
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<form id="form_add_messages" action="sendMessages.html">
+											<input hidden id="id_member" name="id_member" value="<?php echo $id_member ?>" type="text">
+
+											<div class="col-md-10">
+												<div class="form-group">
+													<label>Votre message :</label>
+													<input id="text_message" name="text_message" type="text" class="form-control" value="">
+												</div>
+											</div>
+
+											<div class="col-md-2">
+												<div class="form-group">
+													<label></label>
+													<button style="margin-top: 20px;" id="" name="" type="submit" class="btn btn-info btn-fill">Envoyer</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="footer">
+				<div class="container-fluid">
+
+					<p class="copyright pull-right">
+						&copy;
+						<script>
+							document.write(new Date().getFullYear())
+
+						</script>
+						<a href="http://www.stick-attack.fr">Quentin Geenens</a> | Conçus et développer pour STICK-ATTACK
+					</p>
+				</div>
+			</footer>
+
+		</div>
+	</div>
 
 
 </body>
