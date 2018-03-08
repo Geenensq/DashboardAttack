@@ -212,14 +212,14 @@
 										<br>
 
 										<div class="row">
-											<div class="col-md-2">
+											<div class="col-md-1">
 												<div class="form-group">
 													<label for="qte_product_order">Quantité : </label>
 													<input min="1" id="qte_product_order" name="qte_product_order" type="number" style="height:33px;" value="1" class="form-control">
 												</div>
 											</div>
 
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<div class="form-group">
 													<label for="select_product_order">Rechercher un produit à ajouter : </label>
 													<select name="select_product_order" id="select_product_order" class="form-control">
@@ -258,6 +258,20 @@
 													</select>
 												</div>
 											</div>
+
+											<div class="col-md-2">
+												<div class="form-group">
+													<label for="">Sens : </label>
+													<select name="select_meaning_product" id="select_meaning_product" class="form-control">
+														<?php
+														foreach($meanings as $value)
+														{
+														echo '<option value=' . '"' . $value->getIdMeaning() . '">' . $value->getMeaningName(). '</option>';
+													}
+													?>
+													</select>
+												</div>
+											</div>
 										</div>
 
 										<div class="row">
@@ -291,9 +305,10 @@
 																									<th>Image du produit</th>
 																									<th>Couleur du produit</th>
 																									<th>Taille du produit</th>
-																									<th>Suppression du produit</th>
+																									<th>Sens du produit</th>
 																									<th>Gestion de la quantitée</th>
 																									<th>Personnaliser ce produit</th>
+																									<th>Suppression du produit</th>
 																								</tr>
 																							</thead>
 																							<tbody>
@@ -410,6 +425,8 @@
 <script src="<?php echo js_url('addProductsSizes');?>"></script>
 <!--Functions for add products colors-->
 <script src="<?php echo js_url('addProductsColors');?>"></script>
+<!-- Function for ass products meanings-->
+<script src="<?php echo js_url('addProductsMeanings');?>"></script>
 <!--Functions for add an order-->
 <script src="<?php echo js_url('addOrders');?>"></script>
 <!--Functions for lock an unlock inputs in order-->
@@ -428,6 +445,7 @@
 <script src="<?php echo js_url('editShippingOrders');?>"></script>
 <!-- Function for reset my inputs orders-->
 <script src="<?php echo js_url('resetInputsOrders');?>"></script>
+<!-- Function for declare my autocomplete-->
 <script src="<?php echo js_url('autoCompleteOrders');?>"></script>
 
 </html>

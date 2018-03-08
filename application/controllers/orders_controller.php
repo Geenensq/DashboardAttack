@@ -25,6 +25,7 @@ class Orders_controller extends CI_Controller
     private $qte_product;
     private $id_size;
     private $id_color;
+    private $id_meaning;
 
     // =======================================================================//
     // !                  Constructor of my Class                            //
@@ -43,6 +44,8 @@ class Orders_controller extends CI_Controller
         $this->load->model('Groups_sizes_model', 'modelGroupSizes');
         $this->load->model('Products_sizes_model', 'modelProductsSizes');
         $this->load->model('Products_colors_model', 'modelProductsColors');
+        $this->load->model('Meanings_model', 'modelMeanings');
+        $this->load->model('Products_meanings_model', 'modelProductsMeanings');
     }
 
     // =======================================================================//
@@ -58,6 +61,7 @@ class Orders_controller extends CI_Controller
             $payments = $this->modelPayments->selectAll();
             $groupsColors = $this->modelGroupsColors->selectAll();
             $groupsSizes = $this->modelGroupSizes->selectAll();
+            $meanings = $this->modelMeanings->selectAll();
 
             $array = [];
             $array['customers'] = $customers;
@@ -66,6 +70,7 @@ class Orders_controller extends CI_Controller
             $array['payments'] = $payments;
             $array['groupsColors'] = $groupsColors;
             $array['groupsSizes'] = $groupsSizes;
+            $array['meanings'] = $meanings;
 
             $this->load->view('dashboard/orders.html', $array);
         } else {
@@ -301,11 +306,12 @@ class Orders_controller extends CI_Controller
         $this->id_order = $this->input->post('id_order');
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
-
+        $this->id_meaning = $this->input->post('id_meaning');
+        
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
-
+        $this->modelProductsOrders->setIdMeaning($this->id_meaning);
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
 
@@ -363,11 +369,13 @@ class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product_check');
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
+        $this->id_meaning = $this->input->post('id_meaning');
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdColor($this->id_color);
         $this->modelProductsOrders->setIdSize($this->id_size);
+        $this->modelProductsOrders->setIdMeaning($this->id_meaning);
 
         $modelProductsOrders = $this->modelProductsOrders;
 
@@ -409,11 +417,13 @@ class Orders_controller extends CI_Controller
         $this->id_size = $this->input->post('id_size');
         $this->id_order = $this->input->post('id_order');
         $this->id_color = $this->input->post('id_color');
+        $this->id_meaning = $this->input->post('id_meaning');
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdColor($this->id_color);
+        $this->modelProductsOrders->setIdmeaning($this->id_meaning);
 
         $modelProductsOrders = $this->modelProductsOrders;
 
@@ -475,6 +485,36 @@ class Orders_controller extends CI_Controller
             $callBack = "products colors created";
         } else {
             $callBack = "products colors already exist";
+        }
+
+        echo json_encode($callBack);
+    }
+
+
+    // ==========================================================================================//
+    // !                           Method to add meaning to the product                             //
+    // ==========================================================================================//
+    public function addProductsMeanings()
+    {
+        $this->id_product = $this->input->post('id_product');
+        $this->id_meaning = $this->input->post('id_meaning');
+
+        /***************Creation of my object******************/
+        $this->modelProductsMeanings->setIdProduct($this->id_product);
+        $this->modelProductsMeanings->setIdMeaning($this->id_meaning);
+        $modelProductsMeanings = $this->modelProductsMeanings;
+        /****************************************************/
+
+        /*If the product size does not exist, create it*/
+        $result = $this->modelProductsMeanings->selectProductsByMeanings($modelProductsMeanings);
+
+        $callBack;
+
+        if ($result == "not exist") {
+            $this->modelProductsMeanings->insertProductsMeanings($modelProductsMeanings);
+            $callBack = "products meanings created";
+        } else {
+            $callBack = "products meanings already exist";
         }
 
         echo json_encode($callBack);

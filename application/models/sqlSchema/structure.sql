@@ -209,16 +209,30 @@ CREATE TABLE messages(
 
 
 #------------------------------------------------------------
+# Table: meanings
+#------------------------------------------------------------
+
+CREATE TABLE meanings(
+        id_meaning   int (11) Auto_increment  NOT NULL ,
+        meaning_name Varchar (25) NOT NULL ,
+        actif        Bool NOT NULL ,
+        PRIMARY KEY (id_meaning )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
 # Table: products_orders
 #------------------------------------------------------------
 
 CREATE TABLE products_orders(
         quantity_product Varchar (25) NOT NULL ,
+        custom_price     Float NOT NULL ,
         id_product       Int NOT NULL ,
         id_order         Int NOT NULL ,
         id_size          Int NOT NULL ,
         id_color         Int NOT NULL ,
-        PRIMARY KEY (id_product ,id_order ,id_size ,id_color )
+        id_meaning       Int NOT NULL ,
+        PRIMARY KEY (id_product ,id_order ,id_size ,id_color ,id_meaning )
 )ENGINE=InnoDB;
 
 
@@ -267,6 +281,17 @@ CREATE TABLE members_messages(
         PRIMARY KEY (id_member ,id_message )
 )ENGINE=InnoDB;
 
+
+#------------------------------------------------------------
+# Table: products_meaning
+#------------------------------------------------------------
+
+CREATE TABLE products_meaning(
+        id_meaning Int NOT NULL ,
+        id_product Int NOT NULL ,
+        PRIMARY KEY (id_meaning ,id_product )
+)ENGINE=InnoDB;
+
 ALTER TABLE members ADD CONSTRAINT FK_members_id_group_member FOREIGN KEY (id_group_member) REFERENCES groups_members(id_group_member);
 ALTER TABLE customers ADD CONSTRAINT FK_customers_id_group_customer FOREIGN KEY (id_group_customer) REFERENCES groups_customers(id_group_customer);
 ALTER TABLE products ADD CONSTRAINT FK_products_id_group_product FOREIGN KEY (id_group_product) REFERENCES groups_products(id_group_product);
@@ -281,6 +306,7 @@ ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_product FOREIGN
 ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
 ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
+ALTER TABLE products_orders ADD CONSTRAINT FK_products_orders_id_meaning FOREIGN KEY (id_meaning) REFERENCES meanings(id_meaning);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE orders_members ADD CONSTRAINT FK_orders_members_id_order FOREIGN KEY (id_order) REFERENCES orders(id_order);
 ALTER TABLE products_colors ADD CONSTRAINT FK_products_colors_id_color FOREIGN KEY (id_color) REFERENCES colors(id_color);
@@ -289,3 +315,5 @@ ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_product FOREIGN K
 ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_message FOREIGN KEY (id_message) REFERENCES messages(id_message);
+ALTER TABLE products_meaning ADD CONSTRAINT FK_products_meaning_id_meaning FOREIGN KEY (id_meaning) REFERENCES meanings(id_meaning);
+ALTER TABLE products_meaning ADD CONSTRAINT FK_products_meaning_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);

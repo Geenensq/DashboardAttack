@@ -16,10 +16,13 @@ Class products_orders_model extends CI_Model
 // !                  Declaration of my attributes                       //
 // ======================================================================//
     private $quantity_product;
+    private $custom_price;
     private $id_product;
     private $id_order; 	
     private $id_size;
     private $id_color;
+    private $id_meaning;
+    
     protected $table = "products_orders";
 // =======================================================================//
 // !                     Start methods getters                           //
@@ -27,6 +30,11 @@ Class products_orders_model extends CI_Model
     public function getQuantityProduct()
     {
         return $this->quantity_product;
+    }
+
+    public function getCustomPrice()
+    {
+        return $this->custom_price;
     }
 
     public function getIdProduct()
@@ -44,9 +52,14 @@ Class products_orders_model extends CI_Model
         return $this->id_size;
     }
 
-     public function getIdColor()
+    public function getIdColor()
     {
         return $this->id_color;
+    }
+
+    public function getIdMeaning()
+    {
+        return $this->id_meaning;
     }
     
 // =======================================================================//
@@ -55,6 +68,13 @@ Class products_orders_model extends CI_Model
     public function setQuantityProduct($quantity_product)
     {
         $this->quantity_product = $quantity_product;
+
+        return $this;
+    }
+
+    public function setCustomPrice($custom_price)
+    {
+        $this->custom_price = $custom_price;
 
         return $this;
     }
@@ -86,6 +106,12 @@ Class products_orders_model extends CI_Model
         return $this;
     }
 
+    public function setIdMeaning($id_meaning)
+    {
+        $this->id_meaning = $id_meaning;
+        return $this;
+    }
+
 
 // =======================================================================//
 // !                     Start CRUD methods                              //
@@ -101,12 +127,14 @@ Class products_orders_model extends CI_Model
         $id_order = $model->getIdOrder();
         $id_color = $model->getIdColor();
         $id_size = $model->getIdSize();
+        $id_meaning = $model->getIdMeaning();
 
         $this->db->set('id_product', $id_product)
         ->set('quantity_product', $qte_product)
         ->set('id_order' , $id_order)
         ->set('id_color' , $id_color)
         ->set('id_size' , $id_size)
+        ->set('id_meaning' , $id_meaning)
         ->insert($this->table);
     }
 
@@ -189,21 +217,25 @@ Class products_orders_model extends CI_Model
         $id_size = $model->getIdSize();
         $id_product = $model->getIdProduct();
         $id_color = $model->getIdColor();
+        $id_meaning = $model->getIdMeaning();
 
-        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , products_orders.quantity_product , colors.color_name , colors.id_color , sizes.size_name , sizes.id_size , sizes.price AS size_price');
+        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , products_orders.quantity_product , colors.color_name , colors.id_color , meanings.id_meaning, meanings.meaning_name ,sizes.size_name , sizes.id_size , sizes.price AS size_price');
+        
         $this->db->from($this->table);
         $this->db->join('products' , 'products.id_product = products_orders.id_product');
         $this->db->join('sizes' , 'sizes.id_size  = products_orders.id_size');
         $this->db->join('colors' , 'colors.id_color  = products_orders.id_color');
+        $this->db->join('meanings' ,'meanings.id_meaning = products_orders.id_meaning');
         $this->db->join('orders' ,'orders.id_order = products_orders.id_order');
 
         $this->db->where('products_orders.id_product' , $id_product);
         $this->db->where('products_orders.id_size' , $id_size);
         $this->db->where('products_orders.id_color' , $id_color);
         $this->db->where('products_orders.id_order' , $id_order);
+        $this->db->where('products_orders.id_meaning' , $id_meaning);
         $query = $this->db->get();
+        
 
-   
         foreach ($query->result() as $row)
         {
             $products["id_product"] =  $row->id_product;
@@ -215,6 +247,8 @@ Class products_orders_model extends CI_Model
             $products["quantity_product"] = $row->quantity_product;
             $products["color_name"] = $row->color_name;
             $products["id_color"] = $row->id_color;
+            $products["id_meaning"] = $row->id_meaning;
+            $products["meaning_name"] = $row->meaning_name;
             $products["size_name"] = $row->size_name;
             $products["id_size"] = $row->id_size;
             $products["size_price"] = $row->size_price;
@@ -234,12 +268,14 @@ Class products_orders_model extends CI_Model
         $id_order = $model->getIdOrder();
         $id_size = $model->getIdSize();
         $id_color = $model->getIdColor();
+        $id_meaning = $model->getIdMeaning();
 
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('id_product', $id_product);
         $this->db->where('id_color', $id_color);
         $this->db->where('id_size', $id_size);
+        $this->db->where('id_meaning',$id_meaning);
         $this->db->where('id_order', $id_order );
         $query = $this->db->get();
         $result = $query->result_array();

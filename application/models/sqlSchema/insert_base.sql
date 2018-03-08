@@ -65,3 +65,9 @@ INSERT INTO `states` (`id_state`, `name_state`) VALUES
 (10, 'Broderie'),
 (11, 'Broderie + stickers'),
 (12, 'Broderie + flocages');
+
+
+
+INSERT INTO `meanings` (`id_meaning`, `meaning_name`, `actif`) VALUES 
+('Normal', '1'),
+('Inversé', '1');

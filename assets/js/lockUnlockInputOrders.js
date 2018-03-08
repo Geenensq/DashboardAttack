@@ -8,10 +8,14 @@ function lockInputOrder() {
 			if (name_select != "select_size_product") {
 				if (name_select != "select_color_product") {
 					if (name_select != "tab_orders_length") {
-						$(select).attr("disabled", true);
-					} else {
-						return;
+						if(name_select != "select_meaning_product"){
+							$(select).attr("disabled", true);
+						} else {
+							return;
+						}
 					}
+		
+				
 				}
 			}
 
