@@ -1,5 +1,5 @@
 // Fonction pour incrémenter la quantité produit size color dans la commande 
-function AddQuantity($id_product, $row, $price_product, $id_size, $id_color) {
+function AddQuantity($id_product, $row, $price_product, $id_size, $id_color, $id_meaning) {
 
 	var id_order = $("#current_id_order").val();
 	// On récupère l'index du tableau html du nombre de produit
@@ -12,7 +12,7 @@ function AddQuantity($id_product, $row, $price_product, $id_size, $id_color) {
 	quantity_product.innerHTML = parseFloat(current_quantity + 1);
 
 	// Appel de la fonction pour mettre à jour la quantité du product sizes et colors dans la base de donée
-	updateQuantityProduct(id_order, $id_product, $id_color, $id_size, parseFloat(quantity_product.innerHTML));
+	updateQuantityProduct(id_order, $id_product, $id_color, $id_size, parseFloat(quantity_product.innerHTML), $id_meaning);
 
 	current_order_price = parseFloat($("#current_order_price").val());
 	var new_order_price = parseFloat(current_order_price + $price_product);
@@ -28,7 +28,7 @@ function AddQuantity($id_product, $row, $price_product, $id_size, $id_color) {
 
 
 // Fonction pour décrémenter la quantité produit size color dans la commande 
-function RemoveQuantity($id_product, $row, $price_product, $id_size, $id_color) {
+function RemoveQuantity($id_product, $row, $price_product, $id_size, $id_color, $id_meaning) {
 
 	var id_order = $("#current_id_order").val();
 	// On récupère l'index du tableau html du nombre de produit
@@ -45,7 +45,7 @@ function RemoveQuantity($id_product, $row, $price_product, $id_size, $id_color) 
 		quantity_product.innerHTML = parseFloat(current_quantity - 1);
 
 		// Appel de la fonction pour mettre à jour la quantité du product sizes et colors dans la base de donée
-		updateQuantityProduct(id_order, $id_product, $id_color, $id_size, parseFloat(quantity_product.innerHTML));
+		updateQuantityProduct(id_order, $id_product, $id_color, $id_size, parseFloat(quantity_product.innerHTML), $id_meaning);
 
 		var current_order_price = parseFloat($("#current_order_price").val());
 		var new_order_price = parseFloat(current_order_price - $price_product);
@@ -63,14 +63,15 @@ function RemoveQuantity($id_product, $row, $price_product, $id_size, $id_color) 
 
 
 // Fonction pour mettre à jour dans la bdd le produit couleur size dans la commande
-function updateQuantityProduct($id_order, $id_product, $id_color, $id_size, $new_quantity) {
-	var url = "EditQuantityProducts.html"
+function updateQuantityProduct($id_order, $id_product, $id_color, $id_size, $new_quantity, $id_meaning) {
+	var url = "EditQuantityProducts.html";
 	var form = {
 		id_order: $id_order,
 		id_product: $id_product,
 		new_quantity: $new_quantity,
 		id_size: $id_size,
-		id_color: $id_color
+		id_color: $id_color,
+		id_meaning: $id_meaning
 	}
 
 	send_post(form, url);

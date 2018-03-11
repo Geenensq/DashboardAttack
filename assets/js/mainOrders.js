@@ -149,7 +149,7 @@ $(document).ready(function () {
 						addProductsOrder(id_order, qte_product, size_product, color_product, id_product, meaning_product);
 
 						/*On récupere les infos du produits pour les passer apres à la fonction qui va créerla vue*/
-						var product = getInfosProducts(id_product, color_product, size_product, id_order);
+						var product = getInfosProducts(id_product, color_product, size_product, id_order, meaning_product);
 
 						// On apelle la fonction qui nous calcule prix de la commande après la l'ajout du produit
 						var new_price = incrementPrice(product);
@@ -190,7 +190,7 @@ $(document).ready(function () {
 					var color_product = $('#select_color_product').val();
 					var meaning_product = $('#select_meaning_product').val();
 					var id_order = $('#current_id_order').val();
-					
+
 					/*Verouillage des champs de la commande*/
 					lockInputOrder();
 					/**************************************/
@@ -225,8 +225,10 @@ $(document).ready(function () {
 
 						/*On ajoute le produit la taille et la couleur à products_order*/
 						addProductsOrder($('#current_id_order').val(), qte_product, size_product, color_product, id_product, meaning_product);
-						/*On récupere les infos du produits pour les passer apres à la fonction qui va créerla vue*/
-						var product = getInfosProducts(id_product, color_product, size_product, $("#current_id_order").val(),meaning_product);
+
+
+						/*On récupere les infos du produits pour les passer apres à la fonction qui va créer la vue*/
+						var product = getInfosProducts(id_product, color_product, size_product, $("#current_id_order").val(), meaning_product);
 
 
 						// On apelle la fonction qui nous calcule prix de la commande après la l'ajout du produit
@@ -267,7 +269,7 @@ $(document).ready(function () {
 
 
 
-function getInfosProducts($id_product, $id_color, $id_size, $id_order ,$id_meaning) {
+function getInfosProducts($id_product, $id_color, $id_size, $id_order, $id_meaning) {
 	let url = "getInfosProductsArray.html";
 	let form = {
 		id_product: $id_product,
@@ -324,17 +326,17 @@ function constructViewTable($product, $count, $array, $qte_product) {
 	cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + $product.img_url + "\" width=\"80px\" height=\"80px\">";;
 	cell8.innerHTML = $product.color_name;
 	cell9.innerHTML = $product.size_name;
-	cell10.innerHTML = 	$product.meaning_name;
+	cell10.innerHTML = $product.meaning_name;
 
 	/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	l'id de la taille et de la couleur et la commande*/
-	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ',' + $product.id_meaning + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + $product.id_meaning + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
 	cell12.innerHTML = '<a id="editRow" onClick="editRowOrder()" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
-	/*Pour supprimé la ligne et l'entrée en base on lui passe count pour supprimer la ligne*/
+	/*Pour supprimé la ligne et l'en trée en base on lui passe count pour supprimer la ligne*/
 	/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
-	cell13.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $qte_product + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-	
-	
+	cell13.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $qte_product + ',' + $product.id_meaning + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
+
+
 
 }
 
@@ -406,6 +408,18 @@ function priceUpdateDatabase($id_order, $price) {
 
 
 
+
+function exportPdf($id_order) {
+	url = "generatePdfOrders.html"
+	form = {
+		id_order: $id_order
+	};
+
+	send_post(form, url);
+}
+
+
+
 /******************DATA TABLE DECLARATION**********************/
 var myTable = $('#tab_orders').DataTable({
 	ajax: "encodeGridOrders.html",
@@ -447,6 +461,9 @@ var myTable = $('#tab_orders').DataTable({
 		}, {
 			"target": 10,
 			data: null
+		}, {
+			"target": 11,
+			data: null
 		}
 
 	],
@@ -477,6 +494,11 @@ var myTable = $('#tab_orders').DataTable({
 			"targets": 10,
 			render: function (data, full) {
 				return '<a id="btn_state" onclick="deleteOrders(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
+			}
+		}, {
+			"targets": 11,
+			render: function (data, full) {
+				return '<a id="btn_state" href="generatePdfOrders.html?id_order='+data[0]+'"  class="btn btn-danger btn-fill"><i class="fa fa-file"></i></a>'
 			}
 		},
 	]

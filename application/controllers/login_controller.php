@@ -59,6 +59,7 @@ public function checkLogin()
 
         $membersModel = $this->modelMembers;
         $checkMember = $this->modelMembers->CheckInfoUser($membersModel);
+        
         if ($checkMember != false && $checkMember->getActif() == 1) {
             $this->id_member = $checkMember->getId();
             $this->actif = $checkMember->getActif();

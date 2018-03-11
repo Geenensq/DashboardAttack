@@ -124,7 +124,6 @@ Class Members_model extends CI_Model
         $query = $this->db->get();
 
 
-
         if(count($query->result_array())  >= 1)
         {
             $result = $query->result_object()[0];

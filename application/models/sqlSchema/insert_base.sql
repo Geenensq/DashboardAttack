@@ -69,5 +69,4 @@ INSERT INTO `states` (`id_state`, `name_state`) VALUES
 
 
 INSERT INTO `meanings` (`id_meaning`, `meaning_name`, `actif`) VALUES 
-('Normal', '1'),
-('Inversé', '1');
+(NULL, 'normal', '1'), (NULL, 'inversé', '1');

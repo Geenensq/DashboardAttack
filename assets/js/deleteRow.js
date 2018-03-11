@@ -1,4 +1,4 @@
-function deleteRow($row, $id_product, $id_size, $id_color, $qte) {
+function deleteRow($row, $id_product, $id_size, $id_color, $qte , $id_meaning) {
 
 	var id_order = $("#current_id_order").val();
 
@@ -9,7 +9,7 @@ function deleteRow($row, $id_product, $id_size, $id_color, $qte) {
 
 
 	/*On apelle la méthode qui récupère les informations de mon produit AVANT de le supprimer pour mettre à jour mon prix**/
-	var product = getProductFordelete($id_product, $id_size, id_order, $id_color);
+	var product = getProductFordelete($id_product, $id_size, id_order, $id_color, $id_meaning);
 	/*********************************************************************************************************************/
 
 	// On apelle la fonction qui nous calcule prix de la commande après la suppression du produit//
@@ -26,18 +26,19 @@ function deleteRow($row, $id_product, $id_size, $id_color, $qte) {
 	/**********************************************************************************/
 
 	/* APPEL DE LA FONCTION POUR SUPPRIMER LE PRODUIT TAILLE ET LE PRODUIT COULEUR DE LA COMMANDE DANS LA BASE DE DONNEES*/
-	deleteProductsDatabase($id_product, id_order, $id_size, $id_color);
+	deleteProductsDatabase($id_product, id_order, $id_size, $id_color , $id_meaning);
 	/***********************************************************************************************************************/
 
 }
 
-function deleteProductsDatabase($id_product, $id_order, $id_size, $id_color) {
+function deleteProductsDatabase($id_product, $id_order, $id_size, $id_color, $id_meaning) {
 	var url = "removeProductsOrders.html";
 	var form = {
 		id_product: $id_product,
 		id_order: $id_order,
 		id_size: $id_size,
-		id_color: $id_color
+		id_color: $id_color,
+		id_meaning: $id_meaning
 	};
 
 	var result_delete = send_post(form, url);
@@ -49,18 +50,20 @@ function deleteProductsDatabase($id_product, $id_order, $id_size, $id_color) {
 
 
 
-function getProductFordelete($id_product, $id_size, $id_order, $id_color) {
+function getProductFordelete($id_product, $id_size, $id_order, $id_color,$id_meaning) {
 	var id_order = $id_order;
 	var id_product = $id_product;
 	var id_size = $id_size;
 	var id_color = $id_color;
+	var id_meaning = $id_meaning;
 
 	var url = "getInfosProductsArray.html";
 	var form = {
 		id_product: id_product,
 		id_color: id_color,
 		id_size: id_size,
-		id_order: id_order
+		id_order: id_order,
+		id_meaning: id_meaning
 	};
 	product = send_post(form, url);
 	return product;

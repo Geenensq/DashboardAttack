@@ -149,11 +149,13 @@ Class products_orders_model extends CI_Model
         $id_order = $model->getIdOrder();
         $id_size = $model->getIdSize();
         $id_color = $model->getIdColor();
+        $id_meaning = $model->getIdMeaning();
 
         $this->db->where('id_product', $id_product);
         $this->db->where('id_order', $id_order);
         $this->db->where('id_size', $id_size);
         $this->db->where('id_color', $id_color);
+        $this->db->where('id_meaning', $id_meaning);
         $this->db->delete($this->table);
     }
 // =======================================================================//
@@ -178,12 +180,14 @@ Class products_orders_model extends CI_Model
         $new_quantity = $model->getQuantityProduct();
         $id_size = $model->getIdSize();
         $id_color = $model->getIdColor();
+        $id_meaning = $model->getIdMeaning();
 
         $this->db->set('quantity_product', $new_quantity);
         $this->db->where('id_order', $id_order);
         $this->db->where('id_product', $id_product);
         $this->db->where('id_size', $id_size);
         $this->db->where('id_color', $id_color);
+        $this->db->where('id_meaning', $id_meaning);
         $this->db->update($this->table);
 
     }
@@ -194,12 +198,13 @@ Class products_orders_model extends CI_Model
     public function selectAllProductsOrders($id)
     {
         $id_order = $id;
-        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , products_orders.quantity_product , colors.color_name , colors.id_color , sizes.size_name , sizes.id_size , sizes.price AS size_price');
+        $this->db->select('products.id_product , products.product_name , products.reference , products.description , products.base_price , products.img_url , products_orders.quantity_product , colors.color_name , colors.id_color , meanings.id_meaning, meanings.meaning_name, sizes.size_name , sizes.id_size , sizes.price AS size_price');
         $this->db->from($this->table);
         $this->db->join('products', 'products.id_product = products_orders.id_product');
         $this->db->join('orders', 'orders.id_order = products_orders.id_order');
         $this->db->join('colors', 'colors.id_color = products_orders.id_color');
         $this->db->join('sizes', 'sizes.id_size = products_orders.id_size');
+        $this->db->join('meanings' ,'meanings.id_meaning = products_orders.id_meaning');
         $this->db->where('orders.id_order', $id_order);
         $query = $this->db->get();
         $query->result_array();

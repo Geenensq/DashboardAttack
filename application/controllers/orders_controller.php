@@ -33,6 +33,8 @@ class Orders_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('Pdf');
+        $this->load->helper('file');
         $this->load->model('Customers_model', 'modelCustomers');
         $this->load->model('States_model', 'modelStates');
         $this->load->model('Shipping_model', 'modelShipping');
@@ -331,11 +333,13 @@ class Orders_controller extends CI_Controller
         $this->id_product = $this->input->post('id_product');
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
+        $this->id_meaning = $this->input->post('id_meaning');
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
+        $this->modelProductsOrders->setIdMeaning($this->id_meaning);
 
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->deleteProductOrder($modelProductsOrders);
@@ -395,14 +399,14 @@ class Orders_controller extends CI_Controller
         $this->qte_product = $this->input->post('new_quantity');
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
-
-        echo ($this->id_order . $this->id_product . $this->qte_product . $this->id_size . $this->id_color);
+        $this->id_meaning = $this->input->post('id_meaning');
 
         $this->modelProductsOrders->setIdOrder($this->id_order);
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdSize($this->id_size);
         $this->modelProductsOrders->setIdColor($this->id_color);
+        $this->modelProductsOrders->setIdMeaning($this->id_meaning);
         $modelProductsOrders = $this->modelProductsOrders;
         $this->modelProductsOrders->updateQuantityProduct($modelProductsOrders);
     }
@@ -518,6 +522,34 @@ class Orders_controller extends CI_Controller
         }
 
         echo json_encode($callBack);
+    }
+
+    // ==========================================================================================//
+    // !                           Method for create pdf orders recap                           //
+    // ==========================================================================================//
+
+    public function generatePdfOrders()
+    {
+        $this->id_order  = $this->input->get('id_order');
+        $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+        $obj_pdf->SetCreator(PDF_CREATOR);  
+        $obj_pdf->SetTitle("Export HTML Table data to PDF using TCPDF in PHP");  
+        $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
+        $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
+        $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+        $obj_pdf->SetDefaultMonospacedFont('helvetica');  
+        $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
+        $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '0', PDF_MARGIN_RIGHT);  
+        $obj_pdf->setPrintHeader(false);  
+        $obj_pdf->setPrintFooter(false);  
+        $obj_pdf->SetAutoPageBreak(TRUE, 10);  
+        $obj_pdf->SetFont('helvetica', '', 12);  
+        $obj_pdf->AddPage();  
+        $content = '';  
+        $content .= read_file(APPPATH.'views/pdf/pdf_template_invoice.html');
+        $obj_pdf->writeHTML($content);  
+        $obj_pdf->Output('Commande-'.$this->id_order . '.pdf', 'D');  
+        
     }
 
 }

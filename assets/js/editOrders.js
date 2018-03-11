@@ -94,6 +94,7 @@ function editOrders($id_order) {
 			let cell10 = row.insertCell(9);
 			let cell11 = row.insertCell(10);
 			let cell12 = row.insertCell(11);
+			let cell13 = row.insertCell(12);
 
 			cell1.innerHTML = order_product[i]["id_product"];
 			cell2.innerHTML = order_product[i]["quantity_product"];
@@ -104,13 +105,15 @@ function editOrders($id_order) {
 			cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + order_product[i]["img_url"] + "\" width=\"80px\" height=\"80px\">";
 			cell8.innerHTML = order_product[i]["color_name"];
 			cell9.innerHTML = order_product[i]["size_name"];
-			/*Pour supprimé la ligne et l'entrée en base on lui passe i de la boucle pour supprimer la ligne*/
-			/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
-			cell10.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["quantity_product"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
+
+			cell10.innerHTML = order_product[i]["meaning_name"];
 			/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	        l'id de la taille et de la couleur et la commande*/
-			cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
+			cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ','+ order_product[i]["id_meaning"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ','+ order_product[i]["id_meaning"] +');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
 			cell12.innerHTML = '<a id="editRow" onClick="editRowOrder(' + row.id + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
+			/*Pour supprimé la ligne et l'entrée en base on lui passe i de la boucle pour supprimer la ligne*/
+			/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
+			cell13.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["quantity_product"] + ',' +  order_product[i]["id_meaning"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
 		}
 	}
 
