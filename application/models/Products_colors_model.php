@@ -1,7 +1,7 @@
 <?php
 /**
  * Dashboard Attack, command manager
- * Products_sizes_model.php
+ * Products_colors_model.php
  * Coded with Codeigniter 3
  * @author Geenens Quentin <geenensq@gmail.com>
  * @version 1.0
@@ -9,22 +9,22 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-Class Products_sizes_model extends CI_Model
+Class Products_colors_model extends CI_Model
 {
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-    private $id_size;
+    private $id_color;
     private $id_product;
-    protected $table = "products_sizes";
+    protected $table = "products_colors";
 
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-    public function getIdSize()
+    public function getIdColor()
     {
-        return $this->id_size;
+        return $this->id_color;
     }
 
     public function getIdProduct()
@@ -37,24 +37,28 @@ Class Products_sizes_model extends CI_Model
         return $this->table;
     }
 
+
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-    public function setIdSize($id_size)
+    public function setIdColor($id_color)
     {
-        $this->id_size = $id_size;
+        $this->id_color = $id_color;
+
         return $this;
     }
-    
+
     public function setIdProduct($id_product)
     {
         $this->id_product = $id_product;
+
         return $this;
     }
-    
+
     public function setTable($table)
     {
         $this->table = $table;
+
         return $this;
     }
 
@@ -65,29 +69,29 @@ Class Products_sizes_model extends CI_Model
 // =======================================================================//
 // !                Method to insert size to the product                  //
 // ======================================================================//
-    public function insertProductsSizes($model)
+    public function insertProductsColors($model)
     {
-        $id_size = $model->getIdSize();
+        $id_color = $model->getIdColor();
         $id_product = $model->getIdProduct();
 
         $this->db->set('id_product', $id_product)
-                ->set('id_size', $id_size)
+                ->set('id_color', $id_color)
                 ->insert($this->table);
-   }
+    }
 
 // =======================================================================//
 // !           Method to check the existence of the product in size       //
 // ======================================================================//
-    public function selectProductsBySizes($model)
+    public function selectProductsByColors($model)
     {
-        $id_size = $model->getIdSize();
+        $id_color = $model->getIdColor();
         $id_product = $model->getIdProduct();
         $response_result;
 
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('id_product', $id_product);
-        $this->db->where('id_size', $id_size );
+        $this->db->where('id_product', $id_product );
+        $this->db->where('id_color', $id_color);
         $query = $this->db->get();
         $result = $query->result_array();
 
@@ -101,11 +105,5 @@ Class Products_sizes_model extends CI_Model
             return  $response_result;
         }
     }
-
-
-
-
-
-
 
 }

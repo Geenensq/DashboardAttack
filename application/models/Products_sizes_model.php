@@ -1,7 +1,7 @@
 <?php
 /**
  * Dashboard Attack, command manager
- * groups_members_model.php
+ * Products_sizes_model.php
  * Coded with Codeigniter 3
  * @author Geenens Quentin <geenensq@gmail.com>
  * @version 1.0
@@ -9,87 +9,103 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-Class Groups_members_model extends CI_Model
+Class Products_sizes_model extends CI_Model
 {
 // =======================================================================//
 // !                  Declaration of my attributes                       //
 // ======================================================================//
-    private $id_group_member;
-    private $name;
-    protected $table = "groups_members";
+    private $id_size;
+    private $id_product;
+    protected $table = "products_sizes";
+
 
 // =======================================================================//
 // !                     Start methods getters                           //
 // ======================================================================//
-    public function getIdGroupMember()
+    public function getIdSize()
     {
-        return $this->id_group_member;
+        return $this->id_size;
     }
 
-    public function getName()
+    public function getIdProduct()
     {
-        return $this->name;
+        return $this->id_product;
+    }
+
+    public function getTable()
+    {
+        return $this->table;
     }
 
 // =======================================================================//
 // !                     Start methods setters                           //
 // ======================================================================//
-    public function setIdGroupMember($id_group_member)
+    public function setIdSize($id_size)
     {
-        return $this->id_group_member = $id_group_member;
+        $this->id_size = $id_size;
+        return $this;
     }
     
-    public function setName($name)
+    public function setIdProduct($id_product)
     {
-        return $this->name = $name;
+        $this->id_product = $id_product;
+        return $this;
     }
+    
+    public function setTable($table)
+    {
+        $this->table = $table;
+        return $this;
+    }
+
 // =======================================================================//
 // !                     Start CRUD methods                              //
 // ======================================================================//
 
+// =======================================================================//
+// !                Method to insert size to the product                  //
+// ======================================================================//
+    public function insertProductsSizes($model)
+    {
+        $id_size = $model->getIdSize();
+        $id_product = $model->getIdProduct();
 
+        $this->db->set('id_product', $id_product)
+                ->set('id_size', $id_size)
+                ->insert($this->table);
+   }
 
 // =======================================================================//
-// !                Method SELECT one group members                      //
+// !           Method to check the existence of the product in size       //
 // ======================================================================//
-    public function SelectOneGroupMembers($id_group_member)
+    public function selectProductsBySizes($model)
     {
+        $id_size = $model->getIdSize();
+        $id_product = $model->getIdProduct();
+        $response_result;
+
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('id_group_member', $id_group_member);
+        $this->db->where('id_product', $id_product);
+        $this->db->where('id_size', $id_size );
         $query = $this->db->get();
-        foreach ($query->result_object() as $ligne)
-        {
-            $myMembers = new Groups_members_model();
-            $myMembers->setIdGroupMember($ligne->id_group_member);
-            $myMembers->setName($ligne->name);
-            
-        }
-        return $myMembers;
-    }
-// =======================================================================//
-// !                Method SELECT all group members                      //
-// ======================================================================//
+        $result = $query->result_array();
 
-    public function selectAll()
-    {
-        $arrayGroupsMembers = [];
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $query = $this->db->get();
+        if(count($result) <= 0){
 
-        foreach ($query->result_object() as $ligne)
-        {
-            $groupsMembers = new Groups_members_model();
-            $groupsMembers->setIdGroupMember($ligne->id_group_member);
-            $groupsMembers->setName($ligne->name);
-            $arrayGroupsMembers[] = $groupsMembers;
+            $response_result = "not exist";
+            return  $response_result;
+        } else {
+
+            $response_result = "exist";
+            return  $response_result;
         }
-        return $arrayGroupsMembers;
     }
+
+
+
+
 
 
 
 }
-
-?>
