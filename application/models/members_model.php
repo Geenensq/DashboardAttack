@@ -59,7 +59,7 @@ Class Members_model extends CI_Model
         return $this->actif;
     }
 
-    public function GetIdGroupMember()
+    public function getIdGroupMember()
     {
         return $this->id_group_member;
     }
@@ -114,7 +114,7 @@ Class Members_model extends CI_Model
 // =======================================================================================================//
 // !     Method SELECT * members and verify that the user exists and that the password matches           //
 // ======================================================================================================//
-    public function CheckInfoUser($model)
+    public function checkInfoUser($model)
     {
         $data = array ('login' => $model->getLogin(),'password' => $model->getPassword());
 
@@ -213,7 +213,7 @@ Class Members_model extends CI_Model
         $password = $model->getPassword();
         $actif = $model->getActif();
         $email = $model->getEmail();
-        $id_group_member = $model->GetIdGroupMember();
+        $id_group_member = $model->getIdGroupMember();
         
             //-----------Check if a user already has this username or email address ------------//
         $this->db->select('*');
@@ -241,7 +241,7 @@ Class Members_model extends CI_Model
         'password' => $model->getPassword(),
         'actif' => $model->getActif(),
         'email' => $model->getEmail(),
-        'id_group_member' =>$model->GetIdGroupMember()    
+        'id_group_member' =>$model->getIdGroupMember()    
     );
 
     $this->db->where('id_member' ,$model->getId());
@@ -258,7 +258,7 @@ public function updateMembersModal($model)
         'login' => $model->getLogin(),
         'actif' => $model->getActif(),
         'email' => $model->getEmail(),
-        'id_group_member' =>$model->GetIdGroupMember()    
+        'id_group_member' =>$model->getIdGroupMember()    
     );
 
     $this->db->where('id_member' ,$model->getId());
@@ -279,7 +279,7 @@ public function updateEmailMember($model)
 // !                        Method for UPDATE password members                      //
 // =================================================================================//
 
-public function updatePasswordMember($model)
+public function updatePasswordMembers($model)
 {
  $data = array ('password' => $model->getPassword());
  $this->db->where('id_member' ,$model->getId());

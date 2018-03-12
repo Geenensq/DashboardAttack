@@ -10,9 +10,9 @@
 class Signup_controller extends CI_Controller
 {
 
-// =======================================================================//
-// !                  Declaration of my attributes                       //
-// ======================================================================//
+    // =======================================================================//
+    // !                  Declaration of my attributes                       //
+    // ======================================================================//
     private $login;
     private $email;
     private $password;
@@ -20,16 +20,18 @@ class Signup_controller extends CI_Controller
     private $actif;
     private $id_group_member;
 
-// =======================================================================//
-// !                  Constructor of my Class                            //
-// ======================================================================//
+    // =======================================================================//
+    // !                  Constructor of my Class                            //
+    // ======================================================================//
 
-//Instance all methods of CI_CONTROLLER
+    //Instance all methods of CI_CONTROLLER
     public function __construct()
     {
         parent::__construct();
+
         $this->load->model('members_model', 'modelMembers');
-        $this->load->library('cipasswordhash');
+        $this->load->helper('password');
+
         $this->actif = 1;
         $this->id_group_member = 3;
         $this->login = $this->input->post('login');
@@ -38,9 +40,9 @@ class Signup_controller extends CI_Controller
         $this->password_confirm = $this->input->post('password2');
     }
 
-// =======================================================================//
-// !                         Default method                              //
-// ======================================================================//
+    // =======================================================================//
+    // !                         Default method                              //
+    // ======================================================================//
     public function index()
     {
         if ($this->session->userdata('id_member')) {
@@ -52,9 +54,9 @@ class Signup_controller extends CI_Controller
 
     }
 
-// =======================================================================//
-// !                      Method for signup users                        //
-// ======================================================================//
+    // =======================================================================//
+    // !                      Method for signup users                        //
+    // ======================================================================//
 
     public function signup()
     {
@@ -68,11 +70,13 @@ class Signup_controller extends CI_Controller
             //-------------Create my objet--------------//
             $this->modelMembers->setLogin($this->login);
             $this->modelMembers->setEmail($this->email);
-            $this->modelMembers->setPassword($this->password);
+            
+            // In my model i hash my password with helpers
+            $this->modelMembers->setPassword(hash_password($this->password));
             $this->modelMembers->setActif($this->actif);
             $this->modelMembers->SetIdGroupMember($this->id_group_member);
             //-----------------------------------------//
-
+            
             $membersModel = $this->modelMembers;
             $this->modelMembers->insertOneMember($membersModel);
             redirect(array('login_controller', 'index'));

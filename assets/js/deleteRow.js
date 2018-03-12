@@ -1,5 +1,6 @@
 function deleteRow($row, $id_product, $id_size, $id_color, $qte , $id_meaning) {
 
+	
 	var id_order = $("#current_id_order").val();
 
 

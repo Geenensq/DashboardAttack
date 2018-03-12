@@ -84,3 +84,13 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+/*
+|--------------------------------------------------------------------------
+| Custom constants
+|--------------------------------------------------------------------------
+|
+| Here is my constant add manually
+|
+*/
+
+define('SECURE_PASSPHRASE', 'E5788E8B41B092DECA8608AABBC4C7AF68DADE40B6157C0A8B0C775490FF483C');

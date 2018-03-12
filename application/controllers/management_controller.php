@@ -28,6 +28,7 @@ Class Management_controller extends CI_Controller
         parent::__construct();
         $this->load->model('Members_model', 'modelMembers');
         $this->load->model('Groups_members_model', 'modelGroupsMembers');
+        $this->load->helper('password');
 
     }
 
@@ -136,10 +137,12 @@ Class Management_controller extends CI_Controller
             $this->id_member = $this->input->post('id_member_password');
             $this->password = $this->input->post('password_member');
             $this->password_confirm = $this->input->post('password_member_confirmation');
+           
             if($this->password ===  $this->password_confirm)
             {
                 $this->modelMembers->setId($this->id_member);
-                $this->modelMembers->setPassword($this->password);
+
+                $this->modelMembers->setPassword(hash_password($this->password));
                 $membersModel = $this->modelMembers;
                 $this->modelMembers->updatePasswordMembers($membersModel);
 

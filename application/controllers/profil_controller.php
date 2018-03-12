@@ -7,134 +7,126 @@
  * @version 1.0
  */
 
-
-Class Profil_controller extends CI_Controller
+class Profil_controller extends CI_Controller
 {
-// =======================================================================//
-// !                  Declaration of my attributes                       //
-// ======================================================================//
+    // =======================================================================//
+    // !                  Declaration of my attributes                       //
+    // ======================================================================//
     private $id_member;
     private $password;
     private $newPassword;
     private $newPasswordConfirm;
     private $email;
 
-// =======================================================================//
-// !                  Constructor of my Class                            //
-// ======================================================================//
+    // =======================================================================//
+    // !                  Constructor of my Class                            //
+    // ======================================================================//
     public function __construct()
     {
         parent::__construct();
         $this->load->model('members_model', 'modelMembers');
         $this->load->model('Groups_members_model', 'GroupsMembersModel');
+        $this->load->helper('password');
         $this->id_member = $this->session->userdata('id_member');
     }
 
-// =======================================================================//
-// !                         Default method                              //
-// ======================================================================//
+    // =======================================================================//
+    // !                         Default method                              //
+    // ======================================================================//
     public function index()
     {
-        if($this->session->userdata('id_member')){
+        if ($this->session->userdata('id_member')) {
             //-----Get all informations of my user and group user-----//
-           $infosUser = $this->modelMembers->selectOne($this->id_member);
+            $infosUser = $this->modelMembers->selectOne($this->id_member);
             //---Load my view profil and give an array associativ with my variable infouser---//
-           $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
+            $this->load->view('dashboard/profil.html', array('infosUser' => $infosUser), false);
 
-       }else{
-        redirect(array('login_controller', 'index'));
+        } else {
+            redirect(array('login_controller', 'index'));
+        }
+
     }
 
-}
+    // =======================================================================//
+    // !                  Method for edit email profil members               //
+    // ======================================================================//
 
+    public function editEmailProfil()
+    {
+        $this->form_validation->set_rules('email', '"Email adress"', 'required|valid_email|min_length[1]');
 
-
-// =======================================================================//
-// !                  Method for edit email profil members               //
-// ======================================================================//
-
-public function editEmailProfil()
-{
-    $this->form_validation->set_rules('email', '"Email adress"', 'required|valid_email|min_length[1]');
-
-    if ($this->form_validation->run()) {
+        if ($this->form_validation->run()) {
             //-----Get my adress mail of my input-----//
-        $this->email = $this->input->post('email');
+            $this->email = $this->input->post('email');
             //---------------------------------------//
 
             //-------------Create my objet--------------//
-        $this->modelMembers->setId($this->id_member);
-        $this->modelMembers->setEmail($this->email);
+            $this->modelMembers->setId($this->id_member);
+            $this->modelMembers->setEmail($this->email);
             //-----------------------------------------//
 
-        $membersModel = $this->modelMembers;
-        $this->modelMembers->updateEmailMembers($membersModel);
+            $membersModel = $this->modelMembers;
+            $this->modelMembers->updateEmailMembers($membersModel);
 
-        $this->index();
+            $this->index();
 
-    } else {
-        $this->index();
+        } else {
+            $this->index();
+        }
     }
-}
 
+    // =======================================================================//
+    // !                  Method for edit password members                   //
+    // ======================================================================//
 
-// =======================================================================//
-// !                  Method for edit password members                   //
-// ======================================================================//
-
-public function editPasswordProfil()
-{
+    public function editPasswordProfil()
+    {
         //------------------------Get informations of the Ajax POST----------------------//
-    $this->password = $this->input->post('current_password');
-    $this->newPassword = $this->input->post('new_password');
-    $this->newPasswordConfirm = $this->input->post('new_password_confirmation');
+        $this->password = $this->input->post('current_password');
+        $this->newPassword = $this->input->post('new_password');
+        $this->newPasswordConfirm = $this->input->post('new_password_confirmation');
         //------------------------------------------------------------------------------//
 
-
         //-------------create my objet for test password and id--------------//
-    $this->modelMembers->setId($this->id_member);
-    $this->modelMembers->setPassword($this->password);
+        $this->modelMembers->setId($this->id_member);
+        $this->modelMembers->setPassword(hash_password($this->password));
         //-----------------------------------------------------------------//
 
         //----------------Call my method to verify that the id matches the password-----------------------//
-    $membersModel = $this->modelMembers;
-    $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
+        $membersModel = $this->modelMembers;
+        $resultRequest = $this->modelMembers->checkPasswordById($membersModel);
         //-----------------------------------------------------------------------------------------------//
 
-    $callBack = array();
+        $callBack = array();
 
         //--If the method returns true--//
-    if ($resultRequest) {
+        if ($resultRequest) {
 
             //---------if the 2 passwords are the same----------//
-        if ($this->newPasswordConfirm == $this->newPassword) {
+            if ($this->newPasswordConfirm == $this->newPassword) {
 
                 //------------create my object-------------//
-            $this->modelMembers->setId($this->id_member);
-            $this->modelMembers->setPassword($this->newPassword);
-            $membersModel = $this->modelMembers;
+                $this->modelMembers->setId($this->id_member);
+                $this->modelMembers->setPassword(hash_password($this->newPassword));
+                $membersModel = $this->modelMembers;
                 //-----------------------------------------//
 
                 //--------using my method to update the password-------------//
-            $this->modelMembers->updatePasswordMember($membersModel);
+                $this->modelMembers->updatePasswordMembers($membersModel);
                 //----------------------------------------------------------//
 
-            $callBack["confirm"] = "success";
+                $callBack["confirm"] = "success";
+
+            } else {
+                $callBack["errorPasswordConfirm"] = "error";
+            }
 
         } else {
-            $callBack["errorPasswordConfirm"] = "error";
+            $callBack["errorPasswordActuel"] = "error";
         }
 
-    } else {
-        $callBack["errorPasswordActuel"] = "error";
+        echo json_encode($callBack);
     }
-
-
-    echo json_encode($callBack);
-}
     //----------------------------------------------------------------------------------------//
 
-
 }
-
-?>

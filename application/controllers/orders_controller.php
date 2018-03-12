@@ -516,7 +516,9 @@ class Orders_controller extends CI_Controller
         if ($result == "not exist") {
             $this->modelProductsMeanings->insertProductsMeanings($modelProductsMeanings);
             $callBack = "products meanings created";
+        
         } else {
+            
             $callBack = "products meanings already exist";
         }
 
@@ -529,7 +531,6 @@ class Orders_controller extends CI_Controller
 
     public function generatePdfOrders()
     {
-
         $this->id_order = $this->input->get('id_order');
 
         // Retrieving order information
