@@ -239,7 +239,11 @@ Class Orders_model extends CI_Model
     public function selectAllOrders($id)
     {
         $id_order = $id;
-        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer , methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment , methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , states.name_state AS name_state , states.id_state AS id_state');
+        $this->db->select('id_order, date_order , comment_order, price_order , customers.firstname AS firstname , customers.lastname AS lastname , customers.id_customer AS id_customer ,
+        customers.mobil_phone_number , customers.phone_number , customers.address , customers.zip_code , customers.city,
+        methods_payments.name_method AS method_payment , methods_payments.id_method_payment AS id_method_payment ,
+        methods_shippings.name_method_shipping AS method_shipping , methods_shippings.id_method_shipping AS id_method_shipping , methods_shippings.price_method_shipping,
+        states.name_state AS name_state , states.id_state AS id_state');
         $this->db->from($this->table);
         $this->db->join('customers', 'orders.id_customer = customers.id_customer');
         $this->db->join('methods_payments', 'orders.id_method_payment = methods_payments.id_method_payment');
@@ -256,10 +260,16 @@ Class Orders_model extends CI_Model
             $order["firstname"] = $row->firstname;
             $order["lastname"] = $row->lastname;
             $order["id_customer"] = $row->id_customer;
+            $order["mobil_phone_number"] = $row->mobil_phone_number;
+            $order["phone_number"] = $row->phone_number;
+            $order["address"] = $row->address;
+            $order["zip_code"] = $row->zip_code;
+            $order["city"] = $row->city;
             $order["method_payment"] = $row->method_payment;
             $order["id_method_payment"] = $row->id_method_payment;
             $order["method_shipping"] = $row->method_shipping;
             $order["id_method_shipping"] = $row->id_method_shipping;
+            $order["price_method_shipping"] = $row->price_method_shipping;
             $order["name_state"] = $row->name_state;
             $order["id_state"] = $row->id_state;
         }

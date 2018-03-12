@@ -309,7 +309,7 @@ class Orders_controller extends CI_Controller
         $this->id_size = $this->input->post('id_size');
         $this->id_color = $this->input->post('id_color');
         $this->id_meaning = $this->input->post('id_meaning');
-        
+
         $this->modelProductsOrders->setIdProduct($this->id_product);
         $this->modelProductsOrders->setQuantityProduct($this->qte_product);
         $this->modelProductsOrders->setIdOrder($this->id_order);
@@ -494,7 +494,6 @@ class Orders_controller extends CI_Controller
         echo json_encode($callBack);
     }
 
-
     // ==========================================================================================//
     // !                           Method to add meaning to the product                             //
     // ==========================================================================================//
@@ -530,26 +529,35 @@ class Orders_controller extends CI_Controller
 
     public function generatePdfOrders()
     {
-        $this->id_order  = $this->input->get('id_order');
-        $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
-        $obj_pdf->SetCreator(PDF_CREATOR);  
-        $obj_pdf->SetTitle("Export HTML Table data to PDF using TCPDF in PHP");  
-        $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
-        $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
-        $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
-        $obj_pdf->SetDefaultMonospacedFont('helvetica');  
-        $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
-        $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '0', PDF_MARGIN_RIGHT);  
-        $obj_pdf->setPrintHeader(false);  
-        $obj_pdf->setPrintFooter(false);  
-        $obj_pdf->SetAutoPageBreak(TRUE, 10);  
-        $obj_pdf->SetFont('helvetica', '', 12);  
-        $obj_pdf->AddPage();  
-        $content = '';  
-        $content .= read_file(APPPATH.'views/pdf/pdf_template_invoice.html');
-        $obj_pdf->writeHTML($content);  
-        $obj_pdf->Output('Commande-'.$this->id_order . '.pdf', 'D');  
-        
+
+        $this->id_order = $this->input->get('id_order');
+
+        // Retrieving order information
+        $infosOrders = $this->modelOrders->selectAllOrders($this->id_order);
+        // Retrieving order information
+        $infosProductsOrders = $this->modelProductsOrders->selectAllProductsOrders($this->id_order);
+
+        ob_start();
+        require_once APPPATH . 'views/pdf/pdf_template_orders_recap.tpl';
+        $content = ob_get_clean();
+    
+        $objPdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $objPdf->SetCreator(PDF_CREATOR);
+        $objPdf->SetTitle("Récapitulatif de la commande N°" .$this->id_order);
+        $objPdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);
+        $objPdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $objPdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $objPdf->SetDefaultMonospacedFont('helvetica');
+        $objPdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $objPdf->SetMargins(PDF_MARGIN_LEFT, '0', PDF_MARGIN_RIGHT);
+        $objPdf->setPrintHeader(false);
+        $objPdf->setPrintFooter(false);
+        $objPdf->SetAutoPageBreak(true, 10);
+        $objPdf->SetFont('helvetica', '', 12);
+        $objPdf->AddPage();
+        $objPdf->writeHTML($content);
+        $objPdf->Output('Commande-' . $this->id_order . '.pdf', 'D');
+
     }
 
 }

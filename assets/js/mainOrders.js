@@ -498,7 +498,7 @@ var myTable = $('#tab_orders').DataTable({
 		}, {
 			"targets": 11,
 			render: function (data, full) {
-				return '<a id="btn_state" href="generatePdfOrders.html?id_order='+data[0]+'"  class="btn btn-danger btn-fill"><i class="fa fa-file"></i></a>'
+				return '<a id="btn_state" href="generatePdfOrders.html?id_order='+data[0]+'"  class="btn btn-info btn-fill"><i class="fa fa-file"></i></a>'
 			}
 		},
 	]
