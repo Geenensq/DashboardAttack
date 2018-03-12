@@ -98,8 +98,8 @@ $(document).ready(function () {
 
 			// On remet la css de base du titre 
 			$("#title_order").css("font-weight", "300");
+			
 			$("#title_order").css("color", "#333333");
-
 
 		} else {
 
