@@ -331,13 +331,10 @@ function constructViewTable($product, $count, $array, $qte_product) {
 	/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	l'id de la taille et de la couleur et la commande*/
 	cell11.innerHTML = '<i role="button" onClick="AddQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + ',' + $product.id_meaning + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + $product.id_product + ',' + row.id + ',' + $product.base_price + ',' + $product.id_size + ',' + $product.id_color + $product.id_meaning + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
-	cell12.innerHTML = '<a id="editRow" onClick="editRowOrder('+ "ligne" + $count + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
+	cell12.innerHTML = '<a id="editRow" onClick="editRowOrder(' + "ligne" + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $product.id_meaning + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
 	/*Pour supprimé la ligne et l'en trée en base on lui passe count pour supprimer la ligne*/
 	/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
 	cell13.innerHTML = '<a onClick="deleteRow(' + $count + ',' + $product.id_product + ',' + $product.id_size + ',' + $product.id_color + ',' + $qte_product + ',' + $product.id_meaning + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
-
-
-
 }
 
 
@@ -493,12 +490,12 @@ var myTable = $('#tab_orders').DataTable({
 		}, {
 			"targets": 10,
 			render: function (data, full) {
-				return '<a id="btn_state" data-toggle="confirmation" onclick="deleteOrders(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
+				return '<a id="btn_state" onclick="confirmDelCmd(' + data[0] + ')" class="btn btn-danger btn-fill editOrder"><i class="fa fa-trash-o"></i></a>'
 			}
 		}, {
 			"targets": 11,
 			render: function (data, full) {
-				return '<a id="btn_state" href="generatePdfOrders.html?id_order='+data[0]+'"  class="btn btn-fill"><i class="fa fa-file-pdf-o"></i></a>'
+				return '<a id="btn_state" href="generatePdfOrders.html?id_order=' + data[0] + '"  class="btn btn-fill"><i class="fa fa-file-pdf-o"></i></a>'
 			}
 		},
 	]

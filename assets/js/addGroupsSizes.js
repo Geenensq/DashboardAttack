@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 			} else if (data.confirm == "error") {
 				/*Call notifications*/
-				notify("pe-7s-refresh-2", "<b>Informations : </b>Tous les champs doivent être remplis", "danger");
+				notify("pe-7s-refresh-2", "<b>Informations : </b>Tous les champs doivent être corectement remplis", "danger");
 
 			}
 		}, "json");

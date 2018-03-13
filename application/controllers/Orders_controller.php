@@ -37,7 +37,7 @@ class Orders_controller extends CI_Controller
         $this->load->helper('file');
         $this->load->model('Customers_model', 'modelCustomers');
         $this->load->model('States_model', 'modelStates');
-        $this->load->model('Shipping_model', 'modelShipping');
+        $this->load->model('Shippings_model', 'modelShippings');
         $this->load->model('Payments_model', 'modelPayments');
         $this->load->model('Products_model', 'modelProducts');
         $this->load->model('Orders_model', 'modelOrders');
@@ -59,7 +59,7 @@ class Orders_controller extends CI_Controller
 
             $customers = $this->modelCustomers->selectAll();
             $states = $this->modelStates->selectAll();
-            $shipping = $this->modelShipping->selectAll();
+            $shipping = $this->modelShippings->selectAll();
             $payments = $this->modelPayments->selectAll();
             $groupsColors = $this->modelGroupsColors->selectAll();
             $groupsSizes = $this->modelGroupSizes->selectAll();
@@ -100,9 +100,9 @@ class Orders_controller extends CI_Controller
     public function getShippingsInfos()
     {
         $this->id_method_shipping = $this->input->post('id');
-        $this->modelShipping->setIdMethodShipping($this->id_method_shipping);
-        $modelShipping = $this->modelShipping;
-        $infosMethodShipping = $this->modelShipping->selectShippingsInfos($modelShipping);
+        $this->modelShippings->setIdMethodShipping($this->id_method_shipping);
+        $modelShippings = $this->modelShippings;
+        $infosMethodShipping = $this->modelShippings->selectShippingsInfos($modelShippings);
 
         echo json_encode($infosMethodShipping);
     }

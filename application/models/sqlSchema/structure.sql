@@ -191,6 +191,7 @@ CREATE TABLE methods_shippings(
         id_method_shipping    int (11) Auto_increment  NOT NULL ,
         name_method_shipping  Varchar (25) NOT NULL ,
         price_method_shipping Float NOT NULL ,
+        actif            Bool NOT NULL ,
         PRIMARY KEY (id_method_shipping )
 )ENGINE=InnoDB;
 

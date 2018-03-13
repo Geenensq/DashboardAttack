@@ -26,6 +26,7 @@
 	<link href="<?php echo css_url('globalOrders'); ?>" rel="stylesheet" />
 	<!-- Select2 plugin CSS files -->
 	<link href="<?php echo css_url_lib('select2.min'); ?>" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 
 </head>
 
@@ -160,11 +161,11 @@
 													<select id="state_order" name="state_order" class="form-control">
 														<option value="0" disabled selected="selected">Sélectionner un statut de commande</option>
 														<?php
-        foreach($states as $value)
-        {
-         echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
-       }
-       ?>
+														foreach($states as $value)
+														{
+															echo '<option value=' . '"' . $value->getIdState() . '">' . $value->getNameState(). '</option>';
+														}
+														?>
 													</select>
 												</div>
 											</div>
@@ -176,11 +177,11 @@
 													<select id="shipping_order" name="shipping_order" class="form-control">
 														<option value="0" disabled selected="selected">Sélectionner un mode de livraison</option>
 														<?php
-     foreach($shipping as $value)
-     {
-      echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
-    }
-    ?>
+    													foreach($shipping as $value)
+     													{
+     														 echo '<option value=' . '"' . $value->getIdMethodShipping() . '">' . $value->getNameMethodShipping(). '</option>';
+														}
+														?>
 													</select>
 												</div>
 											</div>
@@ -190,11 +191,11 @@
 													<select id="payments_order" name="payments_order" class="js-example-basic-multiple form-control">
 														<option value="0" disabled selected="selected">Sélectionner une méthode de paiement</option>
 														<?php
-    foreach($payments as $value)
-    {
-     echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
-   }
-   ?>
+														foreach($payments as $value)
+														{
+														echo '<option value=' . '"' . $value->getIdMethodPayment() . '">' . $value->getNameMethod(). '</option>';
+														}
+														?>
 													</select>
 												</div>
 											</div>
@@ -266,9 +267,9 @@
 														<?php
 														foreach($meanings as $value)
 														{
-														echo '<option value=' . '"' . $value->getIdMeaning() . '">' . $value->getMeaningName(). '</option>';
-													}
-													?>
+															echo '<option value=' . '"' . $value->getIdMeaning() . '">' . $value->getMeaningName(). '</option>';
+														}
+														?>
 													</select>
 												</div>
 											</div>
@@ -448,5 +449,6 @@
 <script src="<?php echo js_url('resetInputsOrders');?>"></script>
 <!-- Function for declare my autocomplete-->
 <script src="<?php echo js_url('autoCompleteOrders');?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
 </html>

@@ -105,12 +105,11 @@ function editOrders($id_order) {
 			cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + order_product[i]["img_url"] + "\" width=\"80px\" height=\"80px\">";
 			cell8.innerHTML = order_product[i]["color_name"];
 			cell9.innerHTML = order_product[i]["size_name"];
-
 			cell10.innerHTML = order_product[i]["meaning_name"];
 			/*Pour incrémenter ou décrémenter la quantité du produit on lui passe aussi l'id du produit , 
 	        l'id de la taille et de la couleur et la commande*/
 			cell11.innerHTML = '<i  role="button" onClick="AddQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["id_meaning"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf196;</i> <i  role="button" onClick="RemoveQuantity(' + order_product[i]["id_product"] + ',' + row.id + ',' + order_product[i]["base_price"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["id_meaning"] + ');" style="font-size:20px; color:#337ab7;" class="fa">&#xf147;</i>';
-			cell12.innerHTML = '<a id="editRow" onClick="editRowOrder(' + row.id + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
+			cell12.innerHTML = '<a id="editRow" onClick="editRowOrder(' + row.id + ',' + order_product[i]["id_product"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["id_meaning"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>';
 			/*Pour supprimé la ligne et l'entrée en base on lui passe i de la boucle pour supprimer la ligne*/
 			/*On lui passe aussi l'id du produit , l'id de la taille et de la couleur et la commande*/
 			cell13.innerHTML = '<a onClick="deleteRow(' + i + ',' + order_product[i]["id_product"] + ',' + order_product[i]["id_size"] + ',' + order_product[i]["id_color"] + ',' + order_product[i]["quantity_product"] + ',' + order_product[i]["id_meaning"] + ')" style="font-size:1.5em;" class="glyphicon glyphicon-remove" aria-hidden="true"></a>';
@@ -120,36 +119,43 @@ function editOrders($id_order) {
 }
 
 
-function editRowOrder(rowTableau) {
-
+function editRowOrder($rowTable, $id_product, $id_size, $id_color, $id_meaning) {
+	alert("Bientot disponible");
+	return;
 	if (clicked === false) { /// si le boutton n'à pas été cliqué on entre dans la condition
 		clicked = true;
+
 		$("#editRow").css("color", "#FF4A55");
-
-		rowTableau.childNodes[5].setAttribute("contenteditable", "true");
-
-		rowTableau.childNodes[5].style.color = "#FF4A55";
-		rowTableau.childNodes[5].style.fontWeight = "600";
-
-
+		$rowTable.childNodes[5].setAttribute("contenteditable", "true");
+		$rowTable.childNodes[5].style.color = "#FF4A55";
+		$rowTable.childNodes[5].style.fontWeight = "600";
+	
 	} else if (clicked === true) {
 		clicked = false;
 
 		$("#editRow").css("color", "#337ab7");
 
-		rowTableau.childNodes[5].setAttribute("contenteditable", "false");
-		rowTableau.childNodes[5].style.color = "#333";
+		$rowTable.childNodes[5].setAttribute("contenteditable", "false");
+		$rowTable.childNodes[5].style.color = "#333";
+		$rowTable.childNodes[5].style.fontWeight = "300";
 
 		// Permet de récupérer le nouveau prix
-		$new_price_product = rowTableau.childNodes[5].html();
-		
+		$new_price_product = $rowTable.childNodes[5].innerText
+
 		//Permet de faire les condition de la requette SQL
 		$id_order = $('#current_id_order').val();
-		$id_product = rowTableau.childNodes[0].html();
-		$name_product = rowTableau.childNodes[2].html();
-		$color_product = rowTableau.childNodes[7].html();
-		$size_product = rowTableau.childNodes[8].html();
-		$meaning_product = rowTableau.childNodes[9].html();
+
+		// Récupération des informations de la commande//
+		url = ".html";
+		var form = {
+			id_order: $id_order,
+			id_product: $id_product,
+			id_size: $id_size,
+			id_color: $id_color,
+			id_meaning: $id_meaning
+		};
+		var order = send_post(form, url);
+		/*********************************************/
 
 
 
