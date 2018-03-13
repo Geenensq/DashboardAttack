@@ -1,3 +1,24 @@
+function confirmDelCmd($id_order) {
+
+    $.confirm({
+        boxWidth: '30%',
+        icon: 'fa fa-warning',
+        title: 'Suppression de la commande',
+        content: 'Voulez vous supprimer la commande ?',
+        type: 'blue',
+        buttons: {
+            Suppression: function() {
+                deleteOrders($id_order);
+            },
+            Annulez: function() {
+                $.alert('Votre commande n\'a pas été supprimée');
+            },
+        }
+    });
+
+}
+
+
 function deleteOrders($id) {
 	url = "removeOrders.html";
 	var form = {
