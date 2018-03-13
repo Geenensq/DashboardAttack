@@ -21,6 +21,8 @@ class Management_controller extends CI_Controller
     private $id_method_shipping;
     private $name_method_shipping;
     private $price_method_shipping;
+    private $id_method_payment;
+    private $name_method_payment;
 
     // =======================================================================//
     // !                  Constructor of my Class                            //
@@ -30,7 +32,8 @@ class Management_controller extends CI_Controller
         parent::__construct();
         $this->load->model('Members_model', 'modelMembers');
         $this->load->model('Groups_members_model', 'modelGroupsMembers');
-        $this->load->model('Shipping_model', 'modelShipping');
+        $this->load->model('Shippings_model', 'modelShippings');
+        $this->load->model('Payments_model', 'modelPayments');
         $this->load->helper('password');
 
     }
@@ -78,11 +81,26 @@ class Management_controller extends CI_Controller
     // ======================================================================//
     public function encodeGriShipping()
     {
-        $results = $this->modelShipping->loadShippingsDatatable();
+        $results = $this->modelShippings->loadShippingsDatatable();
         $data = array();
 
         foreach ($results as $result) {
             $data[] = array($result['id_method_shipping'], $result['name_method_shipping'], $result['price_method_shipping'], $result['actif']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
+
+    // =======================================================================//
+    // !                   Method for send members on datatable               //
+    // ======================================================================//
+    public function encodeGridPayments()
+    {
+        $results = $this->modelPayments->loadPaymentsDatatable();
+        $data = array();
+
+        foreach ($results as $result) {
+            $data[] = array($result['id_method_payment'], $result['name_method'], $result['actif']);
         }
 
         echo json_encode(array('data' => $data));
@@ -140,7 +158,18 @@ class Management_controller extends CI_Controller
     public function getInfosShippingModal()
     {
         $this->id_method_shipping = $this->input->post('id');
-        $return = $this->modelShipping->selectAllShippingsForModal($this->id_method_shipping);
+        $return = $this->modelShippings->selectAllShippingsForModal($this->id_method_shipping);
+        echo json_encode($return);
+    }
+
+    // =======================================================================//
+    // !                Method for send payments method on modal             //
+    // ======================================================================//
+
+    public function getInfosPaymentsModal()
+    {
+        $this->id_method_payment = $this->input->post('id');
+        $return = $this->modelPayments->selectAllPaymentsForModal($this->id_method_payment);
         echo json_encode($return);
     }
 
@@ -192,13 +221,22 @@ class Management_controller extends CI_Controller
     public function changeStatusShippingsMethods()
     {
         $this->id_method_shipping = $this->input->post('id');
-        $this->modelShipping->disableEnableOneShippingMethod($this->id_method_shipping);
+        $this->modelShippings->disableEnableOneShippingMethod($this->id_method_shipping);
+    }
+
+    // ==========================================================================================//
+    // !                    Method for activate or desactivate shipping methods                 //
+    // ==========================================================================================//
+    public function changeStatusPaymentsMethods()
+    {
+        $this->id_method_payment = $this->input->post('id');
+        $this->modelPayments->disableEnableOnePaymentMethod($this->id_method_payment);
     }
 
     // =======================================================================//
     // !                        Method add an method shipping                 //
     // ======================================================================//
-    public function addShippingMethod()
+    public function addShippingsMethods()
     {
 
         $this->form_validation->set_rules('name_method_shipping', '" "', 'required|min_length[1]');
@@ -211,10 +249,37 @@ class Management_controller extends CI_Controller
             $this->name_method_shipping = $this->input->post('name_method_shipping');
             $this->price_method_shipping = $this->input->post('price_method_shipping');
 
-            $this->modelShipping->setNameMethodShipping($this->name_method_shipping);
-            $this->modelShipping->setPriceMethodShipping($this->price_method_shipping);
-            $shippingModel = $this->modelShipping;
-            $this->modelShipping->insertMethodShipping($shippingModel);
+            $this->modelShippings->setNameMethodShipping($this->name_method_shipping);
+            $this->modelShippings->setPriceMethodShipping($this->price_method_shipping);
+            $shippingModel = $this->modelShippings;
+            $this->modelShippings->insertMethodShipping($shippingModel);
+
+            $callBack["confirm"] = "success";
+
+        } else {
+            $callBack["confirm"] = "error";
+        }
+
+        echo json_encode($callBack);
+
+    }
+
+    // =======================================================================//
+    // !                       Method add an methods payments                //
+    // ======================================================================//
+    public function addPaymentsMethod()
+    {
+
+        $this->form_validation->set_rules('name_method_payment', '" "', 'required|min_length[1]');
+        $callBack = array();
+
+        if ($this->form_validation->run()) {
+
+            $this->name_method_payment = $this->input->post('name_method_payment');
+
+            $this->modelPayments->setNameMethod($this->name_method_payment);
+            $paymentsModel = $this->modelPayments;
+            $this->modelPayments->insertMethodsPayments($paymentsModel);
 
             $callBack["confirm"] = "success";
 
@@ -240,13 +305,43 @@ class Management_controller extends CI_Controller
         $callBack = array();
 
         if ($this->form_validation->run()) {
-            $this->modelShipping->setNameMethodShipping($this->input->post('new_name_method_shipping'));
-            $this->modelShipping->setPriceMethodShipping($this->input->post('new_price_method_shipping'));
-            $this->modelShipping->setIdMethodShipping($this->input->post('id_method_shipping'));
+            $this->modelShippings->setNameMethodShipping($this->input->post('new_name_method_shipping'));
+            $this->modelShippings->setPriceMethodShipping($this->input->post('new_price_method_shipping'));
+            $this->modelShippings->setIdMethodShipping($this->input->post('id_method_shipping'));
 
-            $shippingModel = $this->modelShipping;
+            $shippingModel = $this->modelShippings;
 
-            $this->modelShipping->updateMethodsShippings($shippingModel);
+            $this->modelShippings->updateMethodsShippings($shippingModel);
+            $callBack["confirm"] = "success";
+
+        } else {
+
+            $callBack["confirm"] = "error";
+        }
+
+        echo json_encode($callBack);
+    }
+
+    // ==========================================================================================//
+    // !               Method for change informations of payments for modal                      //
+    // ==========================================================================================//
+
+    public function editPaymentsMethods()
+    {
+
+        $this->form_validation->set_rules('new_name_method_payment', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('id_method_payment', '" "', 'required|min_length[1]');
+
+        $callBack = array();
+
+        if ($this->form_validation->run()) {
+
+            $this->modelPayments->setNameMethod($this->input->post('new_name_method_payment'));
+            $this->modelPayments->setIdMethodPayment($this->input->post('id_method_payment'));
+
+            $paymentModel = $this->modelPayments;
+
+            $this->modelPayments->updateMethodsPayments($paymentModel);
             $callBack["confirm"] = "success";
 
         } else {

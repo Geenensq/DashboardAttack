@@ -1,7 +1,7 @@
 <?php
 /**
  * Dashboard Attack, command manager
- * shipping_model.php
+ * shippings_model.php
  * Coded with Codeigniter 3
  * @author Geenens Quentin <geenensq@gmail.com>
  * @version 1.0
@@ -11,7 +11,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Shipping_model extends CI_Model
+class Shippings_model extends CI_Model
 {
     // =======================================================================//
     // !                  Declaration of my attributes                       //
@@ -95,7 +95,7 @@ class Shipping_model extends CI_Model
         $query = $this->db->get();
 
         foreach ($query->result_object() as $ligne) {
-            $shipping = new Shipping_model();
+            $shipping = new Shippings_model();
             $shipping->setIdMethodShipping($ligne->id_method_shipping);
             $shipping->setNameMethodShipping($ligne->name_method_shipping);
             $arrayShippings[] = $shipping;
@@ -151,7 +151,7 @@ class Shipping_model extends CI_Model
     }
 
     // =======================================================================//
-    // !                Method for disable and enable an members              //
+    // !            Method for disable and enable an shipping method         //
     // ======================================================================//
 
     public function disableEnableOneShippingMethod($id)
@@ -182,8 +182,8 @@ class Shipping_model extends CI_Model
     {
 
         $this->db->select('*')
-                 ->from($this->table)
-                 ->where('id_method_shipping', $id);
+            ->from($this->table)
+            ->where('id_method_shipping', $id);
 
         $query = $this->db->get();
 
@@ -198,21 +198,21 @@ class Shipping_model extends CI_Model
 
     }
 
+    // =======================================================================//
+    // !                 Method update an method shipping by id               //
+    // ======================================================================//
 
-// =======================================================================//
-// !                 Method update an method shipping by id               //
-// ======================================================================//
+    public function updateMethodsShippings($model)
+    {
 
-public function updateMethodsShippings($model){
-    
-    $id_method_shipping = $model->getIdMethodShipping();
-    $price_method_shipping = $model->getPriceMethodShipping();
-    $name_method_shipping = $model->getNameMethodShipping();
+        $id_method_shipping = $model->getIdMethodShipping();
+        $price_method_shipping = $model->getPriceMethodShipping();
+        $name_method_shipping = $model->getNameMethodShipping();
 
-    $this->db->set('name_method_shipping', $name_method_shipping);
-    $this->db->set('price_method_shipping', $price_method_shipping);
-    $this->db->where('id_method_shipping' , $id_method_shipping);
-    $this->db->update($this->table);
-}
+        $this->db->set('name_method_shipping', $name_method_shipping);
+        $this->db->set('price_method_shipping', $price_method_shipping);
+        $this->db->where('id_method_shipping', $id_method_shipping);
+        $this->db->update($this->table);
+    }
 
 }

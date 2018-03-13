@@ -112,42 +112,75 @@
 	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
 
 	<!-- //////////////////////////////////////Modal methods shipping //////////////////////////////////////////// -->
-		<div class="modal fade" data-backdrop="true" id="modal_update_shipping" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-		aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h5 class="modal-title" id="modalLabel">Edition de la méthode de livraison</h5>
-					</div>
-					<form id="" method="POST" action="">
-						<div class="modal-body">
-							<div class="form-group">
-								<input type="hidden" class="form-control" name="id_method_shipping" id="id_method_shipping">
-							</div>
-							<div class="form-group">
-								<label for="new_name_method_shipping" class="form-control-label">Nom de la méthode de livraison:</label>
-								<input required  name="new_name_method_shipping" id="new_name_method_shipping" type="text" class="form-control">
-							</div>
-	
-							<div class="form-group">
-								<label for="new_price_method_shipping" class="form-control-label">Nouveau prix de la methode de paiement:</label>
-								<input required name="new_price_method_shipping" id="new_price_method_shipping" type="text" class="form-control">
-							</div>
-	
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
-							<button class="btn btn-info btn-fill">Enregistrer</button>
-						</div>
-					</form>
+	<div class="modal fade" data-backdrop="true" id="modal_update_shipping" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition de la méthode de livraison</h5>
 				</div>
+				<form id="changeMethodsShippings" method="POST" action="">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="id_method_shipping" id="id_method_shipping">
+						</div>
+						<div class="form-group">
+							<label for="new_name_method_shipping" class="form-control-label">Nom de la méthode de livraison:</label>
+							<input required name="new_name_method_shipping" id="new_name_method_shipping" type="text" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="new_price_method_shipping" class="form-control-label">Nouveau prix de la methode de paiement:</label>
+							<input required name="new_price_method_shipping" id="new_price_method_shipping" type="text" class="form-control">
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
 			</div>
 		</div>
-		<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
-	
+	</div>
+	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
+
+	<!-- //////////////////////////////////////Modal methods payments //////////////////////////////////////////// -->
+	<div class="modal fade" data-backdrop="true" id="modal_update_payment" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+	aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h5 class="modal-title" id="modalLabel">Edition de la méthode de paiment</h5>
+				</div>
+				<form id="changeMethodsPayments" method="POST" action="">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="id_method_payment" id="id_method_payment">
+						</div>
+						<div class="form-group">
+							<label for="new_name_method_payment" class="form-control-label">Nom de la méthode de paiment:</label>
+							<input required name="new_name_method_payment" id="new_name_method_payment" type="text" class="form-control">
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Fermer</button>
+						<button class="btn btn-info btn-fill">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////////////////// END Modal//////////////////////////////////////////////// -->
+
 
 	<div class="wrapper">
 		<div class="sidebar" data-color="blue" data-image="<?php  img_url(" sidebar-5.jpg "); ?> ">
@@ -294,22 +327,23 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Ajout de modes de livraisons</h4>
+									<h4 class="title">
+										<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Ajout de modes de livraisons</h4>
 								</div>
 								<div class="content">
 
-									<form id="form_add_shipping" method="POST" action="addShippingMethod.html">
+									<form id="form_add_shipping" method="POST" action="addShippingsMethods.html">
 										<div class="row">
 											<div class="col-md-8">
 												<div class="form-group">
-													<label for="">Nom du mode de livraison</label>
+													<label for="name_method_shipping">Nom du mode de livraison</label>
 													<input id="name_method_shipping" name="name_method_shipping" type="text" class="form-control" placeholder="Exemple : Colissimo">
 												</div>
 											</div>
 
 											<div class="col-md-4">
 												<div class="form-group">
-													<label for="">Prix du mode de livraison</label>
+													<label for="price_method_shipping">Prix du mode de livraison</label>
 													<input id="price_method_shipping" name="price_method_shipping" type="text" class="form-control" placeholder="Exemple : 10€">
 												</div>
 											</div>
@@ -344,7 +378,7 @@
 															<th>ID</th>
 															<th>Nom</th>
 															<th>Prix</th>
-															<th>Edition du nom</th>
+															<th>Edition</th>
 															<th>Désactivation / Activation</th>
 															<th>Status</th>
 														</thead>
@@ -359,6 +393,101 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">
+										<span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Ajout de modes de paiements</h4>
+								</div>
+								<div class="content">
+
+									<form id="form_add_payments" method="POST" action="addPaymentsMethods.html">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="name_method_payment">Nom du mode de paiements</label>
+													<input id="name_method_payment" name="name_method_payment" type="text" class="form-control" placeholder="Exemple : Payplug">
+												</div>
+											</div>
+										</div>
+										<button type="submit" id="btn_add_payment" class="btn btn-info btn-fill pull-right">Ajouter le mode de paiement</button>
+
+										<button id="btn_edit_payment" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_payments_method"
+										class="btn btn-danger btn-fill pull-right">Editer les modes de paiements</button>
+
+										<div class="clearfix"></div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="collapse" id="collapse_edit_payments_method">
+								<div class="card card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="header">
+													<h4 class="title">Gestion des modes de paiements</h4>
+													<p class="category">Liste modes de paiements</p>
+												</div>
+												<div class="content table-responsive">
+													<table style="width:100% !important;" id="tab_management_payments" class="col-md-12 table table-hover table-striped">
+														<thead>
+															<th>ID</th>
+															<th>Nom</th>
+															<th>Edition</th>
+															<th>Désactivation / Activation</th>
+															<th>Status</th>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">
+										<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Ajout des status de commandes</h4>
+								</div>
+								<div class="content">
+
+									<form id="form_add_states" method="POST" action="">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="">Nom du status de commande</label>
+													<input id="name_method_shipping" name="name_method_shipping" type="text" class="form-control" placeholder="Exemple : En attente">
+												</div>
+											</div>
+										</div>
+										<button type="submit" id="btn_add_shipping" class="btn btn-info btn-fill pull-right">Ajouter le status de commande</button>
+
+										<button id="btn_edit_shipping" style="margin-right: 20px;" type="button" data-toggle="collapse" data-target="#collapse_edit_payments_method"
+										class="btn btn-danger btn-fill pull-right">Editer les status de commandes</button>
+
+										<div class="clearfix"></div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div> -->
+
 
 				</div>
 			</div>
@@ -401,10 +530,16 @@
 <!--Request Ajax for change informations of members-->
 <script type="text/javascript" src="<?php echo js_url('changeInfosMembers');?>"></script>
 <!--Request Ajax for add an shipping method-->
-<script type="text/javascript" src="<?php echo js_url('addShippingMethod');?>"></script>
+<script type="text/javascript" src="<?php echo js_url('addShippingsMethods');?>"></script>
 <!--Request Ajax for load shipping method on modal-->
 <script type="text/javascript" src="<?php echo js_url('editShippingsMethodsModal');?>"></script>
 <!--Request Ajax for edit method shippings on modal-->
 <script type="text/javascript" src="<?php echo js_url('changeInfosMethodsShippings');?>"></script>
+<!--Request Ajax for add an payment method-->
+<script type="text/javascript" src="<?php echo js_url('addPaymentsMethods');?>"></script>
+<!--Request Ajax for load payment method on modal-->
+<script type="text/javascript" src="<?php echo js_url('editPaymentsModal');?>"></script>
+<!--Request Ajax for edit method shippings on modal-->
+<script type="text/javascript" src="<?php echo js_url('changeInfosMethodsPayments');?>"></script>
 
 </html>
