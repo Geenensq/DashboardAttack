@@ -168,6 +168,7 @@ CREATE TABLE orders(
 CREATE TABLE states(
         id_state   int (11) Auto_increment  NOT NULL ,
         name_state Varchar (25) NOT NULL ,
+        actif            Bool NOT NULL ,
         PRIMARY KEY (id_state )
 )ENGINE=InnoDB;
 

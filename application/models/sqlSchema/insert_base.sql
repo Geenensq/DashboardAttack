@@ -31,14 +31,14 @@ INSERT INTO `products` (`id_product`, `product_name`, `reference`, `description`
 
 #Insertion dans la table groups_colors des méthodes de paiements par defaut
 #--------------------------------------------------------------------------
-INSERT INTO `methods_payments` (`id_method_payment`, `name_method`) VALUES 
-(NULL, 'Espèces'),
-(NULL, 'C.B'),
-(NULL, 'Chèques'),
-(NULL, 'Paypal'),
-(NULL, 'Payplug'),
-(NULL, 'SAV'),
-(NULL, 'Virement');
+INSERT INTO `methods_payments` (`id_method_payment`, `name_method` , `actif`) VALUES 
+(NULL, 'Espèces', 1),
+(NULL, 'C.B', 1),
+(NULL, 'Chèques', 1),
+(NULL, 'Paypal', 1),
+(NULL, 'Payplug', 1),
+(NULL, 'SAV', 1),
+(NULL, 'Virement', 1);
 
 #Insertion dans la table methods_shipping des methodes de livraisons par defaut
 #--------------------------------------------------------------------------
@@ -52,19 +52,19 @@ INSERT INTO `methods_shippings` (`id_method_shipping`, `name_method_shipping`, `
 #Insertion dans la table states des status par defaut
 #--------------------------------------------------------------------------
 
-INSERT INTO `states` (`id_state`, `name_state`) VALUES
-(1, 'Prêt'),
-(2, 'Livré'),
-(3, 'En cours de production'),
-(4, 'En attente de paiement'),
-(5, 'Annulé'),
-(6, 'Acompte versé'),
-(7, 'Expédié'),
-(8, 'Réglé'),
-(9, 'Fichiers prets'),
-(10, 'Broderie'),
-(11, 'Broderie + stickers'),
-(12, 'Broderie + flocages');
+INSERT INTO `states` (`id_state`, `name_state`, `actif`) VALUES
+(1, 'Prêt' , 1),
+(2, 'Livré' , 1),
+(3, 'En cours de production' , 1),
+(4, 'En attente de paiement' , 1),
+(5, 'Annulé' , 1),
+(6, 'Acompte versé', 1),
+(7, 'Expédié', 1),
+(8, 'Réglé', 1),
+(9, 'Fichiers prets', 1),
+(10, 'Broderie', 1),
+(11, 'Broderie + stickers', 1),
+(12, 'Broderie + flocages', 1);
 
 
 

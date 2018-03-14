@@ -23,6 +23,8 @@ class Management_controller extends CI_Controller
     private $price_method_shipping;
     private $id_method_payment;
     private $name_method_payment;
+    private $name_state;
+    private $id_state;
 
     // =======================================================================//
     // !                  Constructor of my Class                            //
@@ -34,6 +36,7 @@ class Management_controller extends CI_Controller
         $this->load->model('Groups_members_model', 'modelGroupsMembers');
         $this->load->model('Shippings_model', 'modelShippings');
         $this->load->model('Payments_model', 'modelPayments');
+        $this->load->model('States_model', 'modelStates');
         $this->load->helper('password');
 
     }
@@ -45,15 +48,15 @@ class Management_controller extends CI_Controller
     {
         if ($this->session->userdata('id_member')) {
 
-            if ($this->session->userdata('id_member') != 1) {
+             if ($this->session->userdata('id_group_member') != 1) {
                 $data = $this->modelGroupsMembers->selectAll();
                 $array = [];
                 $array['groups_members'] = $data;
                 $this->load->view('dashboard/management.html', $array);
 
-            } else {
-                $this->load->view('errors/html/error_403.php');
-            }
+             } else {
+                 $this->load->view('errors/html/error_403.php');
+             }
 
         } else {
             redirect(array('login_controller', 'index'));
@@ -77,7 +80,7 @@ class Management_controller extends CI_Controller
     }
 
     // =======================================================================//
-    // !                   Method for send members on datatable               //
+    // !                 Method for send shippings on datatable              //
     // ======================================================================//
     public function encodeGriShipping()
     {
@@ -92,7 +95,7 @@ class Management_controller extends CI_Controller
     }
 
     // =======================================================================//
-    // !                   Method for send members on datatable               //
+    // !                  Method for send Payments on datatable               //
     // ======================================================================//
     public function encodeGridPayments()
     {
@@ -105,6 +108,25 @@ class Management_controller extends CI_Controller
 
         echo json_encode(array('data' => $data));
     }
+
+
+    // =======================================================================//
+    // !                   Method for send states on datatable               //
+    // ======================================================================//
+    public function encodeGridStates()
+    {
+        $results = $this->modelStates->loadStatesDatatable();
+        $data = array();
+
+        foreach ($results as $result)
+        {
+            $data[] = array($result['id_state'], $result['name_state'], $result['actif']);
+        }
+
+        echo json_encode(array('data' => $data));
+    }
+
+
 
     // ==========================================================================================//
     // !                   Method get all informations of members for modal                      //
@@ -173,6 +195,18 @@ class Management_controller extends CI_Controller
         echo json_encode($return);
     }
 
+
+    // =======================================================================//
+    // !                  Method for send states method on modal             //
+    // ======================================================================//
+
+    public function getInfosStatesModal()
+    {
+        $this->id_state = $this->input->post('id');
+        $return = $this->modelStates->selectAllStatesForModal($this->id_state);
+        echo json_encode($return);
+    }
+
     // ==========================================================================================//
     // !                         Method for change password in the modal                         //
     // ==========================================================================================//
@@ -233,6 +267,16 @@ class Management_controller extends CI_Controller
         $this->modelPayments->disableEnableOnePaymentMethod($this->id_method_payment);
     }
 
+
+    // ==========================================================================================//
+    // !                         Method for activate or desactivate states                       //
+    // ==========================================================================================//
+    public function changeStatusStates()
+    {
+        $this->id_state = $this->input->post('id');
+        $this->modelStates->disableEnableOneState($this->id_state);
+    }
+
     // =======================================================================//
     // !                        Method add an method shipping                 //
     // ======================================================================//
@@ -281,6 +325,32 @@ class Management_controller extends CI_Controller
             $paymentsModel = $this->modelPayments;
             $this->modelPayments->insertMethodsPayments($paymentsModel);
 
+            $callBack["confirm"] = "success";
+
+        } else {
+            $callBack["confirm"] = "error";
+        }
+
+        echo json_encode($callBack);
+
+    }
+
+
+     // =======================================================================//
+    // !                       Method add an states of orders                //
+    // ======================================================================//
+    public function addStates()
+    {
+        $this->form_validation->set_rules('name_states', '" "', 'required|min_length[1]');
+        $callBack = array();
+
+        if ($this->form_validation->run()) {
+
+            $this->name_state = $this->input->post('name_states');
+
+            $this->modelStates->setNameState($this->name_state);
+            $statesModel = $this->modelStates;
+            $this->modelStates->insertStates($statesModel);
             $callBack["confirm"] = "success";
 
         } else {
@@ -342,6 +412,37 @@ class Management_controller extends CI_Controller
             $paymentModel = $this->modelPayments;
 
             $this->modelPayments->updateMethodsPayments($paymentModel);
+            $callBack["confirm"] = "success";
+
+        } else {
+
+            $callBack["confirm"] = "error";
+        }
+
+        echo json_encode($callBack);
+    }
+
+
+    // ==========================================================================================//
+    // !               Method for change informations of states for modal                      //
+    // ==========================================================================================//
+
+    public function editStatesMethods()
+    {
+
+        $this->form_validation->set_rules('id_state', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('new_name_state', '" "', 'required|min_length[1]');
+
+        $callBack = array();
+
+        if ($this->form_validation->run()) {
+
+            $this->modelStates->setNameState($this->input->post('new_name_state'));
+            $this->modelStates->setIdState($this->input->post('id_state'));
+
+            $stateModel = $this->modelStates;
+
+            $this->modelStates->updateStates($stateModel);
             $callBack["confirm"] = "success";
 
         } else {

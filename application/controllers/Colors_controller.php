@@ -44,7 +44,6 @@ Class Colors_controller extends CI_Controller
             redirect(array('login_controller', 'index'));
         }
         
-
     }
 
 // =======================================================================//
