@@ -180,6 +180,7 @@ CREATE TABLE states(
 CREATE TABLE methods_payments(
         id_method_payment int (11) Auto_increment  NOT NULL ,
         name_method       Varchar (25) NOT NULL ,
+		actif            Bool NOT NULL ,
         PRIMARY KEY (id_method_payment )
 )ENGINE=InnoDB;
 

@@ -48,7 +48,7 @@ class Management_controller extends CI_Controller
     {
         if ($this->session->userdata('id_member')) {
 
-             if ($this->session->userdata('id_group_member') != 1) {
+             if ($this->session->userdata('id_group_member') == 1) {
                 $data = $this->modelGroupsMembers->selectAll();
                 $array = [];
                 $array['groups_members'] = $data;

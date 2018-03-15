@@ -2,12 +2,12 @@
 <html>
 
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 
 <body>
 	<div style="text-align: left;">
-		<img src="https://stick-attack.fr/img/stick-attack-logo-1515078249.jpg" alt="image" title="image" style="width: 216px; height: 51px;">
+<img src="assets/img/logo.jpg" alt="image" title="image" style="width: 216px; height: 51px;">
+	</div>
 	</div>
 	<div style="text-align: center;">
 		<b>Récapitulatif de la commande n°
@@ -133,7 +133,7 @@
 					echo '<td>' . $value["color_name"] . '</td>';
 					echo '<td>' . $value["meaning_name"] . '</td>';
 					echo '<td>' . $value["base_price"] . '€' . '</td>';
-					echo "<td><img  style=\"width:80px; height:80px;\" src=\"" .  base_url( "assets/img/uploaded/" . $value["img_url"] )  .  "\"></td>";
+					echo "<td><img  style=\"width:80px; height:80px;\" src=\"" . "assets/img/uploaded/" . $value["img_url"] . "\"></td>";
 					echo '</tr>';
 				}
 				
