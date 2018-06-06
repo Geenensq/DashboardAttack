@@ -176,7 +176,7 @@ Class Colors_controller extends CI_Controller
 
     public function getInfosColorsModal()
     {
-        $this->id_color = $this->input->post('id');
+        $this->id_color = $this->input->post('id_color');
         $return = $this->modelColors->selectAllColorsForModal($this->id_color);
         echo json_encode($return);
     }
@@ -215,17 +215,17 @@ Class Colors_controller extends CI_Controller
     public function changeNameColors()
     {
         $this->form_validation->set_rules('id_color', '" "', 'required|min_length[1]');
-        $this->form_validation->set_rules('new_name_color',  '" "', 'required|min_length[2]');
-        $this->form_validation->set_rules('new_code_color', '" "', 'required|min_length[1]');
+        $this->form_validation->set_rules('color_name',  '" "', 'required|min_length[2]');
+        $this->form_validation->set_rules('color_code', '" "', 'required|min_length[1]');
 
         $callBack = array();
 
         if ($this->form_validation->run())
         {
             $this->modelColors->setIdColor($this->input->post('id_color'));
-            $this->modelColors->setColorName($this->input->post('new_name_color'));
-            $this->modelColors->setColorCode($this->input->post('new_code_color'));
-            $this->modelColors->setIdGroupColor($this->input->post('new_group_color'));
+            $this->modelColors->setColorName($this->input->post('color_name'));
+            $this->modelColors->setColorCode($this->input->post('color_code'));
+            $this->modelColors->setIdGroupColor($this->input->post('name_group_for_color'));
             
             $color = $this->modelColors;
 
