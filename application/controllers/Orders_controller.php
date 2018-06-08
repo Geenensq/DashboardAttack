@@ -33,7 +33,7 @@ class Orders_controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('Pdf');
+        $this->load->library('pdf');
         $this->load->helper('file');
         $this->load->model('Customers_model', 'modelCustomers');
         $this->load->model('States_model', 'modelStates');

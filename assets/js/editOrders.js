@@ -102,7 +102,7 @@ function editOrders($id_order) {
 			cell4.innerHTML = order_product[i]["reference"];
 			cell5.innerHTML = order_product[i]["description"];
 			cell6.innerHTML = order_product[i]["base_price"];
-			cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + order_product[i]["img_url"] + "\" width=\"80px\" height=\"80px\">";
+			cell7.innerHTML = "<img src=\"" + "/assets/img/uploaded/" + order_product[i]["img_url"] + "\" width=\"80px\" height=\"80px\">";
 			cell8.innerHTML = order_product[i]["color_name"];
 			cell9.innerHTML = order_product[i]["size_name"];
 			cell10.innerHTML = order_product[i]["meaning_name"];

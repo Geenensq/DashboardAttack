@@ -164,7 +164,7 @@ Class Colors_controller extends CI_Controller
 
     public function getInfosGroupsColorsModal()
     {
-        $this->id_group_color = $this->input->post('id');
+        $this->id_group_color = $this->input->post('id_group_color');
 
         $return = $this->modelGroupsColors->selectAllGroupsColorsForModal($this->id_group_color);
         echo json_encode($return);
@@ -188,13 +188,13 @@ Class Colors_controller extends CI_Controller
     public function changeNameGroupsColors()
     {
 
-        $this->form_validation->set_rules('new_name_group_colors', '" "', 'required|min_length[3]');
+        $this->form_validation->set_rules('name_group_colors', '" "', 'required|min_length[3]');
         $callBack = array();
 
         if ($this->form_validation->run())
         {
-            $this->modelGroupsColors->setIdGroupColor($this->input->post('new_id_group_color'));
-            $this->modelGroupsColors->setNameGroupColors($this->input->post('new_name_group_colors'));
+            $this->modelGroupsColors->setIdGroupColor($this->input->post('id_group_color'));
+            $this->modelGroupsColors->setNameGroupColors($this->input->post('name_group_colors'));
             
             $groupColors = $this->modelGroupsColors;
 

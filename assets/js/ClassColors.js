@@ -33,33 +33,34 @@ class Colors {
 		return result;
 	}
 
+	/**
+	 * Method for load informations of colors
+	 */
 	load() {
 		let result = send_post(this, this.url);
 		return result;
 	}
 
 
-	/**
-	 * Method getters name of color
-	 */
+	// =======================================================================//
+	// !                     Start methods getters                           //
+	// ======================================================================//
+
 	getName() {
 		return this.color_name;
 	}
 
-	/**
-	 * Method getters code of color
-	 */
 	getCode() {
 		return this.color_code;
 	}
 
-	/**
-	 * Method getters group of color
-	 */
 	getGroup() {
 		return this.name_group_for_color;
 	}
 
+	// =======================================================================//
+	// !                     Start methods setters                           //
+	// ======================================================================//
 
 	/**
 	 * Method setters for add an name
@@ -82,6 +83,7 @@ class Colors {
 	 * Method setters for add the group
 	 * @param {*} group 
 	 */
+
 	setGroup(group) {
 		this.name_group_for_color = group;
 	}
@@ -103,4 +105,3 @@ class Colors {
 	}
 
 }
-

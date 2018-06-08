@@ -323,7 +323,7 @@ function constructViewTable($product, $count, $array, $qte_product) {
 	cell4.innerHTML = $product.reference;
 	cell5.innerHTML = $product.description;
 	cell6.innerHTML = $product.base_price;
-	cell7.innerHTML = "<img src=\"" + "/local/assets/img/uploaded/" + $product.img_url + "\" width=\"80px\" height=\"80px\">";;
+	cell7.innerHTML = "<img src=\"" + "/assets/img/uploaded/" + $product.img_url + "\" width=\"80px\" height=\"80px\">";;
 	cell8.innerHTML = $product.color_name;
 	cell9.innerHTML = $product.size_name;
 	cell10.innerHTML = $product.meaning_name;
