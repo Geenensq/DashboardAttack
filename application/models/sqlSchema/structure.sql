@@ -286,10 +286,10 @@ CREATE TABLE members_messages(
 
 
 #------------------------------------------------------------
-# Table: products_meaning
+# Table: products_meanings
 #------------------------------------------------------------
 
-CREATE TABLE products_meaning(
+CREATE TABLE products_meanings(
         id_meaning Int NOT NULL ,
         id_product Int NOT NULL ,
         PRIMARY KEY (id_meaning ,id_product )
@@ -318,5 +318,5 @@ ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_product FOREIGN K
 ALTER TABLE products_sizes ADD CONSTRAINT FK_products_sizes_id_size FOREIGN KEY (id_size) REFERENCES sizes(id_size);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_member FOREIGN KEY (id_member) REFERENCES members(id_member);
 ALTER TABLE members_messages ADD CONSTRAINT FK_members_messages_id_message FOREIGN KEY (id_message) REFERENCES messages(id_message);
-ALTER TABLE products_meaning ADD CONSTRAINT FK_products_meaning_id_meaning FOREIGN KEY (id_meaning) REFERENCES meanings(id_meaning);
-ALTER TABLE products_meaning ADD CONSTRAINT FK_products_meaning_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
+ALTER TABLE products_meanings ADD CONSTRAINT FK_products_meanings_id_meaning FOREIGN KEY (id_meaning) REFERENCES meanings(id_meaning);
+ALTER TABLE products_meanings ADD CONSTRAINT FK_products_meanings_id_product FOREIGN KEY (id_product) REFERENCES products(id_product);
